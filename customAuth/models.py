@@ -6,7 +6,7 @@ from django.contrib.auth.models import (
 
 # Create your models here.
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, sign_up_date, password=None):
+    def create_user(self, email, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -16,22 +16,22 @@ class CustomUserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            sign_up_date=sign_up_date,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, sign_up_date, password=None):
+    def create_superuser(self, email, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
+        
         user = self.create_user(
             email,
             password=password,
-            sign_up_date=sign_up_date,
+            
         )
         user.is_admin = True
         user.save(using=self._db)
