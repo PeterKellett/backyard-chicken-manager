@@ -1,5 +1,7 @@
 from django.db import models
 from customAuth.models import CustomUser
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # Create your models here.
@@ -36,8 +38,8 @@ class UserProfile(models.Model):
                                     null=False,
                                     blank=False)
 
-    def __str__(self):
-        return self.user
+def __str__(self):
+    return self.user
 
 
 class FarmProfile(models.Model):
@@ -58,5 +60,12 @@ class FarmProfile(models.Model):
                                           null=False,
                                           default=0)
 
-    def __str__(self):
-        return self.user
+def __str__(self):
+    return self.user.email
+
+
+@receiver(post_save, sender=CustomUser)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+    instance.userprofile.save()
