@@ -30,8 +30,7 @@ class CustomUserManager(BaseUserManager):
         
         user = self.create_user(
             email,
-            password=password,
-            
+            password=password,          
         )
         user.is_admin = True
         user.save(using=self._db)
