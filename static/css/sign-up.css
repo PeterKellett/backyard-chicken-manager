@@ -1,0 +1,33 @@
+/*-- Applies to home page and onboarding only so needs to be moved from here --*/
+body {
+    background: url(../images/chicken.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+video {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 10px;
+}
+
+hr {
+    border-top: 5px solid var(--white);
+}
+
+/*-- FONTS START --*/
+
+h1, h2, p {
+    color: var(--white);
+}
+
+/*-- FONTS END --*/
+
+/*-- INPUT FIELDS START --*/
+
+label {
+    display: none;
+}
+
+INPUT FIELDS END --*/

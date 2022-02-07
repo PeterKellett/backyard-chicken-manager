@@ -1,6 +1,63 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Backyard Chicken Manager
+{% endblock %}
+
 {% block content %}
-<h1>Home</h1>
+
+<div class="large-screen-h1">
+    <h1>Backyard Chicken Manager</h1>
+    <hr class="hr-large">
+</div>
+
+<p>
+    Whether you keep chickens and poultry as a hobby or have a farming business, 
+    Backyard Chicken Manager makes keeping track of your birds easy.
+</p>
+
+<video autoplay controls>
+    <source src="url(../videos/2022-02-04-1935-19.mp4)" type="video/mp4">
+    Your browser doesn't support mp4 videos. Change browser.
+</video>
+
+<hr class="hr-large">
+<h2>About</h2>
+<p>Find out how my 9 year old son's desire to have a car when he turns 17 led to tears, tantrums and
+    ultimately the development of the Backyard Chicken Manager app. <a href="">More...</a></p>
+<hr class="hr-large">
+
+<div class="form-container">
+    <form method="POST" action="register">
+        <div class="form-data">
+            <div>
+                <input type="email" name="email" placeholder=" " id="email" required>
+                <label for="email">Email</label>
+            </div>
+        </div>
+        <div class="form-data">
+            <div>
+                <input type="password" name="password" placeholder=" " id="password" autocomplete="current-password" required>
+                <label for="password">Password</label>
+                <i class="far fa-eye" id="togglePassword" onclick="showPasswordFunction()"></i>
+            </div>
+        </div>
+        
+        <div class="form-data">
+            <div>
+                <input type="submit" value="Sign Up" class="button button-full-size">
+            </div>
+        </div>
+        <p>
+            Already have an account? 
+            <a href="">Log In.</a>
+        </p>
+    </form>
+</div>
+
 {% endblock %}
