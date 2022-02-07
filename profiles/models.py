@@ -6,18 +6,21 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Languages(models.Model):
+    """Model used for storing language types"""
     language = models.CharField(max_length=20,
                                 null=False,
                                 blank=False)
 
 
 class Currency(models.Model):
+    """Model used for storing currency types"""
     currency = models.CharField(max_length=20,
                                 null=False,
                                 blank=False)
 
 
 class FarmType(models.Model):
+    """Model used for storing different farm types"""
     type = models.CharField(max_length=20,
                             null=False,
                             blank=False)
@@ -27,6 +30,7 @@ class FarmType(models.Model):
 
 
 class UserProfile(models.Model):
+    """Model used for storing UserProfile attributes"""
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=20,
                                   null=False,
@@ -38,11 +42,12 @@ class UserProfile(models.Model):
                                     null=False,
                                     blank=False)
 
-def __str__(self):
-    return self.user
+    def __str__(self):
+        return self.user
 
 
 class FarmProfile(models.Model):
+    """Model used for storing FarmProfile attributes"""
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     farm_name = models.CharField(max_length=20,
                                  null=False,
@@ -60,12 +65,13 @@ class FarmProfile(models.Model):
                                           null=False,
                                           default=0)
 
-def __str__(self):
-    return self.user.email
+    def __str__(self):
+        return self.user.email
 
 
 @receiver(post_save, sender=CustomUser)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
+def create_or_update_user_profile(sender, instance, created, **kwargs):   
+    """Function called to create a UserProfile on signup"""
     if created:
         UserProfile.objects.create(user=instance)
-    instance.userprofile.save()
+        instance.userprofile.save()

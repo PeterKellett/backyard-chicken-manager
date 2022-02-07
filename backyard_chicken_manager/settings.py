@@ -98,14 +98,17 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Signup and login settings
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "none"
+if 'DEVELOPMENT' in os.environ:
+    ACCOUNT_EMAIL_VERIFICATION = "none"
+else:
+    ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USERNAME_REQUIRED = False
 LOGIN_URL = "/accounts/login/"
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/profile/onboard_personal"
 
 WSGI_APPLICATION = 'backyard_chicken_manager.wsgi.application'
 
