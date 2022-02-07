@@ -1,0 +1,310 @@
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300;600&family=Merriweather:wght@300;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+body {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    height: 100vh;
+}
+
+/*-- COLOURS START --*/
+
+:root {
+    --green: #83952a;
+    --orange: #d65b3e;
+    --black: #373838;
+    --white: #fefefe;
+}
+
+/*-- COLOURS END --*/
+
+
+/*-- FONTS START --*/
+
+p, h1, h2, h3, h4, h5 {
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/*-- Justifies paragraphs on mobile only --*/
+@media (max-width: 600px){
+    p {
+        text-align: justify;
+    }
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    color: var(--green);
+}
+
+h1 {
+    font-size: 40px;
+}
+h2 {
+    font-size: 30px;
+}
+@media (max-width: 991px){
+    h1, h2 {
+        font-size: 20px;
+    }
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--black);
+}
+
+/*-- FONTS END --*/
+
+
+/*-- HR RULES START --*/
+
+hr {
+    border-top: 5px solid var(--green);
+    opacity: 1;
+    margin:auto;
+    margin-bottom: 10px;
+}
+
+.hr-large {
+    width: 50%;
+    min-width: 275px;
+    margin-bottom: 10px;
+}
+
+.hr-small {
+    width: 33%;
+    min-width: 150px;
+    margin-bottom: 10px;
+}
+
+/*-- HR RULES END --*/
+
+
+/*-- NAVBAR START --*/
+
+/*-- Stops the navbar from stretching right across the page on large screens --*/
+.nav-bar {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.navbar {
+    background-color: var(--green);
+    box-shadow: 0px 2px 5px var(--black);
+}
+
+/*-- Makes Menu links white and centres them when displayed at top of the page --*/
+@media (min-width: 992px){
+    .navbar-light .navbar-nav .nav-link {
+        color: var(--white);
+    }
+    .navbar-nav .nav-link {
+        text-align: center;
+    }
+}
+
+/*-- Hamburger menu and logo width set to match so that the page title text is centred between them on mobile--*/
+.navbar-toggler, .navbar-brand {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+@media (min-width: 992px){
+    .navbar-brand {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/*-- Changes hamburger menu colour to white --*/
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/*-- Sets width of the slide out menu --*/
+.offcanvas {
+    width: 250px;
+}
+
+@media (max-width: 991px){
+    .navbar-nav {
+        padding-left: 1rem;
+    }
+    .offcanvas-start {
+        top: 46px;
+    }
+}
+
+/*-- Images included in mobile slide out menu --*/
+.nav-link-image {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+@media (min-width: 992px){
+    .nav-link-image {
+        display: none;
+    }
+}
+
+/*-- Page title text that displays in Navbar when slide out menu is emplyed --*/
+.navbar-page-title {
+    margin: 0;
+    color: var(--white);
+}
+
+/*-- NAVBAR END */
+
+
+/*-- INPUT FIELDS START --*/
+/*-- Animation of input field labels https://www.youtube.com/watch?v=JlRNGJGorsw from 10:17 onwards --*/
+
+/*-- Keeps all input fields centred on page --*/
+.form-container {
+    margin: auto;
+    width: 100%;
+    max-width: 360px;
+  }
+
+/*-- Facilitates positioning of the label --*/
+.form-data > div {
+    position: relative;
+    box-sizing: border-box;
+}
+
+/*-- Fields excluding labels and other text --*/
+input, 
+.form-data select,
+.form-data textarea {
+    margin-bottom: 10px;
+    margin-top: 0;
+    padding-left: 10px;
+    box-sizing: border-box;
+    color: var(--black);
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+}
+
+/*-- Field label prior to field being clicked on --*/
+input + label,
+.form-data select + label,
+.form-data textarea + label,
+.far {
+    position: absolute;
+    font-size: 16px;
+    color: var(--black);
+}
+
+/*-- Field label prior to field being clicked on. It's an extension of above --*/
+.form-data input + label,
+.form-data select + label,
+.form-data textarea + label {
+    left: 10px;
+    top: 9px;
+}
+
+/*-- Field label after field has been clicked on --*/
+.form-data input:not(:placeholder-shown) + label, 
+.form-data input:focus + label,
+.form-data select:not(:placeholder-shown) + label, 
+.form-data select:focus + label,
+.form-data textarea:not(:placeholder-shown) + label, 
+.form-data textarea:focus + label {
+    font-size: 12px;
+    top: -10px;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+/*-- Highlight field border when clicked on --*/
+input:focus,
+.form-data select:focus,
+.form-data textarea:focus {
+    border: 2px solid var(--black);
+}
+
+/*-- Makes input background transparent when filled by user https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete --*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/*-- Positions the "eye" icon on the right of the password field --*/
+.far {
+    left: 93.5%;
+    top: 12px;
+}
+
+/*-- INPUT FIELDS END --*/
+
+/*-- BUTTONS START --*/
+
+.form-data input[type=submit],
+.button {
+    margin-bottom: 10px;
+    background-color: var(--green);
+    color:var(--white);
+    border-radius: 5px;
+}
+
+.button-full-size {
+    width: 47.5%;
+    height: 40px
+}
+
+/*-- BUTTONS END --*/
+
+
+/*-- MAIN START --*/
+
+/*Keeps main section of the page in the centre regardless of screen size --*/
+main {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+/* Adds space at the top of the main section to allow for changes in header height*/
+main {
+    padding-top: 65px;
+}
+@media (min-width: 992px){
+    main {
+        padding-top: 100px;
+    }
+}
+
+/* Removes the H1 from top of the page on mobile as it'll be in the navbar */
+@media (max-width: 991px){
+    .large-screen-h1 {
+        display: none;
+    }
+}
+
+/*-- MAIN END --*/
+
