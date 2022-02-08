@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/sign-up.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/onboarding.css' %}" />
 {% endblock %}
 
 {% load i18n %}
@@ -16,10 +16,31 @@
 {% block inner_content %}
 <!-- <h1>{% trans "Sign Up" %}</h1> -->
 
+<div class="large-screen-h1">
+  <h1>Backyard Chicken Manager</h1>
+  <hr class="hr-large">
+</div>
+
+<p>
+  Whether you keep chickens and poultry as a hobby or have a farming business, 
+  Backyard Chicken Manager makes keeping track of your birds easy.
+</p>
+
+<video autoplay controls>
+  <source src="url(../videos/2022-02-04-1935-19.mp4)" type="video/mp4">
+  Your browser doesn't support mp4 videos. Change browser.
+</video>
+
+<hr class="hr-large">
+<h2>About</h2>
+<p>Find out how my 9 year old son's desire to have a car when he turns 17 led to tears, tantrums and
+  ultimately the development of the Backyard Chicken Manager app. <a href="">More...</a></p>
+<hr class="hr-large">
+
 <div class="form-container">
   <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
-    {{ form|crispy }}
+    {{ form }}
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
@@ -27,7 +48,7 @@
       <div>
         <button type="submit" class="button button-full-size">{% trans "Sign Up" %} &raquo;</button>
       </div>
-  </div>
+    </div>
     <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">Sign In</a>.{% endblocktrans %}</p>
   </form>
 </div>
