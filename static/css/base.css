@@ -91,7 +91,7 @@ p {
 /*-- HR RULES START --*/
 
 hr {
-    border-top: 5px solid var(--green);
+    border-top: 3px solid var(--green);
     opacity: 1;
     margin:auto;
     margin-bottom: 10px;
@@ -100,13 +100,11 @@ hr {
 .hr-large {
     width: 50%;
     min-width: 275px;
-    margin-bottom: 10px;
 }
 
 .hr-small {
     width: 33%;
     min-width: 150px;
-    margin-bottom: 10px;
 }
 
 /*-- HR RULES END --*/
@@ -286,16 +284,23 @@ input:-webkit-autofill:active {
 /*-- BUTTONS START --*/
 
 .form-data input[type=submit],
-.button {
+.button,
+.btn {
     margin-bottom: 10px;
     background-color: var(--green);
     color:var(--white);
+    border: 1px solid var(--black);
     border-radius: 5px;
+    height: 40px;
+    box-shadow: 0px 2px 5px var(--black);
 }
 
 .button-full-size {
     width: 47.5%;
-    height: 40px
+}
+
+.button-small-size {
+    width: 31.5%;
 }
 
 /*-- BUTTONS END --*/
@@ -331,3 +336,21 @@ main {
 
 /*-- MAIN END --*/
 
+
+/*-- GRID START --*/
+
+.col-css {
+    padding-left: 0;
+    padding-right: 10px;
+    text-align: left;
+}
+
+.col-css-right {
+    padding: 0;
+}
+
+.col-css > img {
+    width: 25px;
+}
+
+/*-- GRID END --*/

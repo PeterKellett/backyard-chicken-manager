@@ -13,12 +13,12 @@ video {
 }
 
 hr {
-    border-top: 5px solid var(--white);
+    border-color: var(--white);
 }
 
 /*-- FONTS START --*/
 
-h1, h2, p {
+h1, h2, h3, h4, h5, h6, p {
     color: var(--white);
 }
 
@@ -27,7 +27,8 @@ h1, h2, p {
 /*-- INPUT FIELDS START --*/
 
 label {
-    display: none;
+    /* display: none; */
+    position: relative;
 }
 
-INPUT FIELDS END --*/
+/*-- INPUT FIELDS END --*/

@@ -1,7 +1,72 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/onboarding.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Onboarding Farm
+{% endblock %}
+
 {% block content %}
-<h5>Onboard page 2 (farm data)</h5>
-<a href="{% url 'onboard_personal' %}">Prev page</a> | <a href="{% url 'onboard_flock' %}">Next page</a>
+<div class="large-screen-h1">
+  <h1>Onboarding Farm</h1>
+  <hr class="hr-large">
+</div>
+<div>
+  <h4>
+    Page 2 of 5
+  </h4>
+</div>
+<div>
+  <p>
+    Tell us about your farm...
+  </p>
+  <hr class="hr-large">
+</div>
+
+<div class="form-container">
+  <form method="POST" action="register">
+      <div class="form-data">
+        <div>
+            <input type="text" name="farm_business_name" placeholder="Farm/Business Name" id="farm_business_name" required>
+        </div>
+      </div>
+      <div class="form-data">
+        <div>
+            <select name="farm_type" id="farm_type" required>
+                <option value="" disabled selected>Farm Type</option>
+                <option value="egg_sales">Egg Sales</option>
+                <option value="bird_sales">Bird Sales</option>
+                <option value="egg_and_bird_sales">Egg & Bird Sales</option>
+            </select>
+        </div>
+        <div class="form-data">
+            <div>
+                <input type="number" name="flock_qty" placeholder="How Many Flocks do You Have?" id="flock_qty" 
+                    step="1" min="1" oninput="this.value = Math.abs(this.value)" required>
+            </div>
+        </div>
+        <div class="form-data">
+            <div>
+                <input type="number" name="coop_qty" placeholder="How Many Coops do You Have?" id="coop_qty" 
+                    step="1" min="1" oninput="this.value = Math.abs(this.value)" required>
+            </div>
+        </div>
+        <div class="form-data">
+            <div>
+                <hr class="hr-large">
+            </div>
+        </div>
+        <div class="form-data">
+            <div>
+                <!--<button class="button button-full-size">Prev page</button>-->
+                <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">Previous</a> <a href="{% url 'onboard_flock' %}" class="btn button button-small-size">Next</a>
+            </div>
+        </div>
+
+  </form>
+</div>
+
 {% endblock %}
