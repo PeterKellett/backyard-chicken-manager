@@ -24,7 +24,6 @@ class FarmType(models.Model):
     type = models.CharField(max_length=20,
                             null=False,
                             blank=False)
-
     def __str__(self):
         return self.type
 
@@ -33,17 +32,18 @@ class UserProfile(models.Model):
     """Model used for storing UserProfile attributes"""
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=20,
-                                  null=False,
-                                  blank=False)
+                                  null=True,
+                                  blank=True)
     last_name = models.CharField(max_length=20,
-                                 null=False,
-                                 blank=False)
+                                 null=True,
+                                 blank=True)
     city_country = models.CharField(max_length=20,
                                     null=False,
                                     blank=False)
+    onboard_complete = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user
+        return self.user.email
 
 
 class FarmProfile(models.Model):
@@ -69,9 +69,11 @@ class FarmProfile(models.Model):
         return self.user.email
 
 
+"""
 @receiver(post_save, sender=CustomUser)
 def create_or_update_user_profile(sender, instance, created, **kwargs):   
-    """Function called to create a UserProfile on signup"""
+    """ """Function called to create a UserProfile on signup""" """
     if created:
         UserProfile.objects.create(user=instance)
         instance.userprofile.save()
+"""

@@ -4,6 +4,7 @@ from .models import FarmType, UserProfile, FarmProfile
 
 # Register your models here.
 class FarmTypeAdmin(admin.ModelAdmin):
+    """Admin model"""
     list_display = (
         'type',
     )
@@ -11,6 +12,7 @@ class FarmTypeAdmin(admin.ModelAdmin):
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = (
+        'user',
         'first_name',
         'last_name',
     )

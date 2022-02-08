@@ -116,7 +116,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USERNAME_REQUIRED = False
 LOGIN_URL = "/accounts/login/"
-LOGIN_REDIRECT_URL = "/profile/onboard_personal"
+LOGIN_REDIRECT_URL = "/profile"
 
 WSGI_APPLICATION = 'backyard_chicken_manager.wsgi.application'
 

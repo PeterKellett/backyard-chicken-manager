@@ -5,8 +5,8 @@
     <h5>Onboard page 2 (farm data)</h5>
 
     {% for farm_type in farm_types %}
-        <p>{{ farm_type }}</p>
+        <p>{{ farm_type|title }}</p>
     {% endfor %}
-    
+
     <a href="{% url 'onboard_personal' %}">Prev page</a> | <a href="{% url 'onboard_flock' %}">Next page</a>
 {% endblock %}

@@ -19,6 +19,16 @@ def dashboard(request):
 @login_required
 def onboard_personal(request):
     '''Render onboarding step 1'''
+    profile = get_object_or_404(CustomUser, email=request.user)
+    print("profile = ", profile)
+    first_name = 'john'
+    last_name = 'smith'
+    userprofile = UserProfile(
+        user=profile,
+        first_name=first_name,
+        last_name=last_name,
+    )
+    userprofile.save()
     context = {
 
     }
@@ -30,7 +40,11 @@ def onboard_personal(request):
 def onboard_farm(request):
     '''Render onboarding step 2'''
     farm_types = FarmType.objects.all()
-    print(farm_types)
+    for farm_type in farm_types:
+        farm_type = str(farm_type)
+        print(farm_type)
+        print(type(farm_type))
+ 
     context = {
         "farm_types": farm_types
     }
