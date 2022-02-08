@@ -42,6 +42,7 @@
 
     <title>BCM {% block extra_title %}{% endblock %}</title>
   </head>
+  
   <body>
     <header>
       <!--Bootstrap5 default navbar template used https://getbootstrap.com/docs/5.0/components/navbar/-->
@@ -53,7 +54,7 @@
           </button>
           <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                {% if user.is_authenticated %}
+              {% if user.is_authenticated %}
                 <li class="nav-item ">
                   <a class="nav-link" href=""><img src="{{ MEDIA_URL }}hen.png" alt="" class="nav-link-image">Regular Tasks</a>
                 </li>
@@ -87,7 +88,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'account_logout' %}"><img src="{{ MEDIA_URL }}hen.png" alt="" class="nav-link-image">Sign Out</a>
                 </li>
-                {% else %}
+              {% else %}
                 <li class="nav-item">
                   <a class="nav-link" href="">About Us</a>
                 </li>
@@ -97,7 +98,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
                 </li>
-                {% endif %}
+              {% endif %}
             </ul>
           </div>
 

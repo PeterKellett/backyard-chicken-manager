@@ -17,6 +17,24 @@ body {
     height: 100vh;
 }
 
+.container-fluid {
+    position: relative;
+}
+
+/*-- Positions items in the centre of the page --*/
+.page-centre {
+    width: 100%;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 /*-- COLOURS START --*/
 
 :root {
@@ -204,6 +222,11 @@ input,
     width: 100%;
     max-width: 400px;
     height: 40px;
+}
+
+/*-- Makes Checkboxes small than other field sizes --*/
+input[type=checkbox] {
+    height: 25px;
 }
 
 /*-- Field label prior to field being clicked on --*/
