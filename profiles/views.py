@@ -29,8 +29,10 @@ def onboard_personal(request):
 @login_required
 def onboard_farm(request):
     '''Render onboarding step 2'''
+    farm_types = FarmType.objects.all()
+    print(farm_types)
     context = {
-
+        "farm_types": farm_types
     }
     template = 'profiles/onboard_farm.html'
     return render(request, template, context)

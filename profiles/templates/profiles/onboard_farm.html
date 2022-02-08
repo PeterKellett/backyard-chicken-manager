@@ -37,9 +37,9 @@
         <div>
             <select name="farm_type" id="farm_type" required>
                 <option value="" disabled selected>Farm Type</option>
-                <option value="egg_sales">Egg Sales</option>
-                <option value="bird_sales">Bird Sales</option>
-                <option value="egg_and_bird_sales">Egg & Bird Sales</option>
+                {% for farm_type in farm_types %}
+                <option value="{{ farm_type }}">{{ farm_type }}</option>
+                {% endfor %}
             </select>
         </div>
         <div class="form-data">
@@ -68,5 +68,4 @@
 
   </form>
 </div>
-
 {% endblock %}
