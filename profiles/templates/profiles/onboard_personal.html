@@ -25,13 +25,19 @@
   </p>
   <hr class="hr-large">
 </div>
+{{ onboard_profile_data.full_name }}
 
 <div class="form-container">
   <form method="POST" action="{% url 'get_onboarding_data' %}">
     {% csrf_token %}
       <div class="form-data">
           <div>
+            {% if 'full_name' in onboard_profile_data %}
+              <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full_name" required>
+            {% else %}
               <input type="text" name="full_name" placeholder="Full Name" id="full_name" required>
+            {% endif %}
+            
           </div>
       </div>
       <div class="form-data">

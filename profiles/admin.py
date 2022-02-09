@@ -1,9 +1,23 @@
 from django.contrib import admin
-from .models import FarmType, UserProfile, FarmProfile
+from .models import FarmType, UserProfile, FarmProfile, Breed, FarmPurpose
 
 
 # Register your models here.
 class FarmTypeAdmin(admin.ModelAdmin):
+    """Admin model"""
+    list_display = (
+        'type',
+    )
+
+
+class BreedsAdmin(admin.ModelAdmin):
+    """Admin model"""
+    list_display = (
+        'type',
+    )
+
+
+class FarmPurposeAdmin(admin.ModelAdmin):
     """Admin model"""
     list_display = (
         'type',
@@ -35,3 +49,5 @@ class FarmProfileAdmin(admin.ModelAdmin):
 admin.site.register(FarmType, FarmTypeAdmin)
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(FarmProfile, FarmProfileAdmin)
+admin.site.register(Breed, BreedsAdmin)
+admin.site.register(FarmPurpose, FarmPurposeAdmin)

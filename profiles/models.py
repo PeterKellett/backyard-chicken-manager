@@ -28,6 +28,20 @@ class FarmType(models.Model):
         return self.type
 
 
+class Breed(models.Model):
+    """Model used for storing different chicken breed types"""
+    type = models.CharField(max_length=20,
+                            null=False,
+                            blank=False)
+
+
+class FarmPurpose(models.Model):
+    """Model used for storing different chicken breed types"""
+    type = models.CharField(max_length=20,
+                            null=False,
+                            blank=False)
+
+
 class UserProfile(models.Model):
     """Model used for storing UserProfile attributes"""
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)

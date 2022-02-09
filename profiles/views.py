@@ -24,63 +24,37 @@ def get_onboarding_data(request):
     # is already created"""
     onboard_profile_data = request.session.get('onboard_profile_data',
                                                {
-                                                    'full_name': '',
-                                                    'city_country': '',
-                                                    'farm_business_name': '',
-                                                    'farm_type': '',
-                                                    'flock_qty': '',
-                                                    'coop_qty': '',
-                                                    'flock_name': '',
-                                                    'acquired_date': '',
-                                                    'breed': '',
-                                                    'purpose': '',
-                                                    'all_hens_check': '',
-                                                    'hens_qty': '',
-                                                    'all_chicks_check': '',
-                                                    'chicks_qty': '',
-                                                    'all_cocks_check': '',
-                                                    'cocks_qty': '',
-                                                    'farm_sales_roadside': '',
-                                                    'farm_sales_markets': '',
-                                                    'farm_sales_deliveries': '',
-                                                    'farm_sales_collections': '',
-                                                    'eggs_in_stock': '',
-                                                    'current_balance': ''
+                                                    
                                                })
 
-    # onboard_profile_data = {
-    #                             'full_name': '',
-    #                             'city_country': '',
-    #                             'farm_business_name': '',
-    #                             'farm_type': '',
-    #                             'flock_qty': '',
-    #                             'coop_qty': '',
-    #                             'flock_name': '',
-    #                             'acquired_date': '',
-    #                             'breed': '',
-    #                             'purpose': '',
-    #                             'all_hens_check': '',
-    #                             'hens_qty': '',
-    #                             'all_chicks_check': '',
-    #                             'chicks_qty': '',
-    #                             'all_cocks_check': '',
-    #                             'cocks_qty': '',
-    #                             'farm_sales_roadside': '',
-    #                             'farm_sales_markets': '',
-    #                             'farm_sales_deliveries': '',
-    #                             'farm_sales_collections': '',
-    #                             'eggs_in_stock': '',
-    #                             'current_balance': ''
-    #                         }
-    
-    # Get the form data
-    for key in onboard_profile_data:
-        print('key = ', key)
-        if key in request.POST:
-            if key in ('flock_qty', 'coop_qty'):
-                onboard_profile_data[key] = int(request.POST[key])
+    # Get the form data and quick test
+    raw_form_data = request.POST
+    print('form_data = ', raw_form_data)
+    # Declare a list of field names to be removed from the raw_form_data
+    hidden_list = [
+        'csrfmiddlewaretoken',
+        'redirect_url'
+    ]
+    # Declare a dictionary to contain the cleaned submitted form data
+    cleaned_form_data = {}
+    # Run the raw_form_data against the list of items in the hidden list to remove the forms hidden fields csrf and redirect_url data
+    for key in raw_form_data:
+        if key not in hidden_list:
+            cleaned_form_data[key] = request.POST[key]  # Add key name and value from the form to the cleaned_form_data Variable
+   
+    # Process the cleaned_form_data to the session onboard_profile_data and add or update keys and values with each form submit
+    for field in cleaned_form_data:  # for each field in the form
+        print('field = ', field)
+        if field in onboard_profile_data:  # Check if that key name is in the session vars already
+            if field in ('flock_qty', 'coop_qty'):  # If Y: Check if this field is required to be an integer
+                onboard_profile_data.update({field: int(request.POST[field])})  # If Y: Update the value as an int
+            else:  # Else N
+                onboard_profile_data.update({field: request.POST[field]})  # update as raw str
+        else:
+            if field in ('flock_qty', 'coop_qty'):  # Else N: Check if this field is required to be an integer
+                onboard_profile_data[field] = int(request.POST[field])  # If Y: Add key and value as int
             else:
-                onboard_profile_data[key] = request.POST[key]
+                onboard_profile_data[field] = request.POST[field]  # Else N: save as raw str
     redirect_url = request.POST.get('redirect_url')
     x = onboard_profile_data.values()
     print('x = ', x)
