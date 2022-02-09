@@ -27,30 +27,31 @@
 </div>
 
 <div class="form-container">
-  <form method="POST" action="register">
-      <div class="form-data">
-        <div>
-            <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
+    <form method="POST" action="register">
+        <div class="form-data">
+            <div>
+                <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
+            </div>
         </div>
-      </div>
-      <div class="form-data">
-        <div>
-            <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
+        <div class="form-data">
+            <div>
+                <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
+            </div>
         </div>
-      </div>
-      <div class="form-data">
-        <div>
-            <input type="text" name="coop1_name" placeholder="Coop Name" id="coop1_name" required>
+        <div class="form-data">
+            <div>
+                <input type="text" name="coop1_name" placeholder="Coop Name" id="coop1_name" required>
+            </div>
         </div>
-      </div>
-      <div class="form-data">
-        <div>
-            <select name="breed" id="breed" required>
-                <option value="" disabled selected>Breed</option>
-                <option value="rhode_island_red">Rhode Island Red</option>
-                <option value="sussex">Sussex</option>
-                <option value="plymouth_rock">Plymouth Rock</option>
-            </select>
+        <div class="form-data">
+            <div>
+                <select name="breed" id="breed" required>
+                    <option value="" disabled selected>Breed</option>
+                    <option value="rhode_island_red">Rhode Island Red</option>
+                    <option value="sussex">Sussex</option>
+                    <option value="plymouth_rock">Plymouth Rock</option>
+                </select>
+            </div>
         </div>
         <div class="form-data">
             <div>
@@ -67,61 +68,79 @@
             </div>
         </div>
         
+        <!-- HCC Row (Hens, Chicks and Cocks Row). To be moved to it's own snippet -->
         <div class="container form-data">
-            <div class="row">
+            <div class="row" id="hens-row">
                 <div class="col-1 col-css">
-                    <img src="{{ MEDIA_URL }}hen.png" alt="Chicken">
+                    <img src="{{ MEDIA_URL }}hen.png" alt="Chicken" class="col-css-element">
                 </div>
-                <div class="col-2 col-css">
-                    <h4>Hens</h4>
+                <div class="col-4 col-css">
+                    <h4 class="row-name col-css-element">Hens</h4>
                 </div>
-                <div class="col-5 col-css">
-                    <input type="checkbox" name="all_hens_check" id="all_hens_check">
-                    <label for="all_hens_check">All Hens</label>
+                <div class="col-3 col-css">
+                    <p class="checkbox-label hcc-checkbox-label col-css-element">All Hens</p>
                 </div>
-                <div class="col-4 col-css col-css-right">
+                <div class="col-1 col-css">
+                    <input type="checkbox" name="all_hens_check" id="all_hens_check" class="col-css-element hcc-checkbox">
+                </div>
+                <div class="col-3 col-css col-css-right">
                     <input type="number" name="hens_qty" placeholder="Quantity" id="hens_qty" 
-                        step="1" min="0" oninput="this.value = Math.abs(this.value)">
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
                 </div>
             </div>
             <div>
                 <hr class="hr-small">
             </div>
 
-            <div class="row">
+            <div class="row" id="chicks-row">
                 <div class="col-1 col-css">
-                    <img src="{{ MEDIA_URL }}hen.png" alt="Chick">
+                    <img src="{{ MEDIA_URL }}hen.png" alt="Chicks" class="col-css-element">
                 </div>
-                <div class="col-2 col-css">
-                    <h4>Chicks</h4>
+                <div class="col-4 col-css">
+                    <h4 class="row-name col-css-element">Chicks</h4>
                 </div>
-                <div class="col-5 col-css">
-                    <input type="checkbox" name="all_chicks_check" id="all_chicks_check">
-                    <label for="all_chicks_check">All Chicks</label>
+                <div class="col-3 col-css">
+                    <p class="checkbox-label hcc-checkbox-label col-css-element">All Chicks</p>
                 </div>
-                <div class="col-4 col-css col-css-right">
+                <div class="col-1 col-css">
+                    <input type="checkbox" name="all_chicks_check" id="all_chicks_check" class="col-css-element hcc-checkbox">
+                </div>
+                <div class="col-3 col-css col-css-right">
                     <input type="number" name="chicks_qty" placeholder="Quantity" id="chicks_qty" 
-                        step="1" min="0" oninput="this.value = Math.abs(this.value)">
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
                 </div>
             </div>
             <div>
                 <hr class="hr-small">
             </div>
 
-            <div class="row">
+            <div class="row" id="cocks-row">
                 <div class="col-1 col-css">
-                    <img src="{{ MEDIA_URL }}hen.png" alt="Cock">
+                    <img src="{{ MEDIA_URL }}hen.png" alt="Cocks" class="col-css-element">
                 </div>
-                <div class="col-2 col-css">
-                    <h4>Cocks</h4>
+                <div class="col-4 col-css">
+                    <h4 class="row-name col-css-element">Cocks</h4>
                 </div>
-                <div class="col-5 col-css">
-                    <input type="checkbox" name="all_cocks_check" id="all_cocks_check">
-                    <label for="all_cocks_check">All Cocks</label>
+                <div class="col-3 col-css">
+                    <p class="checkbox-label hcc-checkbox-label col-css-element">All Cocks</p>
                 </div>
-                <div class="col-4 col-css col-css-right">
+                <div class="col-1 col-css">
+                    <input type="checkbox" name="all_cocks_check" id="all_cocks_check" class="col-css-element hcc-checkbox">
+                </div>
+                <div class="col-3 col-css col-css-right">
                     <input type="number" name="cocks_qty" placeholder="Quantity" id="cocks_qty" 
-                        step="1" min="0" oninput="this.value = Math.abs(this.value)">
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
+                </div>
+            </div>
+            <div>
+                <hr class="hr-small">
+            </div>
+            <div class="row">
+                <div class="col-10 col-css">
+                    <p class="row-name fw-bold">Total Number of Birds:</p>
+                </div>
+                <div class="col-2 col-css fw-bold">
+                    <p>####</p>
                 </div>
             </div>
         </div>
@@ -134,7 +153,7 @@
         <div class="form-data">
             <div>
                 <!--<button class="button button-full-size">Prev page</button>-->
-                <a href="{% url 'onboard_farm' %}" class="btn button button-small-size">Previous</a> <a href="{% url 'onboard_produce' %}"" class="btn button button-small-size">Next</a>
+                <a href="{% url 'onboard_farm' %}" class="btn button button-full-size">Previous</a> <a href="{% url 'onboard_produce' %}"" class="btn button button-full-size">Next</a>
             </div>
         </div>
 

@@ -24,12 +24,14 @@ h1, h2, h3, h4, h5, h6, p {
 
 /*-- FONTS END --*/
 
+
 /*-- INPUT FIELDS START --*/
 
-label {
-    /* display: none; */
-    position: relative;
-    background-color: transparent;
+/*-- Hides the floating field labels and the "All" Checkbox in the HCC rows --*/
+label,
+.hcc-checkbox-label,
+.hcc-checkbox {
+    display: none;
 }
 
 /*-- INPUT FIELDS END --*/
