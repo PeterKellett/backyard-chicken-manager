@@ -27,7 +27,8 @@
 </div>
 
 <div class="form-container">
-  <form method="POST" action="register">
+  <form method="POST" action="{% url 'get_onboarding_data' %}">
+    {% csrf_token %}
       <div class="form-data">
         <div>
             <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
@@ -134,7 +135,7 @@
         <div class="form-data">
             <div>
                 <!--<button class="button button-full-size">Prev page</button>-->
-                <a href="{% url 'onboard_farm' %}" class="btn button button-small-size">Previous</a> <a href="{% url 'onboard_produce' %}"" class="btn button button-small-size">Next</a>
+                <a href="{% url 'onboard_farm' %}" class="btn button button-small-size">Previous</a> <button type='submit' class="btn button button-small-size">Next</button>
             </div>
         </div>
 

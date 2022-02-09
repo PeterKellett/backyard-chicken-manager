@@ -49,9 +49,9 @@ class UserProfile(models.Model):
 class FarmProfile(models.Model):
     """Model used for storing FarmProfile attributes"""
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    farm_name = models.CharField(max_length=20,
-                                 null=False,
-                                 blank=False)
+    farm_business_name = models.CharField(max_length=20,
+                                          null=False,
+                                          blank=False)
     farm_type = models.ForeignKey(FarmType, on_delete=models.PROTECT)
     farm_sales_roadside = models.BooleanField()
     farm_sales_markets = models.BooleanField()

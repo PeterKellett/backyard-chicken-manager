@@ -5,13 +5,6 @@
   <link rel="stylesheet" href="{% static 'css/onboarding.css' %}" />
 {% endblock %}
 
-<<<<<<< HEAD
-    {% for farm_type in farm_types %}
-        <p>{{ farm_type|title }}</p>
-    {% endfor %}
-
-    <a href="{% url 'onboard_personal' %}">Prev page</a> | <a href="{% url 'onboard_flock' %}">Next page</a>
-=======
 {% block nav_page_title %}
     Onboarding Farm
 {% endblock %}
@@ -34,7 +27,8 @@
 </div>
 
 <div class="form-container">
-  <form method="POST" action="register">
+  <form method="POST" action="{% url 'get_onboarding_data' %}">
+    {% csrf_token %}
       <div class="form-data">
         <div>
             <input type="text" name="farm_business_name" placeholder="Farm/Business Name" id="farm_business_name" required>
@@ -61,6 +55,7 @@
                     step="1" min="1" oninput="this.value = Math.abs(this.value)" required>
             </div>
         </div>
+        <input type="hidden" name="redirect_url" value="onboard_flock"/>
         <div class="form-data">
             <div>
                 <hr class="hr-large">
@@ -69,11 +64,11 @@
         <div class="form-data">
             <div>
                 <!--<button class="button button-full-size">Prev page</button>-->
-                <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">Previous</a> <a href="{% url 'onboard_flock' %}" class="btn button button-small-size">Next</a>
+                <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">Previous</a> <button type='submit' class="btn button button-small-size">Next</button>
             </div>
         </div>
 
   </form>
 </div>
->>>>>>> 1fee81ab40472edd692944f6d018d35b26a7450a
+
 {% endblock %}

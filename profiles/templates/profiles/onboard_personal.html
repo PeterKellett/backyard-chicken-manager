@@ -27,7 +27,8 @@
 </div>
 
 <div class="form-container">
-  <form method="POST" action="register">
+  <form method="POST" action="{% url 'get_onboarding_data' %}">
+    {% csrf_token %}
       <div class="form-data">
           <div>
               <input type="text" name="full_name" placeholder="Full Name" id="full_name" required>
@@ -38,6 +39,7 @@
             <input type="text" name="city_country" placeholder="City, Country" id="city_country" required>
         </div>
     </div>
+    <input type="hidden" name="redirect_url" value="onboard_farm"/>
     <div class="form-data">
       <div>
         <hr class="hr-large">
@@ -46,7 +48,7 @@
     <div class="form-data">
       <div>
         <!--<button class="button button-full-size">Prev page</button>-->
-        <a href="" class="btn button button-small-size">Previous</a> <a href="{% url 'onboard_farm' %}" class="btn button button-small-size">Next</a>
+        <a href="" class="btn button button-small-size">Previous</a> <button type='submit' class="btn button button-small-size">Next</button>
       </div>
     </div>
 

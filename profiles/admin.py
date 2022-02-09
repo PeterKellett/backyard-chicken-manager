@@ -21,7 +21,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 class FarmProfileAdmin(admin.ModelAdmin):
     list_display = (
         'user',
-        'farm_name',
+        'farm_business_name',
         'farm_type',
         'farm_sales_roadside',
         'farm_sales_markets',
