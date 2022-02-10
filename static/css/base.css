@@ -51,7 +51,6 @@ body {
 
 p, h1, h2, h3, h4, h5 {
     font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -85,6 +84,14 @@ p {
     color: var(--black);
 }
 
+/*-- Fontawesome Icons --*/
+i {
+    font-size: 25px;
+    color: var(--orange);
+    text-align: right;
+    text-shadow: 0px 2px 5px var(--black);
+}
+
 /*-- FONTS END --*/
 
 
@@ -94,7 +101,6 @@ hr {
     border-top: 3px solid var(--green);
     opacity: 1;
     margin:auto;
-    margin-bottom: 10px;
 }
 
 .hr-large {
@@ -189,6 +195,21 @@ hr {
 
 /*-- NAVBAR END */
 
+/*-- BOTTOM MARGIN START --*/
+
+p, h1, h2, h3, h4, h5,
+hr,
+.row,
+.form-data input[type=submit],
+.button,
+.btn,
+input,
+.form-data select,
+.form-data textarea
+ {
+    margin-bottom: 10px;
+}
+
 
 /*-- INPUT FIELDS START --*/
 /*-- Animation of input field labels https://www.youtube.com/watch?v=JlRNGJGorsw from 10:17 onwards --*/
@@ -207,10 +228,9 @@ hr {
 }
 
 /*-- Fields excluding labels and other text --*/
-input, 
+input,
 .form-data select,
 .form-data textarea {
-    margin-bottom: 10px;
     margin-top: 0;
     padding-left: 10px;
     box-sizing: border-box;
@@ -219,12 +239,43 @@ input,
     border-radius: 5px;
     width: 100%;
     max-width: 400px;
-    height: 40px;
+    height: 35px;
 }
 
 /*-- Makes Checkboxes small than other field sizes --*/
 input[type=checkbox] {
-    height: 25px;
+    height: 20px;
+    width: 20px;
+}
+
+/*-- Centres the elements in the row --*/
+.col-css {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/*-- Removes margins from row elements --*/
+.col-css-element,
+.row {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+
+/*-- Aligns the name of the row to the left --*/
+.row-name {
+    text-align: left;
+}
+
+.checkbox-label {
+    text-align: left;
+}
+
+/*-- ALigns the label to the right to be beside the checkbox in the hcc section --*/
+.hcc-checkbox-label {
+    text-align: right;
 }
 
 /*-- Field label prior to field being clicked on --*/
@@ -282,16 +333,30 @@ input:-webkit-autofill:active {
 /*-- INPUT FIELDS END --*/
 
 /*-- BUTTONS START --*/
-
 .form-data input[type=submit],
 .button,
 .btn {
-    margin-bottom: 10px;
     background-color: var(--green);
+    height: 40px;
+}
+
+.add-another-btn-div {
+    text-align: left;
+}
+
+.add-another-btn {
+    width: 100px;
+    height: 25px;
+    background-color: var(--orange);
+}
+
+.form-data input[type=submit],
+.button,
+.btn,
+.add-another-btn {
     color:var(--white);
     border: 1px solid var(--black);
     border-radius: 5px;
-    height: 40px;
     box-shadow: 0px 2px 5px var(--black);
 }
 
@@ -347,6 +412,7 @@ main {
 
 .col-css-right {
     padding: 0;
+    text-align: right;
 }
 
 .col-css > img {

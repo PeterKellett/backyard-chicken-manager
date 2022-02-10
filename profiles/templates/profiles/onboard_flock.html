@@ -11,20 +11,29 @@
 
 {% block content %}
 <div class="large-screen-h1">
-  <h1>Onboarding Flock(s)</h1>
-  <hr class="hr-large">
-</div>
-<div>
-  <h4>
-    Page 3 of 5
-  </h4>
-</div>
-<div>
-  <p>
-    ...About your flock(s)...
-  </p>
-  <hr class="hr-large">
-</div>
+    <h1>Onboarding Flock(s)</h1>
+    <hr class="hr-large">
+  </div>
+  <div class="container form-container">
+    <div class="row mb-0">
+        <div class="col-10 col-css">
+            <h4 class="text-start">
+                Page 3 of 5
+            </h4>
+        </div>
+        <div class="col-2 col-css-right">
+            <i class="fas fa-info-circle"></i>
+        </div>
+    </div>
+    <div class="form-data">
+        <p class="text-start">
+            ...About your flock(s)...
+        </p>
+    </div>
+    </div>
+    <div>
+        <hr class="hr-large">
+    </div>
 
 <div class="form-container">
   <form method="POST" action="{% url 'get_onboarding_data' %}">
@@ -45,12 +54,14 @@
             {% else %}
             <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
             {% endif %}
+
         </div>
-      </div>
-      <div class="form-data">
-        <div>
-            <input type="text" name="coop1_name" placeholder="Coop Name" id="coop1_name" required>
+        <div class="form-data">
+            <div>
+                <input type="text" name="coop1_name" placeholder="Coop Name" id="coop1_name" required>
+            </div>
         </div>
+
       </div>
       <div class="form-data">
         <div>
@@ -71,6 +82,7 @@
                     {% endfor %}
                 {% endif %}
             </select>
+
         </div>
         <div class="form-data">
             <div>
@@ -99,18 +111,22 @@
             </div>
         </div>
         
+        <!-- HCC Row (Hens, Chicks and Cocks Row). To be moved to it's own snippet -->
         <div class="container form-data">
-            <div class="row">
+            <div class="row mb-0" id="hens-row">
                 <div class="col-1 col-css">
-                    <img src="{{ MEDIA_URL }}hen.png" alt="Chicken">
+                    <img src="{{ MEDIA_URL }}hen.png" alt="Chicken" class="col-css-element">
                 </div>
-                <div class="col-2 col-css">
-                    <h4>Hens</h4>
+                <div class="col-4 col-css">
+                    <h4 class="row-name col-css-element">Hens</h4>
                 </div>
-                <div class="col-5 col-css">
-                    <input type="checkbox" name="all_hens_check" id="all_hens_check">
-                    <label for="all_hens_check">All Hens</label>
+                <div class="col-3 col-css">
+                    <p class="checkbox-label hcc-checkbox-label col-css-element">All Hens</p>
                 </div>
+                <div class="col-1 col-css">
+                    <input type="checkbox" name="all_hens_check" id="all_hens_check" class="col-css-element hcc-checkbox">
+                </div>
+
                 <div class="col-4 col-css col-css-right">
                     {% if 'hens_qty' in onboard_profile_data %}
                     <input type="number" name="hens_qty" value="{{ onboard_profile_data.hens_qty }}" placeholder="Quantity" id="hens_qty" 
@@ -119,23 +135,27 @@
                     <input type="number" name="hens_qty" placeholder="Quantity" id="hens_qty" 
                         step="1" min="0" oninput="this.value = Math.abs(this.value)">
                     {% endif %}
+
                 </div>
             </div>
             <div>
                 <hr class="hr-small">
             </div>
 
-            <div class="row">
+            <div class="row mb-0" id="chicks-row">
                 <div class="col-1 col-css">
-                    <img src="{{ MEDIA_URL }}hen.png" alt="Chick">
+                    <img src="{{ MEDIA_URL }}hen.png" alt="Chicks" class="col-css-element">
                 </div>
-                <div class="col-2 col-css">
-                    <h4>Chicks</h4>
+                <div class="col-4 col-css">
+                    <h4 class="row-name col-css-element">Chicks</h4>
                 </div>
-                <div class="col-5 col-css">
-                    <input type="checkbox" name="all_chicks_check" id="all_chicks_check">
-                    <label for="all_chicks_check">All Chicks</label>
+                <div class="col-3 col-css">
+                    <p class="checkbox-label hcc-checkbox-label col-css-element">All Chicks</p>
                 </div>
+                <div class="col-1 col-css">
+                    <input type="checkbox" name="all_chicks_check" id="all_chicks_check" class="col-css-element hcc-checkbox">
+                </div>
+
                 <div class="col-4 col-css col-css-right">
                     {% if 'chicks_qty' in onboard_profile_data %}
                     <input type="number" name="chicks_qty" value="{{ onboard_profile_data.chicks_qty }}" placeholder="Quantity" id="chicks_qty" 
@@ -144,23 +164,39 @@
                     <input type="number" name="chicks_qty" placeholder="Quantity" id="chicks_qty" 
                         step="1" min="0" oninput="this.value = Math.abs(this.value)">
                     {% endif %}
+
                 </div>
             </div>
             <div>
                 <hr class="hr-small">
             </div>
 
-            <div class="row">
+            <div class="row mb-0" id="cocks-row">
                 <div class="col-1 col-css">
-                    <img src="{{ MEDIA_URL }}hen.png" alt="Cock">
+                    <img src="{{ MEDIA_URL }}hen.png" alt="Cocks" class="col-css-element">
                 </div>
-                <div class="col-2 col-css">
-                    <h4>Cocks</h4>
+                <div class="col-4 col-css">
+                    <h4 class="row-name col-css-element">Cocks</h4>
                 </div>
-                <div class="col-5 col-css">
-                    <input type="checkbox" name="all_cocks_check" id="all_cocks_check">
-                    <label for="all_cocks_check">All Cocks</label>
+                <div class="col-3 col-css">
+                    <p class="checkbox-label hcc-checkbox-label col-css-element">All Cocks</p>
                 </div>
+                <div class="col-1 col-css">
+                    <input type="checkbox" name="all_cocks_check" id="all_cocks_check" class="col-css-element hcc-checkbox">
+                </div>
+                <div class="col-3 col-css col-css-right">
+                    <input type="number" name="cocks_qty" placeholder="Qty" id="cocks_qty" 
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
+                </div>
+            </div>
+            <div>
+                <hr class="hr-small">
+            </div>
+            <div class="row mb-0">
+                <div class="col-10 col-css">
+                    <p class="row-name fw-bold">Total Number of Birds:</p>
+                </div>
+
                 <div class="col-4 col-css col-css-right">
                     {% if 'cocks_qty' in onboard_profile_data %}
                     <input type="number" name="cocks_qty" value="{{ onboard_profile_data.cocks_qty }}" placeholder="Quantity" id="cocks_qty" 
@@ -169,6 +205,7 @@
                     <input type="number" name="cocks_qty" placeholder="Quantity" id="cocks_qty" 
                         step="1" min="0" oninput="this.value = Math.abs(this.value)">
                     {% endif %}
+
                 </div>
             </div>
         </div>
@@ -181,7 +218,9 @@
         <div class="form-data">
             <div>
                 <!--<button class="button button-full-size">Prev page</button>-->
+
                 <a href="{% url 'onboard_farm' %}" class="btn button button-small-size">Previous</a> <button type='submit' class="btn button button-small-size">Next</button>
+
             </div>
         </div>
 
