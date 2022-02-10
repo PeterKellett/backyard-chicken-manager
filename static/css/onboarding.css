@@ -27,6 +27,10 @@ h1, h2, h3, h4, h5, h6, p {
 
 /*-- INPUT FIELDS START --*/
 
+.container {
+    padding: 0;
+}
+
 /*-- Hides the floating field labels and the "All" Checkbox in the HCC rows --*/
 label,
 .hcc-checkbox-label,
