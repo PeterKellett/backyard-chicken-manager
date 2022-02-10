@@ -420,3 +420,13 @@ main {
 }
 
 /*-- GRID END --*/
+
+/*-- Box that displays when a warning is required --*/
+.warning-div {
+    width: 100%;
+    max-width: 360px;
+    background-color: var(--white);
+    text-align: center;
+    margin: auto;
+    border-radius: 5px;
+}

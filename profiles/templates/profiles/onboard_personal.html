@@ -18,7 +18,7 @@
   <div class="row mb-0">
     <div class="col-10 col-css">
       <h4 class="text-start">
-        Page 1 of 5
+        Page 1 of 4
       </h4>
     </div>
     <div class="col-2 col-css-right">
@@ -38,37 +38,82 @@
 <div class="form-container">
   <form method="POST" action="{% url 'get_onboarding_data' %}">
     {% csrf_token %}
-      <div class="form-data">
-          <div>
-            {% if 'full_name' in onboard_profile_data %}
-              <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full_name" required>
+    <div class="form-data">
+      <div>
+          <h4>Personal</h4>
+      </div>
+    </div>
+    <div class="form-data">
+      <div>
+        {% if 'full_name' in onboard_profile_data %}
+          <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full_name" required>
+        {% else %}
+          <input type="text" name="full_name" placeholder="Full Name" id="full_name" required>
+        {% endif %}
+        
+      </div>
+    </div>
+    <div class="form-data">
+      <div>
+        {% if 'city_country' in onboard_profile_data %}
+        <input type="text" name="city_country" placeholder="City, Country" value="{{ onboard_profile_data.city_country }}" id="city_country" required>
+        {% else %}
+          <input type="text" name="city_country" placeholder="City, Country" id="city_country" required>
+        {% endif %}
+      </div>
+    </div>
+    <div class="form-data">
+      <div>
+        <hr class="hr-small">
+      </div>
+    </div>
+
+    <div class="form-data">
+      <div>
+          <h4>Farm</h4>
+      </div>
+    </div>
+    <div class="form-data">
+      <div>
+        {% if 'farm_business_name' in onboard_profile_data %}
+          <input type="text" name="farm_business_name" placeholder="Farm/Business Name" value="{{ onboard_profile_data.farm_business_name }}" id="farm_business_name" required>
+        {% else %}
+          <input type="text" name="farm_business_name" placeholder="Farm/Business Name" id="farm_business_name" required>
+        {% endif %}
+      </div>
+    </div>
+    <div class="form-data">
+      <select name="farm_type" id="farm_type" required>
+        {% if 'farm_type' in onboard_profile_data %}
+          <option value="" disabled>Farm Type</option>
+          {% for farm_type in farm_types %}
+            {% if farm_type == onboard_Profile_data.farm_type %}
+              <option value="{{ farm_type }}" selected>{{ farm_type|title }}</option>
             {% else %}
-              <input type="text" name="full_name" placeholder="Full Name" id="full_name" required>
-            {% endif %}
-            
-          </div>
-      </div>
-      <div class="form-data">
-        <div>
-          {% if 'city_country' in onboard_profile_data %}
-          <input type="text" name="city_country" placeholder="City, Country" value="{{ onboard_profile_data.city_country }}" id="city_country" required>
-          {% else %}
-            <input type="text" name="city_country" placeholder="City, Country" id="city_country" required>
-          {% endif %}
-        </div>
+              <option value="{{ farm_type }}">{{ farm_type|title }}</option>
+              {% endif %}
+          {% endfor %}                
+        {% else %}
+          <option value="" disabled selected>Farm Type</option>
+          {% for farm_type in farm_types %}
+            <option value="{{ farm_type }}">{{ farm_type|title }}</option>
+          {% endfor %}
+        {% endif %}              
+      </select>
+  </div>
+
+  <input type="hidden" name="redirect_url" value="onboard_flock"/>
+  <div class="form-data">
+    <div>
+      <hr class="hr-large">
     </div>
-    <input type="hidden" name="redirect_url" value="onboard_farm"/>
-    <div class="form-data">
-      <div>
-        <hr class="hr-large">
-      </div>
+  </div>
+  <div class="form-data">
+    <div>
+      <!--<button class="button button-full-size">Prev page</button>-->
+      <a href="" class="btn button button-small-size">Previous</a> <button type='submit' class="btn button button-small-size">Next</button>
     </div>
-    <div class="form-data">
-      <div>
-        <!--<button class="button button-full-size">Prev page</button>-->
-        <a href="" class="btn button button-small-size">Previous</a> <button type='submit' class="btn button button-small-size">Next</button>
-      </div>
-    </div>
+  </div>
 
   </form>
 </div>

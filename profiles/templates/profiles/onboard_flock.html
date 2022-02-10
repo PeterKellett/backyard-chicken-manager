@@ -18,7 +18,7 @@
     <div class="row mb-0">
         <div class="col-10 col-css">
             <h4 class="text-start">
-                Page 3 of 5
+                Page 2 of 4
             </h4>
         </div>
         <div class="col-2 col-css-right">
@@ -27,7 +27,7 @@
     </div>
     <div class="form-data">
         <p class="text-start">
-            ...About your flock(s)...
+            Tell us about your flock(s)
         </p>
     </div>
     </div>
@@ -36,7 +36,7 @@
     </div>
 
 <div class="form-container">
-  <form method="POST" action="{% url 'get_onboarding_data' %}">
+  <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
     {% csrf_token %}
       <div class="form-data">
         <div>
@@ -126,16 +126,14 @@
                 <div class="col-1 col-css">
                     <input type="checkbox" name="all_hens_check" id="all_hens_check" class="col-css-element hcc-checkbox">
                 </div>
-
-                <div class="col-4 col-css col-css-right">
+                <div class="col-3 col-css col-css-right">
                     {% if 'hens_qty' in onboard_profile_data %}
-                    <input type="number" name="hens_qty" value="{{ onboard_profile_data.hens_qty }}" placeholder="Quantity" id="hens_qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)">
+                    <input type="number" name="hens-qty" value="{{ onboard_profile_data.hens_qty }}" placeholder="Qty" id="hens-qty" 
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
                     {% else %}
-                    <input type="number" name="hens_qty" placeholder="Quantity" id="hens_qty" 
-                        step="1" min="0" oninput="this.value = Math.abs(this.value)">
+                    <input type="number" name="hens-qty" placeholder="Qty" id="hens_qty" 
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
                     {% endif %}
-
                 </div>
             </div>
             <div>
@@ -158,11 +156,11 @@
 
                 <div class="col-3 col-css col-css-right">
                     {% if 'chicks_qty' in onboard_profile_data %}
-                    <input type="number" name="chicks_qty" value="{{ onboard_profile_data.chicks_qty }}" placeholder="Quantity" id="chicks_qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)">
+                    <input type="number" name="chicks-qty" value="{{ onboard_profile_data.chicks_qty }}" placeholder="Qty" id="chicks-qty" 
+                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
                     {% else %}
-                    <input type="number" name="chicks_qty" placeholder="Quantity" id="chicks_qty" 
-                        step="1" min="0" oninput="this.value = Math.abs(this.value)">
+                    <input type="number" name="chicks-qty" placeholder="Qty" id="chicks_qty" 
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
                     {% endif %}
 
                 </div>
@@ -185,8 +183,13 @@
                     <input type="checkbox" name="all_cocks_check" id="all_cocks_check" class="col-css-element hcc-checkbox">
                 </div>
                 <div class="col-3 col-css col-css-right">
-                    <input type="number" name="cocks_qty" placeholder="Qty" id="cocks_qty" 
-                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
+                    {% if 'cocks_qty' in onboard_profile_data %}
+                    <input type="number" name="cocks-qty" value="{{ onboard_profile_data.cocks_qty }}" placeholder="Qty" id="cocks-qty" 
+                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
+                    {% else %}
+                    <input type="number" name="cocks-qty" placeholder="Qty" id="cocks-qty" 
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
+                    {% endif %}
                 </div>
             </div>
             <div>
@@ -194,22 +197,28 @@
             </div>
             <div class="row mb-0">
                 <div class="col-10 col-css">
-                    <p class="row-name fw-bold">Total Number of Birds:</p>
+                    <h6 class="row-name">Total Number of Birds:</h6>
                 </div>
 
-                <div class="col-4 col-css col-css-right">
-                    {% if 'cocks_qty' in onboard_profile_data %}
-                    <input type="number" name="cocks_qty" value="{{ onboard_profile_data.cocks_qty }}" placeholder="Quantity" id="cocks_qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)">
-                    {% else %}
-                    <input type="number" name="cocks_qty" placeholder="Quantity" id="cocks_qty" 
-                        step="1" min="0" oninput="this.value = Math.abs(this.value)">
-                    {% endif %}
-
+                <div class="col-2 col-css col-css-right">
+                    <h6 id="total-birds">0</h6>
                 </div>
             </div>
         </div>
+        <div class="form-data">
+            <div class="add-another-btn-div">
+                <button href="" type="button" class="button add-another-btn">Add Another</button>
+            </div>
+        </div>
         <input type="hidden" name="redirect_url" value="onboard_produce"/>
+
+        <!-- Used as a warning instead of an Alert -->
+        <div class="form-data warning-div">
+            <div>
+                <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
+            </div>
+        </div>
+
         <div class="form-data">
             <div>
                 <hr class="hr-large">
@@ -217,10 +226,8 @@
         </div>
         <div class="form-data">
             <div>
-                <!--<button class="button button-full-size">Prev page</button>-->
-
-                <a href="{% url 'onboard_farm' %}" class="btn button button-small-size">Previous</a> <button type='submit' class="btn button button-small-size">Next</button>
-
+                <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">
+                    Previous</a> <button type='submit' id="hcc-button" class="btn button button-small-size" onclick="validateQtys()">Next</button>
             </div>
         </div>
 
