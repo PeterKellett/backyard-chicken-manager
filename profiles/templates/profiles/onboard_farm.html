@@ -31,28 +31,53 @@
     {% csrf_token %}
       <div class="form-data">
         <div>
+          {% if 'farm_business_name' in onboard_profile_data %}
+            <input type="text" name="farm_business_name" placeholder="Farm/Business Name" value="{{ onboard_profile_data.farm_business_name }}" id="farm_business_name" required>
+          {% else %}
             <input type="text" name="farm_business_name" placeholder="Farm/Business Name" id="farm_business_name" required>
+          {% endif %}
         </div>
       </div>
       <div class="form-data">
         <div>
             <select name="farm_type" id="farm_type" required>
+              {% if 'farm_type' in onboard_profile_data %}
+                <option value="" disabled>Farm Type</option>
+                {% for farm_type in farm_types %}
+                  {% if farm_type == onboard_Profile_data.farm_type %}
+                    <option value="{{ farm_type }}" selected>{{ farm_type }}</option>
+                  {% else %}
+                    <option value="{{ farm_type }}">{{ farm_type }}</option>
+                    {% endif %}
+                {% endfor %}                
+              {% else %}
                 <option value="" disabled selected>Farm Type</option>
                 {% for farm_type in farm_types %}
-                <option value="{{ farm_type }}">{{ farm_type }}</option>
+                  <option value="{{ farm_type }}">{{ farm_type }}</option>
                 {% endfor %}
+              {% endif %}              
             </select>
         </div>
         <div class="form-data">
             <div>
+              {% if 'flock_qty' in onboard_profile_data %}
+                <input type="number" name="flock_qty" placeholder="How Many Flocks do You Have?" id="flock_qty" 
+                  step="1" min="1" value="{{ onboard_profile_data.flock_qty }}" oninput="this.value = Math.abs(this.value)" required>
+              {% else %}
                 <input type="number" name="flock_qty" placeholder="How Many Flocks do You Have?" id="flock_qty" 
                     step="1" min="1" oninput="this.value = Math.abs(this.value)" required>
+              {% endif %}
             </div>
         </div>
         <div class="form-data">
             <div>
+              {% if 'coop_qty' in onboard_profile_data %}
+                <input type="number" name="coop_qty" placeholder="How Many Coops do You Have?" id="coop_qty" 
+                step="1" min="1" value="{{ onboard_profile_data.coop_qty }}" oninput="this.value = Math.abs(this.value)" required>
+              {% else %}
                 <input type="number" name="coop_qty" placeholder="How Many Coops do You Have?" id="coop_qty" 
                     step="1" min="1" oninput="this.value = Math.abs(this.value)" required>
+              {% endif %}
             </div>
         </div>
         <input type="hidden" name="redirect_url" value="onboard_flock"/>
