@@ -6,11 +6,10 @@ from django.contrib.auth.models import (
 
 # Create your models here.
 class CustomUserManager(BaseUserManager):
+    """Creates and saves a User with the given email, date of
+        birth and password."""
     def create_user(self, email, password=None):
-        """
-        Creates and saves a User with the given email, date of
-        birth and password.
-        """
+        """This creates a new user object"""
         if not email:
             raise ValueError('Users must have an email address')
 
@@ -38,6 +37,7 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser):
+    """This model is a substitute of the auth user model"""
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
