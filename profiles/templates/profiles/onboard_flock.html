@@ -97,9 +97,9 @@
                         {% endif %}
                     {% endfor %}
                 {% else %}     
-                <option value="" disabled selected>Breed</option>
+                <option value="" disabled selected>Purpose</option>
                     {% for purpose in purpose %}
-                    <option value="{{ breed }}">{{ purpose|title }}</option>
+                    <option value="{{ purpose }}">{{ purpose|title }}</option>
                     {% endfor %}
                 {% endif %}
                 </select>
