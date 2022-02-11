@@ -85,120 +85,107 @@
             <div>
                 <h4>Sales Methods</h4>
             </div>
-        </div>
-        <div class="form-data">
             <div>
                 <p>Where do you sell your produce?</p>
             </div>
-        </div>
-        <div class="container form-data">
-            <div class="row mb-0" id="roadside-row">
-                <div class="col-11 col-css">
-                    <h6 class="col-css-element checkbox-label">Roadside</h6>
+            <div class="container">
+                <div class="row mb-0" id="roadside-row">
+                    <div class="col-11 col-css">
+                        <h6 class="col-css-element checkbox-label">Roadside</h6>
+                    </div>
+                    <div class="col-1 col-css col-css-right">
+                        <input type="checkbox" name="roadside-check" id="roadside-check" class="col-css-element sales-methods">
+                    </div>
                 </div>
-                <div class="col-1 col-css col-css-right">
-                    <input type="checkbox" name="roadside-check" id="roadside-check" class="col-css-element sales-methods">
+                <div class="row mb-0" id="markets-row">
+                    <div class="col-11 col-css">
+                        <h6 class="col-css-element checkbox-label">Markets</h6>
+                    </div>
+                    <div class="col-1 col-css col-css-right">
+                        <input type="checkbox" name="markets-check" id="markets-check" class="col-css-element sales-methods">
+                    </div>
+                </div>
+                <div class="row mb-0" id="deliveries-row">
+                    <div class="col-11 col-css">
+                        <h6 class="col-css-element checkbox-label">Deliveries</h6>
+                    </div>
+                    <div class="col-1 col-css col-css-right">
+                        <input type="checkbox" name="deliveries-check" id="deliveries-check" class="col-css-element sales-methods">
+                    </div>
+                </div>
+                <div class="row mb-0" id="collections-row">
+                    <div class="col-11 col-css">
+                        <h6 class="col-css-element checkbox-label">Collections</h6>
+                    </div>
+                    <div class="col-1 col-css col-css-right">
+                        <input type="checkbox" name="collections-check" id="collections-check" class="col-css-element sales-methods">
+                    </div>
+                </div>
+                <div class="form-data">
+                    <div>
+                        <hr class="hr-small">
+                    </div>
                 </div>
             </div>
-            <div class="row mb-0" id="markets-row">
-                <div class="col-11 col-css">
-                    <h6 class="col-css-element checkbox-label">Markets</h6>
-                </div>
-                <div class="col-1 col-css col-css-right">
-                    <input type="checkbox" name="markets-check" id="markets-check" class="col-css-element sales-methods">
-                </div>
-            </div>
-            <div class="row mb-0" id="deliveries-row">
-                <div class="col-11 col-css">
-                    <h6 class="col-css-element checkbox-label">Deliveries</h6>
-                </div>
-                <div class="col-1 col-css col-css-right">
-                    <input type="checkbox" name="deliveries-check" id="deliveries-check" class="col-css-element sales-methods">
-                </div>
-            </div>
-            <div class="row mb-0" id="collections-row">
-                <div class="col-11 col-css">
-                    <h6 class="col-css-element checkbox-label">Collections</h6>
-                </div>
-                <div class="col-1 col-css col-css-right">
-                    <input type="checkbox" name="collections-check" id="collections-check" class="col-css-element sales-methods">
-                </div>
-            </div>
-            <div class="form-data">
-                <div>
-                    <hr class="hr-small">
-                </div>
-            </div>
-        </div>
-        <div class="form-data">
             <div>
                 <h4>Sales Units</h4>
             </div>
-        </div>
-        <div class="form-data">
             <div>
                 <p>In what unit quantities do you sell your eggs?</p>
             </div>
-        </div>
-        <div class="container form-data">
-            <div class="row mb-0" id="single-eggs-row">
-                <div class="col-11 col-css">
-                    <h6 class="col-css-element checkbox-label">Single Eggs</h6>
+            <div class="container">
+                <div class="row mb-0" id="single-eggs-row">
+                    <div class="col-11 col-css">
+                        <h6 class="col-css-element checkbox-label">Single Eggs</h6>
+                    </div>
+                    <div class="col-1 col-css col-css-right">
+                        <input type="checkbox" name="single-eggs-check" id="single-eggs-check" class="col-css-element">
+                    </div>
                 </div>
-                <div class="col-1 col-css col-css-right">
-                    <input type="checkbox" name="single-eggs-check" id="single-eggs-check" class="col-css-element">
+                <div class="row mb-0" id="half-dozen-carton-row">
+                    <div class="col-11 col-css">
+                        <h6 class="col-css-element checkbox-label">1/2 Dozen Cartons</h6>
+                    </div>
+                    <div class="col-1 col-css col-css-right">
+                        <input type="checkbox" name="half-dozen-carton-check" id="half-dozen-carton-check" class="col-css-element">
+                    </div>
+                </div>
+                <div class="row mb-0" id="dozen-carton-row">
+                    <div class="col-11 col-css">
+                        <h6 class="col-css-element checkbox-label">Dozen Cartons</h6>
+                    </div>
+                    <div class="col-1 col-css col-css-right">
+                        <input type="checkbox" name="dozen-carton-check" id="dozen-carton-check" class="col-css-element">
+                    </div>
+                </div>
+                <div class="row mb-0" id="trays-row">
+                    <div class="col-7 col-css">
+                        <h6 class="col-css-element checkbox-label">Trays</h6>
+                    </div>
+                    <div class="col-4 col-css">
+                        <input type="number" name="trays_qty" value="30" placeholder="Tray Qty" id="trays_qty" 
+                            step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
+                    </div>
+                    <div class="col-1 col-css col-css-right">
+                        <input type="checkbox" name="trays-check" id="trays-check" class="col-css-element">
+                    </div>
                 </div>
             </div>
-            <div class="row mb-0" id="half-dozen-carton-row">
-                <div class="col-11 col-css">
-                    <h6 class="col-css-element checkbox-label">1/2 Dozen Cartons</h6>
-                </div>
-                <div class="col-1 col-css col-css-right">
-                    <input type="checkbox" name="half-dozen-carton-check" id="half-dozen-carton-check" class="col-css-element">
-                </div>
-            </div>
-            <div class="row mb-0" id="dozen-carton-row">
-                <div class="col-11 col-css">
-                    <h6 class="col-css-element checkbox-label">Dozen Cartons</h6>
-                </div>
-                <div class="col-1 col-css col-css-right">
-                    <input type="checkbox" name="dozen-carton-check" id="dozen-carton-check" class="col-css-element">
-                </div>
-            </div>
-            <div class="row mb-0" id="trays-row">
-                <div class="col-7 col-css">
-                    <h6 class="col-css-element checkbox-label">Trays</h6>
-                </div>
-                <div class="col-4 col-css">
-                    <input type="number" name="trays_qty" value="30" placeholder="Tray Qty" id="trays_qty" 
-                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
-                </div>
-                <div class="col-1 col-css col-css-right">
-                    <input type="checkbox" name="trays-check" id="trays-check" class="col-css-element">
-                </div>
-            </div>
-        </div>
 
-        <!-- Used as a warning instead of an Alert -->
-        <div class="form-data warning-div">
-            <div>
+            <!-- Used as a warning instead of an Alert -->
+            <divv class="warning-div">
                 <h5 class="text-danger text-start" id="sales-unit-method-warning"></h5>
             </div>
-        </div>
 
-        <div class="form-data">
             <div>
                 <hr class="hr-large">
             </div>
-        </div>
-        <div class="form-data">
             <div>
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="{% url 'onboard_flock' %}" class="btn button button-full-size">Previous</a> 
                 <a href="#" id="produce-next-button" class="btn button button-full-size" onclick="injectHref()">Next</a> <!-- {% url 'onboard_stock' %} -->
             </div>
         </div>
-
   </form>
 </div>
 
