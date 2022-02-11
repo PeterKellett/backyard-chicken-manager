@@ -15,23 +15,61 @@
   <hr class="hr-large">
 </div>
 <div class="container form-container">
-  <div class="row mb-0">
-    <div class="col-10 col-css">
-      <h4 class="text-start">
-        Page 4 of 4
-      </h4>
+    <div class="row mb-0">
+        <div class="col-10 col-css">
+            <h4 class="text-start">
+                Page 4 of 4
+            </h4>
+        </div>
+        <div class="col-2 col-css-right">
+            <i class="fas fa-info-circle"  data-bs-toggle="modal" data-bs-target="#myModal"></i>
+        </div>
     </div>
-    <div class="col-2 col-css-right">
-        <i class="fas fa-info-circle"></i>
-    </div>
-  </div>
-  <div class="form-data">
     <p class="text-start">
         Finally, tell us about your existing stocks. If you don't have the information to hand,
         don't worry, you can add it later in the “Profile & Settings” section.
     </p>
-  </div>
 </div>
+
+<!-- "i" icon modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Onboarding Help - Stock</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <ul class="text-start">
+                    <li><span class="fw-bold">Saleable Eggs:</span> This is the qty of eggs currently in your stocks 
+                        that are available for sale.</li>
+                    <li><span class="fw-bold">Feed Name:</span> Enter the name of the feed. If applicable, select from 
+                        the suggestions.</li>
+                    <li><span class="fw-bold">Feed Qty in Stock:</span> The approximate amount of that feed that you
+                        currently have in stock.</li>
+                    <li><span class="fw-bold">Feed - Add Another:</span> If you have numerous different feeds in stock,
+                        click this button to add more types.</li>
+                    <li><span class="fw-bold">Supplement Name:</span> Enter the name of the supplement. If applicable, select from 
+                        the suggestions.</li>
+                    <li><span class="fw-bold">Supplement Amount in Stock:</span> The approximate amount of that supplement that you
+                        currently have in stock.</li>
+                    <li><span class="fw-bold">Supplement - Add Another:</span> If you have numerous different supplements in stock,
+                        click this button to add more types.</li>
+                </ul>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div>
   <hr class="hr-large">
 </div>

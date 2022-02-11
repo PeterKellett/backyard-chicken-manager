@@ -13,27 +13,71 @@
 <div class="large-screen-h1">
     <h1>Onboarding Sales</h1>
     <hr class="hr-large">
-  </div>
-  <div class="container form-container">
+</div>
+<div class="container form-container">
     <div class="row mb-0">
-      <div class="col-10 col-css">
-        <h4 class="text-start">
-          Page 3 of 4
-        </h4>
-      </div>
-      <div class="col-2 col-css-right">
-          <i class="fas fa-info-circle"></i>
-      </div>
+        <div class="col-10 col-css">
+            <h4 class="text-start">
+                Page 3 of 4
+            </h4>
+        </div>
+        <div class="col-2 col-css-right">
+            <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+        </div>
     </div>
-    <div class="form-data">
-        <p class="text-start">
-            ...And how you sell your produce.
-        </p>
+    <p class="text-start">
+        ...And how you sell your produce. Please select at least one option from each section.
+    </p>
+</div>
+
+<!-- "i" icon modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Onboarding Help - Sales</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h4 class="text-left modal-body">
+                    Sales Methods
+                </h4>
+                <ul class="text-start">
+                    <li><span class="fw-bold">Roadside:</span> Sales made from the roadside where you generally don't
+                        meet or know the buyers.</li>
+                    <li><span class="fw-bold">Markets:</span> Choose this option if you sell at a country market,
+                        campsite or anywhere else you may have a stall.</li>
+                    <li><span class="fw-bold">Deliveries:</span> If you deliver directly to regular customers click
+                        this option.</li>
+                    <li><span class="fw-bold">Collections:</span> Collections are sales to regular customers that
+                        you know and who come to you.</li>
+                </ul>
+                <h4 class="text-left modal-body">
+                    Sales Units
+                </h4>
+                <ul class="text-start">
+                    <li><span class="fw-bold">Single Eggs:</span> If you sell your eggs singularly, select this option.</li>
+                    <li><span class="fw-bold">1/2 Dozen Cartons:</span> Eggs sold in 6's.</li>
+                    <li><span class="fw-bold">Dozen Cartons:</span>  Eggs sold in 12's.</li>
+                    <li><span class="fw-bold">Trays:</span> The default tray qty is 30, but you can change it in the Qty field.</li>
+                </ul>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
-  <div>
+</div>
+
+<div>
     <hr class="hr-large">
-  </div>
+</div>
 
 <div class="form-container">
     <form method="POST" action="register">

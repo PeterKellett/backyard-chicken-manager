@@ -13,8 +13,8 @@
 <div class="large-screen-h1">
     <h1>Onboarding Flock(s)</h1>
     <hr class="hr-large">
-  </div>
-  <div class="container form-container">
+</div>
+<div class="container form-container">
     <div class="row mb-0">
         <div class="col-10 col-css">
             <h4 class="text-start">
@@ -22,18 +22,54 @@
             </h4>
         </div>
         <div class="col-2 col-css-right">
-            <i class="fas fa-info-circle"></i>
+            <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i>
         </div>
     </div>
-    <div class="form-data">
-        <p class="text-start">
-            Tell us about your flock(s)
-        </p>
+    <p class="text-start">
+        Tell us about your flock(s)...
+    </p>
+</div>
+
+<!-- "i" icon modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Onboarding Help - Flock</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p class="text-start modal-body">Each new set of birds you get should be recorded as an individual flock, even if they
+                    share the same coop and spaces. If the flock has an official registration number, you can include it 
+                    as pert of the name.
+                </p>
+                <ul class="text-start">
+                    <li><span class="fw-bold">Flock Name:</span> Give your flock a name.</li>
+                    <li><span class="fw-bold">Acquired Date:</span> This is the approximate date you received the flock.</li>
+                    <li><span class="fw-bold">Coop Name:</span> Give your coop a name.</li>
+                    <li><span class="fw-bold">Breed:</span> Indicate your bird's breed.</li>
+                    <li><span class="fw-bold">Hens, Chicks & Cocks Qty:</span> Add a quantity for each or else leave the field blank.
+                        You must add a quantity of 1 or greater to at least one field.</li>
+                    <li><span class="fw-bold">Add Another Button:</span> If you have multiple flocks, click the "Add Another" button
+                        to add each flock individually.</li>
+                </ul>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-    </div>
-    <div>
-        <hr class="hr-large">
-    </div>
+</div>
+
+<div>
+    <hr class="hr-large">
+</div>
 
 <div class="form-container">
   <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
@@ -84,7 +120,7 @@
             </select>
 
         </div>
-        <div class="form-data">
+        <!-- <div class="form-data">
             <div>
                 <select name="purpose" id="purpose" required>
                     {% if 'purpose' in onboard_profile_data %}
@@ -104,7 +140,7 @@
                 {% endif %}
                 </select>
             </div>
-        </div>
+        </div> -->
         <div class="form-data">
             <div>
                 <hr class="hr-small">

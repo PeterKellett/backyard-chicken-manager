@@ -11,21 +11,24 @@
 
 {% block content %}
 <div class="large-screen-h1">
-  <h1>Onboarding Personal</h1>
-  <hr class="hr-large">
+    <h1>Onboarding Personal</h1>
+    <hr class="hr-large">
 </div>
 <div class="container form-container">
-  <div class="row mb-0">
-    <div class="col-10 col-css">
-      <h4 class="text-start">
-        Page 1 of 4
-      </h4>
+    <div class="row mb-0">
+        <div class="col-10 col-css">
+            <h4 class="text-start">
+                Page 1 of 4
+            </h4>
+        </div>
+        <div class="col-2 col-css-right">
+            <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+        </div>
     </div>
-    <div class="col-2 col-css-right">
-        <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i>
-    </div>
-  </div>
-
+      <p class="text-start">
+          To give you the best possible experience we just need a few more bits of information.
+      </p>
+</div>
 <!-- "i" icon modal -->
 <div class="modal" id="myModal">
   <div class="modal-dialog">
@@ -33,12 +36,20 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">Onboarding Help - Personal</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <!-- Modal body -->
       <div class="modal-body">
-        <p class="model-body">Stuff in the middle</p>
+        <ul class="text-start">
+          <li><span class="fw-bold">Full Name:</span> Please enter your first and second names. 
+              Double-barrelled names should be hyphenated. e.g. John-Paul Murphy-Jones</li>
+          <li><span class="fw-bold">City, Country:</span> Start typing the town/city where your 
+              farm is located then select from the options presented. This information helps us ensure
+              we have the correct currency, unit of measurement and language for you.</li>
+          <li><span class="fw-bold">Farm Name:</span> Give your farm a name.</li>
+          <li><span class="fw-bold">Farm Type:</span> Indicate whether your farm sells eggs, birds or both.</li>
+        </ul>
       </div>
       <!-- Modal footer -->
       <div class="modal-footer">
@@ -49,11 +60,6 @@
   </div>
 </div>
 
-  <div class="form-data">
-    <p class="text-start">
-        To give you the best possible experience we just need a few more bits of information.
-    </p>
-  </div>
 </div>
 <div>
   <hr class="hr-large">

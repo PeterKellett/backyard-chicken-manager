@@ -436,6 +436,8 @@ i {
 }
 
 .modal-title,
-.model-body {
+.modal-body {
     color: var(--black);
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
