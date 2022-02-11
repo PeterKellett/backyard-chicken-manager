@@ -430,3 +430,12 @@ main {
     margin: auto;
     border-radius: 5px;
 }
+
+i {
+    cursor: pointer;
+}
+
+.modal-title,
+.model-body {
+    color: var(--black);
+}

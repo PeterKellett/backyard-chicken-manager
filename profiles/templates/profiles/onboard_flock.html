@@ -210,7 +210,6 @@
                 <button href="" type="button" class="button add-another-btn">Add Another</button>
             </div>
         </div>
-        <input type="hidden" name="redirect_url" value="onboard_produce"/>
 
         <!-- Used as a warning instead of an Alert -->
         <div class="form-data warning-div">
@@ -224,10 +223,12 @@
                 <hr class="hr-large">
             </div>
         </div>
+
+        <input type="hidden" name="redirect_url" value="onboard_produce"/>
         <div class="form-data">
             <div>
-                <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">
-                    Previous</a> <button type='submit' id="hcc-button" class="btn button button-small-size" onclick="validateQtys()">Next</button>
+                <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">Previous</a> 
+                <button type='submit' id="hcc-button" class="btn button button-small-size" onclick="validateQtys()">Next</button>
             </div>
         </div>
 

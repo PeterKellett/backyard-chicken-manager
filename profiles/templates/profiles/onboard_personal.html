@@ -22,9 +22,33 @@
       </h4>
     </div>
     <div class="col-2 col-css-right">
-        <i class="fas fa-info-circle"></i>
+        <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i>
     </div>
   </div>
+
+<!-- "i" icon modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <p class="model-body">Stuff in the middle</p>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
   <div class="form-data">
     <p class="text-start">
         To give you the best possible experience we just need a few more bits of information.
@@ -102,16 +126,18 @@
       </select>
   </div>
 
-  <input type="hidden" name="redirect_url" value="onboard_flock"/>
   <div class="form-data">
     <div>
       <hr class="hr-large">
     </div>
   </div>
+
+  <input type="hidden" name="redirect_url" value="onboard_flock"/>
   <div class="form-data">
     <div>
       <!--<button class="button button-full-size">Prev page</button>-->
-      <a href="" class="btn button button-small-size">Previous</a> <button type='submit' class="btn button button-small-size">Next</button>
+      <a href="" class="btn button button-small-size">Previous</a> 
+      <button type='submit' class="btn button button-small-size">Next</button>
     </div>
   </div>
 

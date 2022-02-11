@@ -22,16 +22,49 @@ $(document).ready(function(){
       document.getElementById("total-birds").textContent = total;
   }
 
-  // HCC Section: Ensures at least one input is selected when there are multiple options
+  // HCC Section: Ensures at least one quantity is indicated
   function validateQtys(){
       if( document.getElementById('total-birds').value == null){
-        document.getElementById("bird-qty-warning").textContent = "Please provide at least one quantity for Hens, Chicks or Cocks.";
+        document.getElementById("bird-qty-warning").textContent = 
+          "Please provide at least one quantity for Hens, Chicks or Cocks.";
         return false;
       }
   }
 
-  function validateMethods(){
-      if( document.querySelector('input[class=sales-methods]').checked = false)(
-        console.log("False")
-      )
-  }
+  // Sales Methods & Units Function to ensure at least one checkbox is checked
+  // in each section before next page can be loaded
+  function injectHref(){
+      var salesMethods = null;
+      var salesUnits = null;
+      if( document.getElementById('roadside-check').checked == true ||
+          document.getElementById('markets-check').checked == true ||
+          document.getElementById('deliveries-check').checked == true ||
+          document.getElementById('collections-check').checked == true) {
+          salesMethods = true;
+          } else {
+            salesMethods = false
+          }
+          console.log("sales-methods" + salesMethods);
+
+      if( document.getElementById('single-eggs-check').checked == true ||
+          document.getElementById('half-dozen-carton-check').checked == true ||
+          document.getElementById('dozen-carton-check').checked == true ||
+          document.getElementById('trays-check').checked == true ){
+          salesUnits = true;
+          } else {
+            salesUnits = false
+          }
+          console.log("sales-units" + salesUnits);
+
+      if (salesMethods == true && salesUnits == true){
+          window.location.href = "{% url 'onboard_stock' %}"; //{% url 'onboard_stock' %});
+          } else {
+            document.getElementById('sales-unit-method-warning').textContent = 
+            "Please select at least one option each from Sales Methods and Sales Units";
+          }
+      }
+
+      
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    })
