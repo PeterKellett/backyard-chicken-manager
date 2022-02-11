@@ -121,10 +121,13 @@
   
       {% block content %}
       {% endblock %}
-  
-      {% block postloadjs %}
-      {% endblock %}
     </main>
-    
-  </body>
+
+    {% block postloadjs %}
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdgWx9zz-BHOFFeoqT70xzva7N2rt5804&libraries=places&callback=initAutocomplete">
+    </script>
+    {% endblock %}
+
+    </body>
 </html>

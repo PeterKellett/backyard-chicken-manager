@@ -96,11 +96,9 @@
             <section name="feeds">
                 <div>
                     <h4>Feeds</h4>
-                </div>
-                <div>
                     <input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>
                 </div>
-                <div class="containera">
+                <div class="container">
                     <div class="row mb-0">
                         <div class="col-10 col-css">
                             <input type="number" name="feed-qty-stock" placeholder="Qty in Stock" id="feed-qty-stock" 
@@ -113,8 +111,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="container" name="feeds-container"></div>
                 <div class="add-another-btn-div">
-                    <button href="" type="button" class="button add-another-btn">Add Another</button>
+                    <button href="" type="button" class="button add-another-btn" onclick="addAnotherFeed()">Add Another</button>
                 </div>
                 <div>
                     <hr class="hr-small">
@@ -125,8 +124,8 @@
             <section name="supplements">
                 <div>
                     <h4>Supplements</h4>
-                </div>
                     <input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement_name" required>
+                </div>
                 <div class="container">
                     <div class="row mb-0">
                         <div class="col-10 col-css">
@@ -140,11 +139,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="container" name="supplements-container"></div>
                 <div class="add-another-btn-div">
-                    <button href="" type="button" class="button add-another-btn">Add Another</button>
+                    <button href="" type="button" class="button add-another-btn" onclick="addAnotherSupplement()">Add Another</button>
                 </div>
             </section>
-            
+
             <div>
                 <hr class="hr-large">
             </div>
