@@ -11,65 +11,128 @@
 
 {% block content %}
 <div class="large-screen-h1">
-  <h1>Onboarding Personal</h1>
-  <hr class="hr-large">
+    <h1>Onboarding Personal</h1>
+    <hr class="hr-large">
 </div>
 <div class="container form-container">
-  <div class="row mb-0">
-    <div class="col-10 col-css">
-      <h4 class="text-start">
-        Page 1 of 5
-      </h4>
+    <div class="row mb-0">
+        <div class="col-10 col-css">
+            <h4 class="text-start">
+                Page 1 of 4
+            </h4>
+        </div>
+        <div class="col-2 col-css-right">
+            <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+        </div>
     </div>
-    <div class="col-2 col-css-right">
-        <i class="fas fa-info-circle"></i>
+      <p class="text-start">
+          To give you the best possible experience we just need a few more bits of information.
+      </p>
+</div>
+<!-- "i" icon modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Onboarding Help - Personal</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <ul class="text-start">
+          <li><span class="fw-bold">Full Name:</span> Please enter your first and second names. 
+              Double-barrelled names should be hyphenated. e.g. John-Paul Murphy-Jones</li>
+          <li><span class="fw-bold">City, Country:</span> Start typing the town/city where your 
+              farm is located then select from the options presented. This information helps us ensure
+              we have the correct currency, unit of measurement and language for you.</li>
+          <li><span class="fw-bold">Farm Name:</span> Give your farm a name.</li>
+          <li><span class="fw-bold">Farm Type:</span> Indicate whether your farm sells eggs, birds or both.</li>
+        </ul>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Close</button>
+      </div>
+
     </div>
-  </div>
-  <div class="form-data">
-    <p class="text-start">
-        To give you the best possible experience we just need a few more bits of information.
-    </p>
   </div>
 </div>
+
 <div>
-  <hr class="hr-large">
+    <hr class="hr-large">
 </div>
 
 <div class="form-container">
-  <form method="POST" action="{% url 'get_onboarding_data' %}">
-    {% csrf_token %}
-      <div class="form-data">
-          <div>
-            {% if 'full_name' in onboard_profile_data %}
-              <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full_name" required>
-            {% else %}
-              <input type="text" name="full_name" placeholder="Full Name" id="full_name" required>
-            {% endif %}
-            
-          </div>
-      </div>
-      <div class="form-data">
-        <div>
-          {% if 'city_country' in onboard_profile_data %}
-          <input type="text" name="city_country" placeholder="City, Country" value="{{ onboard_profile_data.city_country }}" id="city_country" required>
-          {% else %}
-            <input type="text" name="city_country" placeholder="City, Country" id="city_country" required>
-          {% endif %}
-        </div>
-    </div>
-    <input type="hidden" name="redirect_url" value="onboard_farm"/>
-    <div class="form-data">
-      <div>
-        <hr class="hr-large">
-      </div>
-    </div>
-    <div class="form-data">
-      <div>
-        <!--<button class="button button-full-size">Prev page</button>-->
-        <a href="" class="btn button button-small-size">Previous</a> <button type='submit' class="btn button button-small-size">Next</button>
-      </div>
-    </div>
+    <form method="POST" action="{% url 'get_onboarding_data' %}">
+        {% csrf_token %}
+        <div class="form-data">
+            <!-- Personal Info -->
+            <section name="personal-info">
+                <div>
+                    <h4>Personal</h4>
+                </div>
+                <div>
+                  {% if 'full_name' in onboard_profile_data %}
+                    <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full_name" required>
+                  {% else %}
+                    <input type="text" name="full_name" placeholder="Full Name" id="full_name" required>
+                  {% endif %}
+                </div>
+                <div>
+                  {% if 'city_country' in onboard_profile_data %}
+                  <input type="text" name="city_country" placeholder="City, Country" value="{{ onboard_profile_data.city_country }}" id="city_country" required>
+                  {% else %}
+                    <input type="text" name="city_country" placeholder="City, Country" id="city_country" required>
+                  {% endif %}
+                </div>
+                <div>
+                  <hr class="hr-small">
+                </div>
+            </section>
 
-  </form>
+            <!-- Farm Info -->
+            <section name="farm-info">
+                <div>
+                    <h4>Farm</h4>
+                </div>
+                <div>
+                  {% if 'farm_business_name' in onboard_profile_data %}
+                    <input type="text" name="farm_business_name" placeholder="Farm/Business Name" value="{{ onboard_profile_data.farm_business_name }}" id="farm_business_name" required>
+                  {% else %}
+                    <input type="text" name="farm_business_name" placeholder="Farm/Business Name" id="farm_business_name" required>
+                  {% endif %}
+                </div>
+                <select name="farm_type" id="farm_type" required>
+                  {% if 'farm_type' in onboard_profile_data %}
+                    <option value="" disabled>Farm Type</option>
+                    {% for farm_type in farm_types %}
+                      {% if farm_type == onboard_Profile_data.farm_type %}
+                        <option value="{{ farm_type }}" selected>{{ farm_type|title }}</option>
+                      {% else %}
+                        <option value="{{ farm_type }}">{{ farm_type|title }}</option>
+                        {% endif %}
+                    {% endfor %}                
+                  {% else %}
+                    <option value="" disabled selected>Farm Type</option>
+                    {% for farm_type in farm_types %}
+                      <option value="{{ farm_type }}">{{ farm_type|title }}</option>
+                    {% endfor %}
+                  {% endif %}              
+                </select>
+            <section>
+
+            <div>
+                <hr class="hr-large">
+            </div>
+            <div>
+                <input type="hidden" name="redirect_url" value="onboard_flock"/>
+                <!--<button class="button button-full-size">Prev page</button>-->
+                <a href="" class="btn button button-small-size">Previous</a> 
+                <button type='submit' class="btn button button-small-size">Next</button>
+            </div>
+        </div>
+    </form>
 </div>
 {% endblock %}
