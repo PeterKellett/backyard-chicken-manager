@@ -90,6 +90,7 @@ TEMPLATES = [
     },
 ]
 
+# Pk - This redirects the built in AUTH_USER_MODEL to use the CustomUser model
 AUTH_USER_MODEL = 'customAuth.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
