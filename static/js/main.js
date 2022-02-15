@@ -1,5 +1,77 @@
 $(document).ready(function(){
-    console.log("Document ready!")
+    console.log("Document ready!");
+    // PK function
+    var flock_form_iteration = 0;
+    function addFlockForm() {
+        console.log("flock_form_iteration " + flock_form_iteration);
+        $("#form-data").append(
+            `<!-- Flock Core Info Section -->
+            <section name="flock-core-info">
+                <div>
+                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
+                   
+                </div>
+                <div>
+                    {% if 'acquired_date' in onboard_profile_data %}
+                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired_date" required>
+                    {% else %}
+                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
+                    {% endif %}
+                </div>
+                <div>
+                    <input type="text" name="coop1_name" placeholder="Coop Name" id="coop1_name" required>
+                </div>
+                <div>
+                    <select name="breed" id="breed" required>
+                        {% if 'breed' in onboard_profile_data %}
+                        <option value="" disabled>Breed</option>
+                            {% for breed in breed %}
+                                {% if breed == onboard_Profile_data.breed %}
+                                <option value="{{ breed }}" selected>{{ breed|title }}</option>
+                                {% else %}
+                                <option value="{{ breed }}">{{ breed|title }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}     
+                        <option value="" disabled selected>Breed</option>
+                            {% for breed in breed %}
+                            <option value="{{ breed }}">{{ breed|title }}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
+                <!-- <div class="form-data">
+                    <div>
+                        <select name="purpose" id="purpose" required>
+                            {% if 'purpose' in onboard_profile_data %}
+                            <option value="" disabled>Purpose</option>
+                            {% for purpose in purpose %}
+                                {% if purpose == onboard_Profile_data.purpose %}
+                                <option value="{{ purpose }}" selected>{{ purpose|title }}</option>
+                                {% else %}
+                                <option value="{{ purpose }}">{{ purpose|title }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}     
+                        <option value="" disabled selected>Purpose</option>
+                            {% for purpose in purpose %}
+                            <option value="{{ purpose }}">{{ purpose|title }}</option>
+                            {% endfor %}
+                        {% endif %}
+                        </select>
+                    </div>
+                </div> -->
+                <div>
+                    <hr class="hr-small">
+                </div>
+            </section>`
+        )
+        flock_form_iteration ++; // Increments the iteration by +1 
+    }
+    //addFlockForm();
+    $("#PKaddAnotherFlock").click(function() {
+        addFlockForm();
+    })
   });
 
 
@@ -65,7 +137,7 @@ function injectHref(){
     }
 
 // Adds another set of fields fields when the "Add Another" button is clicked
-function addAnotherFlock() {
+/*function addAnotherFlock() {
     var flockCodeBlock = '<div>' +
                             '<hr class="hr-small">' +
                         '</div>' +
@@ -163,7 +235,8 @@ function addAnotherFlock() {
                     '</div>' +
                 '</div>';
     document.querySelector('div[name=flocks-container]').outerHTML = flockCodeBlock;
-}
+}*/
+
 
 // Adds another set of feeds fields when the "Add Another" button is clicked
 function addAnotherFeed() {

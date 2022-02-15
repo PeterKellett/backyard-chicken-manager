@@ -40,7 +40,7 @@ def get_onboarding_data(request):
         'coop_qty',
         'flock_name',
         'acquired_date',
-        'coop1_name',
+        'coop_name',
         'breed',
         'purpose',
         'all_hens_check',

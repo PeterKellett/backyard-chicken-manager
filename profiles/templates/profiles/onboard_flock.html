@@ -74,8 +74,10 @@
 <div class="form-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
         {% csrf_token %}
-        <div class="form-data">
+        <div class="form-data" id="form-data">
             <!-- Flock Core Info Section -->
+            {% for flock in onboard_profile_data.flocks %}
+            {% endfor %}
             <section name="flock-core-info">
                 <div>
                     {% if 'flock_name' in onboard_profile_data %}
@@ -92,7 +94,11 @@
                     {% endif %}
                 </div>
                 <div>
-                    <input type="text" name="coop1_name" placeholder="Coop Name" id="coop1_name" required>
+                    {% if 'coop_name' in onboard_profile_data %}
+                    <input type="text" name="coop_name" value="{{ onboard_profile_data.coop_name }}" placeholder="Coop Name" id="coop_name" required>
+                    {% else %}
+                    <input type="text" name="coop_name" placeholder="Coop Name" id="coop_name" required>
+                    {% endif %}
                 </div>
                 <div>
                     <select name="breed" id="breed" required>
@@ -107,7 +113,7 @@
                             {% endfor %}
                         {% else %}     
                         <option value="" disabled selected>Breed</option>
-                            {% for farm_type in farm_types %}
+                            {% for breed in breed %}
                             <option value="{{ breed }}">{{ breed|title }}</option>
                             {% endfor %}
                         {% endif %}
@@ -137,7 +143,7 @@
                 <div>
                     <hr class="hr-small">
                 </div>
-            </section>
+            </section>-->
 
             <!-- HCC Section (Hens, Chicks and Cocks). To be moved to it's own snippet -->
             <section name="flock-hcc">
@@ -236,7 +242,8 @@
                 </div>
                 <div class="container" name="flocks-container"></div>
                 <div class="add-another-btn-div">
-                    <button href="" type="button" class="button add-another-btn" onclick="addAnotherFlock()">Add Another</button>
+                    <!--CD <button href="" type="button" class="button add-another-btn" onclick="addAnotherFlock()">Add Another</button>-->
+                    <button href="" type="button" class="button add-another-btn" id="PKaddAnotherFlock">Add Another</button>
                 </div>
             </section>
 
