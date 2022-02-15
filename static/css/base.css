@@ -1,7 +1,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300;600&family=Merriweather:wght@300;700;900&display=swap');
 
-*{
+*,
+p,
+h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -199,17 +201,17 @@ hr {
 
 /*-- BOTTOM MARGIN START --*/
 
-p, h1, h2, h3, h4, h5,
-hr,
-.row,
-.form-data input[type=submit],
-.button,
-.btn,
-input,
-.form-data select,
-.form-data textarea
+.row
  {
+    padding-left: 0;
+    padding-right: 0;
     margin-bottom: 10px;
+}
+
+.text-start
+ {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 input,
@@ -355,8 +357,10 @@ input:-webkit-autofill:active {
 }
 
 .add-another-btn {
-    width: 100px;
+    width: 110px;
     height: 25px;
+    padding-left: 0;
+    padding-right: 0;
     background-color: var(--orange);
 }
 
@@ -432,7 +436,7 @@ main {
 }
 
 .col-css > img {
-    width: 25px;
+    width: 35px;
 }
 
 .menu-h2 {
@@ -468,4 +472,9 @@ i {
 
 .modal-body {
     background-color: var(--green_bg);
+}
+
+
+a {
+    text-decoration: none;
 }

@@ -37,4 +37,9 @@ label,
     display: none;
 }
 
+/*-- Centres the checkbox vertiocally in the row --*/
+.form-data input[type=checkbox] {
+    margin-top: 3px;
+}
+
 /*-- INPUT FIELDS END --*/
