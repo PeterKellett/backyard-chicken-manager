@@ -104,20 +104,21 @@
                     <input type="text" name="farm_business_name" placeholder="Farm/Business Name" id="farm_business_name" required>
                   {% endif %}
                 </div>
+           
                 <select name="farm_type" id="farm_type" required>
                   {% if 'farm_type' in onboard_profile_data %}
                     <option value="" disabled>Farm Type</option>
-                    {% for farm_type in farm_types %}
-                      {% if farm_type == onboard_Profile_data.farm_type %}
-                        <option value="{{ farm_type }}" selected>{{ farm_type|title }}</option>
+                    {% for farm_type in farm_types %}                    
+                      {% if farm_type.id == onboard_profile_data.farm_type %}
+                        <option value="{{ farm_type.id }}" selected>{{ farm_type.type.title }}</option>
                       {% else %}
-                        <option value="{{ farm_type }}">{{ farm_type|title }}</option>
-                        {% endif %}
+                        <option value="{{ farm_type.id }}">{{ farm_type|title }}</option>
+                      {% endif %}
                     {% endfor %}                
                   {% else %}
                     <option value="" disabled selected>Farm Type</option>
                     {% for farm_type in farm_types %}
-                      <option value="{{ farm_type }}">{{ farm_type|title }}</option>
+                      <option value="{{ farm_type.id }}">{{ farm_type|title }}</option>
                     {% endfor %}
                   {% endif %}              
                 </select>
@@ -135,4 +136,5 @@
         </div>
     </form>
 </div>
+
 {% endblock %}
