@@ -39,7 +39,9 @@ body {
 
 :root {
     --green: #83952a;
+    --green_bg: #ecefdf;
     --orange: #d65b3e;
+    --orange_bg: #f9e6e2;
     --black: #373838;
     --white: #fefefe;
 }
@@ -210,12 +212,20 @@ input,
     margin-bottom: 10px;
 }
 
+input,
+.form-data select,
+.form-data textarea
+ {
+    background-color: var(--orange_bg);
+}
+
 
 /*-- INPUT FIELDS START --*/
 /*-- Animation of input field labels https://www.youtube.com/watch?v=JlRNGJGorsw from 10:17 onwards --*/
 
 /*-- Keeps all input fields centred on page --*/
-.form-container {
+.form-container,
+.menu-row {
     margin: auto;
     width: 100%;
     max-width: 360px;
@@ -362,6 +372,7 @@ input:-webkit-autofill:active {
 
 .button-full-size {
     width: 47.5%;
+    max-width: 200px;
 }
 
 .button-small-size {
@@ -415,9 +426,22 @@ main {
     text-align: right;
 }
 
+.col-css-left {
+    padding: 0;
+    text-align: left;
+}
+
 .col-css > img {
     width: 25px;
 }
+
+.menu-h2 {
+    color: var(--black);
+    text-align: left;
+    margin: 0;
+}
+
+
 
 /*-- GRID END --*/
 
@@ -440,4 +464,8 @@ i {
     color: var(--black);
     padding-top: 10px;
     padding-bottom: 5px;
+}
+
+.modal-body {
+    background-color: var(--green_bg);
 }

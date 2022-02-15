@@ -1,0 +1,40 @@
+body {
+    background-color: var(--orange_bg);
+}
+
+.menu-row {
+    border:  2px solid var(--black);
+    border-radius: 5px;
+    background-color: var(--green_bg);
+    height: 50px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.row {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    flex-wrap: nowrap;
+}
+
+.col-2 {
+    padding: 0;
+}
+
+.col-css > img {
+    height: 40px;
+    width: 40px;
+}
+
+.col-css-left {
+    padding-left: 10px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+}
