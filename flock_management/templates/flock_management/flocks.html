@@ -2,77 +2,40 @@
 {% load static %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/onboarding.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/flocks.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
-    Onboarding Flock(s)
+    Flocks/Current Flock
 {% endblock %}
 
 {% block content %}
 <div class="large-screen-h1">
     <div class="row">
-        <h1>Onboarding Flock(s)</h1>
+        <h1>Flocks/Current Flock</h1>
     </div>
     <div class="row">
         <hr class="hr-large">
     </div>
 </div>
+
+<!-- Icons and Links Section -->
 <div class="container form-container">
     <div class="row">
-        <div class="col-10 col-css">
-            <h4 class="text-start">
-                Page 2 of 4
-            </h4>
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle"></i>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}reports_flocks.png" alt="flock reports icon"></a>
+        </div>
+        <div class="col-6 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting.png" alt="settings & profile icon"></a>
         </div>
         <div class="col-2 col-css-right">
-            <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i>
-        </div>
-    </div>
-    <div class="row">
-        <p class="text-start">
-            Tell us about your flock(s)...
-        </p>
-    </div>
-</div>
-
-<!-- "i" icon modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-    
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Onboarding Help - Flock</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <p class="text-start modal-body">Each new set of birds you get should be recorded as an individual flock, even if they
-                    share the same coop and spaces. If the flock has an official registration number, you can include it 
-                    as pert of the name.
-                </p>
-                <ul class="text-start">
-                    <li><span class="fw-bold">Flock Name:</span> Give your flock a name.</li>
-                    <li><span class="fw-bold">Acquired Date:</span> This is the approximate date you received the flock.</li>
-                    <li><span class="fw-bold">Coop Name:</span> Give your coop a name.</li>
-                    <li><span class="fw-bold">Breed:</span> Indicate your bird's breed.</li>
-                    <li><span class="fw-bold">Hens, Chicks & Cocks Qty:</span> Add a quantity for each or else leave the field blank.
-                        You must add a quantity of 1 or greater to at least one field.</li>
-                    <li><span class="fw-bold">Add Another Button:</span> If you have multiple flocks, click the "Add Another" button
-                        to add each flock individually.</li>
-                </ul>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Close</button>
-            </div>
+            <a href=""><img src="{{ MEDIA_URL }}add.png" alt="add a flock icon"></a>
         </div>
     </div>
 </div>
-
 <div class="row">
     <hr class="hr-large">
 </div>

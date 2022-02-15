@@ -167,12 +167,14 @@ function addAnotherFlock() {
 
 // Adds another set of feeds fields when the "Add Another" button is clicked
 function addAnotherFeed() {
-    var feedsCodeBlock = '<div>' +
+    var feedsCodeBlock = '<div class="row">' +
                             '<hr class="hr-small">' +
                         '</div>' +
+                        '<div class="row">' +
                             '<input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>' +
+                        '</div>' +
                         '<div class="container">' +
-                            '<div class="row mb-0">' +
+                            '<div class="row">' +
                                 '<div class="col-10 col-css">' +
                                     '<input type="number" name="feed-qty-stock" placeholder="Qty in Stock" id="feed-qty-stock" ' +
                                         'step="1" min="0" oninput="this.value = Math.abs(this.value)" required>' +
@@ -190,24 +192,25 @@ function addAnotherFeed() {
 
 // Adds another set of supplements fields when the "Add Another" button is clicked
 function addAnotherSupplement() {
-    var supplementsCodeBlock = '<div>' +
-                            '<hr class="hr-small">' +
-                        '</div>' +
-                            '<input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement_name" required>' +
-                        '</div>' +
-                        '<div class="container">' +
-                            '<div class="row mb-0">' +
-                                '<div class="col-10 col-css">' +
-                                    '<input type="number" name="supplement-amount-stock" placeholder="Amount in Stock" id="supplement-amount-stock" ' +
-                                        'step="1" min="0" oninput="this.value = Math.abs(this.value)" required>' +
-                            '</div>' +
-                            '<div class="col-2 col-css">' +
-                                '<h5 class="text-end">' +
-                                    'ml' +
-                                '</h5>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="container" name="supplements-container"></div>';
+    var supplementsCodeBlock = '<div class="row">' +
+                                    '<hr class="hr-small">' +
+                                '</div>' +
+                                '<div class="row">' +
+                                    '<input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement_name" required>' +
+                                '</div>' +
+                                '<div class="container">' +
+                                    '<div class="row">' +
+                                        '<div class="col-10 col-css">' +
+                                            '<input type="number" name="supplement-amount-stock" placeholder="Amount in Stock" id="supplement-amount-stock" ' +
+                                                'step="1" min="0" oninput="this.value = Math.abs(this.value)" required>' +
+                                    '</div>' +
+                                    '<div class="col-2 col-css">' +
+                                        '<h5 class="text-end">' +
+                                            'ml' +
+                                        '</h5>' +
+                                    '</div>' +
+                                '</div>' +
+                                '<div class="container" name="supplements-container"></div>';
     document.querySelector('div[name=supplements-container]').outerHTML = supplementsCodeBlock;
 }
 

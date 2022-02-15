@@ -1,8 +1,123 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Home Dashboard
+{% endblock %}
+
 {% block content %}
-<h5>User dashboard</h5>
-{{ onboard_profile_data }}
-<a href="{% url 'onboard_stock' %}">Prev page</a>
+<div class="large-screen-h1">
+    <div class="row">
+        <h1>Home Dashboard</h1>
+    </div>
+    <div class="row">
+        <hr class="hr-large">
+    </div>
+</div>
+
+<a href="">
+    <div class="menu-row container">
+        <div class="row">
+            <div class="col-2 col-css">
+                <img src="{{ MEDIA_URL }}regular_tasks.png" alt="regular tasks icon">
+            </div>
+            <div class="col-10 col-css col-css-left">
+                <h2 class="menu-h2">Regular Tasks</h2>
+            </div>
+        </div>
+    </div>
+</a>
+<a href="">
+    <div class="menu-row container">
+        <div class="row">
+            <div class="col-2 col-css">
+                <img src="{{ MEDIA_URL }}sales_and_income.png" alt="sales and income icon">
+            </div>
+            <div class="col-10 col-css col-css-left">
+                <h2 class="menu-h2">Sales & Income</h2>
+            </div>
+        </div>
+    </div>
+</a>
+<a href="">
+    <div class="menu-row container">
+        <div class="row">
+            <div class="col-2 col-css">
+                <img src="{{ MEDIA_URL }}expenditure.png" alt="expenditure icon">
+            </div>
+            <div class="col-10 col-css col-css-left">
+                <h2 class="menu-h2">Expenditure</h2>
+            </div>
+        </div>
+    </div>
+</a>
+<a href="">
+    <div class="menu-row container">
+        <div class="row">
+            <div class="col-2 col-css">
+                <img src="{{ MEDIA_URL }}health_and_welfare.png" alt="health and welfare icon">
+            </div>
+            <div class="col-10 col-css col-css-left">
+                <h2 class="menu-h2">Health & Welfare</h2>
+            </div>
+        </div>
+    </div>
+</a>
+<a href="">
+    <div class="menu-row container">
+        <div class="row">
+            <div class="col-2 col-css">
+                <img src="{{ MEDIA_URL }}coop_manag.png" alt="coop management icon">
+            </div>
+            <div class="col-10 col-css col-css-left">
+                <h2 class="menu-h2">Coop Management</h2>
+            </div>
+        </div>
+    </div>
+</a>
+<a href="">
+    <div class="menu-row container">
+        <div class="row">
+            <div class="col-2 col-css">
+                <img src="{{ MEDIA_URL }}flock_manag.png" alt="flock management icon">
+            </div>
+            <div class="col-10 col-css col-css-left">
+                <h2 class="menu-h2">Flock Management</h2>
+            </div>
+        </div>
+    </div>
+</a>
+<a href="">
+    <div class="menu-row container">
+        <div class="row">
+            <div class="col-2 col-css">
+                <img src="{{ MEDIA_URL }}reports_and_financials.png" alt="financials & reports icon">
+            </div>
+            <div class="col-10 col-css col-css-left">
+                <h2 class="menu-h2">Financials & Reports</h2>
+            </div>
+        </div>
+    </div>
+</a>
+<a href="">
+    <div class="menu-row container">
+        <div class="row">
+            <div class="col-2 col-css">
+                <img src="{{ MEDIA_URL }}profile_and_setting.png" alt="settings & profile icon">
+            </div>
+            <div class="col-10 col-css col-css-left">
+                <h2 class="menu-h2">Settings & Profile</h2>
+            </div>
+        </div>
+    </div>
+</a>
+
+<div>
+    <!--<button class="button button-full-size">Prev page</button>-->
+    <a href="{% url 'onboard_stock' %}" class="btn button button-full-size">Previous</a> 
+</div>
 {% endblock %}
