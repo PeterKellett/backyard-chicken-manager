@@ -11,11 +11,15 @@
 
 {% block content %}
 <div class="large-screen-h1">
-    <h1>Onboarding Personal</h1>
-    <hr class="hr-large">
+    <div class="row">
+        <h1>Onboarding Personal</h1>
+    </div>
+    <div class="row">
+        <hr class="hr-large">
+    </div>
 </div>
 <div class="container form-container">
-    <div class="row mb-0">
+    <div class="row">
         <div class="col-10 col-css">
             <h4 class="text-start">
                 Page 1 of 4
@@ -25,9 +29,11 @@
             <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i>
         </div>
     </div>
-      <p class="text-start">
-          To give you the best possible experience we just need a few more bits of information.
-      </p>
+    <div class="row">
+        <p class="text-start">
+            To give you the best possible experience we just need a few more bits of information.
+        </p>
+    </div>
 </div>
 <!-- "i" icon modal -->
 <div class="modal" id="myModal">
@@ -60,7 +66,7 @@
   </div>
 </div>
 
-<div>
+<div class="row">
     <hr class="hr-large">
 </div>
 
@@ -70,61 +76,64 @@
         <div class="form-data">
             <!-- Personal Info -->
             <section name="personal-info">
-                <div>
+                <div class="row">
                     <h4>Personal</h4>
                 </div>
-                <div>
+                <div class="row">
                   {% if 'full_name' in onboard_profile_data %}
                     <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full_name" required>
                   {% else %}
                     <input type="text" name="full_name" placeholder="Full Name" id="full_name" required>
                   {% endif %}
                 </div>
-                <div>
+                <div class="row">
                   {% if 'city_country' in onboard_profile_data %}
                   <input type="text" name="city_country" placeholder="City, Country" value="{{ onboard_profile_data.city_country }}" id="city_country" required>
                   {% else %}
                     <input type="text" name="city_country" placeholder="City, Country" id="city_country" required>
                   {% endif %}
                 </div>
-                <div>
+                <div class="row">
                   <hr class="hr-small">
                 </div>
             </section>
 
             <!-- Farm Info -->
             <section name="farm-info">
-                <div>
+                <div class="row">
                     <h4>Farm</h4>
                 </div>
-                <div>
+                <div class="row">
                   {% if 'farm_business_name' in onboard_profile_data %}
                     <input type="text" name="farm_business_name" placeholder="Farm/Business Name" value="{{ onboard_profile_data.farm_business_name }}" id="farm_business_name" required>
                   {% else %}
                     <input type="text" name="farm_business_name" placeholder="Farm/Business Name" id="farm_business_name" required>
                   {% endif %}
                 </div>
-           
-                <select name="farm_type" id="farm_type" required>
-                  {% if 'farm_type' in onboard_profile_data %}
-                    <option value="" disabled>Farm Type</option>
-                    {% for farm_type in farm_types %}                    
-                      {% if farm_type.id == onboard_profile_data.farm_type %}
-                        <option value="{{ farm_type.id }}" selected>{{ farm_type.type.title }}</option>
-                      {% else %}
+
+                <div class="row">
+                  <select name="farm_type" id="farm_type" required>
+                    {% if 'farm_type' in onboard_profile_data %}
+                      <option value="" disabled>Farm Type</option>
+                      {% for farm_type in farm_types %}                    
+                        {% if farm_type.id == onboard_profile_data.farm_type %}
+                          <option value="{{ farm_type.id }}" selected>{{ farm_type.type.title }}</option>
+                        {% else %}
+                          <option value="{{ farm_type.id }}">{{ farm_type|title }}</option>
+                        {% endif %}
+                      {% endfor %}                
+                    {% else %}
+                      <option value="" disabled selected>Farm Type</option>
+                      {% for farm_type in farm_types %}
                         <option value="{{ farm_type.id }}">{{ farm_type|title }}</option>
-                      {% endif %}
-                    {% endfor %}                
-                  {% else %}
-                    <option value="" disabled selected>Farm Type</option>
-                    {% for farm_type in farm_types %}
-                      <option value="{{ farm_type.id }}">{{ farm_type|title }}</option>
-                    {% endfor %}
-                  {% endif %}              
-                </select>
+                      {% endfor %}
+                    {% endif %}              
+                  </select>
+                </div>
+
             <section>
 
-            <div>
+            <div class="row">
                 <hr class="hr-large">
             </div>
             <div>

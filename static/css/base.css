@@ -1,7 +1,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300;600&family=Merriweather:wght@300;700;900&display=swap');
 
-*{
+*,
+p,
+h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -39,7 +41,9 @@ body {
 
 :root {
     --green: #83952a;
+    --green_bg: #ecefdf;
     --orange: #d65b3e;
+    --orange_bg: #f9e6e2;
     --black: #373838;
     --white: #fefefe;
 }
@@ -197,17 +201,24 @@ hr {
 
 /*-- BOTTOM MARGIN START --*/
 
-p, h1, h2, h3, h4, h5,
-hr,
-.row,
-.form-data input[type=submit],
-.button,
-.btn,
+.row
+ {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 10px;
+}
+
+.text-start
+ {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 input,
 .form-data select,
 .form-data textarea
  {
-    margin-bottom: 10px;
+    background-color: var(--orange_bg);
 }
 
 
@@ -215,7 +226,8 @@ input,
 /*-- Animation of input field labels https://www.youtube.com/watch?v=JlRNGJGorsw from 10:17 onwards --*/
 
 /*-- Keeps all input fields centred on page --*/
-.form-container {
+.form-container,
+.menu-row {
     margin: auto;
     width: 100%;
     max-width: 360px;
@@ -345,8 +357,10 @@ input:-webkit-autofill:active {
 }
 
 .add-another-btn {
-    width: 100px;
+    width: 110px;
     height: 25px;
+    padding-left: 0;
+    padding-right: 0;
     background-color: var(--orange);
 }
 
@@ -362,6 +376,7 @@ input:-webkit-autofill:active {
 
 .button-full-size {
     width: 47.5%;
+    max-width: 200px;
 }
 
 .button-small-size {
@@ -415,9 +430,22 @@ main {
     text-align: right;
 }
 
-.col-css > img {
-    width: 25px;
+.col-css-left {
+    padding: 0;
+    text-align: left;
 }
+
+.col-css > img {
+    width: 35px;
+}
+
+.menu-h2 {
+    color: var(--black);
+    text-align: left;
+    margin: 0;
+}
+
+
 
 /*-- GRID END --*/
 
@@ -440,4 +468,13 @@ i {
     color: var(--black);
     padding-top: 10px;
     padding-bottom: 5px;
+}
+
+.modal-body {
+    background-color: var(--green_bg);
+}
+
+
+a {
+    text-decoration: none;
 }
