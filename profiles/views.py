@@ -26,7 +26,7 @@ def get_onboarding_data(request):
 
     # Get the form data
     raw_form_data = request.POST
-    print(raw_form_data)
+    print("raw_form_data = ", raw_form_data)
     # Declare a white list of field names as a filter prior to processing /
     # the raw_form_data to the session onboard_profile_data. This will allow /
     # only certain fields to be saved to the session and will exclude all /
@@ -49,10 +49,11 @@ def get_onboarding_data(request):
         'chicks_qty',
         'all_cocks_check',
         'cocks_qty',
-        'roadside-check',
-        'markets-check',
-        'deliveries-check',
-        'collections-check'
+        'trays_qty'
+        # 'roadside-check',
+        # 'markets-check',
+        # 'deliveries-check',
+        # 'collections-check'
     ]
 
     # Declare a list of the fields that require integers in order to format /
@@ -63,12 +64,30 @@ def get_onboarding_data(request):
         'coop_qty',
         'hens_qty',
         'chicks_qty',
-        'cocks_qty'
+        'cocks_qty',
+        'trays_qty'
+    ]
+
+    checkbox_fields = [
+        'roadside_check',
+        'markets_check',
+        'deliveries_check',
+        'collections_check',
+        'single_eggs_check',
+        'half_dozen_carton_check',
+        'dozen_carton_check',
+        'trays_check',
     ]
 
     # Declare a dictionary to contain the cleaned submitted form data
     cleaned_form_data = {}
 
+    if 'checkbox_form' in raw_form_data:
+        for key in checkbox_fields:
+            if key in request.POST:
+                cleaned_form_data[key] = True
+            else:
+                cleaned_form_data[key] = False
     # Run the raw_form_data against the list of items in the white list
     for key in raw_form_data:
         if key in white_list:
