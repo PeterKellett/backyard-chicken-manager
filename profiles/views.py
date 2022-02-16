@@ -49,7 +49,13 @@ def get_onboarding_data(request):
         'chicks_qty',
         'all_cocks_check',
         'cocks_qty',
-        'trays_qty'
+        'trays_qty',
+        'feed_name',
+        'saleable_eggs_qty',
+        'feed_qty_stock',
+        'feed_qty_stock',
+        'supplement_name',
+        'supplement_amount_stock'
         # 'roadside-check',
         # 'markets-check',
         # 'deliveries-check',
@@ -65,7 +71,10 @@ def get_onboarding_data(request):
         'hens_qty',
         'chicks_qty',
         'cocks_qty',
-        'trays_qty'
+        'trays_qty',
+        'saleable_eggs_qty',
+        'feed_qty_stock',
+        'supplement_amount_stock'
     ]
 
     checkbox_fields = [
