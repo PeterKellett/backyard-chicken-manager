@@ -26,7 +26,7 @@ def get_onboarding_data(request):
 
     # Get the form data
     raw_form_data = request.POST
-
+    print(raw_form_data)
     # Declare a white list of field names as a filter prior to processing /
     # the raw_form_data to the session onboard_profile_data. This will allow /
     # only certain fields to be saved to the session and will exclude all /
@@ -48,7 +48,11 @@ def get_onboarding_data(request):
         'all_chicks_check',
         'chicks_qty',
         'all_cocks_check',
-        'cocks_qty'
+        'cocks_qty',
+        'roadside-check',
+        'markets-check',
+        'deliveries-check',
+        'collections-check'
     ]
 
     # Declare a list of the fields that require integers in order to format /

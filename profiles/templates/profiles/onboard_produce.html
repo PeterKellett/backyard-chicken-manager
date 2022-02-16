@@ -86,7 +86,9 @@
 </div>
 
 <div class="form-container">
-    <form method="POST" action="register">
+    <form method="POST" action="{% url 'get_onboarding_data' %}">
+        {% csrf_token %}
+        <input type="hidden" name="redirect_url" value="onboard_stock"/>
         <div class="form-data">
 
             <!-- Sales Methods Section -->
@@ -103,7 +105,11 @@
                             <h6 class="col-css-element checkbox-label">Roadside</h6>
                         </div>
                         <div class="col-1 col-css col-css-right">
+                            {% if 'roadside-check' in onboard_profile_data %}
+                            <input type="checkbox" name="roadside-check" id="roadside-check" class="col-css-element sales-methods" checked>
+                            {% else %}
                             <input type="checkbox" name="roadside-check" id="roadside-check" class="col-css-element sales-methods">
+                            {% endif %}
                         </div>
                     </div>
                     <div class="row" id="markets-row">
@@ -199,7 +205,7 @@
             <div>
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="{% url 'onboard_flock' %}" class="btn button button-full-size">Previous</a> 
-                <a href="#" id="produce-next-button" class="btn button button-full-size" onclick="injectHref()">Next</a> <!-- {% url 'onboard_stock' %} -->
+                <button type='submit' id="produce-next-button" class="btn button button-full-size" onclick="injectHref()">Next</button>
             </div>
         </div>
   </form>
