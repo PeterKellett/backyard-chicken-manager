@@ -2,7 +2,7 @@ body {
     background-color: var(--orange_bg);
 }
 
-.row-container {
+.element-container {
     border:  2px solid var(--black);
     border-radius: 5px;
     background-color: var(--green_bg);

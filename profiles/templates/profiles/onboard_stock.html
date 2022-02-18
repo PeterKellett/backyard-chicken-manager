@@ -11,15 +11,15 @@
 
 {% block content %}
 <div class="large-screen-h1">
-    <div class="row">
+    <div class="bottom-margin">
         <h1>Onboarding Stocks</h1>
     </div>
-    <div class="row">
+    <div class="bottom-margin">
         <hr class="hr-large">
     </div>
 </div>
-<div class="container row-container">
-    <div class="row">
+<div class="container element-container">
+    <div class="row bottom-margin">
         <div class="col-10 col-css">
             <h4 class="text-start">
                 Page 4 of 4
@@ -29,10 +29,12 @@
             <i class="fas fa-info-circle"  data-bs-toggle="modal" data-bs-target="#myModal"></i>
         </div>
     </div>
-    <p class="text-start">
-        Finally, tell us about your existing stocks. If you don't have the information to hand,
-        don't worry, you can add it later in the “Profile & Settings” section.
-    </p>
+    <div class="row bottom-margin">
+        <p class="text-start">
+            Finally, tell us about your existing stocks. If you don't have the information to hand,
+            don't worry, you can add it later in the “Profile & Settings” section.
+        </p>
+    </div>
 </div>
 
 <!-- "i" icon modal -->
@@ -74,38 +76,38 @@
     </div>
 </div>
 
-<div class="row">
+<div class="bottom-margin">
     <hr class="hr-large">
 </div>
 
-<div class="row-container">
+<div class="element-container">
     <form method="POST" action="register">
         <div class="form-data">
 
             <!-- Saleable Eggs -->
             <section name="saleable-eggs">
-                <div class="row">
+                <div class="bottom-margin">
                     <h4>Saleable Eggs</h4>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <input type="number" name="saleable-eggs-qty" placeholder="Qty Saleable Eggs in Stock" id="saleable-eggs-qty" 
                         step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <hr class="hr-small">
                 </div>
             </section>
 
             <!-- Feeds -->
             <section name="feeds">
-                <div class="row">
+                <div class="bottom-margin">
                     <h4>Feeds</h4>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>
                 </div>
                 <div class="container">
-                    <div class="row">
+                    <div class="row bottom-margin">
                         <div class="col-10 col-css">
                             <input type="number" name="feed-qty-stock" placeholder="Qty in Stock" id="feed-qty-stock" 
                                 step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
@@ -118,24 +120,24 @@
                     </div>
                 </div>
                 <div class="container" name="feeds-container"></div>
-                <div class="add-another-btn-div row">
+                <div class="add-another-btn-div bottom-margin">
                     <button href="" type="button" class="button add-another-btn" onclick="addAnotherFeed()">Add Another</button>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <hr class="hr-small">
                 </div>
             </section>
 
             <!-- Supplements -->
             <section name="supplements">
-                <div class="row">
+                <div class="bottom-margin">
                     <h4>Supplements</h4>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement_name" required>
                 </div>
                 <div class="container">
-                    <div class="row">
+                    <div class="row bottom-margin">
                         <div class="col-10 col-css">
                             <input type="number" name="supplement-amount-stock" placeholder="Amount in Stock" id="supplement-amount-stock" 
                                 step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
@@ -148,12 +150,12 @@
                     </div>
                 </div>
                 <div class="container" name="supplements-container"></div>
-                <div class="add-another-btn-div row">
+                <div class="add-another-btn-div bottom-margin">
                     <button href="" type="button" class="button add-another-btn" onclick="addAnotherSupplement()">Add Another</button>
                 </div>
             </section>
 
-            <div class="row">
+            <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
             <div>

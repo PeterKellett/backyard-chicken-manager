@@ -19,6 +19,13 @@ body {
     height: 100vh;
 }
 
+.bottom-margin
+ {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 10px;
+}
+
 .container-fluid {
     position: relative;
 }
@@ -96,15 +103,26 @@ p {
     color: var(--black);
 }
 
-/*-- Fontawesome Icons --*/
+/*-- FONTS END --*/
+
+/*-- ICONS START --*/
 i {
     font-size: 30px;
     color: var(--orange);
     text-align: right;
 }
 
-/*-- FONTS END --*/
+.round-icon {
+    height: 30px;
+    width: 30px;
+}
 
+.non-round-icon {
+    height: 35px;
+    width: 35px;
+}
+
+/*-- ICONS END --*/
 
 /*-- HR RULES START --*/
 
@@ -212,13 +230,6 @@ hr {
 /*-- NAVBAR END */
 
 /*-- BOTTOM MARGIN START --*/
-
-.row
- {
-    padding-left: 0;
-    padding-right: 0;
-    margin-bottom: 10px;
-}
 
 .text-start
  {
@@ -397,12 +408,6 @@ main {
     }
 }
 
-.row>* {
-    padding: 0;
-}
-
-
-
 /*-- MAIN END --*/
 
 
@@ -410,7 +415,7 @@ main {
 
 /*-- Removes margins from row elements --*/
 /*-- Keeps all input fields centred on page --*/
-.row-container {
+.element-container {
     margin: auto;
     width: 100%;
     max-width: 360px;
@@ -457,9 +462,27 @@ main {
     margin: 0;
 }
 
-
-
 /*-- GRID END --*/
+
+
+/*-- CARDS START --*/
+
+.card {
+    border: 1px solid var(--black);
+    border-radius: 5px;
+}
+
+.card-col-one,
+.card-col-two {
+    padding-left: 10px;
+}
+
+.card-col-one h6 {
+    font-weight: 700;
+}
+
+/*-- CARDS END --*/
+
 
 /*-- Box that displays when a warning is required --*/
 .warning-div {

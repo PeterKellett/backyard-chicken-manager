@@ -18,10 +18,10 @@
 
 <div class="page-centre">
     <div class="large-screen-h1">
-        <div class="row">
+        <div class="bottom-margin">
             <h1>Sign In</h1>
         </div>
-        <div class="row">
+        <div class="bottom-margin">
             <hr class="hr-large">
         </div>
     </div>
@@ -29,19 +29,19 @@
     {% get_providers as socialaccount_providers %}
 
     {% if socialaccount_providers %}
-    <div class="row">
+    <div class="bottom-margin">
         <p>{% blocktrans with site.name as site_name %}Please sign in with one
         of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
         for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
       </div>
 
     <div class="socialaccount_ballot">
-      <div class="row">
+      <div class="bottom-margin">
           <ul class="socialaccount_providers">
             {% include "socialaccount/snippets/provider_list.html" with process="login" %}
           </ul>
       </div>
-      <div class="row">
+      <div class="bottom-margin">
           <div class="login-or">{% trans 'or' %}</div>
       </div>
     </div>
@@ -50,24 +50,24 @@
 
     {% else %}
 
-    <div class="row-container">
+    <div class="element-container">
         <form class="login" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
             {{ form }}
-            <div class="row">
+            <div class="bottom-margin">
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
             </div>
-            <div class="form-data row">
+            <div class="form-data bottom-margin>
                 <button class="primaryAction button button-full-size" type="submit">{% trans "Sign In" %}</button>
             </div>
-            <div class="form-data row">
+            <div class="form-data bottom-margin">
                 <p>
                   <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
                 </p>
             </div>
-            <div class="form-data row">
+            <div class="form-data bottom-margin">
                 <p>{% blocktrans %}Don't have an account yet, then please
                   <a href="{{ signup_url }}">Sign Up</a>.{% endblocktrans %}
                 </p>

@@ -11,59 +11,59 @@
 
 {% block content %}
 <div class="large-screen-h1">
-    <div class="row">
+    <div class="bottom-margin">
         <h1>Flocks/Current Flock</h1>
     </div>
-    <div class="row">
+    <div class="bottom-margin">
         <hr class="hr-large">
     </div>
 </div>
 
 <!-- Icons and Links Section -->
-<div class="container row-container">
-    <div class="row">
+<div class="container element-container">
+    <div class="row bottom-margin">
         <div class="col-2 col-css">
             <i class="fas fa-info-circle"></i>
         </div>
         <div class="col-2 col-css">
-            <a href=""><img src="{{ MEDIA_URL }}reports_flocks.png" alt="flock reports icon"></a>
+            <a href=""><img src="{{ MEDIA_URL }}reports_flocks.png" alt="flock reports icon" class="non-round-icon"></a>
         </div>
         <div class="col-6 col-css">
-            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting.png" alt="settings & profile icon"></a>
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting.png" alt="settings & profile icon" class="non-round-icon"></a>
         </div>
         <div class="col-2 col-css-right">
-            <a href=""><img src="{{ MEDIA_URL }}add.png" alt="add a flock icon"></a>
+            <a href=""><img src="{{ MEDIA_URL }}add.png" alt="add a flock icon" class="round-icon"></a>
         </div>
     </div>
 </div>
-<div class="row">
+<div class="bottom-margin">
     <hr class="hr-large">
 </div>
 
-<div class="row-container">
+<div class="element-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
         {% csrf_token %}
         <div class="form-data">
             <!-- Flock Core Info Section -->
             <section name="flock-core-info">
-                <div class="row">
+                <div class="bottom-margin">
                     {% if 'flock_name' in onboard_profile_data %}
                     <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock_name" required>
                     {% else %}
                     <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
                     {% endif %}
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     {% if 'acquired_date' in onboard_profile_data %}
                     <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired_date" required>
                     {% else %}
                     <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
                     {% endif %}
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <input type="text" name="coop1_name" placeholder="Coop Name" id="coop1_name" required>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <select name="breed" id="breed" required>
                         {% if 'breed' in onboard_profile_data %}
                         <option value="" disabled>Breed</option>
@@ -82,7 +82,7 @@
                         {% endif %}
                     </select>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <hr class="hr-small">
                 </div>
             </section>
@@ -90,7 +90,7 @@
             <!-- HCC Section (Hens, Chicks and Cocks). To be moved to it's own snippet -->
             <section name="flock-hcc">
                 <div class="container form-data">
-                    <div class="row" id="hens-row">
+                    <div class="row bottom-margin" id="hens-row">
                         <div class="col-2 col-css">
                             <img src="{{ MEDIA_URL }}flock_manag_hens.png" alt="Chicken" class="col-css-element">
                         </div>
@@ -113,11 +113,11 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="bottom-margin">
                         <hr class="hr-small">
                     </div>
 
-                    <div class="row" id="chicks-row">
+                    <div class="row bottom-margin" id="chicks-row">
                         <div class="col-2 col-css">
                             <img src="{{ MEDIA_URL }}flock_manag_chicks.png" alt="Chicks" class="col-css-element">
                         </div>
@@ -142,11 +142,11 @@
 
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="bottom-margin">
                         <hr class="hr-small">
                     </div>
 
-                    <div class="row" id="cocks-row">
+                    <div class="row bottom-margin" id="cocks-row">
                         <div class="col-2 col-css">
                             <img src="{{ MEDIA_URL }}flock_manag_cocks.png" alt="Cocks" class="col-css-element">
                         </div>
@@ -169,10 +169,10 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="bottom-margin">
                         <hr class="hr-small">
                     </div>
-                    <div class="row">
+                    <div class="row bottom-margin">
                         <div class="col-10 col-css">
                             <h6 class="row-name">Total Number of Birds:</h6>
                         </div>
@@ -183,41 +183,56 @@
                     </div>
                 </div>
                 <div class="container" name="flocks-container"></div>
-                <div class="add-another-btn-div row">
+                <div class="add-another-btn-div bottom-margin">
                     <button href="" type="button" class="button add-another-btn" onclick="addAnotherFlock()">Add Another</button>
                 </div>
             </section>
 
-            <div class="row">
+            <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
 
             <!-- Bird Removals Section -->
             <section name="bird_removals">
-                <div class="container row-container">
-                    <div class="row">
+                <div class="container element-container">
+                    <div class="row bottom-margin">
                         <div class="col-10 col-css">
                             <h5 class="col-css-left">Bird Removals</h5>
                         </div>
                         <div class="col-2 col-css-right">
-                            <a href=""><img src="{{ MEDIA_URL }}add.png" alt="add a removal icon"></a>
+                            <a href=""><img src="{{ MEDIA_URL }}add.png" alt="add a removal icon" class="round-icon"></a>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <div class="row">
+            <div class="card bottom-margin">
+                <div class="card-body container">
+                    <div class="row bottom-margin">
+                        <div class="col-3 text-start card-col-one">
+                            <h6 class="card-text">Date:</h6>
+                            <h6 class="card-text">Quantity:</h6>
+                            <h6 class="card-text">Reason:</h6>
+                        </div>
+                        <div class="col-9 text-start card-col-two">
+                            <h6 class="card-text">Date</h6>
+                            <h6 class="card-text">Quantity</h6>
+                            <h6 class="card-text">Reason</h6>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+            <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
 
             <!-- Notes & Images Section -->
             <section name="notes_and_images">
-                <div class="container">
-                    <div class="row">
-                        <h5 class="col-css-left">Notes</h5>
-                    </div>
+                <div class="bottom-margin">
+                    <h5 class="col-css-left">Notes</h5>
                 </div>
-                <div class="container row-container photos-container">  
+                <div class="container element-container photos-container">  
                     <div class="row">
                         <div class="photos-div">
                         </div>
@@ -237,14 +252,14 @@
                 </div>
             </section>
 
-            <div class="row">
+            <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
 
             <!-- Print Section -->
             <section name="notes_and_images">
-                <div class="container row-container">
-                    <div class="row">
+                <div class="container element-container">
+                    <div class="row bottom-margin">
                         <div class="col-4">
                             Print
                         </div>
@@ -264,7 +279,7 @@
                     <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
                 </div>
             </section>
-            <div class="row">
+            <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
 

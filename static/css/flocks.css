@@ -2,11 +2,6 @@ body {
     background-color: var(--green_bg);
 }
 
-img {
-    height: 35px;
-    width: 35px;
-}
-
 .container {
     padding: 0;
 }
