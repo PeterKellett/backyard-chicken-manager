@@ -9,7 +9,6 @@ body {
 .row {
     width: 100%;
     margin-top: 0;
-
     flex-wrap: nowrap;
 }
 
@@ -51,8 +50,4 @@ label,
     height: 50px;
     max-width: 100%;
     flex: 1;
-}
-
-.photos-container {
-    display: flex;
 }

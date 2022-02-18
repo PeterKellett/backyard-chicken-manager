@@ -1,0 +1,14 @@
+<div class="bottom-margin">
+    {% if 'acquired_date' in onboard_profile_data %}
+    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired_date" required>
+    {% else %}
+    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
+    {% endif %}
+</div>
+<div class="bottom-margin">
+    {% if 'flock_name' in onboard_profile_data %}
+    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock_name" required>
+    {% else %}
+    <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
+    {% endif %}
+</div>
