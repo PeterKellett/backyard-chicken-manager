@@ -113,16 +113,16 @@
                         {% if 'breed' in onboard_profile_data %}
                         <option value="" disabled>Breed</option>
                             {% for breed in breed %}
-                                {% if breed == onboard_Profile_data.breed %}
-                                <option value="{{ breed }}" selected>{{ breed|title }}</option>
+                                {% if breed.id == onboard_profile_data.breed %}
+                                <option value="{{ breed.id }}" selected>{{ breed|title }}</option>
                                 {% else %}
-                                <option value="{{ breed }}">{{ breed|title }}</option>
+                                <option value="{{ breed.id }}">{{ breed|title }}</option>
                                 {% endif %}
                             {% endfor %}
                         {% else %}     
                         <option value="" disabled selected>Breed</option>
                             {% for breed in breed %}
-                            <option value="{{ breed }}">{{ breed|title }}</option>
+                            <option value="{{ breed.id }}">{{ breed|title }}</option>
                             {% endfor %}
                         {% endif %}
                     </select>
@@ -130,7 +130,7 @@
                 <div class="row">
                     <hr class="hr-small">
                 </div>
-            </section>-->
+            </section>
 
             <!-- HCC Section (Hens, Chicks and Cocks). To be moved to it's own snippet -->
             <section name="flock-hcc">

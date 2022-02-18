@@ -1,19 +1,36 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from .models import UserProfile, FarmProfile, FarmType, Breed, FarmPurpose
+from flock_management.models import Flocks
 
 
 # Create your views here.
 @login_required
 def dashboard(request):
     '''Render User dashboard'''
-    context = {
+    # 1. Try to get the userprofile from the UserProfile model
+    try:
+        userprofile = UserProfile.objects.get(user=request.user)
+        print("userprofile = ", userprofile)
+    except ObjectDoesNotExist:
+        return redirect(onboard_personal)
+    # 2. Try to get the farmprofile for the user
+    try:
+        farmprofile = FarmProfile.objects.get(user=userprofile.id)
+    # 3. Check the onboard_complete field of the farmprofile
+        if not farmprofile.onboard_complete:
+            return redirect(onboard_personal)
+        else:
+            context = {
 
-    }
-    template = 'profiles/dashboard.html'
-    return render(request, template, context)
+            }
+            template = 'profiles/dashboard.html'
+            return render(request, template, context)
+    except ObjectDoesNotExist:
+        return redirect(onboard_personal)
 
 
 @login_required
@@ -23,10 +40,8 @@ def get_onboarding_data(request):
     # Get the session onboard_profile_data dictionary or create an empty /
     # dictionary if none is already created"""
     onboard_profile_data = request.session.get('onboard_profile_data', {})
-
     # Get the form data
     raw_form_data = request.POST
-    print("raw_form_data = ", raw_form_data)
     # Declare a white list of field names as a filter prior to processing /
     # the raw_form_data to the session onboard_profile_data. This will allow /
     # only certain fields to be saved to the session and will exclude all /
@@ -66,6 +81,7 @@ def get_onboarding_data(request):
     # particular session values in integer form.
     integer_fields = [
         'farm_type',
+        'breed',
         'flock_qty',
         'coop_qty',
         'hens_qty',
@@ -114,9 +130,67 @@ def get_onboarding_data(request):
         onboard_profile_data.update({key: val})
     print('onboard_profile_data = ', onboard_profile_data)
 
-    # Reload the new onboard_profile_data back to the session variable
-    request.session['onboard_profile_data'] = onboard_profile_data
+    if 'onboarding_finish' in raw_form_data:
+        user = CustomUser.objects.get(email=request.user)
+        full_name = onboard_profile_data['full_name'].split()
+        first_name = full_name[0]
+        last_name = ''
+        for item in full_name[1:]:
+            last_name += item + ' '
+        city_country = onboard_profile_data['city_country']
+        # Check if a UserProfile exists for this User
+        try:
+            userprofile = UserProfile.objects.get(user=request.user)
+            userprofile.first_name = first_name
+            userprofile.last_name = last_name
+            userprofile.city_country = city_country
+            userprofile.save()
+        except ObjectDoesNotExist:
+            # Create a new UserProfile for this User
+            userprofile = UserProfile(
+                user=user,
+                first_name=first_name,
+                last_name=last_name,
+                city_country=city_country
+            )
+            userprofile.save()
+        # Create a new FarmProfile
+        user = userprofile
+        farm_business_name = onboard_profile_data['farm_business_name']
+        farm_type = FarmType(pk=onboard_profile_data['farm_type'])
+        farmprofile = FarmProfile(
+            user=userprofile,
+            farm_business_name=farm_business_name,
+            farm_type=farm_type,
+            farm_sales_roadside=onboard_profile_data['roadside_check'],
+            farm_sales_markets=onboard_profile_data['markets_check'],
+            farm_sales_deliveries=onboard_profile_data['deliveries_check'],
+            farm_sales_collections=onboard_profile_data['collections_check'],
+            sales_units_single_eggs=onboard_profile_data['single_eggs_check'],
+            sales_units_half_dozen_carton=onboard_profile_data['half_dozen_carton_check'],
+            sales_units_dozen_carton=onboard_profile_data['dozen_carton_check'],
+            sales_units_trays=onboard_profile_data['trays_check'],
+            trays_quantity=onboard_profile_data['trays_qty'],
+            eggs_in_stock=onboard_profile_data['saleable_eggs_qty']
+        )
+        farmprofile.save()
+        # Create a new Flocks entry
+        breed = Breed(pk=onboard_profile_data['breed'])
+        flock = Flocks(
+            farm_id=farmprofile,
+            breed=breed,
+            flock_name=onboard_profile_data['flock_name'],
+            coop_name=onboard_profile_data['coop_name'],
+            hens_qty=onboard_profile_data['hens_qty'],
+            chicks_qty=onboard_profile_data['chicks_qty'],
+            cocks_qty=onboard_profile_data['cocks_qty']
+        )
+        flock.save()
+        farmprofile.onboard_complete = True
+        farmprofile.save()
+        return redirect(dashboard)
 
+    request.session['onboard_profile_data'] = onboard_profile_data
     # Read the redirect_url value from the form data and redirect user to next page
     redirect_url = request.POST.get('redirect_url')
     return redirect(redirect_url)
@@ -125,27 +199,24 @@ def get_onboarding_data(request):
 @login_required
 def onboard_personal(request):
     '''Render onboarding step 1'''
-    # profile = get_object_or_404(CustomUser, email=request.user)
-    # if request.method == 'POST':
-    #     full_name = request.POST.get('full_name').split()
-    #     print("full_name = ", full_name)
-    #     print("profile = ", profile)
-    #     first_name = full_name[0]
-    #     if len(full_name) > 2:
-    #         print("no name")
-    #     last_name = 'smith'
-    #     userprofile = UserProfile(
-    #         user=profile,
-    #         first_name=first_name,
-    #         last_name=last_name,
-    #     )
-    #     userprofile.save()
+    # Get the session onboard_profile_data dictionary or create an empty /
+    # dictionary if none is already created"""
+    onboard_profile_data = request.session.get('onboard_profile_data', {})
+    # For returning users with deleted FarmProfiles
+    try:
+        userprofile = UserProfile.objects.get(user=request.user)
+        onboard_profile_data['full_name'] = userprofile.first_name + ' ' + userprofile.last_name
+        onboard_profile_data['city_country'] = userprofile.city_country
+        print("UserProfile exists = ", userprofile)
+        print(onboard_profile_data['full_name'])
+    except ObjectDoesNotExist:
+        print("UserProfile does not exists")
+        # Reload the new onboard_profile_data back to the session variable
+    request.session['onboard_profile_data'] = onboard_profile_data
     farm_types = FarmType.objects.all()
     print(farm_types)
     for farm_type in farm_types:
         farm_type = str(farm_type)
-        # print(farm_type)
-        # print(type(farm_type))
 
     context = {
         "farm_types": farm_types

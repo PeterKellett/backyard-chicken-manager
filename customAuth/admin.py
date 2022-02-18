@@ -24,10 +24,12 @@ class UserCreationForm(forms.ModelForm):
                                 widget=forms.PasswordInput)
 
     class Meta:
+        """Meta"""
         model = CustomUser
         fields = ('email',)
 
     def clean_password2(self):
+        """Cleans and checks the password entries"""
         # Check that the two password entries match
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
@@ -52,11 +54,13 @@ class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
+        """Meta"""
         model = CustomUser
         fields = ('email', 'password', 'is_active', 'is_admin')
 
 
 class UserAdmin(BaseUserAdmin):
+    """UserAdmin"""
     # The forms to add and change user instances
     form = UserChangeForm
     add_form = UserCreationForm
