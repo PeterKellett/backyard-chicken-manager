@@ -44,7 +44,6 @@ function injectHref(){
         } else {
           salesMethods = false
         }
-        console.log("sales-methods" + salesMethods);
 
     if( document.getElementById('single-eggs-check').checked == true ||
         document.getElementById('half-dozen-carton-check').checked == true ||
@@ -54,10 +53,9 @@ function injectHref(){
         } else {
           salesUnits = false
         }
-        console.log("sales-units" + salesUnits);
 
     if (salesMethods == true && salesUnits == true){
-        window.location.href = "{% url 'onboard_stock' %}"; //{% url 'onboard_stock' %});
+        window.location.href = "{% url 'onboard_stock' %}";
         } else {
           document.getElementById('sales-unit-method-warning').textContent = 
           "Please select at least one option each from Sales Methods and Sales Units";
@@ -167,26 +165,26 @@ function addAnotherFlock() {
 
 // Adds another set of feeds fields when the "Add Another" button is clicked
 function addAnotherFeed() {
-    var feedsCodeBlock = '<div class="row">' +
-                            '<hr class="hr-small">' +
-                        '</div>' +
-                        '<div class="row">' +
-                            '<input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>' +
-                        '</div>' +
-                        '<div class="container">' +
-                            '<div class="row">' +
-                                '<div class="col-10 col-css">' +
-                                    '<input type="number" name="feed-qty-stock" placeholder="Qty in Stock" id="feed-qty-stock" ' +
-                                        'step="1" min="0" oninput="this.value = Math.abs(this.value)" required>' +
-                                '</div>' +
-                                '<div class="col-2 col-css">' +
-                                    '<h5 class="text-end">' +
-                                        'kg' +
-                                    '</h5>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="container" name="feeds-container"></div>';
+    var feedsCodeBlock = `<div class="row">
+                            <hr class="hr-small">
+                        </div>
+                        <div class="row">
+                            <input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-10 col-css">
+                                    <input type="number" name="feed-qty-stock" placeholder="Qty in Stock" id="feed-qty-stock"
+                                        step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                                </div>
+                                <div class="col-2 col-css">
+                                    <h5 class="text-end">
+                                        kg
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" name="feeds-container"></div>`
     document.querySelector('div[name=feeds-container]').outerHTML = feedsCodeBlock;
 }
 

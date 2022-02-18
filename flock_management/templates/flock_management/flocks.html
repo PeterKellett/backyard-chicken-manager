@@ -20,7 +20,7 @@
 </div>
 
 <!-- Icons and Links Section -->
-<div class="container form-container">
+<div class="container row-container">
     <div class="row">
         <div class="col-2 col-css">
             <i class="fas fa-info-circle"></i>
@@ -40,7 +40,7 @@
     <hr class="hr-large">
 </div>
 
-<div class="form-container">
+<div class="row-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
         {% csrf_token %}
         <div class="form-data">
@@ -95,7 +95,7 @@
                             <img src="{{ MEDIA_URL }}flock_manag_hens.png" alt="Chicken" class="col-css-element">
                         </div>
                         <div class="col-3 col-css">
-                            <h4 class="row-name col-css-element">Hens</h4>
+                            <h4 class="col-css-left col-css-element">Hens</h4>
                         </div>
                         <div class="col-3 col-css">
                             <p class="checkbox-label hcc-checkbox-label col-css-element">All Hens</p>
@@ -122,7 +122,7 @@
                             <img src="{{ MEDIA_URL }}flock_manag_chicks.png" alt="Chicks" class="col-css-element">
                         </div>
                         <div class="col-3 col-css">
-                            <h4 class="row-name col-css-element">Chicks</h4>
+                            <h4 class="col-css-left col-css-element">Chicks</h4>
                         </div>
                         <div class="col-3 col-css">
                             <p class="checkbox-label hcc-checkbox-label col-css-element">All Chicks</p>
@@ -151,7 +151,7 @@
                             <img src="{{ MEDIA_URL }}flock_manag_cocks.png" alt="Cocks" class="col-css-element">
                         </div>
                         <div class="col-3 col-css">
-                            <h4 class="row-name col-css-element">Cocks</h4>
+                            <h4 class="col-css-left col-css-element">Cocks</h4>
                         </div>
                         <div class="col-3 col-css">
                             <p class="checkbox-label hcc-checkbox-label col-css-element">All Cocks</p>
@@ -188,20 +188,90 @@
                 </div>
             </section>
 
+            <div class="row">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Bird Removals Section -->
+            <section name="bird_removals">
+                <div class="container row-container">
+                    <div class="row">
+                        <div class="col-10 col-css">
+                            <h5 class="col-css-left">Bird Removals</h5>
+                        </div>
+                        <div class="col-2 col-css-right">
+                            <a href=""><img src="{{ MEDIA_URL }}add.png" alt="add a removal icon"></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="row">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Notes & Images Section -->
+            <section name="notes_and_images">
+                <div class="container">
+                    <div class="row">
+                        <h5 class="col-css-left">Notes</h5>
+                    </div>
+                </div>
+                <div class="container row-container photos-container">  
+                    <div class="row">
+                        <div class="photos-div">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="photos-div">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="photos-div">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="photos-div">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="row">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Print Section -->
+            <section name="notes_and_images">
+                <div class="container row-container">
+                    <div class="row">
+                        <div class="col-4">
+                            Print
+                        </div>
+                        <div class="col-4">
+                            Excel
+                        </div>
+                        <div class="col-4">
+                            PDF
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Used as a warning instead of an Alert -->
             <section name="warning-section">
                 <div class="warning-div">
                     <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
                 </div>
-                <div class="row">
-                    <hr class="hr-large">
-                </div>
             </section>
+            <div class="row">
+                <hr class="hr-large">
+            </div>
 
             <div>
                 <input type="hidden" name="redirect_url" value="onboard_produce"/>
-                <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">Previous</a> 
-                <button type='submit' id="hcc-button" class="btn button button-small-size" onclick="validateQtys()">Next</button>
+                <a href="{% url 'onboard_personal' %}" class="btn button button-full-size">Previous</a> 
+                <button type='submit' id="hcc-button" class="btn button button-full-size" onclick="validateQtys()">Next</button>
             </div>
         </div>
     </form>

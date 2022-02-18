@@ -11,15 +11,6 @@ img {
     padding: 0;
 }
 
-.menu-row {
-    border:  2px solid var(--black);
-    border-radius: 5px;
-    background-color: var(--green_bg);
-    height: 50px;
-    margin-bottom: 10px;
-    display: flex;
-}
-
 .row {
     width: 100%;
     margin-top: 0;
@@ -36,10 +27,6 @@ img {
     width: 40px;
 }
 
-.col-css-left {
-    padding-left: 10px;
-}
-
 h2 {
     font-size: 20px;
 }
@@ -54,11 +41,23 @@ h2 {
     margin-top: 3px;
 }
 
-/*-- Hides the floating field labels and the "All" Checkbox in the HCC rows 
+/*-- Hides the floating field labels and the "All" Checkbox in the HCC rows */
 label,
 .hcc-checkbox-label,
 .hcc-checkbox {
     display: none;
-}--*/
+}
 
 /*-- INPUT FIELDS END --*/
+
+
+.photos-div{
+    border: black 2px solid;
+    height: 50px;
+    max-width: 100%;
+    flex: 1;
+}
+
+.photos-container {
+    display: flex;
+}

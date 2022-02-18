@@ -2,7 +2,7 @@ body {
     background-color: var(--orange_bg);
 }
 
-.menu-row {
+.row-container {
     border:  2px solid var(--black);
     border-radius: 5px;
     background-color: var(--green_bg);
@@ -11,11 +11,17 @@ body {
     display: flex;
 }
 
+/* Margin Bottom set to 0 which is different to most other pleaces on site.
+   Donehere to allow elements center vertically with in the containers */
 .row {
     width: 100%;
     margin-top: 0;
     margin-bottom: 0;
     flex-wrap: nowrap;
+}
+/* required here do to removal of bottom margin on rows */
+hr {
+    margin-bottom: 10px;
 }
 
 .col-2 {

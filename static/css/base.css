@@ -67,7 +67,15 @@ p, h1, h2, h3, h4, h5 {
 
 h1, h2, h3, h4, h5 {
     font-weight: 700;
+}
+
+h1, h2  {
     color: var(--green);
+}
+
+h3, h4, h5 {
+    font-weight: 700;
+    color: var(--black);
 }
 
 h1 {
@@ -90,10 +98,9 @@ p {
 
 /*-- Fontawesome Icons --*/
 i {
-    font-size: 25px;
+    font-size: 30px;
     color: var(--orange);
     text-align: right;
-    text-shadow: 0px 2px 5px var(--black);
 }
 
 /*-- FONTS END --*/
@@ -192,6 +199,11 @@ hr {
 }
 
 /*-- Page title text that displays in Navbar when slide out menu is emplyed --*/
+.row.navbar-page-div {
+    width: 80%;
+    margin-bottom: 0;
+}
+
 .navbar-page-title {
     margin: 0;
     color: var(--white);
@@ -225,14 +237,6 @@ input,
 /*-- INPUT FIELDS START --*/
 /*-- Animation of input field labels https://www.youtube.com/watch?v=JlRNGJGorsw from 10:17 onwards --*/
 
-/*-- Keeps all input fields centred on page --*/
-.form-container,
-.menu-row {
-    margin: auto;
-    width: 100%;
-    max-width: 360px;
-  }
-
 /*-- Facilitates positioning of the label --*/
 .form-data > div {
     position: relative;
@@ -258,27 +262,6 @@ input,
 input[type=checkbox] {
     height: 20px;
     width: 20px;
-}
-
-/*-- Centres the elements in the row --*/
-.col-css {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-/*-- Removes margins from row elements --*/
-.col-css-element,
-.row {
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-
-
-/*-- Aligns the name of the row to the left --*/
-.row-name {
-    text-align: left;
 }
 
 .checkbox-label {
@@ -399,7 +382,7 @@ main {
 
 /* Adds space at the top of the main section to allow for changes in header height*/
 main {
-    padding-top: 65px;
+    padding-top: 74px;
 }
 @media (min-width: 992px){
     main {
@@ -414,24 +397,53 @@ main {
     }
 }
 
+.row>* {
+    padding: 0;
+}
+
+
+
 /*-- MAIN END --*/
 
 
 /*-- GRID START --*/
 
+/*-- Removes margins from row elements --*/
+/*-- Keeps all input fields centred on page --*/
+.row-container {
+    margin: auto;
+    width: 100%;
+    max-width: 360px;
+  }
+
+.col-css-element,
+.row {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .col-css {
+    margin-top: auto;
+    margin-bottom: auto;
     padding-left: 0;
     padding-right: 10px;
     text-align: left;
 }
 
-.col-css-right {
+.col-css-right,
+.col-css-left {
     padding: 0;
+    text-align: left;
+}
+
+.col-css-right {
     text-align: right;
 }
 
-.col-css-left {
-    padding: 0;
+
+/*-- Aligns the name of the row to the left --*/
+.row-name {
     text-align: left;
 }
 
@@ -472,6 +484,11 @@ i {
 
 .modal-body {
     background-color: var(--green_bg);
+}
+
+/*-- 16px margin to match default padding in the modal to keep list tabbed in on the left and inline with the title --*/
+.modal-body li {
+    margin-left: 16px;
 }
 
 

@@ -17,62 +17,63 @@
 {% block inner_content %}
 
 <div class="page-centre">
-  <div class="large-screen-h1">
-    <h1>Sign In</h1>
-    <hr class="hr-large">
-  </div>
-
-  {% get_providers as socialaccount_providers %}
-
-  {% if socialaccount_providers %}
-  <p>{% blocktrans with site.name as site_name %}Please sign in with one
-  of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-  for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-
-  <div class="socialaccount_ballot">
-
-    <ul class="socialaccount_providers">
-      {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-    </ul>
-
-    <div class="login-or">{% trans 'or' %}</div>
-
-  </div>
-
-  {% include "socialaccount/snippets/login_extra.html" %}
-
-  {% else %}
-
-  <div class="form-container">
-    <form class="login" method="POST" action="{% url 'account_login' %}">
-      {% csrf_token %}
-      {{ form }}
-
-      {% if redirect_field_value %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      
-      <div class="form-data">
-        <div>
-          <button class="primaryAction button button-full-size" type="submit">{% trans "Sign In" %}</button>
+    <div class="large-screen-h1">
+        <div class="row">
+            <h1>Sign In</h1>
         </div>
-      </div>
-      <div class="form-data">
-        <div>
-          <p>
-            <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-          </p>
+        <div class="row">
+            <hr class="hr-large">
         </div>
+    </div>
+
+    {% get_providers as socialaccount_providers %}
+
+    {% if socialaccount_providers %}
+    <div class="row">
+        <p>{% blocktrans with site.name as site_name %}Please sign in with one
+        of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+        for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
       </div>
-      <div class="form-data">
-        <div>
-          <p>{% blocktrans %}Don't have an account yet, then please
-            <a href="{{ signup_url }}">Sign Up</a>.{% endblocktrans %}
-          </p>
-        </div>
+
+    <div class="socialaccount_ballot">
+      <div class="row">
+          <ul class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+          </ul>
       </div>
-      {% endif %}
-    </form>
-  </div>
+      <div class="row">
+          <div class="login-or">{% trans 'or' %}</div>
+      </div>
+    </div>
+
+    {% include "socialaccount/snippets/login_extra.html" %}
+
+    {% else %}
+
+    <div class="row-container">
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form }}
+            <div class="row">
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+            </div>
+            <div class="form-data row">
+                <button class="primaryAction button button-full-size" type="submit">{% trans "Sign In" %}</button>
+            </div>
+            <div class="form-data row">
+                <p>
+                  <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                </p>
+            </div>
+            <div class="form-data row">
+                <p>{% blocktrans %}Don't have an account yet, then please
+                  <a href="{{ signup_url }}">Sign Up</a>.{% endblocktrans %}
+                </p>
+            </div>
+            {% endif %}
+        </form>
+    </div>
 </div>
 {% endblock %}
