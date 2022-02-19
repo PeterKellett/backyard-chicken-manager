@@ -14,16 +14,25 @@
     }
 }
 
-.nav-link.sub-nav-link.active,
 .nav-link.sub-nav-link {
     height: 60px;
     font-size: 14px;
-    font-weight: 700;
     padding-left: 5px;
     padding-right: 5px;
     color: var(--black);
-    border: 1px solid var(--black);
+    border: 1px solid var(--grey);
     border-bottom: 0px;
+}
+
+.nav-link.sub-nav-link.active {
+    font-weight: 700;
+}
+
+a:first-of-type {
+    border-left: 0px
+}
+a:last-of-type {
+    border-right: 0px
 }
 
 .nav-tabs {
