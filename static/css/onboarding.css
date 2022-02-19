@@ -38,7 +38,7 @@ label,
 
 /*-- Centres the checkbox vertiocally in the row --*/
 .form-data input[type=checkbox] {
-    margin-top: 3px;
+    margin-top: 4px;
 }
 
 /*-- INPUT FIELDS END --*/

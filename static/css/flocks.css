@@ -7,8 +7,6 @@ body {
 }
 
 .row {
-    width: 100%;
-    margin-top: 0;
     flex-wrap: nowrap;
 }
 
@@ -21,15 +19,7 @@ body {
     width: 40px;
 }
 
-h2 {
-    font-size: 20px;
-}
-
 /*-- INPUT FIELDS START --*/
-
-.container {
-    padding: 0;
-}
 
 /*-- Hides the floating field labels and the "All" Checkbox in the HCC rows */
 label,

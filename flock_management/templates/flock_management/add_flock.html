@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
     <link rel="stylesheet" href="{% static 'css/flocks.css' %}" />
     <link rel="stylesheet" href="{% static 'css/add_flock.css' %}" />
 {% endblock %}
@@ -132,7 +133,7 @@
                 <hr class="hr-large">
             </div>
 
-            <div class="bottom-margin">
+            <div class="button-container">
                 <input type="hidden" name="redirect_url" value="onboard_produce"/>
                 <button id="save-button" class="btn button button-full-size save-button" onclick="validateQtys()">Save</button> 
                 <button type='submit' id="cancel-button" class="btn button button-full-size cancel-button" onclick="validateQtys()">Cancel</button>

@@ -97,8 +97,17 @@ h6 {
     font-size: 16px;
 }
 @media (max-width: 991px){
-    h1, h2 {
+    h1, h2, h3 {
         font-size: 20px;
+    }
+    h4 {
+        font-size: 19px;
+    }
+    h5 {
+        font-size: 18px;
+    }
+    h6 {
+        font-size: 16px;
     }
 }
 
@@ -381,6 +390,11 @@ input:-webkit-autofill:active {
 .btn {
     background-color: var(--green);
     height: 40px;
+}
+
+/*-- Keeps the button off the bottom of the screen --*/
+.button-container {
+    padding-bottom: 10px;
 }
 
 .add-another-btn {
