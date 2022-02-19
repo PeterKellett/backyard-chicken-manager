@@ -3,6 +3,7 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/flocks.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bird_removal.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -23,7 +24,7 @@
 <div class="container element-container">
     <div class="row bottom-margin">
         <div class="col-2 col-css">
-            <i class="fas fa-info-circle"></i>
+            <i class="fas fa-info-circle icon-orange"></i>
         </div>
     </div>
 </div>
@@ -38,7 +39,7 @@
             <!-- Flock Core Info Section -->
             <section name="flock-core-info">
 
-                {% include 'html_includes/date_flock' %}
+                {% include 'html_includes/date_flock.html' %}
 
                 <div class="bottom-margin">
                     <select name="removal_reason" id="removal_reason" required>
@@ -62,94 +63,23 @@
                 <div class="bottom-margin">
                     <hr class="hr-small">
                 </div>
-
-                {% include 'html_includes/date_flock' %}
-
             </section>
 
             {% include 'html_includes/hens_chicks_cocks.html' %}
-
-
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
-
-            <!-- Bird Removals Section -->
-            <section name="bird_removals">
-                <div class="container element-container">
-                    <div class="row bottom-margin">
-                        <div class="col-10 col-css">
-                            <h5 class="col-css-left">Bird Removals</h5>
-                        </div>
-                        <div class="col-2 col-css-right">
-                            <a href=""><img src="{{ MEDIA_URL }}add.png" alt="add a removal icon" class="round-icon"></a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <div class="card bottom-margin">
-                <div class="card-body container">
-                    <div class="row bottom-margin">
-                        <div class="col-3 text-start card-col-one">
-                            <h6 class="card-text">Date:</h6>
-                            <h6 class="card-text">Quantity:</h6>
-                            <h6 class="card-text">Reason:</h6>
-                        </div>
-                        <div class="col-9 text-start card-col-two">
-                            <h6 class="card-text">Date</h6>
-                            <h6 class="card-text">Quantity</h6>
-                            <h6 class="card-text">Reason</h6>
-                        </div>
-                    </div>
-                </div>
-              </div>
 
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
 
             <!-- Notes & Images Section -->
-            <section name="notes_and_images">
-                <div class="bottom-margin">
-                    <h5 class="col-css-left">Notes</h5>
-                </div>
-                <div class="container element-container">  
-                    <div class="row bottom-margin">
-                        <div class="photos-div">
-                        </div>
-                        <div class="photos-div">
-                        </div>
-                    </div>
-                    <div class="row bottom-margin">
-                        <div class="photos-div">
-                        </div>
-                        <div class="photos-div">
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {% include 'html_includes/notes_and_pics.html' %}
 
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
 
             <!-- Print Section -->
-            <section name="notes_and_images">
-                <div class="container element-container">
-                    <div class="row bottom-margin">
-                        <div class="col-4">
-                            Print
-                        </div>
-                        <div class="col-4">
-                            Excel
-                        </div>
-                        <div class="col-4">
-                            PDF
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {% include 'html_includes/print_and_save.html' %}
 
             <!-- Used as a warning instead of an Alert -->
             <section name="warning-section">

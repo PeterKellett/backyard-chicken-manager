@@ -63,14 +63,6 @@ body {
 
 p, h1, h2, h3, h4, h5 {
     font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-    text-align: center;
-}
-
-/*-- Justifies paragraphs on mobile only --*/
-@media (max-width: 600px){
-    p {
-        text-align: justify;
-    }
 }
 
 h1, h2, h3, h4, h5 {
@@ -92,6 +84,18 @@ h1 {
 h2 {
     font-size: 30px;
 }
+h3 {
+    font-size: 25px;
+}
+h4 {
+    font-size: 20px;
+}
+h5 {
+    font-size: 18px;
+}
+h6 {
+    font-size: 16px;
+}
 @media (max-width: 991px){
     h1, h2 {
         font-size: 20px;
@@ -106,10 +110,50 @@ p {
 
 /*-- FONTS END --*/
 
+
+/*-- CONTENT ALIGNMENT START --*/
+
+.checkbox-label,
+.add-another-btn-div,
+.row-name,
+.col-css,
+.menu-h2 {
+    text-align: left;
+}
+
+main,
+.navbar-page-title,
+.warning-div {
+    text-align: center;
+}
+
+/*-- Centres menu when displayed at top of the page --*/
+@media (min-width: 992px){
+    .navbar-nav .nav-link {
+        text-align: center;
+    }
+}
+
+/*-- Aligns the label to the right to be beside the checkbox --*/
+i,
+.hcc-checkbox-label,
+.col-css-right {
+    text-align: right;
+}
+
+/*-- Justifies paragraphs on mobile only --*/
+@media (max-width: 600px){
+    p {
+        text-align: justify;
+    }
+}
+
+/*-- CONTENT ALIGNMENT End --*/
+
+
 /*-- ICONS START --*/
 i {
     font-size: 30px;
-    text-align: right;
 }
 
 .round-icon {
@@ -168,9 +212,6 @@ hr {
 @media (min-width: 992px){
     .navbar-light .navbar-nav .nav-link {
         color: var(--white);
-    }
-    .navbar-nav .nav-link {
-        text-align: center;
     }
 }
 
@@ -280,15 +321,6 @@ input[type=checkbox] {
     width: 20px;
 }
 
-.checkbox-label {
-    text-align: left;
-}
-
-/*-- ALigns the label to the right to be beside the checkbox in the hcc section --*/
-.hcc-checkbox-label {
-    text-align: right;
-}
-
 /*-- Field label prior to field being clicked on --*/
 input + label,
 .form-data select + label,
@@ -351,10 +383,6 @@ input:-webkit-autofill:active {
     height: 40px;
 }
 
-.add-another-btn-div {
-    text-align: left;
-}
-
 .add-another-btn {
     width: 110px;
     height: 25px;
@@ -382,6 +410,14 @@ input:-webkit-autofill:active {
     width: 31.5%;
 }
 
+.save-button {
+    background-color: var(--green);
+}
+.cancel-button,
+.delete-button {
+    background-color: var(--orange);
+}
+
 /*-- BUTTONS END --*/
 
 
@@ -393,12 +429,11 @@ main {
     margin-right: auto;
     width: 100%;
     max-width: 1200px;
-    text-align: center;
 }
 
 /* Adds space at the top of the main section to allow for changes in header height*/
 main {
-    padding-top: 74px;
+    padding-top: 60px;
 }
 @media (min-width: 992px){
     main {
@@ -438,23 +473,11 @@ main {
     margin-bottom: auto;
     padding-left: 0;
     padding-right: 10px;
-    text-align: left;
 }
 
 .col-css-right,
 .col-css-left {
     padding: 0;
-    text-align: left;
-}
-
-.col-css-right {
-    text-align: right;
-}
-
-
-/*-- Aligns the name of the row to the left --*/
-.row-name {
-    text-align: left;
 }
 
 .col-css > img {
@@ -463,7 +486,6 @@ main {
 
 .menu-h2 {
     color: var(--black);
-    text-align: left;
     margin: 0;
 }
 
@@ -480,9 +502,10 @@ main {
 .card-col-one,
 .card-col-two {
     padding-left: 10px;
+    margin-top: 2px;
 }
 
-.card-col-one h6 {
+.card-col-one p {
     font-weight: 700;
 }
 
@@ -494,7 +517,6 @@ main {
     width: 100%;
     max-width: 360px;
     background-color: var(--white);
-    text-align: center;
     margin: auto;
     border-radius: 5px;
 }

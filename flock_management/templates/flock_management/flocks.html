@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block nav_page_title %}
-    Flocks/Current Flock
+    Flock
 {% endblock %}
 
 {% block content %}
 <div class="large-screen-h1">
     <div class="bottom-margin">
-        <h1>Flocks/Current Flock</h1>
+        <h1>Flock</h1>
     </div>
     <div class="bottom-margin">
         <hr class="hr-large">
@@ -110,16 +110,16 @@
 
             <div class="card bottom-margin">
                 <div class="card-body container">
-                    <div class="row bottom-margin">
+                    <div class="row">
                         <div class="col-3 text-start card-col-one">
-                            <h6 class="card-text">Date:</h6>
-                            <h6 class="card-text">Quantity:</h6>
-                            <h6 class="card-text">Reason:</h6>
+                            <p class="card-text">Date:</p>
+                            <p class="card-text">Quantity:</p>
+                            <p class="card-text">Reason:</p>
                         </div>
                         <div class="col-9 text-start card-col-two">
-                            <h6 class="card-text">Date</h6>
-                            <h6 class="card-text">Quantity</h6>
-                            <h6 class="card-text">Reason</h6>
+                            <p class="card-text">Date</p>
+                            <p class="card-text">Quantity</p>
+                            <p class="card-text">Reason</p>
                         </div>
                     </div>
                 </div>
@@ -149,10 +149,10 @@
                 <hr class="hr-large">
             </div>
 
-            <div>
+            <div class="bottom-margin">
                 <input type="hidden" name="redirect_url" value="onboard_produce"/>
-                <a href="{% url 'onboard_personal' %}" class="btn button button-full-size">Previous</a> 
-                <button type='submit' id="hcc-button" class="btn button button-full-size" onclick="validateQtys()">Next</button>
+                <button id="save-button" class="btn button button-full-size save-button" onclick="validateQtys()">Save</button> 
+                <button type='submit' id="cancel-button" class="btn button button-full-size cancel-button" onclick="validateQtys()">Cancel</button>
             </div>
         </div>
     </form>

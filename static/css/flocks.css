@@ -31,10 +31,6 @@ h2 {
     padding: 0;
 }
 
-.form-data input[type=checkbox] {
-    margin-top: 3px;
-}
-
 /*-- Hides the floating field labels and the "All" Checkbox in the HCC rows */
 label,
 .hcc-checkbox-label,

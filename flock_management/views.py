@@ -17,3 +17,10 @@ def add_flock(request):
     template = 'flock_management/add_flock.html'
     context = {}
     return render(request, template, context)
+
+@login_required
+def bird_removal(request):
+    """view to add flock"""
+    template = 'flock_management/bird_removal.html'
+    context = {}
+    return render(request, template, context)
