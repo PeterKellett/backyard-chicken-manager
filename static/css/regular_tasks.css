@@ -12,3 +12,7 @@ body {
 .two-inputs-right {
     padding-left: 5px;
 }
+
+.photos-div-container {
+    display: none;
+}

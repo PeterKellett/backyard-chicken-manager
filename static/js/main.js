@@ -212,8 +212,8 @@ function addAnotherSupplement() {
     document.querySelector('div[name=supplements-container]').outerHTML = supplementsCodeBlock;
 }
 
-//Function to autosuggest cities taken from https://www.youtube.com/watch?v=c3MjU9E9buQ&t=165s
-
+// Functions to autosuggest cities
+// Taken from https://www.youtube.com/watch?v=c3MjU9E9buQ&t=165s
 let autocomplete;
 function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete(
@@ -236,3 +236,12 @@ function onPlaceChanged() {
         document.getElementById('city_country').innerHTML = place.name;
     }
 }
+
+// Function to make textarea height to expand based on amopunt of text added by the user
+// Taken from https://www.techiedelight.com/automatically-resize-textarea-height-javascript/
+$(document).ready(function() {
+    $('textarea').on('keyup keypress', function() {
+        $(this).height(0);
+        $(this).height(this.scrollHeight);
+    });
+});
