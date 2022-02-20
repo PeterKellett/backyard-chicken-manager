@@ -127,7 +127,9 @@ p {
 .add-another-btn-div,
 .row-name,
 .col-css,
-.menu-h2 {
+.menu-h2,
+#advanced-div,
+.collapse  {
     text-align: left;
 }
 
@@ -149,6 +151,11 @@ i,
 .hcc-checkbox-label,
 .col-css-right {
     text-align: right;
+}
+
+/*-- Prevents the label touching the checkbox --*/
+.hcc-checkbox-label {
+    padding-right: 10px;
 }
 
 /*-- Justifies paragraphs on mobile only --*/
@@ -305,7 +312,7 @@ input,
 /*-- Animation of input field labels https://www.youtube.com/watch?v=JlRNGJGorsw from 10:17 onwards --*/
 
 /*-- Facilitates positioning of the label --*/
-.form-data > div {
+.flock-hcc-form-data > div {
     position: relative;
     box-sizing: border-box;
 }
@@ -487,7 +494,6 @@ main {
     margin-top: auto;
     margin-bottom: auto;
     padding-left: 0;
-    padding-right: 10px;
 }
 
 .col-css-right,
@@ -556,7 +562,11 @@ i {
     margin-left: 16px;
 }
 
-
 a {
+    color: var(--black);
     text-decoration: none;
+}
+
+#advanced-div:hover {
+    color: red;
 }

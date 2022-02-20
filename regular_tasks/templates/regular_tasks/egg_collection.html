@@ -70,7 +70,7 @@
     <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
         {% csrf_token %}
         <div class="form-data">
-            <!-- Flock Core Info Section -->
+            <!-- Eggs Laid Section -->
             <section name="flock-core-info">
                 {% include 'html_includes/date_flock.html' %}
                 <div class="container bottom-margin">
@@ -83,10 +83,77 @@
                         </div>
                     </div>
                 </div>
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Total Eggs Laid:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right">
+                        <h5 id="total-eggs-laid text-end">0</h5>
+                    </div>
+                </div>
+                <div class="bottom-margin">
+                    <input type="number" name="eggs-damaged" value="" placeholder="Qty of Eggs Damaged (OK for personal use)" id="eggs-damaged" 
+                    step="1" min="0">
+                </div>
+                <div class="bottom-margin">
+                    <input type="number" name="eggs-broken" value="" placeholder="Qty of Eggs Broken (Unuseable)" id="eggs-broken" 
+                    step="1" min="0">
+                </div>
                 <div class="bottom-margin">
                     <hr class="hr-small">
                 </div>
             </section>
+            <!-- Advanced Section - Bootstrap Collapse https://getbootstrap.com/docs/5.0/components/collapse/-->
+            <section name="advanced-section">
+                <div id="advanced-div" class="bottom-margin">
+                    <a class="bottom-margin" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <h6>Advanced</h6>
+                    </a>
+                </div>
+                <div class="collapse" id="collapseExample">
+                    <div class="bottom-margin">
+                        <input type="number" name="eggs-personal-use" value="" placeholder="Qty of Eggs Taken for Personal Use)" id="eggs-personal-use" 
+                        step="1" min="0">
+                    </div>
+                    <div class="bottom-margin">
+                        <input type="number" name="eggs-given-free" value="" placeholder="Qty of Eggs Given Away Free" id="eggs-given-free" 
+                        step="1" min="0">
+                    </div>
+                    <div class="container">
+                        <div class="row bottom-margin">
+                            <div class="col-10 col-css">
+                                <input type="number" name="feed-qty-stock" placeholder="Qty in Stock" id="feed-qty-stock" 
+                                    step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                            </div>
+                            <div class="col-2 col-css">
+                                <h5 class="text-end">
+                                    kg
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row bottom-margin">
+                        <div class="col-10 col-css">
+                            <h6 class="row-name">Average Egg Weight:</h6>
+                        </div>
+                        <div class="col-2 col-css col-css-right">
+                            <h5 id="total-eggs-laid text-end">#gr</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-margin">
+                    <hr class="hr-small">
+                </div>
+            </section>
+
+            <div class="row bottom-margin">
+                <div class="col-10 col-css">
+                    <h6 class="row-name">Saleable Quantity:</h6>
+                </div>
+                <div class="col-2 col-css col-css-right">
+                    <h5 id="total-eggs-laid text-end"># eggs</h5>
+                </div>
+            </div>
 
             <div class="bottom-margin">
                 <hr class="hr-large">

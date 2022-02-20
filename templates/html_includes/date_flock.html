@@ -1,8 +1,8 @@
 <div class="bottom-margin">
     {% if 'acquired_date' in onboard_profile_data %}
-    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired_date" required>
+    <input type="date" name="date" value="{{ onboard_profile_data.date }}" placeholder="Date" id="date" required>
     {% else %}
-    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
+    <input type="date" name="date" placeholder="Date" id="date" required>
     {% endif %}
 </div>
 <div class="bottom-margin">
