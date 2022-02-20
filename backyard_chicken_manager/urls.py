@@ -25,4 +25,5 @@ urlpatterns = [
     path('profile/', include('profiles.urls')),
     path('flock_management/', include('flock_management.urls')),
     path('regular_tasks/', include('regular_tasks.urls')),
+    path('sales_and_income/', include('sales_and_income.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
