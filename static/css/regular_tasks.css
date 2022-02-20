@@ -16,3 +16,8 @@ body {
 .photos-div-container {
     display: none;
 }
+
+/*-- Centres the checkbox vertically in the row --*/
+.form-data input[type=checkbox] {
+    margin-top: 4px;
+}

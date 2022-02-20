@@ -245,3 +245,18 @@ $(document).ready(function() {
         $(this).height(this.scrollHeight);
     });
 });
+
+// Function to display additional fields or content when a checkbpx os checked
+// Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
+$(function () {
+    $('input[name="disinfectant_name"]').hide();
+
+    //show it when the checkbox is clicked
+    $('input[name="disinfected-check"]').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('input[name="disinfectant_name"]').fadeIn();
+        } else {
+            $('input[name="disinfectant_name"]').hide();
+        }
+    });
+});
