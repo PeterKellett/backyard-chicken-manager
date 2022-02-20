@@ -133,6 +133,11 @@ p {
     text-align: left;
 }
 
+.content-vertical-center {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 main,
 .navbar-page-title,
 .warning-div {
