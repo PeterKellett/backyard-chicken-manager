@@ -104,13 +104,13 @@
                 </div>
             </section>
             <!-- Advanced Section - Bootstrap Collapse https://getbootstrap.com/docs/5.0/components/collapse/-->
-            <section name="advanced-section">
-                <div id="advanced-div" class="bottom-margin">
-                    <a class="bottom-margin" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <section name="advanced-section" class="panel-div">
+                <div class="bottom-margin">
+                    <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <h6>Advanced</h6>
                     </a>
                 </div>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse in" id="collapseExample">
                     <div class="bottom-margin">
                         <input type="number" name="eggs-personal-use" value="" placeholder="Qty of Eggs Taken for Personal Use)" id="eggs-personal-use" 
                         step="1" min="0">
@@ -141,10 +141,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="bottom-margin">
-                    <hr class="hr-small">
-                </div>
             </section>
+
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
 
             <div class="row bottom-margin">
                 <div class="col-10 col-css">

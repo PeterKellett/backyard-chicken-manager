@@ -573,5 +573,25 @@ a {
 }
 
 #advanced-div:hover {
-    color: red;
+    color: var(--black);
 }
+
+
+ /*-- Adds dynamic arrows to Advanced dropdown sections --*/
+ /* Taken from: https://stackoverflow.com/questions/46777704/add-up-down-arrows-to-bootstrap-accordion --*/
+ .panel-div {
+    position: relative;
+  }
+ .panel-title::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f063";
+    font-weight: 900;
+    float: right;
+    transition: all 0.5s;
+    top: -2px;
+    right: 0px;
+    position: absolute;
+  }
+  .panel-title[aria-expanded="true"]::after {
+    content: "\f062";
+  }
