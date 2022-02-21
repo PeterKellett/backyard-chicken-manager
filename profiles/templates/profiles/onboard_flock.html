@@ -80,8 +80,11 @@
 <div class="element-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
         {% csrf_token %}
-        <div class="form-data">
+        <input type="hidden" name="redirect_url" value="onboard_produce"/>
+        <div class="form-data" id="form-data">
             <!-- Flock Core Info Section -->
+            {% for flock in onboard_profile_data.flocks %}
+            {% endfor %}
             <section name="flock-core-info">
                 <div class="bottom-margin">
                     {% if 'flock_name' in onboard_profile_data %}
@@ -98,23 +101,27 @@
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
-                    <input type="text" name="coop1_name" placeholder="Coop Name" id="coop1_name" required>
+                    {% if 'coop_name' in onboard_profile_data %}
+                    <input type="text" name="coop_name" value="{{ onboard_profile_data.coop_name }}" placeholder="Coop Name" id="coop_name" required>
+                    {% else %}
+                    <input type="text" name="coop_name" placeholder="Coop Name" id="coop_name" required>
+                    {% endif %}
                 </div>
                 <div class="bottom-margin">
                     <select name="breed" id="breed" required>
                         {% if 'breed' in onboard_profile_data %}
                         <option value="" disabled>Breed</option>
                             {% for breed in breed %}
-                                {% if breed == onboard_Profile_data.breed %}
-                                <option value="{{ breed }}" selected>{{ breed|title }}</option>
+                                {% if breed.id == onboard_profile_data.breed %}
+                                <option value="{{ breed.id }}" selected>{{ breed|title }}</option>
                                 {% else %}
-                                <option value="{{ breed }}">{{ breed|title }}</option>
+                                <option value="{{ breed.id }}">{{ breed|title }}</option>
                                 {% endif %}
                             {% endfor %}
                         {% else %}     
                         <option value="" disabled selected>Breed</option>
-                            {% for farm_type in farm_types %}
-                            <option value="{{ breed }}">{{ breed|title }}</option>
+                            {% for breed in breed %}
+                            <option value="{{ breed.id }}">{{ breed|title }}</option>
                             {% endfor %}
                         {% endif %}
                     </select>
@@ -137,7 +144,6 @@
             </section>
 
             <div class="button-container">
-                <input type="hidden" name="redirect_url" value="onboard_produce"/>
                 <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">Previous</a> 
                 <button type='submit' id="hcc-button" class="btn button button-small-size" onclick="validateQtys()">Next</button>
             </div>

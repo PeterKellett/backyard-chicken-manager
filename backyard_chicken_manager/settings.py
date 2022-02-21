@@ -25,7 +25,8 @@ SECRET_KEY = os.environ.get('BCM_SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gitpod.io',
+                 'localhost']
 
 CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
 
@@ -92,6 +93,7 @@ TEMPLATES = [
     },
 ]
 
+# Pk - This redirects the built in AUTH_USER_MODEL to use the CustomUser model
 AUTH_USER_MODEL = 'customAuth.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
