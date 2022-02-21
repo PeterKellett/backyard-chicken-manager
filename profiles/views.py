@@ -19,13 +19,14 @@ def dashboard(request):
         return redirect(onboard_personal)
     # 2. Try to get the farmprofile for the user
     try:
-        farmprofile = FarmProfile.objects.get(user=userprofile.id)
+        farmprofile = FarmProfile.objects.all(user=userprofile.id)
     # 3. Check the onboard_complete field of the farmprofile
         if not farmprofile.onboard_complete:
             return redirect(onboard_personal)
         else:
             context = {
-
+                'userprofile': userprofile,
+                'farmprofile': farmprofile,
             }
             template = 'profiles/dashboard.html'
             return render(request, template, context)
@@ -130,6 +131,7 @@ def get_onboarding_data(request):
         onboard_profile_data.update({key: val})
     print('onboard_profile_data = ', onboard_profile_data)
 
+    # Function to add onboard_profile_data to the db
     if 'onboarding_finish' in raw_form_data:
         user = CustomUser.objects.get(email=request.user)
         full_name = onboard_profile_data['full_name'].split()
