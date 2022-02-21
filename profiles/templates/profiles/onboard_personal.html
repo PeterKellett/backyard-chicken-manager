@@ -81,21 +81,21 @@
                     <h4>Personal</h4>
                 </div>
                 <div class="bottom-margin">
-                  {% if 'full_name' in onboard_profile_data %}
-                    <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full_name" required>
-                  {% else %}
-                    <input type="text" name="full_name" placeholder="Full Name" id="full_name" required>
-                  {% endif %}
+                    {% if 'full_name' in onboard_profile_data %}
+                        <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full_name" required>
+                    {% else %}
+                        <input type="text" name="full_name" placeholder="Full Name" id="full_name" required>
+                    {% endif %}
                 </div>
                 <div class="bottom-margin">
-                  {% if 'city_country' in onboard_profile_data %}
-                  <input type="text" name="city_country" placeholder="City, Country" value="{{ onboard_profile_data.city_country }}" id="city_country" required>
-                  {% else %}
-                    <input type="text" name="city_country" placeholder="City, Country" id="city_country" required>
-                  {% endif %}
+                    {% if 'city_country' in onboard_profile_data %}
+                        <input type="text" name="city_country" placeholder="City, Country" value="{{ onboard_profile_data.city_country }}" id="city_country" required>
+                    {% else %}
+                        <input type="text" name="city_country" placeholder="City, Country" id="city_country" required>
+                    {% endif %}
                 </div>
                 <div class="bottom-margin">
-                  <hr class="hr-small">
+                    <hr class="hr-small">
                 </div>
             </section>
 
