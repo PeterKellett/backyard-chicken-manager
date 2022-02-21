@@ -79,7 +79,10 @@
 </div>
 
 <div class="form-container">
-    <form method="POST" action="register">
+    <form method="POST" action="{% url 'get_onboarding_data' %}">
+        {% csrf_token %}
+        <input type="hidden" name="redirect_url" value="dashboard"/>
+        <input type="hidden" name="onboarding_finish" value="True"/>
         <div class="form-data">
 
             <!-- Saleable Eggs -->
@@ -88,8 +91,13 @@
                     <h4>Saleable Eggs</h4>
                 </div>
                 <div class="row">
-                    <input type="number" name="saleable-eggs-qty" placeholder="Qty Saleable Eggs in Stock" id="saleable-eggs-qty" 
+                    {% if 'saleable_eggs_qty' in onboard_profile_data %}
+                    <input type="number" name="saleable_eggs_qty" placeholder="Qty Saleable Eggs in Stock" value="{{ onboard_profile_data.saleable_eggs_qty }}" id="saleable-eggs-qty" 
+                    step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                    {% else %}
+                    <input type="number" name="saleable_eggs_qty" placeholder="Qty Saleable Eggs in Stock" id="saleable-eggs-qty" 
                         step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                    {% endif %}
                 </div>
                 <div class="row">
                     <hr class="hr-small">
@@ -102,13 +110,22 @@
                     <h4>Feeds</h4>
                 </div>
                 <div class="row">
+                    {% if 'feed_name' in onboard_profile_data %}
+                    <input type="text" name="feed_name" value="{{ onboard_profile_data.feed_name }}" placeholder="Feed Name" id="feed_name" required>
+                    {% else %}
                     <input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>
+                    {% endif %}
                 </div>
                 <div class="container">
                     <div class="row">
                         <div class="col-10 col-css">
-                            <input type="number" name="feed-qty-stock" placeholder="Qty in Stock" id="feed-qty-stock" 
+                            {% if 'feed_qty_stock' in onboard_profile_data %}
+                            <input type="number" name="feed_qty_stock" value="{{ onboard_profile_data.feed_qty_stock }}" placeholder="Qty in Stock" id="feed-qty-stock" 
                                 step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                            {% else %}
+                            <input type="number" name="feed_qty_stock" placeholder="Qty in Stock" id="feed-qty-stock" 
+                                step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                            {% endif %}
                         </div>
                         <div class="col-2 col-css">
                             <h5 class="text-end">
@@ -132,13 +149,22 @@
                     <h4>Supplements</h4>
                 </div>
                 <div class="row">
+                    {% if 'supplement_name' in onboard_profile_data %}
+                    <input type="text" name="supplement_name" value="{{ onboard_profile_data.supplement_name }}" placeholder="Supplement Name" id="supplement_name" required>
+                    {% else %}
                     <input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement_name" required>
+                    {% endif %}
                 </div>
                 <div class="container">
                     <div class="row">
                         <div class="col-10 col-css">
-                            <input type="number" name="supplement-amount-stock" placeholder="Amount in Stock" id="supplement-amount-stock" 
+                            {% if 'supplement_amount_stock' in onboard_profile_data %}
+                            <input type="number" name="supplement_amount_stock" value="{{ onboard_profile_data.supplement_amount_stock }}" placeholder="Amount in Stock" id="supplement-amount-stock" 
                                 step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                            {% else %}
+                            <input type="number" name="supplement_amount_stock" placeholder="Amount in Stock" id="supplement-amount-stock" 
+                                step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                            {% endif %}
                         </div>
                         <div class="col-2 col-css">
                             <h5 class="text-end">
@@ -159,7 +185,7 @@
             <div>
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="{% url 'onboard_produce' %}" class="btn button button-small-size">Previous</a> 
-                <a href="{% url 'dashboard' %}" class="btn button button-small-size">Finish</a>
+                <button type='submit' class="btn button button-small-size">Finish</button>
             </div>
         </div>
     </form>

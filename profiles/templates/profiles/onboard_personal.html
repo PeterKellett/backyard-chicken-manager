@@ -73,6 +73,7 @@
 <div class="form-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}">
         {% csrf_token %}
+        <input type="hidden" name="redirect_url" value="onboard_flock"/>
         <div class="form-data">
             <!-- Personal Info -->
             <section name="personal-info">
@@ -110,32 +111,33 @@
                     <input type="text" name="farm_business_name" placeholder="Farm/Business Name" id="farm_business_name" required>
                   {% endif %}
                 </div>
+
                 <div class="row">
-                    <select name="farm_type" id="farm_type" required>
-                      {% if 'farm_type' in onboard_profile_data %}
-                        <option value="" disabled>Farm Type</option>
-                        {% for farm_type in farm_types %}
-                          {% if farm_type == onboard_Profile_data.farm_type %}
-                            <option value="{{ farm_type }}" selected>{{ farm_type|title }}</option>
-                          {% else %}
-                            <option value="{{ farm_type }}">{{ farm_type|title }}</option>
-                            {% endif %}
-                        {% endfor %}                
-                      {% else %}
-                        <option value="" disabled selected>Farm Type</option>
-                        {% for farm_type in farm_types %}
-                          <option value="{{ farm_type }}">{{ farm_type|title }}</option>
-                        {% endfor %}
-                      {% endif %}              
-                    </select>
+                  <select name="farm_type" id="farm_type" required>
+                    {% if 'farm_type' in onboard_profile_data %}
+                      <option value="" disabled>Farm Type</option>
+                      {% for farm_type in farm_types %}                    
+                        {% if farm_type.id == onboard_profile_data.farm_type %}
+                          <option value="{{ farm_type.id }}" selected>{{ farm_type.type.title }}</option>
+                        {% else %}
+                          <option value="{{ farm_type.id }}">{{ farm_type|title }}</option>
+                        {% endif %}
+                      {% endfor %}                
+                    {% else %}
+                      <option value="" disabled selected>Farm Type</option>
+                      {% for farm_type in farm_types %}
+                        <option value="{{ farm_type.id }}">{{ farm_type|title }}</option>
+                      {% endfor %}
+                    {% endif %}              
+                  </select>
                 </div>
+
             <section>
 
             <div class="row">
                 <hr class="hr-large">
             </div>
             <div>
-                <input type="hidden" name="redirect_url" value="onboard_flock"/>
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="" class="btn button button-small-size">Previous</a> 
                 <button type='submit' class="btn button button-small-size">Next</button>
@@ -143,4 +145,5 @@
         </div>
     </form>
 </div>
+
 {% endblock %}
