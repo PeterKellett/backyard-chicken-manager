@@ -10,7 +10,6 @@ $(document).ready(function () {
             <section name="flock-core-info">
                 <div>
                     <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
-                   
                 </div>
                 <div>
                     {% if 'acquired_date' in onboard_profile_data %}
@@ -118,7 +117,6 @@ $(document).ready(function () {
         } else {
             salesMethods = false
         }
-        console.log("sales-methods" + salesMethods);
 
         if (document.getElementById('single-eggs-check').checked == true ||
             document.getElementById('half-dozen-carton-check').checked == true ||
@@ -128,10 +126,9 @@ $(document).ready(function () {
         } else {
             salesUnits = false
         }
-        console.log("sales-units" + salesUnits);
 
-        if (salesMethods == true && salesUnits == true) {
-            window.location.href = "{% url 'onboard_stock' %}"; //{% url 'onboard_stock' %});
+    if (salesMethods == true && salesUnits == true){
+        window.location.href = "{% url 'onboard_stock' %}";
         } else {
             document.getElementById('sales-unit-method-warning').textContent =
                 "Please select at least one option each from Sales Methods and Sales Units";
@@ -223,95 +220,105 @@ $(document).ready(function () {
                                 '{% endif %}' +
                             '</div>' +
                         '</div>' +
-                        '<div>' +
-                            '<hr class="hr-small">' +
-                        '</div>' +
-                        '<div class="row mb-0">' +
-                            '<div class="col-10 col-css">' +
-                                '<h6 class="row-name">Total Number of Birds:</h6>' +
-                            '</div>' +
+                    '</div>' +
+                '</div>';
+    document.querySelector('div[name=flocks-container]').outerHTML = flockCodeBlock;
+}
 
-                            '<div class="col-2 col-css col-css-right">' +
-                                '<h6 id="total-birds">0</h6>' +
-                            '</div>' +
-                        '</div>' +
-                    '</div>';
-        document.querySelector('div[name=flocks-container]').outerHTML = flockCodeBlock;
-    }*/
+// Adds another set of feeds fields when the "Add Another" button is clicked
+function addAnotherFeed() {
+    var feedsCodeBlock = `<div class="row">
+                            <hr class="hr-small">
+                        </div>
+                        <div class="row">
+                            <input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-10 col-css">
+                                    <input type="number" name="feed-qty-stock" placeholder="Qty in Stock" id="feed-qty-stock"
+                                        step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                                </div>
+                                <div class="col-2 col-css">
+                                    <h5 class="text-end">
+                                        kg
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" name="feeds-container"></div>`
+    document.querySelector('div[name=feeds-container]').outerHTML = feedsCodeBlock;
+}
 
+// Adds another set of supplements fields when the "Add Another" button is clicked
+function addAnotherSupplement() {
+    var supplementsCodeBlock = '<div class="row">' +
+                                    '<hr class="hr-small">' +
+                                '</div>' +
+                                '<div class="row">' +
+                                    '<input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement_name" required>' +
+                                '</div>' +
+                                '<div class="container">' +
+                                    '<div class="row">' +
+                                        '<div class="col-10 col-css">' +
+                                            '<input type="number" name="supplement-amount-stock" placeholder="Amount in Stock" id="supplement-amount-stock" ' +
+                                                'step="1" min="0" oninput="this.value = Math.abs(this.value)" required>' +
+                                    '</div>' +
+                                    '<div class="col-2 col-css">' +
+                                        '<h5 class="text-end">' +
+                                            'ml' +
+                                        '</h5>' +
+                                    '</div>' +
+                                '</div>' +
+                                '<div class="container" name="supplements-container"></div>';
+    document.querySelector('div[name=supplements-container]').outerHTML = supplementsCodeBlock;
+}
 
-    // Adds another set of feeds fields when the "Add Another" button is clicked
-    function addAnotherFeed() {
-        var feedsCodeBlock = '<div class="row">' +
-            '<hr class="hr-small">' +
-            '</div>' +
-            '<div class="row">' +
-            '<input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>' +
-            '</div>' +
-            '<div class="container">' +
-            '<div class="row">' +
-            '<div class="col-10 col-css">' +
-            '<input type="number" name="feed-qty-stock" placeholder="Qty in Stock" id="feed-qty-stock" ' +
-            'step="1" min="0" oninput="this.value = Math.abs(this.value)" required>' +
-            '</div>' +
-            '<div class="col-2 col-css">' +
-            '<h5 class="text-end">' +
-            'kg' +
-            '</h5>' +
-            '</div>' +
-            '</div>' +
-            '</div>' +
-            '<div class="container" name="feeds-container"></div>';
-        document.querySelector('div[name=feeds-container]').outerHTML = feedsCodeBlock;
+// Functions to autosuggest cities
+// Taken from https://www.youtube.com/watch?v=c3MjU9E9buQ&t=165s
+let autocomplete;
+function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('city_country'),
+        {
+            // Don't know why it's not working when I include this. See table 3 in https://developers.google.com/maps/documentation/places/web-service/supported_types
+            //types: ['cities'],
+            fields: ['address_components','geometry'] //https://developers.google.com/maps/documentation/javascript/place-data-fields?hl=en
+        });
+    autocomplete.addListener('place_changed', onPlaceChanged);
+}
+
+function onPlaceChanged() {
+    var place = autocomplete.getPlace();
+
+    if (!place.geometry) {
+        document.getElementById('city_country').placeholder =
+        'Enter a City or Town';
+    } else {
+        document.getElementById('city_country').innerHTML = place.name;
     }
+}
 
-    // Adds another set of supplements fields when the "Add Another" button is clicked
-    function addAnotherSupplement() {
-        var supplementsCodeBlock = '<div class="row">' +
-            '<hr class="hr-small">' +
-            '</div>' +
-            '<div class="row">' +
-            '<input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement_name" required>' +
-            '</div>' +
-            '<div class="container">' +
-            '<div class="row">' +
-            '<div class="col-10 col-css">' +
-            '<input type="number" name="supplement-amount-stock" placeholder="Amount in Stock" id="supplement-amount-stock" ' +
-            'step="1" min="0" oninput="this.value = Math.abs(this.value)" required>' +
-            '</div>' +
-            '<div class="col-2 col-css">' +
-            '<h5 class="text-end">' +
-            'ml' +
-            '</h5>' +
-            '</div>' +
-            '</div>' +
-            '<div class="container" name="supplements-container"></div>';
-        document.querySelector('div[name=supplements-container]').outerHTML = supplementsCodeBlock;
-    }
+// Function to make textarea height to expand based on amopunt of text added by the user
+// Taken from https://www.techiedelight.com/automatically-resize-textarea-height-javascript/
+$(document).ready(function() {
+    $('textarea').on('keyup keypress', function() {
+        $(this).height(0);
+        $(this).height(this.scrollHeight);
+    });
+});
 
-    //Function to autosuggest cities taken from https://www.youtube.com/watch?v=c3MjU9E9buQ&t=165s
+// Function to display additional fields or content when a checkbpx os checked
+// Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
+$(function () {
+    $('input[name="disinfectant_name"]').hide();
 
-    let autocomplete;
-
-    function initAutocomplete() {
-        autocomplete = new google.maps.places.Autocomplete(
-            document.getElementById('city_country'), {
-                // Don't know why it's not working when I include this. See table 3 in https://developers.google.com/maps/documentation/places/web-service/supported_types
-                //types: ['cities'],
-                fields: ['address_components', 'geometry'] //https://developers.google.com/maps/documentation/javascript/place-data-fields?hl=en
-            });
-        autocomplete.addListener('place_changed', onPlaceChanged);
-    }
-
-    function onPlaceChanged() {
-        var place = autocomplete.getPlace();
-
-        if (!place.geometry) {
-            document.getElementById('city_country').placeholder =
-                'Enter a City or Town';
+    //show it when the checkbox is clicked
+    $('input[name="disinfected-check"]').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('input[name="disinfectant_name"]').fadeIn();
         } else {
-            document.getElementById('city_country').innerHTML = place.name;
+            $('input[name="disinfectant_name"]').hide();
         }
-    }
-
+    });
 });

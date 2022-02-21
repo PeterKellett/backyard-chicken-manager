@@ -1,0 +1,23 @@
+body {
+    background-color: var(--green_bg);
+}
+
+.container {
+    padding: 0;
+}
+
+.two-inputs-left {
+    padding-right: 5px;
+}
+.two-inputs-right {
+    padding-left: 5px;
+}
+
+.photos-div-container {
+    display: none;
+}
+
+/*-- Centres the checkbox vertically in the row --*/
+.form-data input[type=checkbox] {
+    margin-top: 4px;
+}

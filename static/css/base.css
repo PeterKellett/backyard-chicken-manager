@@ -3,7 +3,8 @@
 
 *,
 p,
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6,
+.row>* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -17,6 +18,12 @@ body {
     display: -o-flex;
     display: flex;
     height: 100vh;
+}
+
+.bottom-margin {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 10px;
 }
 
 .container-fluid {
@@ -46,6 +53,7 @@ body {
     --orange_bg: #f9e6e2;
     --black: #373838;
     --white: #fefefe;
+    --grey: #dee2e6;
 }
 
 /*-- COLOURS END --*/
@@ -55,19 +63,19 @@ body {
 
 p, h1, h2, h3, h4, h5 {
     font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-    text-align: center;
-}
-
-/*-- Justifies paragraphs on mobile only --*/
-@media (max-width: 600px){
-    p {
-        text-align: justify;
-    }
 }
 
 h1, h2, h3, h4, h5 {
     font-weight: 700;
+}
+
+h1, h2  {
     color: var(--green);
+}
+
+h3, h4, h5 {
+    font-weight: 700;
+    color: var(--black);
 }
 
 h1 {
@@ -76,9 +84,30 @@ h1 {
 h2 {
     font-size: 30px;
 }
+h3 {
+    font-size: 25px;
+}
+h4 {
+    font-size: 20px;
+}
+h5 {
+    font-size: 18px;
+}
+h6 {
+    font-size: 16px;
+}
 @media (max-width: 991px){
-    h1, h2 {
+    h1, h2, h3 {
         font-size: 20px;
+    }
+    h4 {
+        font-size: 19px;
+    }
+    h5 {
+        font-size: 18px;
+    }
+    h6 {
+        font-size: 16px;
     }
 }
 
@@ -88,16 +117,81 @@ p {
     color: var(--black);
 }
 
-/*-- Fontawesome Icons --*/
-i {
-    font-size: 25px;
-    color: var(--orange);
-    text-align: right;
-    text-shadow: 0px 2px 5px var(--black);
-}
-
 /*-- FONTS END --*/
 
+
+/*-- CONTENT ALIGNMENT START --*/
+
+.checkbox-label,
+.add-another-btn-div,
+.row-name,
+.col-css,
+.menu-h2,
+#advanced-div,
+.collapse  {
+    text-align: left;
+}
+
+.content-vertical-center {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+main,
+.navbar-page-title,
+.warning-div {
+    text-align: center;
+}
+
+/*-- Centres menu when displayed at top of the page --*/
+@media (min-width: 992px){
+    .navbar-nav .nav-link {
+        text-align: center;
+    }
+}
+
+/*-- Aligns the label to the right to be beside the checkbox --*/
+i,
+.hcc-checkbox-label,
+.col-css-right {
+    text-align: right;
+}
+
+/*-- Prevents the label touching the checkbox --*/
+.hcc-checkbox-label {
+    padding-right: 10px;
+}
+
+/*-- Justifies paragraphs on mobile only --*/
+@media (max-width: 600px){
+    p {
+        text-align: justify;
+    }
+}
+
+/*-- CONTENT ALIGNMENT End --*/
+
+
+/*-- ICONS START --*/
+i {
+    font-size: 30px;
+}
+
+.round-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.non-round-icon {
+    height: 35px;
+    width: 35px;
+}
+
+.icon-orange {
+    color: var(--orange);
+}
+
+/*-- ICONS END --*/
 
 /*-- HR RULES START --*/
 
@@ -139,9 +233,6 @@ hr {
 @media (min-width: 992px){
     .navbar-light .navbar-nav .nav-link {
         color: var(--white);
-    }
-    .navbar-nav .nav-link {
-        text-align: center;
     }
 }
 
@@ -192,6 +283,11 @@ hr {
 }
 
 /*-- Page title text that displays in Navbar when slide out menu is emplyed --*/
+.row.navbar-page-div {
+    width: 80%;
+    margin-bottom: 0;
+}
+
 .navbar-page-title {
     margin: 0;
     color: var(--white);
@@ -201,13 +297,6 @@ hr {
 
 /*-- BOTTOM MARGIN START --*/
 
-.row
- {
-    padding-left: 0;
-    padding-right: 0;
-    margin-bottom: 10px;
-}
-
 .text-start
  {
     padding-left: 0;
@@ -216,7 +305,8 @@ hr {
 
 input,
 .form-data select,
-.form-data textarea
+.form-data textarea,
+.card
  {
     background-color: var(--orange_bg);
 }
@@ -225,16 +315,8 @@ input,
 /*-- INPUT FIELDS START --*/
 /*-- Animation of input field labels https://www.youtube.com/watch?v=JlRNGJGorsw from 10:17 onwards --*/
 
-/*-- Keeps all input fields centred on page --*/
-.form-container,
-.menu-row {
-    margin: auto;
-    width: 100%;
-    max-width: 360px;
-  }
-
 /*-- Facilitates positioning of the label --*/
-.form-data > div {
+.flock-hcc-form-data > div {
     position: relative;
     box-sizing: border-box;
 }
@@ -258,36 +340,6 @@ input,
 input[type=checkbox] {
     height: 20px;
     width: 20px;
-}
-
-/*-- Centres the elements in the row --*/
-.col-css {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-/*-- Removes margins from row elements --*/
-.col-css-element,
-.row {
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-
-
-/*-- Aligns the name of the row to the left --*/
-.row-name {
-    text-align: left;
-}
-
-.checkbox-label {
-    text-align: left;
-}
-
-/*-- ALigns the label to the right to be beside the checkbox in the hcc section --*/
-.hcc-checkbox-label {
-    text-align: right;
 }
 
 /*-- Field label prior to field being clicked on --*/
@@ -352,8 +404,9 @@ input:-webkit-autofill:active {
     height: 40px;
 }
 
-.add-another-btn-div {
-    text-align: left;
+/*-- Keeps the button off the bottom of the screen --*/
+.button-container {
+    padding-bottom: 10px;
 }
 
 .add-another-btn {
@@ -383,6 +436,14 @@ input:-webkit-autofill:active {
     width: 31.5%;
 }
 
+.save-button {
+    background-color: var(--green);
+}
+.cancel-button,
+.delete-button {
+    background-color: var(--orange);
+}
+
 /*-- BUTTONS END --*/
 
 
@@ -394,12 +455,11 @@ main {
     margin-right: auto;
     width: 100%;
     max-width: 1200px;
-    text-align: center;
 }
 
 /* Adds space at the top of the main section to allow for changes in header height*/
 main {
-    padding-top: 65px;
+    padding-top: 60px;
 }
 @media (min-width: 992px){
     main {
@@ -419,20 +479,30 @@ main {
 
 /*-- GRID START --*/
 
+/*-- Removes margins from row elements --*/
+/*-- Keeps all input fields centred on page --*/
+.element-container {
+    margin: auto;
+    width: 100%;
+    max-width: 360px;
+  }
+
+.col-css-element,
+.row {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .col-css {
+    margin-top: auto;
+    margin-bottom: auto;
     padding-left: 0;
-    padding-right: 10px;
-    text-align: left;
 }
 
-.col-css-right {
-    padding: 0;
-    text-align: right;
-}
-
+.col-css-right,
 .col-css-left {
     padding: 0;
-    text-align: left;
 }
 
 .col-css > img {
@@ -441,20 +511,37 @@ main {
 
 .menu-h2 {
     color: var(--black);
-    text-align: left;
     margin: 0;
 }
 
-
-
 /*-- GRID END --*/
+
+
+/*-- CARDS START --*/
+
+.card {
+    border: 1px solid var(--black);
+    border-radius: 5px;
+}
+
+.card-col-one,
+.card-col-two {
+    padding-left: 10px;
+    margin-top: 2px;
+}
+
+.card-col-one p {
+    font-weight: 700;
+}
+
+/*-- CARDS END --*/
+
 
 /*-- Box that displays when a warning is required --*/
 .warning-div {
     width: 100%;
     max-width: 360px;
     background-color: var(--white);
-    text-align: center;
     margin: auto;
     border-radius: 5px;
 }
@@ -474,7 +561,36 @@ i {
     background-color: var(--green_bg);
 }
 
+/*-- 16px margin to match default padding in the modal to keep list tabbed in on the left and inline with the title --*/
+.modal-body li {
+    margin-left: 16px;
+}
 
 a {
+    color: var(--black);
     text-decoration: none;
 }
+
+#advanced-div:hover {
+    color: var(--black);
+}
+
+
+ /*-- Adds dynamic arrows to Advanced dropdown sections --*/
+ /* Taken from: https://stackoverflow.com/questions/46777704/add-up-down-arrows-to-bootstrap-accordion --*/
+ .panel-div {
+    position: relative;
+  }
+ .panel-title::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f063";
+    font-weight: 900;
+    float: right;
+    transition: all 0.5s;
+    top: -2px;
+    right: 0px;
+    position: absolute;
+  }
+  .panel-title[aria-expanded="true"]::after {
+    content: "\f062";
+  }

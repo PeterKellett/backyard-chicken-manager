@@ -1,0 +1,9 @@
+label,
+.hcc-checkbox-label,
+.hcc-checkbox {
+    display: block;
+}
+
+.add-another-btn-div {
+    display: none;
+}

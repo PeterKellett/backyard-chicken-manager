@@ -11,25 +11,25 @@
 
 {% block content %}
 <div class="large-screen-h1">
-    <div class="row">
+    <div class="bottom-margin">
         <h1>Onboarding Flock(s)</h1>
     </div>
-    <div class="row">
+    <div class="bottom-margin">
         <hr class="hr-large">
     </div>
 </div>
-<div class="container form-container">
-    <div class="row">
+<div class="container element-container">
+    <div class="row bottom-margin">
         <div class="col-10 col-css">
             <h4 class="text-start">
                 Page 2 of 4
             </h4>
         </div>
         <div class="col-2 col-css-right">
-            <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+            <i class="fas fa-info-circle icon-orange" data-bs-toggle="modal" data-bs-target="#myModal"></i>
         </div>
     </div>
-    <div class="row">
+    <div class="bottom-margin">
         <p class="text-start">
             Tell us about your flock(s)...
         </p>
@@ -73,11 +73,11 @@
     </div>
 </div>
 
-<div class="row">
+<div class="bottom-margin">
     <hr class="hr-large">
 </div>
 
-<div class="form-container">
+<div class="element-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
         {% csrf_token %}
         <input type="hidden" name="redirect_url" value="onboard_produce"/>
@@ -86,29 +86,28 @@
             {% for flock in onboard_profile_data.flocks %}
             {% endfor %}
             <section name="flock-core-info">
-                <div class="row">
+                <div class="bottom-margin">
                     {% if 'flock_name' in onboard_profile_data %}
                     <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock_name" required>
                     {% else %}
                     <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
                     {% endif %}
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     {% if 'acquired_date' in onboard_profile_data %}
                     <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired_date" required>
                     {% else %}
                     <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
                     {% endif %}
                 </div>
-
-                <div class="row">
+                <div class="bottom-margin">
                     {% if 'coop_name' in onboard_profile_data %}
                     <input type="text" name="coop_name" value="{{ onboard_profile_data.coop_name }}" placeholder="Coop Name" id="coop_name" required>
                     {% else %}
                     <input type="text" name="coop_name" placeholder="Coop Name" id="coop_name" required>
                     {% endif %}
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <select name="breed" id="breed" required>
                         {% if 'breed' in onboard_profile_data %}
                         <option value="" disabled>Breed</option>
@@ -127,125 +126,24 @@
                         {% endif %}
                     </select>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <hr class="hr-small">
                 </div>
             </section>
 
-            <!-- HCC Section (Hens, Chicks and Cocks). To be moved to it's own snippet -->
-            <section name="flock-hcc">
-                <div class="container form-data">
-                    <div class="row" id="hens-row">
-                        <div class="col-2 col-css">
-                            <img src="{{ MEDIA_URL }}flock_manag_hens.png" alt="Chicken" class="col-css-element">
-                        </div>
-                        <div class="col-3 col-css">
-                            <h4 class="row-name col-css-element">Hens</h4>
-                        </div>
-                        <div class="col-3 col-css">
-                            <p class="checkbox-label hcc-checkbox-label col-css-element">All Hens</p>
-                        </div>
-                        <div class="col-1 col-css">
-                            <input type="checkbox" name="all_hens_check" id="all_hens_check" class="col-css-element hcc-checkbox">
-                        </div>
-                        <div class="col-3 col-css col-css-right">
-                            {% if 'hens_qty' in onboard_profile_data %}
-                            <input type="number" name="hens_qty" value="{{ onboard_profile_data.hens_qty }}" placeholder="Qty" id="hens-qty" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
-                            {% else %}
-                            <input type="number" name="hens_qty" placeholder="Qty" id="hens_qty" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <hr class="hr-small">
-                    </div>
-
-                    <div class="row" id="chicks-row">
-                        <div class="col-2 col-css">
-                            <img src="{{ MEDIA_URL }}flock_manag_chicks.png" alt="Chicks" class="col-css-element">
-                        </div>
-                        <div class="col-3 col-css">
-                            <h4 class="row-name col-css-element">Chicks</h4>
-                        </div>
-                        <div class="col-3 col-css">
-                            <p class="checkbox-label hcc-checkbox-label col-css-element">All Chicks</p>
-                        </div>
-                        <div class="col-1 col-css">
-                            <input type="checkbox" name="all_chicks_check" id="all_chicks_check" class="col-css-element hcc-checkbox">
-                        </div>
-
-                        <div class="col-3 col-css col-css-right">
-                            {% if 'chicks_qty' in onboard_profile_data %}
-                            <input type="number" name="chicks_qty" value="{{ onboard_profile_data.chicks_qty }}" placeholder="Qty" id="chicks-qty" 
-                            step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
-                            {% else %}
-                            <input type="number" name="chicks_qty" placeholder="Qty" id="chicks_qty" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
-                            {% endif %}
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <hr class="hr-small">
-                    </div>
-
-                    <div class="row" id="cocks-row">
-                        <div class="col-2 col-css">
-                            <img src="{{ MEDIA_URL }}flock_manag_cocks.png" alt="Cocks" class="col-css-element">
-                        </div>
-                        <div class="col-3 col-css">
-                            <h4 class="row-name col-css-element">Cocks</h4>
-                        </div>
-                        <div class="col-3 col-css">
-                            <p class="checkbox-label hcc-checkbox-label col-css-element">All Cocks</p>
-                        </div>
-                        <div class="col-1 col-css">
-                            <input type="checkbox" name="all_cocks_check" id="all_cocks_check" class="col-css-element hcc-checkbox">
-                        </div>
-                        <div class="col-3 col-css col-css-right">
-                            {% if 'cocks_qty' in onboard_profile_data %}
-                            <input type="number" name="cocks_qty" value="{{ onboard_profile_data.cocks_qty }}" placeholder="Qty" id="cocks-qty" 
-                            step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
-                            {% else %}
-                            <input type="number" name="cocks_qty" placeholder="Qty" id="cocks-qty" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <hr class="hr-small">
-                    </div>
-                    <div class="row">
-                        <div class="col-10 col-css">
-                            <h6 class="row-name">Total Number of Birds:</h6>
-                        </div>
-
-                        <div class="col-2 col-css col-css-right">
-                            <h6 id="total-birds">0</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="container" name="flocks-container"></div>
-                <div class="add-another-btn-div">
-                    <!--CD <button href="" type="button" class="button add-another-btn" onclick="addAnotherFlock()">Add Another</button>-->
-                    <button href="" type="button" class="button add-another-btn" id="PKaddAnotherFlock">Add Another</button>
-                </div>
-            </section>
+            {% include 'html_includes/hens_chicks_cocks.html' %}
 
             <!-- Used as a warning instead of an Alert -->
             <section name="warning-section">
                 <div class="warning-div">
                     <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <hr class="hr-large">
                 </div>
             </section>
 
-            <div>
-                
+            <div class="button-container">
                 <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">Previous</a> 
                 <button type='submit' id="hcc-button" class="btn button button-small-size" onclick="validateQtys()">Next</button>
             </div>

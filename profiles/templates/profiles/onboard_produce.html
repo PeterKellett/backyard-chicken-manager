@@ -11,25 +11,25 @@
 
 {% block content %}
 <div class="large-screen-h1">
-    <div class="row">
+    <div class="bottom-margin">
         <h1>Onboarding Sales</h1>
     </div>
-    <div class="row">
+    <div class="bottom-margin">
         <hr class="hr-large">
     </div>
 </div>
-<div class="container form-container">
-    <div class="row">
+<div class="container element-container">
+    <div class="row bottom-margin">
         <div class="col-10 col-css">
             <h4 class="text-start">
                 Page 3 of 4
             </h4>
         </div>
         <div class="col-2 col-css-right">
-            <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+            <i class="fas fa-info-circle icon-orange" data-bs-toggle="modal" data-bs-target="#myModal"></i>
         </div>
     </div>
-    <div class="row">
+    <div class="row bottom-margin">
         <p class="text-start">
             ...And how you sell your produce. Please select at least one option from each section.
         </p>
@@ -81,11 +81,11 @@
     </div>
 </div>
 
-<div class="row">
+<div class="bottom-margin">
     <hr class="hr-large">
 </div>
 
-<div class="form-container">
+<div class="element-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}">
         {% csrf_token %}
         <input type="hidden" name="redirect_url" value="onboard_stock"/>
@@ -94,14 +94,14 @@
 
             <!-- Sales Methods Section -->
             <section name="sales-methods-section">
-                <div class="row">
+                <div class="bottom-margin">
                     <h4>Sales Methods</h4>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <p>Where do you sell your produce?</p>
                 </div>
                 <div class="container">
-                    <div class="row" id="roadside-row">
+                    <div class="row bottom-margin" id="roadside-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Roadside</h6>
                         </div>
@@ -113,7 +113,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row" id="markets-row">
+                    <div class="row bottom-margin" id="markets-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Markets</h6>
                         </div>
@@ -125,7 +125,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row" id="deliveries-row">
+                    <div class="row bottom-margin" id="deliveries-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Deliveries</h6>
                         </div>
@@ -137,7 +137,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row" id="collections-row">
+                    <div class="row bottom-margin" id="collections-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Collections</h6>
                         </div>
@@ -149,24 +149,24 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="form-data">
-                        <div class="row">
-                            <hr class="hr-small">
-                        </div>
-                    </div>
                 </div>
             </section>
 
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+            <div>
+
             <!-- Sales Units Section -->
             <section name="sales-units-section">
-                <div class="row">
+                <div class="bottom-margin">
                     <h4>Sales Units</h4>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                     <p>In what unit quantities do you sell your eggs?</p>
                 </div>
                 <div class="container">
-                    <div class="row" id="single-eggs-row">
+                    <div class="row bottom-margin" id="single-eggs-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Single Eggs</h6>
                         </div>
@@ -178,7 +178,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row" id="half-dozen-carton-row">
+                    <div class="row bottom-margin" id="half-dozen-carton-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">1/2 Dozen Cartons</h6>
                         </div>
@@ -190,7 +190,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row" id="dozen-carton-row">
+                    <div class="row bottom-margin" id="dozen-carton-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Dozen Cartons</h6>
                         </div>
@@ -202,7 +202,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row" id="trays-row">
+                    <div class="row bottom-margin" id="trays-row">
                         <div class="col-7 col-css">
                             <h6 class="col-css-element checkbox-label">Trays</h6>
                         </div>
@@ -228,15 +228,15 @@
 
             <!-- Used as a warning instead of an Alert -->
             <section name="warning">
-                <div class="warning-div row">
+                <div class="warning-div bottom-margin">
                     <h5 class="text-danger text-start" id="sales-unit-method-warning"></h5>
                 </div>
             </section>
 
-            <div class="row">
+            <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
-            <div>
+            <div class="button-container">
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="{% url 'onboard_flock' %}" class="btn button button-full-size">Previous</a> 
                 <button type='submit' id="produce-next-button" class="btn button button-full-size" onclick="injectHref()">Next</button>

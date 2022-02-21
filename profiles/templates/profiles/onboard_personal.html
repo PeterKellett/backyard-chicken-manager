@@ -11,25 +11,25 @@
 
 {% block content %}
 <div class="large-screen-h1">
-    <div class="row">
+    <div class="bottom-margin">
         <h1>Onboarding Personal</h1>
     </div>
-    <div class="row">
+    <div class="bottom-margin">
         <hr class="hr-large">
     </div>
 </div>
-<div class="container form-container">
-    <div class="row">
+<div class="container element-container">
+    <div class="row bottom-margin">
         <div class="col-10 col-css">
             <h4 class="text-start">
                 Page 1 of 4
             </h4>
         </div>
         <div class="col-2 col-css-right">
-            <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+            <i class="fas fa-info-circle icon-orange" data-bs-toggle="modal" data-bs-target="#myModal"></i>
         </div>
     </div>
-    <div class="row">
+    <div class="bottom-margin">
         <p class="text-start">
             To give you the best possible experience we just need a few more bits of information.
         </p>
@@ -66,53 +66,52 @@
   </div>
 </div>
 
-<div class="row">
+<div class="bottom-margin">
     <hr class="hr-large">
 </div>
 
-<div class="form-container">
+<div class="element-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}">
         {% csrf_token %}
         <input type="hidden" name="redirect_url" value="onboard_flock"/>
         <div class="form-data">
             <!-- Personal Info -->
             <section name="personal-info">
-                <div class="row">
+                <div class="bottom-margin">
                     <h4>Personal</h4>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                   {% if 'full_name' in onboard_profile_data %}
                     <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full_name" required>
                   {% else %}
                     <input type="text" name="full_name" placeholder="Full Name" id="full_name" required>
                   {% endif %}
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                   {% if 'city_country' in onboard_profile_data %}
                   <input type="text" name="city_country" placeholder="City, Country" value="{{ onboard_profile_data.city_country }}" id="city_country" required>
                   {% else %}
                     <input type="text" name="city_country" placeholder="City, Country" id="city_country" required>
                   {% endif %}
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                   <hr class="hr-small">
                 </div>
             </section>
 
             <!-- Farm Info -->
             <section name="farm-info">
-                <div class="row">
+                <div class="bottom-margin">
                     <h4>Farm</h4>
                 </div>
-                <div class="row">
+                <div class="bottom-margin">
                   {% if 'farm_business_name' in onboard_profile_data %}
                     <input type="text" name="farm_business_name" placeholder="Farm/Business Name" value="{{ onboard_profile_data.farm_business_name }}" id="farm_business_name" required>
                   {% else %}
                     <input type="text" name="farm_business_name" placeholder="Farm/Business Name" id="farm_business_name" required>
                   {% endif %}
                 </div>
-
-                <div class="row">
+                <div class="bottom-margin">
                   <select name="farm_type" id="farm_type" required>
                     {% if 'farm_type' in onboard_profile_data %}
                       <option value="" disabled>Farm Type</option>
@@ -134,10 +133,10 @@
 
             <section>
 
-            <div class="row">
+            <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
-            <div>
+            <div class="button-container">
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="" class="btn button button-small-size">Previous</a> 
                 <button type='submit' class="btn button button-small-size">Next</button>

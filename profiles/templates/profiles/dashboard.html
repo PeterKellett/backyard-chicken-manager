@@ -11,19 +11,19 @@
 
 {% block content %}
 <div class="large-screen-h1">
-    <div class="row">
+    <div class="bottom-margin">
         <h1>Home Dashboard</h1>
         
     </div>
-    <div class="row">
+    <div class="bottom-margin">
         <hr class="hr-large">
     </div>
 </div>
 <p>{{ userprofile.first_name }}</p>
 <p>{{ farmprofile.farm_business_name }}</p>
 <a href="">
-    <div class="menu-row container">
-        <div class="row">
+    <div class="container element-container">
+        <div class="row bottom-margin">
             <div class="col-2 col-css">
                 <img src="{{ MEDIA_URL }}regular_tasks.png" alt="regular tasks icon">
             </div>
@@ -34,8 +34,8 @@
     </div>
 </a>
 <a href="">
-    <div class="menu-row container">
-        <div class="row">
+    <div class="container element-container">
+        <div class="row bottom-margin">
             <div class="col-2 col-css">
                 <img src="{{ MEDIA_URL }}sales_and_income.png" alt="sales and income icon">
             </div>
@@ -46,8 +46,8 @@
     </div>
 </a>
 <a href="">
-    <div class="menu-row container">
-        <div class="row">
+    <div class="container element-container">
+        <div class="row bottom-margin">
             <div class="col-2 col-css">
                 <img src="{{ MEDIA_URL }}expenditure.png" alt="expenditure icon">
             </div>
@@ -58,8 +58,8 @@
     </div>
 </a>
 <a href="">
-    <div class="menu-row container">
-        <div class="row">
+    <div class="container element-container">
+        <div class="row bottom-margin">
             <div class="col-2 col-css">
                 <img src="{{ MEDIA_URL }}health_and_welfare.png" alt="health and welfare icon">
             </div>
@@ -70,8 +70,8 @@
     </div>
 </a>
 <a href="">
-    <div class="menu-row container">
-        <div class="row">
+    <div class="container element-container">
+        <div class="row bottom-margin">
             <div class="col-2 col-css">
                 <img src="{{ MEDIA_URL }}coop_manag.png" alt="coop management icon">
             </div>
@@ -82,8 +82,8 @@
     </div>
 </a>
 <a href="">
-    <div class="menu-row container">
-        <div class="row">
+    <div class="container element-container">
+        <div class="row bottom-margin">
             <div class="col-2 col-css">
                 <img src="{{ MEDIA_URL }}flock_manag.png" alt="flock management icon">
             </div>
@@ -94,8 +94,8 @@
     </div>
 </a>
 <a href="">
-    <div class="menu-row container">
-        <div class="row">
+    <div class="container element-container">
+        <div class="row bottom-margin">
             <div class="col-2 col-css">
                 <img src="{{ MEDIA_URL }}reports_and_financials.png" alt="financials & reports icon">
             </div>
@@ -106,8 +106,8 @@
     </div>
 </a>
 <a href="">
-    <div class="menu-row container">
-        <div class="row">
+    <div class="container element-container">
+        <div class="row bottom-margin">
             <div class="col-2 col-css">
                 <img src="{{ MEDIA_URL }}profile_and_setting.png" alt="settings & profile icon">
             </div>
@@ -118,7 +118,7 @@
     </div>
 </a>
 
-<div>
+<div class="button-container">
     <!--<button class="button button-full-size">Prev page</button>-->
     <a href="{% url 'onboard_stock' %}" class="btn button button-full-size">Previous</a> 
 </div>

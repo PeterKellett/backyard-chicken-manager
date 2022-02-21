@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/regular_tasks.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Feeding Time
+{% endblock %}
+
+{% block sub-nav %}
+{% endblock %}
+
+{% block content %}
+
+<div class="element-container container-fluid sub-nav-container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'regular_tasks' %}"> 
+                <img src="{{ MEDIA_URL }}reg_task_egg_collection.png" alt="Regular Tasks, Egg Collection Icon" class="nav-link-image sub-nav-link-image">
+                Egg Collection
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link active" href="{% url 'feeding_time' %}">
+                <img src="{{ MEDIA_URL }}reg_task_feeding_time.png" alt="Regular Tasks, Feeding Time Icon" class="nav-link-image sub-nav-link-image">
+                Feeding Time
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'coop_cleaning' %}">
+                <img src="{{ MEDIA_URL }}reg_task_coop_cleaning.png" alt="Regular Tasks, Coop Cleaning Icon" class="nav-link-image sub-nav-link-image">
+                Coop Cleaning
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="large-screen-h1">
+    <div class="bottom-margin">
+        <h1>Feeding Time</h1>
+    </div>
+    <div class="bottom-margin">
+        <hr class="hr-large">
+    </div>
+</div>
+
+<!-- Icons and Links Section -->
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle icon-orange"></i>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}reports_food_and_water.png" alt="Food & water reports icon" class="non-round-icon"></a>
+        </div>
+        <div class="col-6 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting.png" alt="settings & profile icon" class="non-round-icon"></a>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<!-- MAIN SECTION  -->
+<div class="element-container">
+    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
+        {% csrf_token %}
+        <div class="form-data">
+
+            {% include 'html_includes/date_flock.html' %}
+
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Feed Section -->
+            <section name="feeds">
+                <div class="container">
+                    <div class="row bottom-margin row-name">
+                        <div class="col-2">
+                            <img src="{{ MEDIA_URL }}reg_task_feed.png" alt="Feed icon" class="non-round-icon">
+                        </div>
+                        <div class="col-10 content-vertical-center">
+                            <h4>Feed</h4>
+                        </div>
+                    </div>
+                    <div class="bottom-margin">
+                        <input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row bottom-margin">
+                        <div class="col-10 col-css">
+                            <input type="number" name="food-amount-remaining" placeholder="Amount of Food Remaining" id="food-amount-remaining" 
+                                step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                        </div>
+                        <div class="col-2 col-css">
+                            <h5 class="text-end">
+                                kg
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row bottom-margin">
+                        <div class="col-10 col-css">
+                            <input type="number" name="food-amount-added" placeholder="Amount of Food Added" id="food-amount-added" 
+                                step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                        </div>
+                        <div class="col-2 col-css">
+                            <h5 class="text-end">
+                                kg
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" name="feeds-container"></div>
+                <div class="add-another-btn-div bottom-margin">
+                    <button href="" type="button" class="button add-another-btn" onclick="addAnotherFeed()">Add Another</button>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Water Section -->
+            <section name="water">
+                <div class="container">
+                    <div class="row bottom-margin row-name">
+                        <div class="col-2">
+                            <img src="{{ MEDIA_URL }}reg_task_water.png" alt="Water icon" class="non-round-icon">
+                        </div>
+                        <div class="col-10 content-vertical-center">
+                            <h4>Water</h4>
+                        </div>
+                    </div>
+                    <div class="bottom-margin">
+                        <input type="text" name="feed_name" placeholder="Water" id="water" required>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row bottom-margin">
+                        <div class="col-10 col-css">
+                            <input type="number" name="water-amount-remaining" placeholder="Amount of Water Remaining" id="water-amount-remaining" 
+                                step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                        </div>
+                        <div class="col-2 col-css">
+                            <h5 class="text-end">
+                                lt
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row bottom-margin">
+                        <div class="col-10 col-css">
+                            <input type="number" name="water-amount-added" placeholder="Amount of Water Added" id="water-amount-added" 
+                                step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                        </div>
+                        <div class="col-2 col-css">
+                            <h5 class="text-end">
+                                lt
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Notes & Images Section -->
+            {% include 'html_includes/notes_and_pics.html' %}
+
+            <!-- Used as a warning instead of an Alert -->
+            <section name="warning-section">
+                <div class="warning-div">
+                    <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <div class="button-container">
+                <input type="hidden" name="redirect_url" value="onboard_produce"/>
+                <button id="save-button" class="btn button button-full-size save-button" onclick="validateQtys()">Save</button> 
+                <button type='submit' id="cancel-button" class="btn button button-full-size cancel-button" onclick="validateQtys()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

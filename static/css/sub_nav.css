@@ -1,0 +1,60 @@
+.sub-nav-container {
+    position: absolute;
+    left: 0;
+    padding: 0;
+    height: 50px;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+    top: 75px;
+}
+
+@media (min-width: 992px){
+    .sub-nav-container {
+        top: 110px;
+    }
+}
+
+.nav-link.sub-nav-link {
+    height: 60px;
+    font-size: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: var(--black);
+    border: 1px solid var(--grey);
+    border-bottom: 0px;
+}
+
+.nav-link.sub-nav-link.active {
+    font-weight: 700;
+}
+
+a:first-of-type {
+    border-left: 0px
+}
+a:last-of-type {
+    border-right: 0px
+}
+
+.nav-tabs {
+    background-color: var(--white);
+}
+
+.nav-tabs .sub-nav-link.active {
+    background-color: var(--green_bg);
+}
+
+.sub-nav-link-image {
+    display: block;
+    margin: auto;
+}
+
+/* Adds space at the top of the main section to allow for changes in header height and for the sub-nav to display */
+main {
+    position: relative;
+    padding-top: 120px;
+}
+@media (min-width: 992px){
+    main {
+        padding-top: 155px;
+    }
+}

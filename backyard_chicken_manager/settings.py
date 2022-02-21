@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'home',
     'profiles',
     'flock_management',
+    'regular_tasks',
+    'sales_and_income',
     # 3rd Party
     'crispy_forms',
 ]

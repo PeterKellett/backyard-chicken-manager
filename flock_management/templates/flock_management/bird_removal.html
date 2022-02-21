@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/flocks.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bird_removal.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Bird(s) Removal
+{% endblock %}
+
+{% block content %}
+<div class="large-screen-h1">
+    <div class="bottom-margin">
+        <h1>Bird(s) Removal</h1>
+    </div>
+    <div class="bottom-margin">
+        <hr class="hr-large">
+    </div>
+</div>
+
+<!-- Icons and Links Section -->
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle icon-orange"></i>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<div class="element-container">
+    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
+        {% csrf_token %}
+        <div class="form-data">
+            <!-- Flock Core Info Section -->
+            <section name="flock-core-info">
+
+                {% include 'html_includes/date_flock.html' %}
+
+                <div class="bottom-margin">
+                    <select name="removal_reason" id="removal_reason" required>
+                        {% if 'removal_reason' in onboard_profile_data %}
+                        <option value="" disabled>Removal Reason</option>
+                            {% for removal_reason in breed %}
+                                {% if removal_reason == onboard_Profile_data.breed %}
+                                <option value="{{ removal_reason }}" selected>{{ removal_reason|title }}</option>
+                                {% else %}
+                                <option value="{{ removal_reason }}">{{ removal_reason|title }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}     
+                        <option value="" disabled selected>removal_reason</option>
+                            {% for removal_reason in farm_types %}
+                            <option value="{{ removal_reason }}">{{ removal_reason|title }}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="bottom-margin">
+                    <hr class="hr-small">
+                </div>
+            </section>
+
+            {% include 'html_includes/hens_chicks_cocks.html' %}
+
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Notes & Images Section -->
+            {% include 'html_includes/notes_and_pics.html' %}
+
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Print Section -->
+            {% include 'html_includes/print_and_save.html' %}
+
+            <!-- Used as a warning instead of an Alert -->
+            <section name="warning-section">
+                <div class="warning-div">
+                    <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <div class="button-container">
+                <input type="hidden" name="redirect_url" value="onboard_produce"/>
+                <a href="{% url 'onboard_personal' %}" class="btn button button-full-size">Previous</a> 
+                <button type='submit' id="hcc-button" class="btn button button-full-size" onclick="validateQtys()">Next</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

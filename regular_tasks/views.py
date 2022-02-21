@@ -5,22 +5,22 @@ from customAuth.models import CustomUser
 
 
 @login_required
-def flocks(request):
+def egg_collection(request):
     """view to current flock"""
-    template = 'flock_management/flocks.html'
+    template = 'regular_tasks/egg_collection.html'
     context = {}
     return render(request, template, context)
 
 @login_required
-def add_flock(request):
+def feeding_time(request):
     """view to add flock"""
-    template = 'flock_management/add_flock.html'
+    template = 'regular_tasks/feeding_time.html'
     context = {}
     return render(request, template, context)
 
 @login_required
-def bird_removal(request):
+def coop_cleaning(request):
     """view to add flock"""
-    template = 'flock_management/bird_removal.html'
+    template = 'regular_tasks/coop_cleaning.html'
     context = {}
     return render(request, template, context)
