@@ -67,7 +67,7 @@
 </div>
 
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
+    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc_form">
         {% csrf_token %}
         <div class="form-data">
             <!-- Flock Core Info Section -->
@@ -114,7 +114,6 @@
             </section>
 
             {% include 'html_includes/hens_chicks_cocks.html' %}
-
 
             <div class="bottom-margin">
                 <hr class="hr-large">
