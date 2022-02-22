@@ -86,7 +86,7 @@
 </div>
 
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}">
+    <form id="submit-form" method="POST" action="{% url 'get_onboarding_data' %}">
         {% csrf_token %}
         <input type="hidden" name="redirect_url" value="onboard_stock"/>
         <input type="hidden" name="checkbox_form" value="True"/>
@@ -119,7 +119,7 @@
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.markets_check %}
-                            <input type="checkbox" name="markets_check" id="roadside-check" class="col-css-element sales-methods" checked>
+                            <input type="checkbox" name="markets_check" id="markets-check" class="col-css-element sales-methods" checked>
                             {% else %}
                             <input type="checkbox" name="markets_check" id="markets-check" class="col-css-element sales-methods">
                             {% endif %}
@@ -131,7 +131,7 @@
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.deliveries_check %}
-                            <input type="checkbox" name="deliveries_check" id="roadside-check" class="col-css-element sales-methods" checked>
+                            <input type="checkbox" name="deliveries_check" id="deliveries-check" class="col-css-element sales-methods" checked>
                             {% else %}
                             <input type="checkbox" name="deliveries_check" id="deliveries-check" class="col-css-element sales-methods">
                             {% endif %}
@@ -143,7 +143,7 @@
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.collections_check %}
-                            <input type="checkbox" name="collections_check" id="roadside-check" class="col-css-element sales-methods" checked>
+                            <input type="checkbox" name="collections_check" id="collections-check" class="col-css-element sales-methods" checked>
                             {% else %}
                             <input type="checkbox" name="collections_check" id="collections-check" class="col-css-element sales-methods">
                             {% endif %}
@@ -184,7 +184,7 @@
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.half_dozen_carton_check %}
-                            <input type="checkbox" name="half_dozen_carton_check" id="single-eggs-check" class="col-css-element" checked>
+                            <input type="checkbox" name="half_dozen_carton_check" id="half-dozen-carton-check" class="col-css-element" checked>
                             {% else %}
                             <input type="checkbox" name="half_dozen_carton_check" id="half-dozen-carton-check" class="col-css-element">
                             {% endif %}
@@ -196,7 +196,7 @@
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.dozen_carton_check %}
-                            <input type="checkbox" name="dozen_carton_check" id="single-eggs-check" class="col-css-element" checked>
+                            <input type="checkbox" name="dozen_carton_check" id="dozen-carton-check" class="col-css-element" checked>
                             {% else %}
                             <input type="checkbox" name="dozen_carton_check" id="dozen-carton-check" class="col-css-element">
                             {% endif %}
@@ -239,10 +239,9 @@
             <div class="button-container">
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="{% url 'onboard_flock' %}" class="btn button button-full-size">Previous</a> 
-                <button type='submit' id="produce-next-button" class="btn button button-full-size" onclick="injectHref()">Next</button>
+                <button type="submit" id="produce-next-button" class="btn button button-full-size" onclick="injectHref()">Next</button>
             </div>
         </div>
-  </form>
+    </form>
 </div>
-
 {% endblock %}
