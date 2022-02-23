@@ -33,7 +33,7 @@
 </div>
 
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
+    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form" id="submit-form">
         {% csrf_token %}
         <div class="form-data">
             <!-- Flock Core Info Section -->
@@ -42,7 +42,7 @@
                 {% include 'html_includes/date_flock.html' %}
 
                 <div class="bottom-margin">
-                    <select name="removal_reason" id="removal_reason" required>
+                    <select name="removal_reason" id="removal-reason" required>
                         {% if 'removal_reason' in onboard_profile_data %}
                         <option value="" disabled>Removal Reason</option>
                             {% for removal_reason in breed %}
@@ -83,7 +83,7 @@
 
             <!-- Used as a warning instead of an Alert -->
             <section name="warning-section">
-                <div class="warning-div">
+                <div class="warning-div bottom-margin">
                     <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
                 </div>
             </section>

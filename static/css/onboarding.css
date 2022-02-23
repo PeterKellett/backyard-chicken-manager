@@ -41,6 +41,11 @@ label,
     margin-top: 4px;
 }
 
+/*-- Inputs that need to look like a heading as they are read only --*/
+.h-style-input {
+    color: var(--white);
+}
+
 /*-- INPUT FIELDS END --*/
 
 i {

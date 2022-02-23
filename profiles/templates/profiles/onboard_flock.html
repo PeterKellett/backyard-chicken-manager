@@ -78,7 +78,7 @@
 </div>
 
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
+    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc_form" id="submit-form">
         {% csrf_token %}
         <input type="hidden" name="redirect_url" value="onboard_produce"/>
         <div class="form-data" id="form-data">
@@ -88,9 +88,9 @@
             <section name="flock-core-info">
                 <div class="bottom-margin">
                     {% if 'flock_name' in onboard_profile_data %}
-                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock_name" required>
+                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" required>
                     {% else %}
-                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
+                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
@@ -134,14 +134,14 @@
             {% include 'html_includes/hens_chicks_cocks.html' %}
 
             <!-- Used as a warning instead of an Alert -->
-            <section name="warning-section">
-                <div class="warning-div">
+            <section name="warning_section">
+                <div class="warning-div bottom-margin">
                     <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
                 </div>
-                <div class="bottom-margin">
-                    <hr class="hr-large">
-                </div>
             </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
 
             <div class="button-container">
                 <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">Previous</a> 

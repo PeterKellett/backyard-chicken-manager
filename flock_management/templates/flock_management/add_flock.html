@@ -67,27 +67,27 @@
 </div>
 
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc_form">
+    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc_form" id="submit-form">
         {% csrf_token %}
         <div class="form-data">
             <!-- Flock Core Info Section -->
             <section name="flock-core-info">
                 <div class="bottom-margin">
                     {% if 'flock_name' in onboard_profile_data %}
-                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock_name" required>
+                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" required>
                     {% else %}
-                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
+                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
                     {% if 'acquired_date' in onboard_profile_data %}
-                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired_date" required>
+                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required>
                     {% else %}
-                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
+                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired-date" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
-                    <input type="text" name="coop1_name" placeholder="Coop Name" id="coop1_name" required>
+                    <input type="text" name="coop1_name" placeholder="Coop Name" id="coop-name" required>
                 </div>
                 <div class="bottom-margin">
                     <select name="breed" id="breed" required>
@@ -124,7 +124,7 @@
 
             <!-- Used as a warning instead of an Alert -->
             <section name="warning-section">
-                <div class="warning-div">
+                <div class="warning-div bottom-margin">
                     <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
                 </div>
             </section>

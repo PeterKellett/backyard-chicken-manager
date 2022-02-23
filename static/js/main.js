@@ -97,25 +97,35 @@ $(document).ready(function () {
 
 // HCC Section - Calculation: Calculation to sum total number of birds
 function hccTotal() {
-    console.log("hccTotal function Outside Doc Fn")
     var totalHens = document.querySelector('input[name=hens_qty]').value;
-    console.log("totalHens Outside Doc Fn: " + totalHens);
     var totalChicks = document.querySelector('input[name=chicks_qty]').value;
     var totalCocks = document.querySelector('input[name=cocks_qty]').value;
     var total = Number(totalHens) + Number(totalChicks) + Number(totalCocks);
-    console.log("totalBirds Outside Doc Fn: " + total);
-    document.getElementById("total-birds").textContent = total;
+    document.getElementById("total-birds").value = Number(total);
 }
 
 // HCC Section - Validation: Ensures at least one quantity is indicated before user can move on
+// Inclusion of flock name, date, coop and breed prevents form submitting if those fields are 
+// incomplete, but there is a value for total birds.
 function validateQtys() {
-    if (document.getElementById('total-birds').value == null) {
+    const totalBirds = document.getElementById('total-birds').value;
+    const totalBirdsNumber = Number(totalBirds);
+
+    const flockName = document.getElementById('flock-name').value;
+    console.log("Flock Name: " + flockName);
+    const acquiredDate = document.getElementById('acquired-date').value;
+    const coopName = document.getElementById('coop-name').value;
+    const breed = document.getElementById('breed').value;
+ 
+    if (totalBirdsNumber == 0 || flockName === "" || acquiredDate === "" || coopName === "" || breed === "" ) {
         document.getElementById("bird-qty-warning").textContent =
             "Please provide at least one quantity for Hens, Chicks or Cocks.";
-        return false;
-        console.log("validateQtys: false");
+        document.getElementById("submit-form").addEventListener('submit', (event) => {
+            // stop form submission
+            event.preventDefault();
+        });
     } else {
-        console.log("validateQtys: true");
+        document.getElementById("submit-form").submit();
     }
 }
 
