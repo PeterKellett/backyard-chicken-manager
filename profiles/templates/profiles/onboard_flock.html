@@ -95,16 +95,16 @@
                 </div>
                 <div class="bottom-margin">
                     {% if 'acquired_date' in onboard_profile_data %}
-                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired_date" required>
+                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required>
                     {% else %}
-                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
+                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired-date" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
                     {% if 'coop_name' in onboard_profile_data %}
-                    <input type="text" name="coop_name" value="{{ onboard_profile_data.coop_name }}" placeholder="Coop Name" id="coop_name" required>
+                    <input type="text" name="coop_name" value="{{ onboard_profile_data.coop_name }}" placeholder="Coop Name" id="coop-name" required>
                     {% else %}
-                    <input type="text" name="coop_name" placeholder="Coop Name" id="coop_name" required>
+                    <input type="text" name="coop_name" placeholder="Coop Name" id="coop-name" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">

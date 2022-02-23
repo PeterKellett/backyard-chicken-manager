@@ -1,6 +1,15 @@
 $(document).ready(function () {
     console.log("Document ready!");
 
+    // DATE: Automatically have date fields display the current date based on the User's location
+    // Taken from: https://stackoverflow.com/questions/67659091/why-i-am-getting-this-warning-message-does-not-conform-to-the-required-format
+    const todayDate = new Date(); 
+    const formatDate = todayDate.getDate() < 10 ? `0${todayDate.getDate()}`:todayDate.getDate();
+    const formatMonth = todayDate.getMonth() < 10 ? `0${todayDate.getMonth()+1}`: todayDate.getMonth()+1;
+    const formattedDate = [todayDate.getFullYear(), formatMonth, formatDate].join('-');
+    console.log("formattedDate :" + formattedDate);
+    document.getElementById('todays-date').value = formattedDate;
+
     // PK function
     var flock_form_iteration = 0;
     function addFlockForm() {
