@@ -1,4 +1,4 @@
-<section name="flock-hcc">
+<section name="flock-hcc" id="flock-hcc">
     <div class="container form-data flock-hcc-form-data">
         <div class="row bottom-margin" id="hens-row">
             <div class="col-2 col-css">
@@ -16,10 +16,10 @@
             <div class="col-3 col-css col-css-right">
                 {% if 'hens_qty' in onboard_profile_data %}
                 <input type="number" name="hens_qty" value="{{ onboard_profile_data.hens_qty }}" placeholder="Qty" id="hens-qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
+                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
                 {% else %}
                 <input type="number" name="hens_qty" placeholder="Qty" id="hens-qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
+                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
                 {% endif %}
             </div>
         </div>
@@ -44,10 +44,10 @@
             <div class="col-3 col-css col-css-right">
                 {% if 'chicks_qty' in onboard_profile_data %}
                 <input type="number" name="chicks_qty" value="{{ onboard_profile_data.chicks_qty }}" placeholder="Qty" id="chicks-qty" 
-                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
+                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
                 {% else %}
                 <input type="number" name="chicks_qty" placeholder="Qty" id="chicks_qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
+                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()"> 
                 {% endif %}
 
             </div>
@@ -72,10 +72,10 @@
             <div class="col-3 col-css col-css-right">
                 {% if 'cocks_qty' in onboard_profile_data %}
                 <input type="number" name="cocks_qty" value="{{ onboard_profile_data.cocks_qty }}" placeholder="Qty" id="cocks-qty" 
-                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
+                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
                 {% else %}
                 <input type="number" name="cocks_qty" placeholder="Qty" id="cocks-qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()">
+                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
                 {% endif %}
             </div>
         </div>
@@ -88,7 +88,7 @@
             </div>
 
             <div class="col-2 col-css col-css-right">
-                <h5 id="total-birds text-end">0</h5>
+                <h5 id="total-birds" class="text-end">0</h5>
             </div>
         </div>
     </div>

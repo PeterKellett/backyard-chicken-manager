@@ -82,40 +82,39 @@ $(document).ready(function () {
             x.type = "password";
         }
     }
-
-    // HCC: Calculation to sum total number of birds
-    document.getElementById("cocks-qty").addEventListener("onchange", hccTotal);
-    function hccTotal() {
-        console.log("hccTotal function")
-        var totalHens = document.querySelector('input[name=hens_qty]').value;
-        console.log("totalHens: " + totalHens);
-        var totalChicks = document.querySelector('input[name=chicks_qty]').value;
-        var totalCocks = document.querySelector('input[name=cocks_qty]').value;
-        var total = Number(totalHens) + Number(totalChicks) + Number(totalCocks);
-        console.log("totalBirds: " + total);
-        document.getElementById("total-birds").textContent = total;
-    }
-    
-    // HCC Section: Ensures at least one quantity is indicated
-    function validateQtys() {
-        if (document.getElementById('total-birds').value == null) {
-            document.getElementById("bird-qty-warning").textContent =
-                "Please provide at least one quantity for Hens, Chicks or Cocks.";
-            return false;
-            console.log("validateQtys: false");
-        } else {
-            console.log("validateQtys: true");
-        }
-    }
     
 // !!!!!!! (document).ready function end
 })
 
+// HCC Section - Calculation: Calculation to sum total number of birds
+function hccTotal() {
+    console.log("hccTotal function Outside Doc Fn")
+    var totalHens = document.querySelector('input[name=hens_qty]').value;
+    console.log("totalHens Outside Doc Fn: " + totalHens);
+    var totalChicks = document.querySelector('input[name=chicks_qty]').value;
+    var totalCocks = document.querySelector('input[name=cocks_qty]').value;
+    var total = Number(totalHens) + Number(totalChicks) + Number(totalCocks);
+    console.log("totalBirds Outside Doc Fn: " + total);
+    document.getElementById("total-birds").textContent = total;
+}
+
+// HCC Section - Validation: Ensures at least one quantity is indicated before user can move on
+function validateQtys() {
+    if (document.getElementById('total-birds').value == null) {
+        document.getElementById("bird-qty-warning").textContent =
+            "Please provide at least one quantity for Hens, Chicks or Cocks.";
+        return false;
+        console.log("validateQtys: false");
+    } else {
+        console.log("validateQtys: true");
+    }
+}
 
 // Sales Methods & Units Function to ensure at least one checkbox
 // is checked in each section before next page can be loaded
+// Taken from (kind of): https://www.javascripttutorial.net/javascript-dom/javascript-form/
 function injectHref() {
- console.log("Inject Href");
+    console.log("Inject Href");
     var salesMethods = null;
     var salesUnits = null;
     if (document.getElementById('roadside-check').checked == true ||
@@ -137,9 +136,7 @@ function injectHref() {
     }
 
     if (salesMethods == true && salesUnits == true){
-        document.getElementById("produce-next-button").href = "{% url 'onboard_stock' %}";
         document.getElementById("submit-form").submit();
-        console.log("if true" )
     } else {
         document.getElementById('sales-unit-method-warning').textContent =
             "Please select at least one option each from Sales Methods and Sales Units";
@@ -147,7 +144,6 @@ function injectHref() {
                 // stop form submission
                 event.preventDefault();
             });
-            console.log("if else" )
         }
     }
 
