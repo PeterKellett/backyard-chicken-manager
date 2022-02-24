@@ -14,14 +14,20 @@ def dashboard(request):
     # 1. Try to get the userprofile from the UserProfile model
     try:
         userprofile = UserProfile.objects.get(user=request.user)
-        print("userprofile = ", userprofile)
+        print("userprofile = ", userprofile.id)
     except ObjectDoesNotExist:
         return redirect(onboard_personal)
     # 2. Try to get the farmprofile for the user
     try:
-        farmprofile = FarmProfile.objects.all(user=userprofile.id)
+        farmprofile = userprofile.farmprofiles.all()
+        print("farmprofile = ", farmprofile)
+        for name in farmprofile.iterator():
+            print("name = ", name.onboard_complete)
+        # for key, val in farmprofile.items():
+        #     print("key = ", key)
+        #     print("val = ", val)
     # 3. Check the onboard_complete field of the farmprofile
-        if not farmprofile.onboard_complete:
+        if not farmprofile:
             return redirect(onboard_personal)
         else:
             context = {
@@ -157,11 +163,11 @@ def get_onboarding_data(request):
             )
             userprofile.save()
         # Create a new FarmProfile
-        user = userprofile
+        user = userprofile.id
         farm_business_name = onboard_profile_data['farm_business_name']
         farm_type = FarmType(pk=onboard_profile_data['farm_type'])
         farmprofile = FarmProfile(
-            user=userprofile,
+            user_profile=userprofile,
             farm_business_name=farm_business_name,
             farm_type=farm_type,
             farm_sales_roadside=onboard_profile_data['roadside_check'],
@@ -216,7 +222,6 @@ def onboard_personal(request):
         # Reload the new onboard_profile_data back to the session variable
     request.session['onboard_profile_data'] = onboard_profile_data
     farm_types = FarmType.objects.all()
-    print(farm_types)
     for farm_type in farm_types:
         farm_type = str(farm_type)
 
