@@ -1,22 +1,79 @@
-// Egg Collection - Laid Calculation: Calculation to sum total number of eggs laid
-var totalEggsLaid;
-function totalEggsLaid() {
-    var totalTrays = document.querySelector('input[name=qty_trays]').value;
-    // trayQty needs to be updated to dynamically take in number of eggs per tray
-    var trayQty = 30;
-    var totalTraysQty = totalTrays * trayQty;
-    var totalSingles = document.querySelector('input[name=qty_singles]').value;
-    totalEggsLaid = Number(totalTraysQty) + Number(totalSingles);
-    document.getElementById("total-eggs-laid").value = Number(totalEggsLaid);
-}
+// Egg Collection - Variables
+var total_eggs_laid = 0;
+var damaged_eggs;
+var broken_eggs;
+var eggs_personal_use;
+var eggs_given_free;
+var saleable_eggs;
+var total_weight;
+var total_nonsaleable_eggs;
+
+// Egg Collection - Eggs Laid Calculation: Calculation to sum total number of eggs laid
+document.querySelectorAll('.egg-collection-qty-input').forEach(item => {
+    item.addEventListener('keyup', event => {
+        var totalTrays = document.querySelector('input[name=qty_trays]').value;
+        // trayQty needs to be updated to dynamically take in number of eggs per tray
+        var trayQty = 30;
+        var totalTraysQty = totalTrays * trayQty;
+        var totalSingles = document.querySelector('input[name=qty_singles]').value;
+        total_eggs_laid = Number(totalTraysQty) + Number(totalSingles);
+        document.getElementById("total-eggs-laid").value = Number(total_eggs_laid);
+    })
+});
+
+// Egg Collection - Saleable Eggs Calculation: Calculation to get total saleable eggs
+document.querySelectorAll('.saleable-eggs-input').forEach(item => {
+    item.addEventListener('keyup', event => {
+        damaged_eggs = document.querySelector('input[name=eggs_damaged]').value;
+        broken_eggs = document.querySelector('input[name=eggs_broken]').value;
+        eggs_personal_use = document.querySelector('input[name=eggs_personal_use]').value;
+        eggs_given_free = document.querySelector('input[name=eggs_given_free]').value;
+        saleable_eggs = Number(total_eggs_laid) - (Number(damaged_eggs) + Number(broken_eggs) + Number(eggs_personal_use) + Number(eggs_given_free));
+        console.log("total_eggs_laid: " + total_eggs_laid);
+        document.getElementById("eggs-saleable-qty").value = Number(saleable_eggs);
+    })
+});
 
 // Egg Collection - Weight Calculation: Calculation to average weight of eggs laid
-function averageEggWeight() {
-    var totalWeight = document.querySelector('input[name=total_weight]').value;
-    var brokenEggs = document.querySelector('input[name=eggs_broken]').value;
-    var weighableEggs = totalEggsLaid - brokenEggs;
-    var averageEggWeight = Number(totalWeight) / Number(weighableEggs);
-    var averageEggWeightMetric = Math.ceil(averageEggWeight * 1000);
-    document.getElementById("average-egg-weight").value = Number(averageEggWeightMetric);
-    console.log("Average Egg Weight: " + averageEggWeightMetric);
-}
+document.querySelectorAll('.average-weight-input').forEach(item => {
+    item.addEventListener('keyup', event => {
+        var weighable_eggs = Number(total_eggs_laid) - Number(broken_eggs);
+        console.log("Weighable Eggs: " + weighable_eggs);
+        total_weight = document.querySelector('input[name=total_weight]').value;
+        var average_egg_weight = Number(total_weight) / Number(weighable_eggs);
+        var average_egg_weight_metric = Math.ceil(average_egg_weight * 1000);
+        document.getElementById("average-egg-weight").value = Number(average_egg_weight_metric);
+    })
+});
+
+// Egg Collection - Warning: Disoplays if there are more non-saleable eggs than eggs laid
+document.querySelectorAll('.saleable-eggs-input').forEach(item => {
+    item.addEventListener('keyup', event => {
+        total_nonsaleable_eggs = Number(damaged_eggs) + Number(broken_eggs) + Number(eggs_personal_use) + Number(eggs_given_free);
+        console.log("total_nonsaleable_eggs: " + total_nonsaleable_eggs)
+        console.log("total_eggs_laid: " + total_eggs_laid)
+
+        if (total_nonsaleable_eggs > total_eggs_laid) {
+                document.getElementById("warning-section-text").textContent =
+                "Hmmm, something's not right. The total for eggs damaged, broken, used personally and/or given away free can't be higher than the quantity of eggs laid.";
+            };
+        })
+    });
+
+// Egg Collection - Validation: Prevents form being submitted if 
+// non-saleable eggs qty is greater than total of non-saleable elements
+document.getElementById("save-button").onclick = function() {preventFormSubmission()};
+function preventFormSubmission() {
+        total_nonsaleable_eggs = Number(damaged_eggs) + Number(broken_eggs) + Number(eggs_personal_use) + Number(eggs_given_free);
+        if (total_nonsaleable_eggs > total_eggs_laid || total_eggs_laid == 0 ) {
+                document.getElementById("submit-form").addEventListener('submit', (event) => {
+                    document.getElementById("warning-section-text").textContent =
+                    "Egg collection quantity can't be 0 or the total for eggs damaged, broken, used personally and/or given away free can't be higher than the quantity of eggs laid.";
+                    // stop form submission
+                    event.preventDefault();
+            });
+        } else {
+            document.getElementById("submit-form").submit();
+            console.log("Right Calc");
+        }
+    };

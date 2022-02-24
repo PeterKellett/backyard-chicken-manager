@@ -112,7 +112,7 @@ function validateQtys() {
     const totalBirdsNumber = Number(totalBirds);
 
     if (totalBirdsNumber == 0) {
-        document.getElementById("bird-qty-warning").textContent =
+        document.getElementById("warning-section-text").textContent =
             "Please provide at least one quantity for Hens, Chicks or Cocks.";
         document.getElementById("submit-form").addEventListener('submit', (event) => {
             // stop form submission

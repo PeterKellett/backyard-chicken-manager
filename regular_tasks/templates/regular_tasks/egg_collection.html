@@ -62,7 +62,7 @@
 
 <!-- FORM SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'egg_collection' %}" name="egg_collection">
+    <form method="POST" action="{% url 'egg_collection' %}" name="egg_collection" id="submit-form">
         {% csrf_token %}
         <div class="form-data">
             <!-- Eggs Laid Section -->
@@ -70,14 +70,17 @@
                 {% include 'html_includes/date_flock.html' %}
                 <div class="container bottom-margin">
                     <div class="row">
+                        <!-- Eggs Laid Trays -->
                         <div class="col-6 two-inputs-left">
-                            <input type="integer" name="qty_trays" placeholder="Qty Laid - Trays" id="qty-trays" onkeyup="totalEggsLaid()">
+                            <input type="number" name="qty_trays" placeholder="Qty Laid - Trays" id="qty-trays" class="egg-collection-qty-input saleable-eggs-input average-weight-input">
                         </div>
+                        <!-- Eggs Laid Singles-->
                         <div class="col-6 two-inputs-right">
-                            <input type="integer" name="qty_singles" placeholder="Qty Laid - Single" id="qty-singles" onkeyup="totalEggsLaid()">
+                            <input type="number" name="qty_singles" placeholder="Qty Laid - Single" id="qty-singles" class="egg-collection-qty-input saleable-eggs-input average-weight-input">
                         </div>
                     </div>
                 </div>
+                <!-- Total Eggs Laid -->
                 <div class="row bottom-margin">
                     <div class="col-10 col-css">
                         <h6 class="row-name">Total Eggs Laid:</h6>
@@ -86,13 +89,15 @@
                         <input type="number" value="0" name="total_eggs_laid" id="total-eggs-laid" class="text-end h-style-input"></input>
                     </div>
                 </div>
+                <!-- Eggs Damaged -->
                 <div class="bottom-margin">
                     <input type="number" name="eggs_damaged" value="" placeholder="Qty of Eggs Damaged (OK for personal use)" id="eggs-damaged" 
-                    step="1" min="0">
+                    step="1" min="0" class="saleable-eggs-input">
                 </div>
+                <!-- Eggs Broken -->
                 <div class="bottom-margin">
                     <input type="number" name="eggs_broken" value="" placeholder="Qty of Eggs Broken (Unuseable)" id="eggs-broken" 
-                    step="1" min="0">
+                    step="1" min="0" class="saleable-eggs-input average-weight-input">
                 </div>
                 <div class="bottom-margin">
                     <hr class="hr-large">
@@ -107,19 +112,22 @@
                     </a>
                 </div>
                 <div class="collapse in" id="collapseExample">
+                    <!-- Eggs Personal Use -->
                     <div class="bottom-margin">
                         <input type="number" name="eggs_personal_use" value="" placeholder="Qty of Eggs Taken for Personal Use)" id="eggs-personal-use" 
-                        step="1" min="0">
+                        step="1" min="0" class="saleable-eggs-input">
                     </div>
+                    <!-- Eggs Given Free -->
                     <div class="bottom-margin">
                         <input type="number" name="eggs_given_free" value="" placeholder="Qty of Eggs Given Away Free" id="eggs-given-free" 
-                        step="1" min="0">
+                        step="1" min="0" class="saleable-eggs-input">
                     </div>
+                    <!-- Eggs Total Weight -->
                     <div class="container">
                         <div class="row bottom-margin">
                             <div class="col-10 col-css">
-                                <input type="number" name="total_weight" placeholder="Total weight of eggs laid (excl. Broken)" id="total-weight" 
-                                    min="0" oninput="this.value = Math.abs(this.value)" onkeyup="averageEggWeight()">
+                                <input type="number" name="total_weight" placeholder="Total weight of eggs laid (excl. Broken)" id="total-weight"
+                                    min="0" oninput="this.value = Math.abs(this.value)" class="average-weight-input">
                             </div>
                             <div class="col-2 col-css">
                                 <h5 class="text-end">
@@ -128,6 +136,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Eggs Average Weight -->
                     <div class="row bottom-margin">
                         <div class="col-10 col-css">
                             <h6 class="row-name">Average Egg Weight:</h6>
@@ -143,12 +152,13 @@
                 <hr class="hr-large">
             </div>
 
+            <!-- Eggs Saleable Qty -->
             <div class="row bottom-margin">
                 <div class="col-10 col-css">
                     <h6 class="row-name">Saleable Quantity:</h6>
                 </div>
                 <div class="col-2 col-css col-css-right">
-                    <h5 id="total-eggs-laid text-end"># eggs</h5>
+                    <input type="number" value="0" name="eggs_saleable_qty" id="eggs-saleable-qty" class="text-end h-style-input"></input>
                 </div>
             </div>
 
@@ -160,15 +170,9 @@
             {% include 'html_includes/notes_and_pics.html' %}
 
             <!-- Used as a warning instead of an Alert -->
-            <section name="warning-section">
-                <div class="warning-div">
-                    <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
-                </div>
-            </section>
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
+            {% include 'html_includes/validation_warning.html' %}
 
+            <!-- Buttons Section -->
             <div class="button-container">
                 <input type="hidden" name="redirect_url" value="onboard_produce"/>
                 <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
