@@ -15,6 +15,7 @@
 
 {% block content %}
 
+<!-- Sub Navigation Section -->
 <div class="element-container container-fluid sub-nav-container">
     <ul class="nav nav-tabs nav-justified">
         <li class="nav-item text-wrap">
@@ -38,14 +39,8 @@
     </ul>
 </div>
 
-<div class="large-screen-h1">
-    <div class="bottom-margin">
-        <h1>Feeding Time</h1>
-    </div>
-    <div class="bottom-margin">
-        <hr class="hr-large">
-    </div>
-</div>
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Feeding Time" %}
 
 <!-- Icons and Links Section -->
 <div class="container element-container">

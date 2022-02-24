@@ -37,7 +37,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 class FarmProfileAdmin(admin.ModelAdmin):
     """Admin layout for FarmProfile table"""
     list_display = (
-        'user',
+        'user_profile',
         'farm_business_name',
         'farm_type',
         'farm_sales_roadside',

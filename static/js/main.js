@@ -106,8 +106,6 @@ function hccTotal() {
     document.getElementById("total-birds").value = Number(total);
 }
 
-
-
 // HCC Section - Validation: Ensures at least one quantity is indicated before user can move on
 function validateQtys() {
     const totalBirds = document.getElementById('total-birds').value;
@@ -251,7 +249,7 @@ let autocomplete;
 function initAutocomplete() {
     console.log("Map Called");
     autocomplete = new google.maps.places.Autocomplete(
-        document.getElementById('city_country'),
+        document.getElementById('city-country'),
         {
             // Don't know why it's not working when I include this. See table 3 in https://developers.google.com/maps/documentation/places/web-service/supported_types
             //types: ['cities'],
@@ -264,9 +262,9 @@ function onPlaceChanged() {
     var place = autocomplete.getPlace();
 
     if (!place.geometry) {
-        document.getElementById('city_country').placeholder =
+        document.getElementById('city-country').placeholder =
         'Enter a City or Town';
     } else {
-        document.getElementById('city_country').innerHTML = place.name;
+        document.getElementById('city-country').innerHTML = place.name;
     }
 }

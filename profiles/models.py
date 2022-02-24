@@ -65,7 +65,7 @@ class UserProfile(models.Model):
 
 class FarmProfile(models.Model):
     """Model used for storing FarmProfile attributes"""
-    user = models.ForeignKey(UserProfile,
+    user_profile = models.ForeignKey(UserProfile,
                              null=False,
                              blank=False,
                              on_delete=models.CASCADE,
