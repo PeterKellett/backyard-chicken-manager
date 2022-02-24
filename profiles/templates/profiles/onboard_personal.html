@@ -9,32 +9,15 @@
     Onboarding Personal
 {% endblock %}
 
+
 {% block content %}
-<div class="large-screen-h1">
-    <div class="bottom-margin">
-        <h1>Onboarding Personal</h1>
-    </div>
-    <div class="bottom-margin">
-        <hr class="hr-large">
-    </div>
-</div>
-<div class="container element-container">
-    <div class="row bottom-margin">
-        <div class="col-10 col-css">
-            <h4 class="text-start">
-                Page 1 of 4
-            </h4>
-        </div>
-        <div class="col-2 col-css-right">
-            <i class="fas fa-info-circle icon-orange" data-bs-toggle="modal" data-bs-target="#myModal"></i>
-        </div>
-    </div>
-    <div class="bottom-margin">
-        <p class="text-start">
-            To give you the best possible experience we just need a few more bits of information.
-        </p>
-    </div>
-</div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Onboarding Personal" %}
+
+<!-- Page Counter & Intro -->
+{% include 'html_includes/onboard_page_counter_and_info.html' with page_number="1 of 4" page_intro="To give you the best possible experience we just need a few more bits of information." %}
+
 <!-- "i" icon modal -->
 <div class="modal" id="myModal">
   <div class="modal-dialog">
@@ -65,11 +48,11 @@
     </div>
   </div>
 </div>
-
 <div class="bottom-margin">
     <hr class="hr-large">
 </div>
 
+<!-- Form Section -->
 <div class="element-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}">
         {% csrf_token %}
@@ -81,21 +64,21 @@
                     <h4>Personal</h4>
                 </div>
                 <div class="bottom-margin">
-                  {% if 'full_name' in onboard_profile_data %}
-                    <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full_name" required>
-                  {% else %}
-                    <input type="text" name="full_name" placeholder="Full Name" id="full_name" required>
-                  {% endif %}
+                    {% if 'full_name' in onboard_profile_data %}
+                        <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full-name" required>
+                    {% else %}
+                        <input type="text" name="full_name" placeholder="Full Name" id="full-name" required>
+                    {% endif %}
                 </div>
                 <div class="bottom-margin">
-                  {% if 'city_country' in onboard_profile_data %}
-                  <input type="text" name="city_country" placeholder="City, Country" value="{{ onboard_profile_data.city_country }}" id="city_country" required>
-                  {% else %}
-                    <input type="text" name="city_country" placeholder="City, Country" id="city_country" required>
-                  {% endif %}
+                    {% if 'city_country' in onboard_profile_data %}
+                        <input type="text" name="city_country" placeholder="City, Country" value="{{ onboard_profile_data.city_country }}" id="city-country" required>
+                    {% else %}
+                        <input type="text" name="city_country" placeholder="City, Country" id="city-country" required>
+                    {% endif %}
                 </div>
                 <div class="bottom-margin">
-                  <hr class="hr-small">
+                    <hr class="hr-small">
                 </div>
             </section>
 
@@ -106,13 +89,13 @@
                 </div>
                 <div class="bottom-margin">
                   {% if 'farm_business_name' in onboard_profile_data %}
-                    <input type="text" name="farm_business_name" placeholder="Farm/Business Name" value="{{ onboard_profile_data.farm_business_name }}" id="farm_business_name" required>
+                    <input type="text" name="farm_business_name" placeholder="Farm/Business Name" value="{{ onboard_profile_data.farm_business_name }}" id="farm-business-name" required>
                   {% else %}
-                    <input type="text" name="farm_business_name" placeholder="Farm/Business Name" id="farm_business_name" required>
+                    <input type="text" name="farm_business_name" placeholder="Farm/Business Name" id="farm-business-name" required>
                   {% endif %}
                 </div>
                 <div class="bottom-margin">
-                  <select name="farm_type" id="farm_type" required>
+                  <select name="farm_type" id="farm-type" required>
                     {% if 'farm_type' in onboard_profile_data %}
                       <option value="" disabled>Farm Type</option>
                       {% for farm_type in farm_types %}                    
@@ -130,12 +113,13 @@
                     {% endif %}              
                   </select>
                 </div>
-
-            <section>
+            </section>
 
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
+            
+            <!-- Buttons Section -->
             <div class="button-container">
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="" class="btn button button-small-size">Previous</a> 

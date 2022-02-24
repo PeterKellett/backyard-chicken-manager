@@ -10,14 +10,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="large-screen-h1">
-    <div class="bottom-margin">
-        <h1>Flock</h1>
-    </div>
-    <div class="bottom-margin">
-        <hr class="hr-large">
-    </div>
-</div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Flock" %}
 
 <!-- Icons and Links Section -->
 <div class="container element-container">
@@ -41,27 +36,27 @@
 </div>
 
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
+    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form" id="submit-form">
         {% csrf_token %}
         <div class="form-data">
             <!-- Flock Core Info Section -->
             <section name="flock-core-info">
                 <div class="bottom-margin">
                     {% if 'flock_name' in onboard_profile_data %}
-                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock_name" required>
+                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" required>
                     {% else %}
-                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
+                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
                     {% if 'acquired_date' in onboard_profile_data %}
-                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired_date" required>
+                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required>
                     {% else %}
-                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
+                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired-date" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
-                    <input type="text" name="coop1_name" placeholder="Coop Name" id="coop1_name" required>
+                    <input type="text" name="coop1_name" placeholder="Coop Name" id="coop-name" required>
                 </div>
                 <div class="bottom-margin">
                     <select name="breed" id="breed" required>
@@ -140,14 +135,7 @@
             {% include 'html_includes/print_and_save.html' %}
 
             <!-- Used as a warning instead of an Alert -->
-            <section name="warning-section">
-                <div class="warning-div">
-                    <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
-                </div>
-            </section>
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
+            {% include 'html_includes/validation_warning.html' %}
 
             <div class="button-container">
                 <input type="hidden" name="redirect_url" value="onboard_produce"/>

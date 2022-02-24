@@ -9,33 +9,14 @@
     Onboarding Stocks
 {% endblock %}
 
+
 {% block content %}
-<div class="large-screen-h1">
-    <div class="bottom-margin">
-        <h1>Onboarding Stocks</h1>
-    </div>
-    <div class="bottom-margin">
-        <hr class="hr-large">
-    </div>
-</div>
-<div class="container element-container">
-    <div class="row bottom-margin">
-        <div class="col-10 col-css">
-            <h4 class="text-start">
-                Page 4 of 4
-            </h4>
-        </div>
-        <div class="col-2 col-css-right">
-            <i class="fas fa-info-circle icon-orange"  data-bs-toggle="modal" data-bs-target="#myModal"></i>
-        </div>
-    </div>
-    <div class="row bottom-margin">
-        <p class="text-start">
-            Finally, tell us about your existing stocks. If you don't have the information to hand,
-            don't worry, you can add it later in the “Profile & Settings” section.
-        </p>
-    </div>
-</div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Onboarding Stocks" %}
+
+<!-- Page Counter & Intro -->
+{% include 'html_includes/onboard_page_counter_and_info.html' with page_number="4 of 4" page_intro="Finally, tell us about your existing stocks. If you don't have the information to hand, don't worry, you can add it later in the “Profile & Settings” section." %}
 
 <!-- "i" icon modal -->
 <div class="modal" id="myModal">
@@ -75,11 +56,11 @@
         </div>
     </div>
 </div>
-
 <div class="bottom-margin">
     <hr class="hr-large">
 </div>
 
+<!-- Form Section -->
 <div class="element-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}">
         {% csrf_token %}
@@ -113,9 +94,9 @@
                 </div>
                 <div class="bottom-margin">
                     {% if 'feed_name' in onboard_profile_data %}
-                    <input type="text" name="feed_name" value="{{ onboard_profile_data.feed_name }}" placeholder="Feed Name" id="feed_name" required>
+                    <input type="text" name="feed_name" value="{{ onboard_profile_data.feed_name }}" placeholder="Feed Name" id="feed-name" required>
                     {% else %}
-                    <input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>
+                    <input type="text" name="feed_name" placeholder="Feed Name" id="feed-name" required>
                     {% endif %}
                 </div>
                 <div class="container">
@@ -153,9 +134,9 @@
               
                 <div class="bottom-margin">
                     {% if 'supplement_name' in onboard_profile_data %}
-                    <input type="text" name="supplement_name" value="{{ onboard_profile_data.supplement_name }}" placeholder="Supplement Name" id="supplement_name" required>
+                    <input type="text" name="supplement_name" value="{{ onboard_profile_data.supplement_name }}" placeholder="Supplement Name" id="supplement-name" required>
                     {% else %}
-                    <input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement_name" required>
+                    <input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement-name" required>
                     {% endif %}
                 </div>
                 <div class="container">
@@ -185,6 +166,7 @@
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
+            
             <div class="button-container">
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="{% url 'onboard_produce' %}" class="btn button button-small-size">Previous</a> 
