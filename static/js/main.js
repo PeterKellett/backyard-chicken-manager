@@ -7,8 +7,8 @@ $(document).ready(function () {
     const formatDate = todayDate.getDate() < 10 ? `0${todayDate.getDate()}`:todayDate.getDate();
     const formatMonth = todayDate.getMonth() < 10 ? `0${todayDate.getMonth()+1}`: todayDate.getMonth()+1;
     const formattedDate = [todayDate.getFullYear(), formatMonth, formatDate].join('-');
-    console.log("formattedDate :" + formattedDate);
     document.getElementById('todays-date').value = formattedDate;
+    
 
     // PK function
     var flock_form_iteration = 0;
@@ -91,6 +91,8 @@ $(document).ready(function () {
             x.type = "password";
         }
     }
+
+    hccTotal();
     
 // !!!!!!! (document).ready function end
 })
@@ -103,6 +105,8 @@ function hccTotal() {
     var total = Number(totalHens) + Number(totalChicks) + Number(totalCocks);
     document.getElementById("total-birds").value = Number(total);
 }
+
+
 
 // HCC Section - Validation: Ensures at least one quantity is indicated before user can move on
 function validateQtys() {
@@ -245,6 +249,7 @@ $(document).ready(function() {
 // Taken from https://www.youtube.com/watch?v=c3MjU9E9buQ&t=165s
 let autocomplete;
 function initAutocomplete() {
+    console.log("Map Called");
     autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('city_country'),
         {
@@ -253,7 +258,7 @@ function initAutocomplete() {
             fields: ['address_components','geometry'] //https://developers.google.com/maps/documentation/javascript/place-data-fields?hl=en
         });
     autocomplete.addListener('place_changed', onPlaceChanged);
-    }
+}
 
 function onPlaceChanged() {
     var place = autocomplete.getPlace();
