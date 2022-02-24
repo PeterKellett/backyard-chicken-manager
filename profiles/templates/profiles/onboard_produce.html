@@ -9,32 +9,14 @@
     Onboarding Sales
 {% endblock %}
 
+
 {% block content %}
-<div class="large-screen-h1">
-    <div class="bottom-margin">
-        <h1>Onboarding Sales</h1>
-    </div>
-    <div class="bottom-margin">
-        <hr class="hr-large">
-    </div>
-</div>
-<div class="container element-container">
-    <div class="row bottom-margin">
-        <div class="col-10 col-css">
-            <h4 class="text-start">
-                Page 3 of 4
-            </h4>
-        </div>
-        <div class="col-2 col-css-right">
-            <i class="fas fa-info-circle icon-orange" data-bs-toggle="modal" data-bs-target="#myModal"></i>
-        </div>
-    </div>
-    <div class="row bottom-margin">
-        <p class="text-start">
-            ...And how you sell your produce. Please select at least one option from each section.
-        </p>
-    </div>
-</div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Onboarding Sales" %}
+
+<!-- Page Counter & Intro -->
+{% include 'html_includes/onboard_page_counter_and_info.html' with page_number="3 of 4" page_intro="...And how you sell your produce. Please select at least one option from each section." %}
 
 <!-- "i" icon modal -->
 <div class="modal" id="myModal">
@@ -155,7 +137,6 @@
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
-            <div>
 
             <!-- Sales Units Section -->
             <section name="sales-units-section">

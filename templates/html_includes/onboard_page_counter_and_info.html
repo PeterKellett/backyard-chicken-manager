@@ -1,0 +1,19 @@
+<!-- Adds a page counter, page X of Y, to the top of the page along with a page intro -->
+
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-10 col-css">
+            <h4 class="text-start">
+                {{ page_number }}
+            </h4>
+        </div>
+        <div class="col-2 col-css-right">
+            <i class="fas fa-info-circle icon-orange" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+        </div>
+    </div>
+    <div class="bottom-margin">
+        <p class="text-start">
+            {{ page_intro }}
+        </p>
+    </div>
+</div>
