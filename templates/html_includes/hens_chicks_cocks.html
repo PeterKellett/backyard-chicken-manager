@@ -1,3 +1,5 @@
+<!-- The HCC section appears on multiple pages and is ued for individually counting Hens, Chicks and Cocks-->
+
 <section name="flock-hcc" id="flock-hcc">
     <div class="container form-data flock-hcc-form-data">
         <div class="row bottom-margin" id="hens-row">
@@ -11,7 +13,7 @@
                 <p class="checkbox-label hcc-checkbox-label col-css-element">All Hens</p>
             </div>
             <div class="col-1 col-css">
-                <input type="checkbox" name="all_hens_check" id="all_hens_check" class="col-css-element hcc-checkbox">
+                <input type="checkbox" name="all_hens_check" id="all-hens-check" class="col-css-element hcc-checkbox">
             </div>
             <div class="col-3 col-css col-css-right">
                 {% if 'hens_qty' in onboard_profile_data %}
@@ -38,7 +40,7 @@
                 <p class="checkbox-label hcc-checkbox-label col-css-element">All Chicks</p>
             </div>
             <div class="col-1 col-css">
-                <input type="checkbox" name="all_chicks_check" id="all_chicks_check" class="col-css-element hcc-checkbox">
+                <input type="checkbox" name="all_chicks_check" id="all-chicks-check" class="col-css-element hcc-checkbox">
             </div>
 
             <div class="col-3 col-css col-css-right">
@@ -46,7 +48,7 @@
                 <input type="number" name="chicks_qty" value="{{ onboard_profile_data.chicks_qty }}" placeholder="Qty" id="chicks-qty" 
                 step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
                 {% else %}
-                <input type="number" name="chicks_qty" placeholder="Qty" id="chicks_qty" 
+                <input type="number" name="chicks_qty" placeholder="Qty" id="chicks-qty" 
                     step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()"> 
                 {% endif %}
 
@@ -67,7 +69,7 @@
                 <p class="checkbox-label hcc-checkbox-label col-css-element">All Cocks</p>
             </div>
             <div class="col-1 col-css">
-                <input type="checkbox" name="all_cocks_check" id="all_cocks_check" class="col-css-element hcc-checkbox">
+                <input type="checkbox" name="all_cocks_check" id="all-cocks-check" class="col-css-element hcc-checkbox">
             </div>
             <div class="col-3 col-css col-css-right">
                 {% if 'cocks_qty' in onboard_profile_data %}

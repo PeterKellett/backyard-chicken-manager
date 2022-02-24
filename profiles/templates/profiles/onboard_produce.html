@@ -62,11 +62,11 @@
         </div>
     </div>
 </div>
-
 <div class="bottom-margin">
     <hr class="hr-large">
 </div>
 
+<!-- Form Section -->
 <div class="element-container">
     <form id="submit-form" method="POST" action="{% url 'get_onboarding_data' %}">
         {% csrf_token %}
@@ -189,10 +189,10 @@
                         </div>
                         <div class="col-4 col-css">
                             {% if 'trays_qty' in onboard_profile_data %}
-                            <input type="number" name="trays_qty" value="{{ onboard_profile_data.trays_qty }}" placeholder="Tray Qty" id="trays_qty" 
+                            <input type="number" name="trays_qty" value="{{ onboard_profile_data.trays_qty }}" placeholder="Tray Qty" id="trays-qty" 
                                 step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
                             {% else %}
-                            <input type="number" name="trays_qty" value="30" placeholder="Tray Qty" id="trays_qty" 
+                            <input type="number" name="trays_qty" value="30" placeholder="Tray Qty" id="trays-qty" 
                                 step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
                             {% endif %}
                         </div>
@@ -210,6 +210,7 @@
             <!-- Used as a warning instead of an Alert -->
             {% include 'html_includes/validation_warning.html' %}
 
+            <!-- Buttons Section -->
             <div class="button-container bottom-margin">
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="{% url 'onboard_flock' %}" class="btn button button-full-size">Previous</a> 

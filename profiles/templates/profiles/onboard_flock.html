@@ -59,20 +59,22 @@
     <hr class="hr-large">
 </div>
 
+<!-- Form Section -->
 <div class="element-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc_form" id="submit-form">
         {% csrf_token %}
         <input type="hidden" name="redirect_url" value="onboard_produce"/>
         <div class="form-data" id="form-data">
+
             <!-- Flock Core Info Section -->
             {% for flock in onboard_profile_data.flocks %}
             {% endfor %}
             <section name="flock-core-info">
                 <div class="bottom-margin">
                     {% if 'flock_name' in onboard_profile_data %}
-                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" required>
+                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" autofocus required>
                     {% else %}
-                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
+                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" autofocus required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
@@ -118,6 +120,7 @@
             <!-- Used as a warning instead of an Alert -->
             {% include 'html_includes/validation_warning.html' %}
 
+            <!-- Buttons Section -->
             <div class="button-container">
                 <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">Previous</a> 
                 <button type='submit' id="hcc-button" class="btn button button-small-size" onclick="validateQtys()">Next</button>

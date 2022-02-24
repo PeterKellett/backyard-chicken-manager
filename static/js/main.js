@@ -18,17 +18,17 @@ $(document).ready(function () {
             `<!-- Flock Core Info Section -->
             <section name="flock-core-info">
                 <div>
-                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" required>
+                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
                 </div>
                 <div>
                     {% if 'acquired_date' in onboard_profile_data %}
-                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired_date" required>
+                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required>
                     {% else %}
-                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
+                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired-date" required>
                     {% endif %}
                 </div>
                 <div>
-                    <input type="text" name="coop1_name" placeholder="Coop Name" id="coop1_name" required>
+                    <input type="text" name="coop1_name" placeholder="Coop Name" id="coop-name" required>
                 </div>
                 <div>
                     <select name="breed" id="breed" required>
@@ -171,7 +171,7 @@ function addAnotherFeed() {
                             <hr class="hr-small">
                         </div>
                         <div class="bottom-margin">
-                            <input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>
+                            <input type="text" name="feed_name" placeholder="Feed Name" id="feed-name" required>
                         </div>
                         <div class="container">
                             <div class="row bottom-margin">
@@ -197,7 +197,7 @@ function addAnotherSupplement() {
                                     <hr class="hr-small">
                                 </div>
                                 <div class="bottom-margin">
-                                    <input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement_name" required>
+                                    <input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement-name" required>
                                 </div>
                                 <div class="container">
                                     <div class="row bottom-margin">

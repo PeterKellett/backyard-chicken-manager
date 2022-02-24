@@ -56,11 +56,11 @@
         </div>
     </div>
 </div>
-
 <div class="bottom-margin">
     <hr class="hr-large">
 </div>
 
+<!-- Form Section -->
 <div class="element-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}">
         {% csrf_token %}
@@ -94,9 +94,9 @@
                 </div>
                 <div class="bottom-margin">
                     {% if 'feed_name' in onboard_profile_data %}
-                    <input type="text" name="feed_name" value="{{ onboard_profile_data.feed_name }}" placeholder="Feed Name" id="feed_name" required>
+                    <input type="text" name="feed_name" value="{{ onboard_profile_data.feed_name }}" placeholder="Feed Name" id="feed-name" required>
                     {% else %}
-                    <input type="text" name="feed_name" placeholder="Feed Name" id="feed_name" required>
+                    <input type="text" name="feed_name" placeholder="Feed Name" id="feed-name" required>
                     {% endif %}
                 </div>
                 <div class="container">
@@ -134,9 +134,9 @@
               
                 <div class="bottom-margin">
                     {% if 'supplement_name' in onboard_profile_data %}
-                    <input type="text" name="supplement_name" value="{{ onboard_profile_data.supplement_name }}" placeholder="Supplement Name" id="supplement_name" required>
+                    <input type="text" name="supplement_name" value="{{ onboard_profile_data.supplement_name }}" placeholder="Supplement Name" id="supplement-name" required>
                     {% else %}
-                    <input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement_name" required>
+                    <input type="text" name="supplement_name" placeholder="Supplement Name" id="supplement-name" required>
                     {% endif %}
                 </div>
                 <div class="container">
@@ -166,6 +166,7 @@
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
+            
             <div class="button-container">
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="{% url 'onboard_produce' %}" class="btn button button-small-size">Previous</a> 
