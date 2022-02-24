@@ -140,14 +140,7 @@
             {% include 'html_includes/print_and_save.html' %}
 
             <!-- Used as a warning instead of an Alert -->
-            <section name="warning-section">
-                <div class="warning-div bottom-margin">
-                    <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
-                </div>
-            </section>
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
+            {% include 'html_includes/validation_warning.html' %}
 
             <div class="button-container">
                 <input type="hidden" name="redirect_url" value="onboard_produce"/>

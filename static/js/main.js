@@ -105,19 +105,11 @@ function hccTotal() {
 }
 
 // HCC Section - Validation: Ensures at least one quantity is indicated before user can move on
-// Inclusion of flock name, date, coop and breed prevents form submitting if those fields are 
-// incomplete, but there is a value for total birds.
 function validateQtys() {
     const totalBirds = document.getElementById('total-birds').value;
     const totalBirdsNumber = Number(totalBirds);
 
-    const flockName = document.getElementById('flock-name').value;
-    console.log("Flock Name: " + flockName);
-    const acquiredDate = document.getElementById('acquired-date').value;
-    const coopName = document.getElementById('coop-name').value;
-    const breed = document.getElementById('breed').value;
- 
-    if (totalBirdsNumber == 0 || flockName === "" || acquiredDate === "" || coopName === "" || breed === "" ) {
+    if (totalBirdsNumber == 0) {
         document.getElementById("bird-qty-warning").textContent =
             "Please provide at least one quantity for Hens, Chicks or Cocks.";
         document.getElementById("submit-form").addEventListener('submit', (event) => {
