@@ -9,32 +9,14 @@
     Onboarding Sales
 {% endblock %}
 
+
 {% block content %}
-<div class="large-screen-h1">
-    <div class="bottom-margin">
-        <h1>Onboarding Sales</h1>
-    </div>
-    <div class="bottom-margin">
-        <hr class="hr-large">
-    </div>
-</div>
-<div class="container element-container">
-    <div class="row bottom-margin">
-        <div class="col-10 col-css">
-            <h4 class="text-start">
-                Page 3 of 4
-            </h4>
-        </div>
-        <div class="col-2 col-css-right">
-            <i class="fas fa-info-circle icon-orange" data-bs-toggle="modal" data-bs-target="#myModal"></i>
-        </div>
-    </div>
-    <div class="row bottom-margin">
-        <p class="text-start">
-            ...And how you sell your produce. Please select at least one option from each section.
-        </p>
-    </div>
-</div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Onboarding Sales" %}
+
+<!-- Page Counter & Intro -->
+{% include 'html_includes/onboard_page_counter_and_info.html' with page_number="3 of 4" page_intro="...And how you sell your produce. Please select at least one option from each section." %}
 
 <!-- "i" icon modal -->
 <div class="modal" id="myModal">
@@ -80,13 +62,13 @@
         </div>
     </div>
 </div>
-
 <div class="bottom-margin">
     <hr class="hr-large">
 </div>
 
+<!-- Form Section -->
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}">
+    <form id="submit-form" method="POST" action="{% url 'get_onboarding_data' %}">
         {% csrf_token %}
         <input type="hidden" name="redirect_url" value="onboard_stock"/>
         <input type="hidden" name="checkbox_form" value="True"/>
@@ -119,7 +101,7 @@
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.markets_check %}
-                            <input type="checkbox" name="markets_check" id="roadside-check" class="col-css-element sales-methods" checked>
+                            <input type="checkbox" name="markets_check" id="markets-check" class="col-css-element sales-methods" checked>
                             {% else %}
                             <input type="checkbox" name="markets_check" id="markets-check" class="col-css-element sales-methods">
                             {% endif %}
@@ -131,7 +113,7 @@
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.deliveries_check %}
-                            <input type="checkbox" name="deliveries_check" id="roadside-check" class="col-css-element sales-methods" checked>
+                            <input type="checkbox" name="deliveries_check" id="deliveries-check" class="col-css-element sales-methods" checked>
                             {% else %}
                             <input type="checkbox" name="deliveries_check" id="deliveries-check" class="col-css-element sales-methods">
                             {% endif %}
@@ -143,7 +125,7 @@
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.collections_check %}
-                            <input type="checkbox" name="collections_check" id="roadside-check" class="col-css-element sales-methods" checked>
+                            <input type="checkbox" name="collections_check" id="collections-check" class="col-css-element sales-methods" checked>
                             {% else %}
                             <input type="checkbox" name="collections_check" id="collections-check" class="col-css-element sales-methods">
                             {% endif %}
@@ -155,7 +137,6 @@
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
-            <div>
 
             <!-- Sales Units Section -->
             <section name="sales-units-section">
@@ -184,7 +165,7 @@
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.half_dozen_carton_check %}
-                            <input type="checkbox" name="half_dozen_carton_check" id="single-eggs-check" class="col-css-element" checked>
+                            <input type="checkbox" name="half_dozen_carton_check" id="half-dozen-carton-check" class="col-css-element" checked>
                             {% else %}
                             <input type="checkbox" name="half_dozen_carton_check" id="half-dozen-carton-check" class="col-css-element">
                             {% endif %}
@@ -196,7 +177,7 @@
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.dozen_carton_check %}
-                            <input type="checkbox" name="dozen_carton_check" id="single-eggs-check" class="col-css-element" checked>
+                            <input type="checkbox" name="dozen_carton_check" id="dozen-carton-check" class="col-css-element" checked>
                             {% else %}
                             <input type="checkbox" name="dozen_carton_check" id="dozen-carton-check" class="col-css-element">
                             {% endif %}
@@ -208,10 +189,10 @@
                         </div>
                         <div class="col-4 col-css">
                             {% if 'trays_qty' in onboard_profile_data %}
-                            <input type="number" name="trays_qty" value="{{ onboard_profile_data.trays_qty }}" placeholder="Tray Qty" id="trays_qty" 
+                            <input type="number" name="trays_qty" value="{{ onboard_profile_data.trays_qty }}" placeholder="Tray Qty" id="trays-qty" 
                                 step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
                             {% else %}
-                            <input type="number" name="trays_qty" value="30" placeholder="Tray Qty" id="trays_qty" 
+                            <input type="number" name="trays_qty" value="30" placeholder="Tray Qty" id="trays-qty" 
                                 step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
                             {% endif %}
                         </div>
@@ -227,22 +208,15 @@
             </section>
 
             <!-- Used as a warning instead of an Alert -->
-            <section name="warning">
-                <div class="warning-div bottom-margin">
-                    <h5 class="text-danger text-start" id="sales-unit-method-warning"></h5>
-                </div>
-            </section>
+            {% include 'html_includes/validation_warning.html' %}
 
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
-            <div class="button-container">
+            <!-- Buttons Section -->
+            <div class="button-container bottom-margin">
                 <!--<button class="button button-full-size">Prev page</button>-->
                 <a href="{% url 'onboard_flock' %}" class="btn button button-full-size">Previous</a> 
-                <button type='submit' id="produce-next-button" class="btn button button-full-size" onclick="injectHref()">Next</button>
+                <button type="submit" id="produce-next-button" class="btn button button-full-size" onclick="injectHref()">Next</button>
             </div>
         </div>
-  </form>
+    </form>
 </div>
-
 {% endblock %}

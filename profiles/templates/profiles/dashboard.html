@@ -10,15 +10,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="large-screen-h1">
-    <div class="bottom-margin">
-        <h1>Home Dashboard</h1>
-        
-    </div>
-    <div class="bottom-margin">
-        <hr class="hr-large">
-    </div>
-</div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Home Dashboard" %}
+
 <p>{{ userprofile.first_name }}</p>
 
 <a href="">

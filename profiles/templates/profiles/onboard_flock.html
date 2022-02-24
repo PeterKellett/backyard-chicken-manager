@@ -9,32 +9,14 @@
     Onboarding Flock(s)
 {% endblock %}
 
+
 {% block content %}
-<div class="large-screen-h1">
-    <div class="bottom-margin">
-        <h1>Onboarding Flock(s)</h1>
-    </div>
-    <div class="bottom-margin">
-        <hr class="hr-large">
-    </div>
-</div>
-<div class="container element-container">
-    <div class="row bottom-margin">
-        <div class="col-10 col-css">
-            <h4 class="text-start">
-                Page 2 of 4
-            </h4>
-        </div>
-        <div class="col-2 col-css-right">
-            <i class="fas fa-info-circle icon-orange" data-bs-toggle="modal" data-bs-target="#myModal"></i>
-        </div>
-    </div>
-    <div class="bottom-margin">
-        <p class="text-start">
-            Tell us about your flock(s)...
-        </p>
-    </div>
-</div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Onboarding Flock(s)" %}
+
+<!-- Page Counter & Intro -->
+{% include 'html_includes/onboard_page_counter_and_info.html' with page_number="2 of 4" page_intro="Tell us about your flock(s)..." %}
 
 <!-- "i" icon modal -->
 <div class="modal" id="myModal">
@@ -77,22 +59,54 @@
     <hr class="hr-large">
 </div>
 
+<!-- Form Section -->
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
+    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc_form" id="submit-form">
         {% csrf_token %}
         <input type="hidden" name="redirect_url" value="onboard_produce"/>
         <div class="form-data" id="form-data">
+
             <!-- Flock Core Info Section -->
             {% for flock in onboard_profile_data.flocks %}
             {% endfor %}
-            <fieldset>
-                <legend>Flock</legend>
-                <section name="flock-core-info">
-                    <div class="bottom-margin">
-                        {% if 'flock_name' in onboard_profile_data %}
-                        <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock_name" autofocus required>
-                        {% else %}
-                        <input type="text" name="flock_name" placeholder="Flock Name" id="flock_name" autofocus required>
+            <section name="flock-core-info">
+                <div class="bottom-margin">
+                    {% if 'flock_name' in onboard_profile_data %}
+                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" autofocus required>
+                    {% else %}
+                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" autofocus required>
+                    {% endif %}
+                </div>
+                <div class="bottom-margin">
+                    {% if 'acquired_date' in onboard_profile_data %}
+                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required>
+                    {% else %}
+                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired-date" required>
+                    {% endif %}
+                </div>
+                <div class="bottom-margin">
+                    {% if 'coop_name' in onboard_profile_data %}
+                    <input type="text" name="coop_name" value="{{ onboard_profile_data.coop_name }}" placeholder="Coop Name" id="coop-name" required>
+                    {% else %}
+                    <input type="text" name="coop_name" placeholder="Coop Name" id="coop-name" required>
+                    {% endif %}
+                </div>
+                <div class="bottom-margin">
+                    <select name="breed" id="breed" required>
+                        {% if 'breed' in onboard_profile_data %}
+                        <option value="" disabled>Breed</option>
+                            {% for breed in breed %}
+                                {% if breed.id == onboard_profile_data.breed %}
+                                <option value="{{ breed.id }}" selected>{{ breed|title }}</option>
+                                {% else %}
+                                <option value="{{ breed.id }}">{{ breed|title }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}     
+                        <option value="" disabled selected>Breed</option>
+                            {% for breed in breed %}
+                            <option value="{{ breed.id }}">{{ breed|title }}</option>
+                            {% endfor %}
                         {% endif %}
                     </div>
                     <div class="bottom-margin">
@@ -136,15 +150,9 @@
             {% include 'html_includes/hens_chicks_cocks.html' %}
 
             <!-- Used as a warning instead of an Alert -->
-            <section name="warning-section">
-                <div class="warning-div">
-                    <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
-                </div>
-                <div class="bottom-margin">
-                    <hr class="hr-large">
-                </div>
-            </section>
+            {% include 'html_includes/validation_warning.html' %}
 
+            <!-- Buttons Section -->
             <div class="button-container">
                 <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">Previous</a> 
                 <button type='submit' id="hcc-button" class="btn button button-small-size" onclick="validateQtys()">Next</button>

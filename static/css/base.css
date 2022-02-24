@@ -394,7 +394,18 @@ input:-webkit-autofill:active {
     top: 12px;
 }
 
+/*-- Inputs that need to look like a heading as they are read only --*/
+.h-style-input {
+    font-weight: 700;
+    font-size: 20px;
+    border: hidden;
+    background-color: transparent;
+}
+  
+ 
+
 /*-- INPUT FIELDS END --*/
+
 
 /*-- BUTTONS START --*/
 .form-data input[type=submit],
@@ -542,7 +553,8 @@ main {
     width: 100%;
     max-width: 360px;
     background-color: var(--white);
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 5px;
 }
 
