@@ -12,27 +12,21 @@ def egg_collection(request):
     if request.POST:
         print("String")
         date = request.POST['date']
-        flockName = request.POST['date']
-        qtyTray = request.POST['date']
-        qtySingle = request.POST['date']
-        qtyTotal = request.POST['date']
-        qtyDamaged = request.POST['date']
-        qtyBroken = request.POST['date']
-        qtyPersonal = request.POST['date']
-        qtyFree = request.POST['date']
-        weightLaid = request.POST['date']
-        weightIndividual = request.POST['date']
-        weightAverage = request.POST['date']
-        qtySaleable = request.POST['date']
-        print("Date: ", date)
+        flock = request.POST['flock_name']
+        qty_total_trays = request.POST['qty-trays']
+        qty_total_single = request.POST['qty-singles']
+        qty_total_laid = request.POST['total_eggs_laid']
+        qty_damaged = request.POST['eggs_damaged']
+        qty_broken = request.POST['eggs_broken']
+        qty_personal_use = request.POST['eggs_personal_use']
+        qty_given_free = request.POST['eggs_given_free']
+        weight_total_laid = request.POST['total_weight']
+        avg_egg_weight = request.POST['average_egg_weight']
+        qty_saleable = request.POST['eggs_saleable_qty']
+        egg_collection_notes = request.POST['notes']
+        image_url = request.POST['image_url']
         userprofile = UserProfile.objects.get(user=request.user)
         farmprofile = userprofile.farmprofiles.all()
-        print("FarmpPofile.id: ", farmprofile)
-        #flocks = userprofile.farmprofiles.flocks.all()
-        #print(flocks)
-        #context = {
-        #    'flocks': flocks
-        #}
         template = 'profiles/dashboard.html'
         return render(request, template)
     else: 

@@ -20,7 +20,7 @@
 .form-data textarea:not(:placeholder-shown) + label, 
 .form-data textarea:focus + label {
     font-size: 12px;
-    top: -10px;
+    top: -9px;
     left: 8px;
     background-color: var(--orange_bg);
     color: var(--black);

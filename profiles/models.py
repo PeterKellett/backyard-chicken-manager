@@ -55,7 +55,7 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=20,
                                  null=True,
                                  blank=True)
-    city_country = models.CharField(max_length=20,
+    city_country = models.CharField(max_length=35,
                                     null=False,
                                     blank=False)
 
