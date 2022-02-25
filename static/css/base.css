@@ -353,19 +353,6 @@ input + label,
     top: 6px;
 }
 
-/*-- Field label after field has been clicked on --*/
-.form-data input:not(:placeholder-shown) + label,
-.form-data input:focus + label,
-.form-data select:not(:placeholder-shown) + label, 
-.form-data select:focus + label,
-.form-data textarea:not(:placeholder-shown) + label, 
-.form-data textarea:focus + label {
-    font-size: 12px;
-    top: -10px;
-    background-color: var(--orange_bg);
-    color: var(--black);
-}
-
 /*-- Highlight field border when clicked on --*/
 input:focus,
 .form-data select:focus,
@@ -391,9 +378,14 @@ input:-webkit-autofill:active {
 .h-style-input {
     font-weight: 700;
     font-size: 20px;
-    border: hidden;
     background-color: transparent;
 }
+.h-style-input,
+.h-style-input:focus {
+    border: hidden;
+    outline: none;
+}
+
 
 /*-- INPUT FIELDS END --*/
 
@@ -547,7 +539,7 @@ main {
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
-    padding: 10px;
+    padding: 0 10px;
 }
 
 i {

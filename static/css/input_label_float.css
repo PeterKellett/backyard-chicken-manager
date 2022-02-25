@@ -21,6 +21,7 @@
 .form-data textarea:focus + label {
     font-size: 12px;
     top: -10px;
+    left: 8px;
     background-color: var(--orange_bg);
     color: var(--black);
     font-weight: 700;
