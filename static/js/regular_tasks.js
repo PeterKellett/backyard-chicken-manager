@@ -9,8 +9,13 @@ var total_weight;
 var total_nonsaleable_eggs;
 
 // Egg Collection - Eggs Laid Calculation: Calculation to sum total number of eggs laid
+function testFunction(){
+    console.log("Test Function")
+};
+
 document.querySelectorAll('.egg-collection-qty-input').forEach(item => {
     item.addEventListener('keyup', event => {
+        console.log("Eggs Laid Calc Fires");
         var totalTrays = document.querySelector('input[name=qty_trays]').value;
         // trayQty needs to be updated to dynamically take in number of eggs per tray
         var trayQty = 30;
@@ -24,6 +29,7 @@ document.querySelectorAll('.egg-collection-qty-input').forEach(item => {
 // Egg Collection - Saleable Eggs Calculation: Calculation to get total saleable eggs
 document.querySelectorAll('.saleable-eggs-input').forEach(item => {
     item.addEventListener('keyup', event => {
+        console.log("Saleable Eggs Calc Fires");
         damaged_eggs = document.querySelector('input[name=eggs_damaged]').value;
         broken_eggs = document.querySelector('input[name=eggs_broken]').value;
         eggs_personal_use = document.querySelector('input[name=eggs_personal_use]').value;
@@ -37,6 +43,7 @@ document.querySelectorAll('.saleable-eggs-input').forEach(item => {
 // Egg Collection - Weight Calculation: Calculation to average weight of eggs laid
 document.querySelectorAll('.average-weight-input').forEach(item => {
     item.addEventListener('keyup', event => {
+        console.log("Average Egg Weight Calc Fires");
         var weighable_eggs = Number(total_eggs_laid) - Number(broken_eggs);
         console.log("Weighable Eggs: " + weighable_eggs);
         total_weight = document.querySelector('input[name=total_weight]').value;
@@ -46,7 +53,7 @@ document.querySelectorAll('.average-weight-input').forEach(item => {
     })
 });
 
-// Egg Collection - Warning: Disoplays if there are more non-saleable eggs than eggs laid
+// Egg Collection - Warning: Displays if there are more non-saleable eggs than eggs laid
 document.querySelectorAll('.saleable-eggs-input').forEach(item => {
     item.addEventListener('keyup', event => {
         total_nonsaleable_eggs = Number(damaged_eggs) + Number(broken_eggs) + Number(eggs_personal_use) + Number(eggs_given_free);

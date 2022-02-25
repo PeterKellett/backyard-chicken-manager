@@ -4,6 +4,7 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
     <link rel="stylesheet" href="{% static 'css/regular_tasks.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -68,15 +69,21 @@
             <!-- Eggs Laid Section -->
             <section name="flock-core-info">
                 {% include 'html_includes/date_flock.html' %}
-                <div class="container bottom-margin">
+                <div class="container">
                     <div class="row">
                         <!-- Eggs Laid Trays -->
                         <div class="col-6 two-inputs-left">
-                            <input type="number" name="qty_trays" placeholder="Qty Laid - Trays" id="qty-trays" class="egg-collection-qty-input saleable-eggs-input average-weight-input">
+                            <div class="bottom-margin label-float">
+                                <input type="number" name="qty_trays" placeholder="Qty Laid - Trays" id="qty-trays" class="egg-collection-qty-input saleable-eggs-input average-weight-input" onclick="testFunction()">
+                                <label for="qty-trays">Qty Laid - Trays</label>
+                            </div>
                         </div>
                         <!-- Eggs Laid Singles-->
                         <div class="col-6 two-inputs-right">
-                            <input type="number" name="qty_singles" placeholder="Qty Laid - Single" id="qty-singles" class="egg-collection-qty-input saleable-eggs-input average-weight-input">
+                            <div class="bottom-margin label-float">
+                                <input type="number" name="qty_singles" placeholder="Qty Laid - Single" id="qty-singles" class="egg-collection-qty-input saleable-eggs-input average-weight-input">
+                                <label for="qty-singles">Qty Laid - Single</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,19 +92,10 @@
                     <div class="col-10 col-css">
                         <h6 class="row-name">Total Eggs Laid:</h6>
                     </div>
-                    <div class="col-2 col-css col-css-right">
+                    <div class="col-2 col-css col-css-right label-float">
                         <input type="number" value="0" name="total_eggs_laid" id="total-eggs-laid" class="text-end h-style-input"></input>
+                        <label for="total-eggs-laid" class="hidden-label">Total Eggs Laid</label>
                     </div>
-                </div>
-                <!-- Eggs Damaged -->
-                <div class="bottom-margin">
-                    <input type="number" name="eggs_damaged" value="" placeholder="Qty of Eggs Damaged (OK for personal use)" id="eggs-damaged" 
-                    step="1" min="0" class="saleable-eggs-input">
-                </div>
-                <!-- Eggs Broken -->
-                <div class="bottom-margin">
-                    <input type="number" name="eggs_broken" value="" placeholder="Qty of Eggs Broken (Unuseable)" id="eggs-broken" 
-                    step="1" min="0" class="saleable-eggs-input average-weight-input">
                 </div>
                 <div class="bottom-margin">
                     <hr class="hr-large">
@@ -106,61 +104,96 @@
 
             <!-- Advanced Section - Bootstrap Collapse https://getbootstrap.com/docs/5.0/components/collapse/-->
             <section name="advanced-section">
-                <div class="bottom-margin panel-div">
+                <div class="bottom-margin panel-div label-float">
                     <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <h6>Advanced</h6>
                     </a>
                 </div>
                 <div class="collapse in" id="collapseExample">
-                    <!-- Eggs Personal Use -->
-                    <div class="bottom-margin">
-                        <input type="number" name="eggs_personal_use" value="" placeholder="Qty of Eggs Taken for Personal Use)" id="eggs-personal-use" 
+                    <!-- Eggs Damaged -->
+                    <div class="bottom-margin label-float">
+                        <input type="number" name="eggs_damaged" value="" placeholder="Qty of Eggs Damaged (OK for personal use)" id="eggs-damaged" 
                         step="1" min="0" class="saleable-eggs-input">
+                        <label for="eggs-damaged">Qty of Eggs Damaged (OK for personal use)</label>
+                    </div>
+                    <!-- Eggs Broken -->
+                    <div class="bottom-margin label-float">
+                        <input type="number" name="eggs_broken" value="" placeholder="Qty of Eggs Broken (Unuseable)" id="eggs-broken" 
+                        step="1" min="0" class="saleable-eggs-input average-weight-input">
+                        <label for="eggs-broken">Qty of Eggs Broken (Unuseable)</label>                
+                    </div>
+                    <div class="bottom-margin">
+                        <hr class="hr-small">
+                    </div>
+                    <!-- Eggs Personal Use -->
+                    <div class="bottom-margin label-float">
+                        <input type="number" name="eggs_personal_use" value="" placeholder="Qty of Eggs Taken for Personal Use)" id="eggs-personal-use" 
+                            step="1" min="0" class="saleable-eggs-input">
+                        <label for="eggs-personal-use">Qty of Eggs Taken for Personal Use</label> 
                     </div>
                     <!-- Eggs Given Free -->
-                    <div class="bottom-margin">
+                    <div class="bottom-margin label-float">
                         <input type="number" name="eggs_given_free" value="" placeholder="Qty of Eggs Given Away Free" id="eggs-given-free" 
-                        step="1" min="0" class="saleable-eggs-input">
+                            step="1" min="0" class="saleable-eggs-input">
+                        <label for="eggs-given-free">Qty of Eggs Given Away Free</label> 
+                    </div>
+                    <div class="bottom-margin">
+                        <hr class="hr-small">
                     </div>
                     <!-- Eggs Total Weight -->
                     <div class="container">
-                        <div class="row bottom-margin">
+                        <div class="row">
                             <div class="col-10 col-css">
-                                <input type="number" name="total_weight" placeholder="Total weight of eggs laid (excl. Broken)" id="total-weight"
-                                    min="0" oninput="this.value = Math.abs(this.value)" class="average-weight-input">
+                                <div class="bottom-margin label-float">
+                                    <input type="number" name="total_weight" placeholder="Total weight of eggs laid (excl. Broken)" id="total-weight"
+                                        min="0" oninput="this.value = Math.abs(this.value)" class="average-weight-input">
+                                    <label for="total-weight">Weight of all eggs laid (excl. broken)</label>
+                                </div>
                             </div>
                             <div class="col-2 col-css">
-                                <h5 class="text-end">
-                                    kg
-                                </h5>
+                                <div class="bottom-margin label-float">
+                                    <h5 class="text-end">
+                                        kg
+                                    </h5>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- Eggs Average Weight -->
-                    <div class="row bottom-margin">
+                    <div class="row">
                         <div class="col-10 col-css">
-                            <h6 class="row-name">Average Egg Weight:</h6>
+                            <div class="bottom-margin">
+                                <h6 class="row-name">Average Egg Weight:</h6>
+                            </div>
                         </div>
                         <div class="col-2 col-css col-css-right">
-                            <input type="number" value="0" name="average_egg_weight" id="average-egg-weight" class="text-end h-style-input"></input>
+                            <div class="bottom-margin label-float">
+                                <input type="number" value="0" name="average_egg_weight" id="average-egg-weight" class="text-end h-style-input"></input>
+                                <label for="average-egg-weight" class="hidden-label">Average Eggs Weight</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-margin">
+                        <hr class="hr-large">
+                    </div>
+                    <!-- Eggs Saleable Qty -->
+                    <div class="row">
+                        <div class="col-10 col-css">
+                            <div class="bottom-margin">
+                                <h6 class="row-name">Saleable Quantity:</h6>
+                            </div>
+                        </div>
+                        <div class="col-2 col-css col-css-right">
+                            <div class="bottom-margin label-float">
+                                <input type="number" value="0" name="eggs_saleable_qty" id="eggs-saleable-qty" class="text-end h-style-input"></input>
+                                <label for="eggs-saleable-qty" class=" hidden-label">Average Egg Weight</label>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
-
-            <!-- Eggs Saleable Qty -->
-            <div class="row bottom-margin">
-                <div class="col-10 col-css">
-                    <h6 class="row-name">Saleable Quantity:</h6>
-                </div>
-                <div class="col-2 col-css col-css-right">
-                    <input type="number" value="0" name="eggs_saleable_qty" id="eggs-saleable-qty" class="text-end h-style-input"></input>
-                </div>
-            </div>
+            
 
             <div class="bottom-margin">
                 <hr class="hr-large">
@@ -185,5 +218,5 @@
 {% endblock %}
 
 {% block postloadjs %}
-    <script src="{% static 'js/regular_tasks.js' %}">></script>
+    <script src="{% static 'js/regular_tasks.js' %}"></script>
 {% endblock %}
