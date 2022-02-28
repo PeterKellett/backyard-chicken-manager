@@ -65,7 +65,6 @@
 <div class="element-container">
     <form method="POST" action="{% url 'egg_collection' %}" name="egg_collection" id="submit-form">
         {% csrf_token %}
-        
         <div class="form-data">
             <!-- Eggs Laid Section -->
             <section name="flock-core-info">
@@ -75,14 +74,14 @@
                         <!-- Eggs Laid Trays -->
                         <div class="col-6 two-inputs-left">
                             <div class="bottom-margin label-float">
-                                {{ form.qty_total_trays }}
+                                <input type="number" name="qty_trays" placeholder="Qty Laid - Trays" id="qty-trays" class="egg-collection-qty-input saleable-eggs-input average-weight-input" onclick="testFunction()">
                                 <label for="qty-trays">Qty Laid - Trays</label>
                             </div>
                         </div>
                         <!-- Eggs Laid Singles-->
                         <div class="col-6 two-inputs-right">
                             <div class="bottom-margin label-float">
-                                {{ form.qty_total_single }}
+                                <input type="number" name="qty_singles" placeholder="Qty Laid - Single" id="qty-singles" class="egg-collection-qty-input saleable-eggs-input average-weight-input">
                                 <label for="qty-singles">Qty Laid - Single</label>
                             </div>
                         </div>
@@ -94,7 +93,7 @@
                         <h6 class="row-name">Total Eggs Laid:</h6>
                     </div>
                     <div class="col-2 col-css col-css-right label-float">
-                        {{ form.qty_total_laid }}
+                        <input type="number" value="0" name="total_eggs_laid" id="total-eggs-laid" class="text-end h-style-input" readonly></input>
                         <label for="total-eggs-laid" class="hidden-label">Total Eggs Laid</label>
                     </div>
                     <div class="col-2 col-css col-css-right">
@@ -116,12 +115,14 @@
                 <div class="collapse in" id="collapseExample">
                     <!-- Eggs Damaged -->
                     <div class="bottom-margin label-float">
-                        {{ form.qty_damaged }}
+                        <input type="number" name="eggs_damaged" value="" placeholder="Qty of Eggs Damaged (OK for personal use)" id="eggs-damaged" 
+                        step="1" min="0" class="saleable-eggs-input">
                         <label for="eggs-damaged">Qty of Eggs Damaged (OK for personal use)</label>
                     </div>
                     <!-- Eggs Broken -->
                     <div class="bottom-margin label-float">
-                        {{ form.qty_broken }}
+                        <input type="number" name="eggs_broken" value="" placeholder="Qty of Eggs Broken (Unuseable)" id="eggs-broken" 
+                        step="1" min="0" class="saleable-eggs-input average-weight-input">
                         <label for="eggs-broken">Qty of Eggs Broken (Unuseable)</label>                
                     </div>
                     <div class="bottom-margin">
@@ -129,12 +130,14 @@
                     </div>
                     <!-- Eggs Personal Use -->
                     <div class="bottom-margin label-float">
-                        {{ form.qty_personal_use }}
+                        <input type="number" name="eggs_personal_use" value="" placeholder="Qty of Eggs Taken for Personal Use)" id="eggs-personal-use" 
+                            step="1" min="0" class="saleable-eggs-input">
                         <label for="eggs-personal-use">Qty of Eggs Taken for Personal Use</label> 
                     </div>
                     <!-- Eggs Given Free -->
                     <div class="bottom-margin label-float">
-                        {{ form.qty_given_free }}
+                        <input type="number" name="eggs_given_free" value="" placeholder="Qty of Eggs Given Away Free" id="eggs-given-free" 
+                            step="1" min="0" class="saleable-eggs-input">
                         <label for="eggs-given-free">Qty of Eggs Given Away Free</label> 
                     </div>
                     <div class="bottom-margin">
@@ -145,8 +148,9 @@
                         <div class="row">
                             <div class="col-10 col-css">
                                 <div class="bottom-margin label-float">
-                                    {{ form.weight_total_laid }}
-                                    <label for="total-weight-laid">Weight of all eggs laid (excl. broken)</label>
+                                    <input type="number" name="total_weight" placeholder="Total weight of eggs laid (excl. Broken)" id="total-weight"
+                                        min="0" oninput="this.value = Math.abs(this.value)" class="average-weight-input">
+                                    <label for="total-weight">Weight of all eggs laid (excl. broken)</label>
                                 </div>
                             </div>
                             <div class="col-2 col-css">
@@ -167,7 +171,7 @@
                         </div>
                         <div class="col-2 col-css col-css-right">
                             <div class="bottom-margin label-float">
-                                {{ form.avg_egg_weight }}
+                                <input type="number" value="0" name="average_egg_weight" id="average-egg-weight" class="text-end h-style-input" readonly></input>
                                 <label for="average-egg-weight" class="hidden-label">Average Eggs Weight</label>
                             </div>
                         </div>
@@ -187,8 +191,8 @@
                         </div>
                         <div class="col-2 col-css col-css-right">
                             <div class="bottom-margin label-float">
-                                {{ form.qty_saleable_eggs }}
-                                <label for="eggs-saleable-qty" class=" hidden-label">Eggs Saleable Quantity</label>
+                                <input type="number" value="0" name="eggs_saleable_qty" id="eggs-saleable-qty" class="text-end h-style-input" readonly></input>
+                                <label for="eggs-saleable-qty" class=" hidden-label">Average Egg Weight</label>
                             </div>
                         </div>
                         <div class="col-2 col-css col-css-right">
@@ -197,6 +201,8 @@
                     </div>
                 </div>
             </section>
+
+            
 
             <div class="bottom-margin">
                 <hr class="hr-large">

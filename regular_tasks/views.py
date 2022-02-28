@@ -4,11 +4,13 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from flock_management.models import Flocks
+from .forms import EggCollectionForm
 
 
 @login_required
 def egg_collection(request):
     """view to current flock"""
+    form = EggCollectionForm
     if request.POST:
         print("String")
         date = request.POST['date']
@@ -22,17 +24,18 @@ def egg_collection(request):
         qty_given_free = request.POST['eggs_given_free']
         weight_total_laid = request.POST['total_weight']
         avg_egg_weight = request.POST['average_egg_weight']
-        qty_saleable = request.POST['eggs_saleable_qty']
+        qty_saleable_eggs = request.POST['eggs_saleable_qty']
         egg_collection_notes = request.POST['notes']
         image_url = request.POST['image_url']
         userprofile = UserProfile.objects.get(user=request.user)
         farmprofile = userprofile.farmprofiles.all()
         template = 'profiles/dashboard.html'
         return render(request, template)
-    else: 
+    else:
         template = 'regular_tasks/egg_collection.html'
-        context = {}
+        context = {'form': form}
         return render(request, template, context)
+
 
 @login_required
 def feeding_time(request):
@@ -40,6 +43,7 @@ def feeding_time(request):
     template = 'regular_tasks/feeding_time.html'
     context = {}
     return render(request, template, context)
+
 
 @login_required
 def coop_cleaning(request):
