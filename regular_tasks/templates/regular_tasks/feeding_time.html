@@ -4,6 +4,7 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
     <link rel="stylesheet" href="{% static 'css/regular_tasks.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -19,7 +20,7 @@
 <div class="element-container container-fluid sub-nav-container">
     <ul class="nav nav-tabs nav-justified">
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link" href="{% url 'regular_tasks' %}"> 
+            <a class="nav-link sub-nav-link" href="{% url 'egg_collection' %}"> 
                 <img src="{{ MEDIA_URL }}reg_task_egg_collection.png" alt="Regular Tasks, Egg Collection Icon" class="nav-link-image sub-nav-link-image">
                 Egg Collection
             </a>
@@ -64,10 +65,9 @@
 <div class="element-container">
     <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
         {% csrf_token %}
+
         <div class="form-data">
-
             {% include 'html_includes/date_flock.html' %}
-
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
@@ -83,15 +83,16 @@
                             <h4>Feed</h4>
                         </div>
                     </div>
-                    <div class="bottom-margin">
-                        <input type="text" name="feed_name" placeholder="Feed Name" id="feed-name" required>
+                    <div class="bottom-margin label-float">
+                        {{ form.food_type }}
+                        <label for="feed-type">Food Name</label>
                     </div>
                 </div>
                 <div class="container">
-                    <div class="row bottom-margin">
+                    <div class="row bottom-margin label-float">
                         <div class="col-10 col-css">
-                            <input type="number" name="food-amount-remaining" placeholder="Amount of Food Remaining" id="food-amount-remaining" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                            {{ form.amount_food_rem }}
+                            <label for="amount-food-rem">Amount of Food Remaining</label>
                         </div>
                         <div class="col-2 col-css">
                             <h5 class="text-end">
@@ -99,10 +100,10 @@
                             </h5>
                         </div>
                     </div>
-                    <div class="row bottom-margin">
+                    <div class="row bottom-margin label-float">
                         <div class="col-10 col-css">
-                            <input type="number" name="food-amount-added" placeholder="Amount of Food Added" id="food-amount-added" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                            {{ form.amount_food_added }}
+                            <label for="amount-food-added">Amount of Food Added</label>
                         </div>
                         <div class="col-2 col-css">
                             <h5 class="text-end">
@@ -131,15 +132,12 @@
                             <h4>Water</h4>
                         </div>
                     </div>
-                    <div class="bottom-margin">
-                        <input type="text" name="feed_name" placeholder="Water" id="water" required>
-                    </div>
                 </div>
                 <div class="container">
-                    <div class="row bottom-margin">
+                    <div class="row bottom-margin label-float">
                         <div class="col-10 col-css">
-                            <input type="number" name="water-amount-remaining" placeholder="Amount of Water Remaining" id="water-amount-remaining" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                            {{ form.amount_water_rem }}
+                            <label for="amount-water-rem">Amount of Water Remaining</label>
                         </div>
                         <div class="col-2 col-css">
                             <h5 class="text-end">
@@ -147,10 +145,10 @@
                             </h5>
                         </div>
                     </div>
-                    <div class="row bottom-margin">
+                    <div class="row bottom-margin label-float">
                         <div class="col-10 col-css">
-                            <input type="number" name="water-amount-added" placeholder="Amount of Water Added" id="water-amount-added" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                            {{ form.amount_water_added }}
+                            <label for="amount-food-added">Amount of Water Added</label>
                         </div>
                         <div class="col-2 col-css">
                             <h5 class="text-end">
