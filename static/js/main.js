@@ -7,8 +7,8 @@ $(document).ready(function () {
     const formatDate = todayDate.getDate() < 10 ? `0${todayDate.getDate()}`:todayDate.getDate();
     const formatMonth = todayDate.getMonth() < 10 ? `0${todayDate.getMonth()+1}`: todayDate.getMonth()+1;
     const formattedDate = [todayDate.getFullYear(), formatMonth, formatDate].join('-');
-    console.log("formattedDate :" + formattedDate);
     document.getElementById('todays-date').value = formattedDate;
+    
 
     // PK function
     var flock_form_iteration = 0;
@@ -91,6 +91,8 @@ $(document).ready(function () {
             x.type = "password";
         }
     }
+
+    hccTotal();
     
 // !!!!!!! (document).ready function end
 })
@@ -110,7 +112,7 @@ function validateQtys() {
     const totalBirdsNumber = Number(totalBirds);
 
     if (totalBirdsNumber == 0) {
-        document.getElementById("bird-qty-warning").textContent =
+        document.getElementById("warning-section-text").textContent =
             "Please provide at least one quantity for Hens, Chicks or Cocks.";
         document.getElementById("submit-form").addEventListener('submit', (event) => {
             // stop form submission
@@ -245,23 +247,24 @@ $(document).ready(function() {
 // Taken from https://www.youtube.com/watch?v=c3MjU9E9buQ&t=165s
 let autocomplete;
 function initAutocomplete() {
+    console.log("Map Called");
     autocomplete = new google.maps.places.Autocomplete(
-        document.getElementById('city_country'),
+        document.getElementById('city-country'),
         {
             // Don't know why it's not working when I include this. See table 3 in https://developers.google.com/maps/documentation/places/web-service/supported_types
             //types: ['cities'],
             fields: ['address_components','geometry'] //https://developers.google.com/maps/documentation/javascript/place-data-fields?hl=en
         });
     autocomplete.addListener('place_changed', onPlaceChanged);
-    }
+}
 
 function onPlaceChanged() {
     var place = autocomplete.getPlace();
 
     if (!place.geometry) {
-        document.getElementById('city_country').placeholder =
+        document.getElementById('city-country').placeholder =
         'Enter a City or Town';
     } else {
-        document.getElementById('city_country').innerHTML = place.name;
+        document.getElementById('city-country').innerHTML = place.name;
     }
 }

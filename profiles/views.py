@@ -19,11 +19,12 @@ def dashboard(request):
         return redirect(onboard_personal)
     # 2. Try to get the farmprofile for the user
     try:
-        farmprofile = FarmProfile.objects.all(user=userprofile.id)
+        farmprofile = userprofile.farmprofiles.all()
     # 3. Check the onboard_complete field of the farmprofile
-        if not farmprofile.onboard_complete:
+        if not farmprofile:
             return redirect(onboard_personal)
         else:
+            request.session['onboard_profile_data'] = {}
             context = {
                 'userprofile': userprofile,
                 'farmprofile': farmprofile,

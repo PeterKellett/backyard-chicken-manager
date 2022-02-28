@@ -8,8 +8,24 @@ body {
     background-color: var(--green_bg);
     height: 50px;
     margin-bottom: 10px;
-    display: flex;
+    position: relative;
 }
+
+.dashboard-icon-div,
+.dashboard-icon-name-div {
+    position: absolute;
+}
+
+.dashboard-icon-div {
+    left: 10px;
+    top: 3px;
+}
+
+.dashboard-icon-name-div {
+    left: 50px;
+    top: 12px;
+}
+
 
 /* Margin Bottom set to 0 which is different to most other pleaces on site.
    Donehere to allow elements center vertically with in the containers */
@@ -17,7 +33,6 @@ body {
     width: 100%;
     margin-top: 0;
     margin-bottom: 0;
-    flex-wrap: nowrap;
 }
 /* required here do to removal of bottom margin on rows */
 hr {

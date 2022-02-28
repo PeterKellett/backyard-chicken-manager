@@ -55,7 +55,7 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=20,
                                  null=True,
                                  blank=True)
-    city_country = models.CharField(max_length=20,
+    city_country = models.CharField(max_length=35,
                                     null=False,
                                     blank=False)
 
@@ -65,7 +65,7 @@ class UserProfile(models.Model):
 
 class FarmProfile(models.Model):
     """Model used for storing FarmProfile attributes"""
-    user = models.ForeignKey(UserProfile,
+    user_profile = models.ForeignKey(UserProfile,
                              null=False,
                              blank=False,
                              on_delete=models.CASCADE,

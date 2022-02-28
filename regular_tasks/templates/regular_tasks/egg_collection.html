@@ -4,6 +4,7 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
     <link rel="stylesheet" href="{% static 'css/regular_tasks.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -15,10 +16,11 @@
 
 {% block content %}
 
+<!-- Sub Navigation Section -->
 <div class="element-container container-fluid sub-nav-container">
     <ul class="nav nav-tabs nav-justified">
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link active" href="{% url 'regular_tasks' %}">
+            <a class="nav-link sub-nav-link active" href="{% url 'egg_collection' %}">
                 <img src="{{ MEDIA_URL }}reg_task_egg_collection.png" alt="Regular Tasks, Egg Collection Icon" class="nav-link-image sub-nav-link-image">
                 Egg Collection
             </a>
@@ -26,7 +28,7 @@
         <li class="nav-item text-wrap">
             <a class="nav-link sub-nav-link" href="{% url 'feeding_time' %}">
                 <img src="{{ MEDIA_URL }}reg_task_feeding_time.png" alt="Regular Tasks, Feeding Time Icon" class="nav-link-image sub-nav-link-image">
-                Feeding-Time
+                Feeding Time
             </a>
         </li>
         <li class="nav-item text-wrap">
@@ -38,14 +40,8 @@
     </ul>
 </div>
 
-<div class="large-screen-h1">
-    <div class="bottom-margin">
-        <h1>Egg Collection</h1>
-    </div>
-    <div class="bottom-margin">
-        <hr class="hr-large">
-    </div>
-</div>
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Egg Collection" %}
 
 <!-- Icons and Links Section -->
 <div class="container element-container">
@@ -65,96 +61,142 @@
     <hr class="hr-large">
 </div>
 
-<!-- MAIN SECTION  -->
+<!-- FORM SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
+    <form method="POST" action="{% url 'egg_collection' %}" name="egg_collection" id="submit-form">
         {% csrf_token %}
+        
         <div class="form-data">
             <!-- Eggs Laid Section -->
             <section name="flock-core-info">
                 {% include 'html_includes/date_flock.html' %}
-                <div class="container bottom-margin">
+                <div class="container">
                     <div class="row">
+                        <!-- Eggs Laid Trays -->
                         <div class="col-6 two-inputs-left">
-                            <input type="integer" name="qty_trays" placeholder="Qty Laid - Trays" id="qty-trays">
+                            <div class="bottom-margin label-float">
+                                {{ form.qty_egg_trays }}
+                                <label for="qty-egg-trays">Qty Laid - Trays</label>
+                            </div>
                         </div>
+                        <!-- Eggs Laid Singles-->
                         <div class="col-6 two-inputs-right">
-                            <input type="integer" name="qty_singles" placeholder="Qty Laid - Single" id="qty-singles">
+                            <div class="bottom-margin label-float">
+                                {{ form.qty_egg_singles }}
+                                <label for="qty-egg-singles">Qty Laid - Single</label>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- Total Eggs Laid -->
                 <div class="row bottom-margin">
-                    <div class="col-10 col-css">
+                    <div class="col-8 col-css">
                         <h6 class="row-name">Total Eggs Laid:</h6>
                     </div>
-                    <div class="col-2 col-css col-css-right">
-                        <h5 id="total-eggs-laid text-end">0</h5>
+                    <div class="col-2 col-css col-css-right label-float">
+                        {{ form.qty_total_eggs_laid }}
+                        <label for="qty-total-eggs-laid" class="hidden-label">Total Eggs Laid</label>
                     </div>
-                </div>
-                <div class="bottom-margin">
-                    <input type="number" name="eggs-damaged" value="" placeholder="Qty of Eggs Damaged (OK for personal use)" id="eggs-damaged" 
-                    step="1" min="0">
-                </div>
-                <div class="bottom-margin">
-                    <input type="number" name="eggs-broken" value="" placeholder="Qty of Eggs Broken (Unuseable)" id="eggs-broken" 
-                    step="1" min="0">
+                    <div class="col-2 col-css col-css-right">
+                        <h6 class="text-end">Eggs</h6>
+                    </div>
                 </div>
                 <div class="bottom-margin">
                     <hr class="hr-large">
                 </div>
             </section>
+
             <!-- Advanced Section - Bootstrap Collapse https://getbootstrap.com/docs/5.0/components/collapse/-->
             <section name="advanced-section">
-                <div class="bottom-margin panel-div">
+                <div class="bottom-margin panel-div label-float">
                     <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <h6>Advanced</h6>
+                        <h6>Advanced (Click on me)</h6>
                     </a>
                 </div>
                 <div class="collapse in" id="collapseExample">
-                    <div class="bottom-margin">
-                        <input type="number" name="eggs-personal-use" value="" placeholder="Qty of Eggs Taken for Personal Use)" id="eggs-personal-use" 
-                        step="1" min="0">
+                    <!-- Eggs Damaged -->
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_eggs_damaged }}
+                        <label for="qty-eggs-damaged">Qty of Eggs Damaged (OK for personal use)</label>
+                    </div>
+                    <!-- Eggs Broken -->
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_eggs_broken }}
+                        <label for="qty-eggs-broken">Qty of Eggs Broken (Unuseable)</label>                
                     </div>
                     <div class="bottom-margin">
-                        <input type="number" name="eggs-given-free" value="" placeholder="Qty of Eggs Given Away Free" id="eggs-given-free" 
-                        step="1" min="0">
+                        <hr class="hr-small">
                     </div>
+                    <!-- Eggs Personal Use -->
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_eggs_personal_use }}
+                        <label for="qty-eggs-personal-use">Qty of Eggs Taken for Personal Use</label> 
+                    </div>
+                    <!-- Eggs Given Free -->
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_eggs_given_free }}
+                        <label for="qty-eggs-given-free">Qty of Eggs Given Away Free</label> 
+                    </div>
+                    <div class="bottom-margin">
+                        <hr class="hr-small">
+                    </div>
+                    <!-- Eggs Total Weight -->
                     <div class="container">
-                        <div class="row bottom-margin">
+                        <div class="row">
                             <div class="col-10 col-css">
-                                <input type="number" name="feed-qty-stock" placeholder="Qty in Stock" id="feed-qty-stock" 
-                                    step="1" min="0" oninput="this.value = Math.abs(this.value)" required>
+                                <div class="bottom-margin label-float">
+                                    {{ form.weight_total_eggs_laid }}
+                                    <label for="weight-total-eggs-laid">Weight of all eggs laid (excl. broken)</label>
+                                </div>
                             </div>
                             <div class="col-2 col-css">
-                                <h5 class="text-end">
-                                    kg
-                                </h5>
+                                <div class="bottom-margin label-float">
+                                    <h5 class="text-end">
+                                        kg
+                                    </h5>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row bottom-margin">
-                        <div class="col-10 col-css">
-                            <h6 class="row-name">Average Egg Weight:</h6>
+                    <!-- Eggs Average Weight -->
+                    <div class="row">
+                        <div class="col-8 col-css">
+                            <div class="bottom-margin">
+                                <h6 class="row-name">Average Egg Weight:</h6>
+                            </div>
                         </div>
                         <div class="col-2 col-css col-css-right">
-                            <h5 id="total-eggs-laid text-end">#gr</h5>
+                            <div class="bottom-margin label-float">
+                                {{ form.avg_egg_weight }}
+                                <label for="avg-egg-weight" class="hidden-label">Average Eggs Weight</label>
+                            </div>
+                        </div>
+                        <div class="col-2 col-css col-css-right">
+                            <h6 class="text-end">gr</h6>
+                        </div>
+                    </div>
+                    <div class="bottom-margin">
+                        <hr class="hr-large">
+                    </div>
+                    <!-- Eggs Saleable Qty -->
+                    <div class="row">
+                        <div class="col-8 col-css">
+                            <div class="bottom-margin">
+                                <h6 class="row-name">Saleable Quantity:</h6>
+                            </div>
+                        </div>
+                        <div class="col-2 col-css col-css-right">
+                            <div class="bottom-margin label-float">
+                                {{ form.qty_saleable_eggs }}
+                                <label for="qty-saleable-eggs" class=" hidden-label">Eggs Saleable Quantity</label>
+                            </div>
+                        </div>
+                        <div class="col-2 col-css col-css-right">
+                            <h6 class="text-end">Eggs</h6>
                         </div>
                     </div>
                 </div>
             </section>
-
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
-
-            <div class="row bottom-margin">
-                <div class="col-10 col-css">
-                    <h6 class="row-name">Saleable Quantity:</h6>
-                </div>
-                <div class="col-2 col-css col-css-right">
-                    <h5 id="total-eggs-laid text-end"># eggs</h5>
-                </div>
-            </div>
 
             <div class="bottom-margin">
                 <hr class="hr-large">
@@ -164,22 +206,20 @@
             {% include 'html_includes/notes_and_pics.html' %}
 
             <!-- Used as a warning instead of an Alert -->
-            <section name="warning-section">
-                <div class="warning-div">
-                    <h5 class="text-danger text-start" id="bird-qty-warning"></h5>
-                </div>
-            </section>
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
+            {% include 'html_includes/validation_warning.html' %}
 
+            <!-- Buttons Section -->
             <div class="button-container">
                 <input type="hidden" name="redirect_url" value="onboard_produce"/>
-                <button id="save-button" class="btn button button-full-size save-button" onclick="validateQtys()">Save</button> 
-                <button type='submit' id="cancel-button" class="btn button button-full-size cancel-button" onclick="validateQtys()">Cancel</button>
+                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
+                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
             </div>
         </div>
     </form>
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'js/regular_tasks.js' %}"></script>
 {% endblock %}

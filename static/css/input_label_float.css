@@ -1,0 +1,33 @@
+/*-- CSS to make the labnels float within the input border whenever the User adds to the field --*/
+
+/*-- Makes the input relative so that the label can correctly float in the input border when clicked --*/
+.label-float {
+    position: relative;
+}
+
+/*-- Field label prior to field being clicked on --*/
+.form-data input::placeholder,
+.form-data select::placeholder, 
+.form-data textarea::placeholder {
+    color: transparent;
+}
+
+/*-- Field label after field has been clicked on --*/
+.form-data input:not(:placeholder-shown) + label,
+.form-data input:focus + label,
+.form-data select:not(:placeholder-shown) + label, 
+.form-data select:focus + label,
+.form-data textarea:not(:placeholder-shown) + label, 
+.form-data textarea:focus + label {
+    font-size: 12px;
+    top: -9px;
+    left: 8px;
+    background-color: var(--orange_bg);
+    color: var(--black);
+    font-weight: 700;
+    padding: 0 5px;
+}
+
+.hidden-label {
+    display: none;
+}

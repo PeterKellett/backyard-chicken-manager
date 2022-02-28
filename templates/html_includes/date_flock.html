@@ -1,14 +1,18 @@
-<div class="bottom-margin">
+<div class="bottom-margin label-float">
     {% if 'acquired_date' in onboard_profile_data %}
-    <input type="date" name="date" value="" id="todays-date" required>
+    <input type="date" name="date" value="" id="todays-date" required autofocus>
+    <label for="todays-date" class="hidden-label">Date</label>
     {% else %}
-    <input type="date" name="date" value="" id="todays-date" required>
+    <input type="date" name="date" value="" id="todays-date" required autofocus>
+    <label for="todays-date" class="hidden-label">Date</label>
     {% endif %}
 </div>
-<div class="bottom-margin">
+<div class="bottom-margin label-float">
     {% if 'flock_name' in onboard_profile_data %}
     <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" required>
+    <label for="flock-name">Flock Name</label>
     {% else %}
-    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
+    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" class="label-float-field" required>
+    <label for="flock-name">Flock Name</label>
     {% endif %}
 </div>
