@@ -72,14 +72,14 @@
             <section name="flock-core-info">
                 <div class="bottom-margin">
                     {% if 'flock_name' in onboard_profile_data %}
-                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" required>
+                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" required autofocus>
                     {% else %}
                     <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
                     {% if 'acquired_date' in onboard_profile_data %}
-                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required>
+                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required autofocus>
                     {% else %}
                     <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired-date" required>
                     {% endif %}

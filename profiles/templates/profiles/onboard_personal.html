@@ -65,9 +65,9 @@
                 </div>
                 <div class="bottom-margin">
                     {% if 'full_name' in onboard_profile_data %}
-                        <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full-name" required>
+                        <input type="text" name="full_name" placeholder="Full Name" value="{{ onboard_profile_data.full_name }}" id="full-name" required autofocus>
                     {% else %}
-                        <input type="text" name="full_name" placeholder="Full Name" id="full-name" required>
+                        <input type="text" name="full_name" placeholder="Full Name" id="full-name" required autofocus>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
@@ -130,3 +130,4 @@
 </div>
 
 {% endblock %}
+

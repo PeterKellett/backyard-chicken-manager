@@ -58,7 +58,7 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=20,
                                  null=True,
                                  blank=True)
-    city_country = models.CharField(max_length=20,
+    city_country = models.CharField(max_length=35,
                                     null=False,
                                     blank=False)
 
@@ -73,6 +73,7 @@ class FarmProfile(models.Model):
                                      blank=False,
                                      on_delete=models.CASCADE,
                                      related_name='farmprofiles')
+
     farm_business_name = models.CharField(max_length=20,
                                           null=False,
                                           blank=False)

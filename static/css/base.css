@@ -23,7 +23,7 @@ body {
 .bottom-margin {
     padding-left: 0;
     padding-right: 0;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .container-fluid {
@@ -345,32 +345,12 @@ input[type=checkbox] {
 /*-- Field label prior to field being clicked on --*/
 input + label,
 .form-data select + label,
-.form-data textarea + label,
-.far {
+.form-data textarea + label {
     position: absolute;
     font-size: 16px;
     color: var(--black);
-}
-
-/*-- Field label prior to field being clicked on. It's an extension of above --*/
-.form-data input + label,
-.form-data select + label,
-.form-data textarea + label {
     left: 10px;
-    top: 9px;
-}
-
-/*-- Field label after field has been clicked on --*/
-.form-data input:not(:placeholder-shown) + label, 
-.form-data input:focus + label,
-.form-data select:not(:placeholder-shown) + label, 
-.form-data select:focus + label,
-.form-data textarea:not(:placeholder-shown) + label, 
-.form-data textarea:focus + label {
-    font-size: 12px;
-    top: -10px;
-    background-color: var(--white);
-    color: var(--black);
+    top: 6px;
 }
 
 /*-- Highlight field border when clicked on --*/
@@ -398,11 +378,14 @@ input:-webkit-autofill:active {
 .h-style-input {
     font-weight: 700;
     font-size: 20px;
-    border: hidden;
     background-color: transparent;
 }
-  
- 
+.h-style-input,
+.h-style-input:focus {
+    border: hidden;
+    outline: none;
+}
+
 
 /*-- INPUT FIELDS END --*/
 
@@ -556,6 +539,7 @@ main {
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
+    padding: 0 10px;
 }
 
 i {

@@ -82,13 +82,13 @@
                   <a class="nav-link" href=""><img src="{{ MEDIA_URL }}profile_and_setting.png" alt="" class="nav-link-image">Settings & Profile</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href=""><img src="{{ MEDIA_URL }}hen.png" alt="" class="nav-link-image">About Us</a>
+                  <a class="nav-link" href=""><img src="" alt="" class="nav-link-image">About Us</a>
                 </li>
                 <!--<li class="nav-item">
                   <a class="nav-link" href="{% url 'account_email' %}">Change E-mail</a>
                 </li>-->
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'account_logout' %}"><img src="{{ MEDIA_URL }}hen.png" alt="" class="nav-link-image">Sign Out</a>
+                  <a class="nav-link" href="{% url 'account_logout' %}"><img src="" alt="" class="nav-link-image">Sign Out</a>
                 </li>
               {% else %}
                 <li class="nav-item">
@@ -130,7 +130,7 @@
 
     {% block postloadjs %}
     <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdgWx9zz-BHOFFeoqT70xzva7N2rt5804&libraries=places&callback=initAutocomplete">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdgWx9zz-BHOFFeoqT70xzva7N2rt5804&libraries=places&callback=initAutocomplete" defer>
     </script>
     {% endblock %}
 
