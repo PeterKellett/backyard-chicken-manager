@@ -24,6 +24,7 @@ class FarmType(models.Model):
     type = models.CharField(max_length=20,
                             null=False,
                             blank=False)
+
     def __str__(self):
         return self.type
 
@@ -33,6 +34,7 @@ class Breed(models.Model):
     type = models.CharField(max_length=20,
                             null=False,
                             blank=False)
+
     def __str__(self):
         return self.type
 
@@ -42,6 +44,7 @@ class FarmPurpose(models.Model):
     type = models.CharField(max_length=20,
                             null=False,
                             blank=False)
+
     def __str__(self):
         return self.type
 
@@ -66,14 +69,17 @@ class UserProfile(models.Model):
 class FarmProfile(models.Model):
     """Model used for storing FarmProfile attributes"""
     user_profile = models.ForeignKey(UserProfile,
-                             null=False,
-                             blank=False,
-                             on_delete=models.CASCADE,
-                             related_name='farmprofiles')
+                                     null=False,
+                                     blank=False,
+                                     on_delete=models.CASCADE,
+                                     related_name='farmprofiles')
+
     farm_business_name = models.CharField(max_length=20,
                                           null=False,
                                           blank=False)
-    farm_type = models.ForeignKey(FarmType, on_delete=models.PROTECT)
+    farm_type = models.ForeignKey(FarmType,
+                                  on_delete=models.PROTECT,
+                                  related_name='farmtype')
     farm_sales_roadside = models.BooleanField(default=False)
     farm_sales_markets = models.BooleanField(default=False)
     farm_sales_deliveries = models.BooleanField(default=False)

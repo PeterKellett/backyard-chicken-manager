@@ -10,6 +10,8 @@ class Flocks(models.Model):
         verbose_name_plural = 'Flocks'
 
     farm_id = models.ForeignKey(FarmProfile,
+                                null=False,
+                                blank=False,
                                 on_delete=models.CASCADE,
                                 related_name='flocks')
     flock_name = models.CharField(max_length=20,

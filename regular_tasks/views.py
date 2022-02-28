@@ -10,7 +10,6 @@ from .forms import EggCollectionForm, FeedingTimeForm
 @login_required
 def egg_collection(request):
     """view to current flock"""
-    form = EggCollectionForm
     if request.POST:
         date = request.POST['date']
         flock = request.POST['flock_name']
@@ -31,8 +30,13 @@ def egg_collection(request):
         template = 'profiles/dashboard.html'
         return render(request, template)
     else:
+        form = EggCollectionForm
+        userprofile = UserProfile.objects.get(user=request.user)
+        farmprofile = userprofile.farmprofiles.all()
+        flock = farmprofile[0].flocks.all()
         template = 'regular_tasks/egg_collection.html'
-        context = {'form': form}
+        context = {'form': form,
+                  'flocks': flock}
         return render(request, template, context)
 
 
