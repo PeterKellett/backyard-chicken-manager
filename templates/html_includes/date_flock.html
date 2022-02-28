@@ -6,9 +6,10 @@
     {% endif %}
 </div>
 <div class="bottom-margin">
-    {% if 'flock_name' in onboard_profile_data %}
-    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" required>
-    {% else %}
-    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
-    {% endif %}
+    <select name="flock" id="" required>
+        <option value="" disabled selected>Select flock</option>
+    {% for flock in flocks %}
+        <option type="text" name="flock_name" value="{{ flock.id }}" placeholder="flock.flock_name" id="flock-name">{{ flock.flock_name.title }}</option>
+    {% endfor %}
+    </select>   
 </div>

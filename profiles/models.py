@@ -76,7 +76,9 @@ class FarmProfile(models.Model):
     farm_business_name = models.CharField(max_length=20,
                                           null=False,
                                           blank=False)
-    farm_type = models.ForeignKey(FarmType, on_delete=models.PROTECT)
+    farm_type = models.ForeignKey(FarmType,
+                                  on_delete=models.PROTECT,
+                                  related_name='farmtype')
     farm_sales_roadside = models.BooleanField(default=False)
     farm_sales_markets = models.BooleanField(default=False)
     farm_sales_deliveries = models.BooleanField(default=False)

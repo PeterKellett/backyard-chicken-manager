@@ -18,7 +18,7 @@
 <div class="element-container container-fluid sub-nav-container">
     <ul class="nav nav-tabs nav-justified">
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link active" href="{% url 'regular_tasks' %}">
+            <a class="nav-link sub-nav-link active" href="{% url 'egg_collection' %}">
                 <img src="{{ MEDIA_URL }}reg_task_egg_collection.png" alt="Regular Tasks, Egg Collection Icon" class="nav-link-image sub-nav-link-image">
                 Egg Collection
             </a>
@@ -67,7 +67,7 @@
 
 <!-- MAIN SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
+    <form method="POST" action="{% url 'egg_collection' %}" name="hcc-form">
         {% csrf_token %}
         <div class="form-data">
             <!-- Eggs Laid Section -->
@@ -119,6 +119,7 @@
                         <input type="number" name="eggs-given-free" value="" placeholder="Qty of Eggs Given Away Free" id="eggs-given-free" 
                         step="1" min="0">
                     </div>
+                    <!--
                     <div class="container">
                         <div class="row bottom-margin">
                             <div class="col-10 col-css">
@@ -131,7 +132,7 @@
                                 </h5>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="row bottom-margin">
                         <div class="col-10 col-css">
                             <h6 class="row-name">Average Egg Weight:</h6>
