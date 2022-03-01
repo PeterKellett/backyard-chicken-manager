@@ -92,6 +92,7 @@ $(document).ready(function () {
         }
     }
 
+    // Call hccTotal function on page load
     hccTotal();
     
 // !!!!!!! (document).ready function end
@@ -167,6 +168,7 @@ function addAnotherFlock() {
     document.querySelector('div[name=flocks-container]').outerHTML = flockCodeBlock;
     }
 
+
 // FEEDS: Adds another set of fields when the "Add Another" button is clicked
 function addAnotherFeed() {
     var feedsCodeBlock = `<div class="bottom-margin">
@@ -192,6 +194,7 @@ function addAnotherFeed() {
                         </div>`
         document.querySelector('div[name=feeds-container]').outerHTML = feedsCodeBlock;
         }
+
 
 // SUPPLEMENTS: Adds another set of fields when the "Add Another" button is clicked
 function addAnotherSupplement() {
@@ -219,6 +222,7 @@ function addAnotherSupplement() {
     document.querySelector('div[name=supplements-container]').outerHTML = supplementsCodeBlock;
     }
 
+
 // Function to display additional fields or content when a checkbpx is checked
 // Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
 $(function () {
@@ -234,6 +238,7 @@ $(function () {
     });
 });
 
+
 // Function to make textarea height to expand based on amopunt of text added by the user.
 // Taken from https://www.techiedelight.com/automatically-resize-textarea-height-javascript/
 $(document).ready(function() {
@@ -242,6 +247,7 @@ $(document).ready(function() {
         $(this).height(this.scrollHeight);
     });
 });
+
 
 // Functions (2) to autosuggest cities.
 // Taken from https://www.youtube.com/watch?v=c3MjU9E9buQ&t=165s
@@ -267,4 +273,11 @@ function onPlaceChanged() {
     } else {
         document.getElementById('city-country').innerHTML = place.name;
     }
+}
+
+
+// Display floating label on Select inputs when a selection is made
+function displaySelectLabel() {
+    console.log("displaySelectLabel Fires");
+    document.getElementById('select-input-label').style.display = "block";
 }
