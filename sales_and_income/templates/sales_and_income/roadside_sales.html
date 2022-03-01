@@ -72,134 +72,34 @@
         
         <div class="form-data">
             <!-- Eggs Laid Section -->
-            <section name="flock-core-info">
-                {% include 'html_includes/date.html' %}
-                {% include 'html_includes/flock.html' %}
-                <div class="container">
-                    <div class="row">
-                        <!-- Eggs Laid Trays -->
-                        <div class="col-6 two-inputs-left">
-                            <div class="bottom-margin label-float">
-                                {{ form.qty_egg_trays }}
-                                <label for="qty-egg-trays">Qty Laid - Trays</label>
-                            </div>
-                        </div>
-                        <!-- Eggs Laid Singles-->
-                        <div class="col-6 two-inputs-right">
-                            <div class="bottom-margin label-float">
-                                {{ form.qty_egg_singles }}
-                                <label for="qty-egg-singles">Qty Laid - Single</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Total Eggs Laid -->
-                <div class="row bottom-margin">
-                    <div class="col-8 col-css">
-                        <h6 class="row-name">Total Eggs Laid:</h6>
-                    </div>
-                    <div class="col-2 col-css col-css-right label-float">
-                        {{ form.qty_total_eggs_laid }}
-                        <label for="qty-total-eggs-laid" class="hidden-label">Total Eggs Laid</label>
-                    </div>
-                    <div class="col-2 col-css col-css-right">
-                        <h6 class="text-end">Eggs</h6>
-                    </div>
-                </div>
-                <div class="bottom-margin">
-                    <hr class="hr-large">
-                </div>
-            </section>
+            {% include 'html_includes/date.html' %}
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
 
-            <!-- Advanced Section - Bootstrap Collapse https://getbootstrap.com/docs/5.0/components/collapse/-->
-            <section name="advanced-section">
-                <div class="bottom-margin panel-div label-float">
-                    <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <h6>Advanced (Click on me)</h6>
-                    </a>
+            <section name="flock-core-info">
+                <div class="bottom-margin label-float">
+                    <h4>Pricing</h4>
                 </div>
-                <div class="collapse in" id="collapseExample">
-                    <!-- Eggs Damaged -->
-                    <div class="bottom-margin label-float">
-                        {{ form.qty_eggs_damaged }}
-                        <label for="qty-eggs-damaged">Qty of Eggs Damaged (OK for personal use)</label>
-                    </div>
-                    <!-- Eggs Broken -->
-                    <div class="bottom-margin label-float">
-                        {{ form.qty_eggs_broken }}
-                        <label for="qty-eggs-broken">Qty of Eggs Broken (Unuseable)</label>                
-                    </div>
-                    <div class="bottom-margin">
-                        <hr class="hr-small">
-                    </div>
-                    <!-- Eggs Personal Use -->
-                    <div class="bottom-margin label-float">
-                        {{ form.qty_eggs_personal_use }}
-                        <label for="qty-eggs-personal-use">Qty of Eggs Taken for Personal Use</label> 
-                    </div>
-                    <!-- Eggs Given Free -->
-                    <div class="bottom-margin label-float">
-                        {{ form.qty_eggs_given_free }}
-                        <label for="qty-eggs-given-free">Qty of Eggs Given Away Free</label> 
-                    </div>
-                    <div class="bottom-margin">
-                        <hr class="hr-small">
-                    </div>
-                    <!-- Eggs Total Weight -->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-10 col-css">
-                                <div class="bottom-margin label-float">
-                                    {{ form.weight_total_eggs_laid }}
-                                    <label for="weight-total-eggs-laid">Weight of all eggs laid (excl. broken)</label>
-                                </div>
-                            </div>
-                            <div class="col-2 col-css">
-                                <div class="bottom-margin">
-                                    <h5 class="text-end">
-                                        kg
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Eggs Average Weight -->
-                    <div class="row">
-                        <div class="col-8 col-css">
-                            <div class="bottom-margin">
-                                <h6 class="row-name">Average Egg Weight:</h6>
-                            </div>
-                        </div>
-                        <div class="col-2 col-css col-css-right">
-                            <div class="bottom-margin label-float">
-                                {{ form.avg_egg_weight }}
-                                <label for="avg-egg-weight" class="hidden-label">Average Eggs Weight</label>
-                            </div>
-                        </div>
-                        <div class="col-2 col-css col-css-right">
-                            <h6 class="text-end">gr</h6>
-                        </div>
-                    </div>
-                    <div class="bottom-margin">
-                        <hr class="hr-large">
-                    </div>
-                    <!-- Eggs Saleable Qty -->
-                    <div class="row">
-                        <div class="col-8 col-css">
-                            <div class="bottom-margin">
-                                <h6 class="row-name">Saleable Quantity:</h6>
-                            </div>
-                        </div>
-                        <div class="col-2 col-css col-css-right">
-                            <div class="bottom-margin label-float">
-                                {{ form.qty_saleable_eggs }}
-                                <label for="qty-saleable-eggs" class=" hidden-label">Eggs Saleable Quantity</label>
-                            </div>
-                        </div>
-                        <div class="col-2 col-css col-css-right">
-                            <h6 class="text-end">Eggs</h6>
-                        </div>
-                    </div>
+                <div class="bottom-margin label-float">
+                    {{ form.single_egg_price }}
+                    <label for="single-egg-price">Single Eggs Price</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.half_dozen_eggs_price }}
+                    <label for="half_dozen-eggs-price">Half Dozen Eggs Price</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.ten_eggs_price }}
+                    <label for="ten-eggs-price">10 Eggs Price</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.dozen_eggs_price }}
+                    <label for="dozen-eggs-price">Dozen Eggs Price</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.trays_of_eggs_price }}
+                    <label for="trays-of-eggs-price">Tray of Eggs Price</label>
                 </div>
             </section>
 
