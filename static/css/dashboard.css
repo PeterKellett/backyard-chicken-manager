@@ -1,16 +1,3 @@
-body {
-    background-color: var(--orange_bg);
-}
-
-.element-container {
-    border:  2px solid var(--black);
-    border-radius: 5px;
-    background-color: var(--green_bg);
-    height: 50px;
-    margin-bottom: 10px;
-    position: relative;
-}
-
 .dashboard-icon-div,
 .dashboard-icon-name-div {
     position: absolute;
@@ -26,6 +13,14 @@ body {
     top: 12px;
 }
 
+.element-container {
+    border:  2px solid var(--black);
+    border-radius: 5px;
+    background-color: var(--green_bg);
+    height: 50px;
+    margin-bottom: 10px;
+    position: relative;
+}
 
 /* Margin Bottom set to 0 which is different to most other pleaces on site.
    Donehere to allow elements center vertically with in the containers */

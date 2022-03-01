@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
     <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
     <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
-    <link rel="stylesheet" href="{% static 'regular_tasks/css/regular_tasks.css' %}" />
+    <link rel="stylesheet" href="{% static 'regular_tasks/css/sales_and_income.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
-    Egg Collection
+    Egg Sales
 {% endblock %}
 
 {% block sub-nav %}
@@ -21,28 +21,34 @@
 <div class="element-container container-fluid sub-nav-container">
     <ul class="nav nav-tabs nav-justified">
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link active" href="{% url 'egg_collection' %}">
-                <img src="{{ MEDIA_URL }}reg_task_egg_collection.png" alt="Regular Tasks, Egg Collection Icon" class="nav-link-image sub-nav-link-image">
-                Egg Collection
+            <a class="nav-link sub-nav-link active" href="{% url 'roadside_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_birds.png" alt="Egg Sales Roadside Icon" class="nav-link-image sub-nav-link-image">
+                Roadside
             </a>
         </li>
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link" href="{% url 'feeding_time' %}">
-                <img src="{{ MEDIA_URL }}reg_task_feeding_time.png" alt="Regular Tasks, Feeding Time Icon" class="nav-link-image sub-nav-link-image">
-                Feeding Time
+            <a class="nav-link sub-nav-link" href="{% url 'collection_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_birds.png" alt="Egg Sales Collections Icon" class="nav-link-image sub-nav-link-image">
+                Collections
             </a>
         </li>
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link" href="{% url 'coop_cleaning' %}">
-                <img src="{{ MEDIA_URL }}reg_task_coop_cleaning.png" alt="Regular Tasks, Coop Cleaning Icon" class="nav-link-image sub-nav-link-image">
-                Coop Cleaning
+            <a class="nav-link sub-nav-link" href="{% url 'delivery_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_birds.png" alt="Egg Sales Deliveries Icon" class="nav-link-image sub-nav-link-image">
+                Deliveries
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'market_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_birds.png" alt="Egg Sales Markets Icon" class="nav-link-image sub-nav-link-image">
+                Markets
             </a>
         </li>
     </ul>
 </div>
 
 <!-- Page Name - Non-Mobile -->
-{% include 'html_includes/page_name_non_mobile.html' with page_name="Egg Collection" %}
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Egg Sales" %}
 
 <!-- Icons and Links Section -->
 <div class="container element-container">
@@ -51,10 +57,7 @@
             <i class="fas fa-info-circle icon-orange"></i>
         </div>
         <div class="col-2 col-css">
-            <a href=""><img src="{{ MEDIA_URL }}reports_eggs.png" alt="Egg reports icon" class="non-round-icon"></a>
-        </div>
-        <div class="col-6 col-css">
-            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting.png" alt="settings & profile icon" class="non-round-icon"></a>
+            <a href=""><img src="{{ MEDIA_URL }}reports_income.png" alt="Income reports icon" class="non-round-icon"></a>
         </div>
     </div>
 </div>

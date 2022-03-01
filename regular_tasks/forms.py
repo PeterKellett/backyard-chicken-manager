@@ -47,7 +47,8 @@ class EggCollectionForm(ModelForm):
                                                             'qty_total_eggs_laid',
                                                             'placeholder':
                                                             'Qty Laid - Single',
-                                                            'value': '0'}),
+                                                            'value': '0',
+                                                            'disabled': 'true'}),
             'qty_eggs_damaged': forms.NumberInput(attrs={'class':
                                                          'saleable-eggs-input',
                                                          'id':
@@ -124,7 +125,8 @@ class EggCollectionForm(ModelForm):
                                                        eggs laid (excl. \
                                                        Broken)',
                                                        'value': '0',
-                                                       'min': '0'}),
+                                                       'min': '0',
+                                                       'disabled': 'true'}),
             'qty_saleable_eggs': forms.NumberInput(attrs={'class':
                                                           'text-end \
                                                           h-style-input',
@@ -134,7 +136,8 @@ class EggCollectionForm(ModelForm):
                                                           'qty_saleable_eggs',
                                                           'placeholder':
                                                           'Eggs Saleable Qty',
-                                                          'value': '0'}),
+                                                          'value': '0',
+                                                          'disabled': 'true'}),
             'egg_collection_notes': forms.TextInput(attrs={'id': 'egg-collection-notes',
                                                            'name': 'egg_collection_notes',
                                                            'placeholder':
