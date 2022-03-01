@@ -9,9 +9,9 @@ class EggCollection(models.Model):
     # flock = models.ForeignKey(flocks.id,
     # related_name=flocks)
     qty_egg_trays = models.IntegerField(null=False,
-                                        blank=False)
+                                        blank=True)
     qty_egg_singles = models.IntegerField(null=False,
-                                          blank=False)
+                                          blank=True)
     qty_total_eggs_laid = models.IntegerField(null=False,
                                               blank=True)
     qty_eggs_damaged = models.IntegerField(null=False,

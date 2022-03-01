@@ -3,8 +3,8 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/regular_tasks.css' %}" />
     <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static 'regular_tasks/css/regular_tasks.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -222,5 +222,5 @@
 {% endblock %}
 
 {% block postloadjs %}
-    <script src="{% static 'js/regular_tasks.js' %}"></script>
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
 {% endblock %}
