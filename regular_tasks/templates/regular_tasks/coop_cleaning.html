@@ -3,6 +3,7 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
     <link rel="stylesheet" href="{% static 'regular_tasks/css/regular_tasks.css' %}" />
 {% endblock %}
 
@@ -81,9 +82,9 @@
                 </div>
             </div>
 
-            <div class="bottom-margin checkbox-display-hide-div" name="checkbox-display-hide-div">
+            <div class="bottom-margin checkbox-display-hide-div label-float" name="checkbox_display_hide_div">
                 {{ form.disinfectant }}
-                <label for="disinfectant">Disinfectant Name</label>
+                <label id="disinfectant-label" for="disinfectant">Disinfectant Name</label>
             </div>
 
             <div class="bottom-margin">

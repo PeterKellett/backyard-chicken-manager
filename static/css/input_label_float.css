@@ -28,6 +28,7 @@
     padding: 0 5px;
 }
 
-.hidden-label {
+.hidden-label,
+#disinfectant-label {
     display: none;
 }

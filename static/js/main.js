@@ -92,6 +92,20 @@ $(document).ready(function () {
         }
     }
 
+    // Floating Input Labels: If a label is for a field that displays when a checkbox is checked this
+    // function allows the label to display. Otherwise it shows up onscreen even though the input
+    // it is for, doesn't.
+    var checkbox = document.getElementById("disinfected");
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            document.getElementById("disinfectant-label").style.display="block";
+            console.log("Checkbox is checked..");
+        } else {
+            document.getElementById("disinfectant-label").style.display="none";
+            console.log("Checkbox is not checked..");
+        }
+    });
+
     // Call hccTotal function on page load
     hccTotal();
     
@@ -249,35 +263,10 @@ $(document).ready(function() {
 });
 
 
-// Functions (2) to autosuggest cities.
-// Taken from https://www.youtube.com/watch?v=c3MjU9E9buQ&t=165s
-let autocomplete;
-function initAutocomplete() {
-    console.log("Map Called");
-    autocomplete = new google.maps.places.Autocomplete(
-        document.getElementById('city-country'),
-        {
-            // Don't know why it's not working when I include this. See table 3 in https://developers.google.com/maps/documentation/places/web-service/supported_types
-            //types: ['cities'],
-            fields: ['address_components','geometry'] //https://developers.google.com/maps/documentation/javascript/place-data-fields?hl=en
-        });
-    autocomplete.addListener('place_changed', onPlaceChanged);
-}
-
-function onPlaceChanged() {
-    var place = autocomplete.getPlace();
-
-    if (!place.geometry) {
-        document.getElementById('city-country').placeholder =
-        'Enter a City or Town';
-    } else {
-        document.getElementById('city-country').innerHTML = place.name;
-    }
-}
-
-
-// Display floating label on Select inputs when a selection is made
+// Floating Input Labels: Display floating label on Select inputs when a selection is made
 function displaySelectLabel() {
     console.log("displaySelectLabel Fires");
     document.getElementById('select-input-label').style.display = "block";
 }
+
+
