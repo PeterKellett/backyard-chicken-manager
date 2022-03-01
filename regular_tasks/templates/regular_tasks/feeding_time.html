@@ -67,7 +67,8 @@
         {% csrf_token %}
 
         <div class="form-data">
-            {% include 'html_includes/date_flock.html' %}
+            {% include 'html_includes/date.html' %}
+            {% include 'html_includes/flock.html' %}
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
@@ -148,7 +149,7 @@
                     <div class="row bottom-margin label-float">
                         <div class="col-10 col-css">
                             {{ form.amount_water_added }}
-                            <label for="amount-food-added">Amount of Water Added</label>
+                            <label for="amount-water-added">Amount of Water Added</label>
                         </div>
                         <div class="col-2 col-css">
                             <h5 class="text-end">
