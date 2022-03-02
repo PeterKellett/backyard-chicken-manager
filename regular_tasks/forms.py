@@ -128,8 +128,7 @@ class EggCollectionForm(ModelForm):
                                                        'min': '0',
                                                        'disabled': 'true'}),
             'qty_saleable_eggs': forms.NumberInput(attrs={'class':
-                                                          'text-end \
-                                                          h-style-input',
+                                                          'text-end h-style-input',
                                                           'id':
                                                           'qty-saleable-eggs',
                                                           'name':
@@ -224,10 +223,12 @@ class CoopCleaningForm(ModelForm):
 
         widgets = {
             'date': forms.DateInput(attrs={'class': 'class-name'}),
-            'disinfected': forms.CheckboxInput(attrs={'class': 'col-css-element',
+            'disinfected': forms.CheckboxInput(attrs={'class':
+                                                      'click-to-show',
                                                       'id': 'disinfected',
                                                       'name': 'disinfected'}),
-            'disinfectant': forms.TextInput(attrs={'id': 'disinfectant',
+            'disinfectant': forms.TextInput(attrs={'class': '',
+                                                   'id': 'disinfectant',
                                                    'name': 'disinfectant',
                                                    'placeholder': 'Disinfectant Name'}),
             'coop_cleaning_notes': forms.TextInput(attrs={'id': 'coop-cleaning-notes',

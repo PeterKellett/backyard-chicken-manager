@@ -46,8 +46,9 @@ class FeedingTime(models.Model):
                                 blank=False)
     # flock = models.ForeignKey(flocks.id,
     # related_name=flocks)
-    food_type = models.IntegerField(null=False,
-                                    blank=False)
+    food_type = models.CharField(max_length=250,
+                                null=False,
+                                blank=False)
     amount_food_rem = models.IntegerField(null=False,
                                           blank=False)
     amount_food_added = models.IntegerField(null=False,
@@ -72,8 +73,9 @@ class CoopCleaning(models.Model):
     # related_name=flocks)
     disinfected = models.BooleanField(null=False,
                                       blank=True)
-    disinfectant = models.IntegerField(null=False,
-                                       blank=True)
+    disinfectant = models.CharField(max_length=250,
+                                    null=False,
+                                    blank=True)
     coop_cleaning_notes = models.CharField(max_length=500,
                                            null=False,
                                            blank=True)

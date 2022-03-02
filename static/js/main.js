@@ -240,14 +240,14 @@ function addAnotherSupplement() {
 // Function to display additional fields or content when a checkbpx is checked
 // Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
 $(function () {
-    $('input[name="disinfectant"]').hide();
+    $('div.show-on-click').hide();
 
     //show it when the checkbox is clicked
-    $('input[name="disinfected"]').on('click', function () {
+    $('input[class="click-to-show"]').on('click', function () {
         if ($(this).prop('checked')) {
-            $('input[name="disinfectant"]').fadeIn();
+            $('div.show-on-click').fadeIn();
         } else {
-            $('input[name="disinfectant"]').hide();
+            $('div.show-on-click').hide();
         }
     });
 });
