@@ -386,6 +386,11 @@ input:-webkit-autofill:active {
     outline: none;
 }
 
+/*-- Relates to Inputs that need to be shown/hidden when a checkbox is checked --*/
+.show-hide-input
+{
+    display: none;
+}
 
 /*-- INPUT FIELDS END --*/
 

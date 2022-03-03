@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from flock_management.models import Flocks
-from .forms import EggCollectionForm, FeedingTimeForm
+from .forms import EggCollectionForm, FeedingTimeForm, CoopCleaningForm
 
 
 @login_required
@@ -53,7 +53,7 @@ def feeding_time(request):
         amount_water_rem = request.POST['amount_water_rem']
         amount_water_added = request.POST['amount_water_added']
         feeding_notes = request.POST['feeding_notes']
-        template = 'regular_tasks/feeding_time.html'
+        template = 'profiles/dashboard.html'
         context = {}
         return render(request, template)
     else:
@@ -64,7 +64,18 @@ def feeding_time(request):
 
 @login_required
 def coop_cleaning(request):
-    """view to add flock"""
-    template = 'regular_tasks/coop_cleaning.html'
-    context = {}
-    return render(request, template, context)
+    """view for Coop Cleaning"""
+    form = CoopCleaningForm
+    if request.POST:
+        date = request.POST['date']
+        flock = request.POST['flock_name']
+        disinfected = request.POST['disinfected']
+        disinfectant = request.POST['disinfectant']
+        coop_cleaning_notes = request.POST['coop_cleaning_notes']
+        template = 'profiles/dashboard.html'
+        context = {}
+        return render(request, template)
+    else:
+        template = 'regular_tasks/coop_cleaning.html'
+        context = {'form': form}
+        return render(request, template, context)

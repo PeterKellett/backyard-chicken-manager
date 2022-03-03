@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static 'regular_tasks/css/sales_and_income.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Egg Sales - Markets
+{% endblock %}
+
+{% block sub-nav %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Sub Navigation Section -->
+<div class="element-container container-fluid sub-nav-container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'egg_roadside_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_roadside.png" alt="Egg Sales Roadside Icon" class="nav-link-image sub-nav-link-image">
+                Roadside
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'egg_collection_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_collections.png" alt="Egg Sales Collections Icon" class="nav-link-image sub-nav-link-image">
+                Collections
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'egg_delivery_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_deliveries.png" alt="Egg Sales Deliveries Icon" class="nav-link-image sub-nav-link-image">
+                Deliveries
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link active" href="{% url 'egg_market_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_markets.png" alt="Egg Sales Markets Icon" class="nav-link-image sub-nav-link-image">
+                Markets
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Icons and Links Section -->
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle icon-orange"></i>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}reports_income.png" alt="Income reports icon" class="non-round-icon"></a>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting_settings.png" alt="Profile and Settings icon" class="non-round-icon"></a>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<!-- FORM SECTION  -->
+<div class="element-container">
+    <form method="POST" action="{% url 'egg_market_sales' %}" name="egg_market_sales" id="submit-form">
+        {% csrf_token %}
+        
+        <div class="form-data">
+            <!-- Sale Date Section -->
+            {% include 'html_includes/date.html' %}
+            <div class="bottom-margin label-float">
+                {{ form.venue_location_eggs_market }}
+                <label for="venue-location-eggs-market">Market Venue/Location</label>
+            </div>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Egg Prices Section -->
+            <section name="flock-core-info">
+                <div class="bottom-margin label-float">
+                    <h4>Pricing</h4>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.single_egg_price }}
+                    <label for="single-egg-price">Single Eggs Price</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.half_dozen_eggs_price }}
+                    <label for="half-dozen-eggs-price">Half Dozen Eggs Price</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.ten_eggs_price }}
+                    <label for="ten-eggs-price">10 Eggs Price</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.dozen_eggs_price }}
+                    <label for="dozen-eggs-price">Dozen Eggs Price</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.trays_of_eggs_price }}
+                    <label for="trays-of-eggs-price">Tray of Eggs Price</label>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Egg Sales & Stock Section -->
+            <section name="flock-core-info">
+                <div class="bottom-margin label-float">
+                    <h4>Sales & Stocks</h4>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.qty_single_eggs_sold }}
+                    <label for="qty-single-eggs-sold">Qty of Single Eggs Sold</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.qty_half_dozen_egg_boxes_sold }}
+                    <label for="qty-half-dozen-egg-boxes-sold">Qty of Half Dozens Sold</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.qty_ten_egg_boxes_sold }}
+                    <label for="qty-ten-egg-boxes-sold">Qty of 10's Sold</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.qty_dozen_egg_boxes_sold }}
+                    <label for="qty-dozen-egg-boxes-sold">Qty of Dozens Sold</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.qty_trays_of_eggs_sold }}
+                    <label for="qty-trays-of-eggs-sold">Qty of Trays Sold</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.amount_paid_eggs_market }}
+                    <label for="amount-paid-eggs-market">€ Amount Collected</label>
+                </div>
+                <!-- Total Selling Value of Eggs Sold -->
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Value of Eggs Sold:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right label-float">
+                        {{ form.sales_amount_eggs_roadside }}
+                        <label for="sales-amount-eggs-roadside" class="hidden-label">Value of Eggs Sold</label>
+                    </div>
+                </div>
+                <!-- Difference Between Value of Eggs Sold and Money Received -->
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Differece Between Egg Sales and Amount Collected:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right label-float">
+                        {{ form.sales_paid_difference_eggs_roadside }}
+                        <label for="sales-paid-difference-eggs-roadside" class="hidden-label">Differece Between Egg Sales and Amount Collected</label>
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Egg Breakages or Loses Section -->
+            <section name="flock-core-info">
+                <div class="bottom-margin label-float">
+                    <h4>Breakages & Loses</h4>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.loses_eggs_market }}
+                    <label for="loses-eggs-market">Qty of Eggs Broken, Stolen or Lost</label>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Notes & Images Section -->
+            {% include 'html_includes/notes_and_pics.html' %}
+
+            <!-- Used as a warning instead of an Alert -->
+            {% include 'html_includes/validation_warning.html' %}
+
+            <!-- Buttons Section -->
+            <div class="button-container">
+                <input type="hidden" name="redirect_url" value="onboard_produce"/>
+                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
+                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+{% endblock %}

@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/onboarding.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'profiles/css/onboarding.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -131,3 +132,6 @@
 
 {% endblock %}
 
+{% block postloadjs %}
+    <script src="{% static 'css/google_maps_api.js' %}"></script>
+{% endblock %}

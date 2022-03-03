@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static 'regular_tasks/css/sales_and_income.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Egg Sales - Collections
+{% endblock %}
+
+{% block sub-nav %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Sub Navigation Section -->
+<div class="element-container container-fluid sub-nav-container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'egg_roadside_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_roadside.png" alt="Egg Sales Roadside Icon" class="nav-link-image sub-nav-link-image">
+                Roadside
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link active" href="{% url 'egg_collection_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_collections.png" alt="Egg Sales Collections Icon" class="nav-link-image sub-nav-link-image">
+                Collections
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'egg_delivery_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_deliveries.png" alt="Egg Sales Deliveries Icon" class="nav-link-image sub-nav-link-image">
+                Deliveries
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'egg_market_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_markets.png" alt="Egg Sales Markets Icon" class="nav-link-image sub-nav-link-image">
+                Markets
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Icons and Links Section -->
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle icon-orange"></i>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}reports_income.png" alt="Income reports icon" class="non-round-icon"></a>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting_settings.png" alt="Profile and Settings icon" class="non-round-icon"></a>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<!-- FORM SECTION  -->
+<div class="element-container">
+    <form method="POST" action="{% url 'egg_collection_sales' %}" name="egg_collection_sales" id="submit-form">
+        {% csrf_token %}
+        
+        <div class="form-data">
+            <!-- Sale Date Section -->
+            {% include 'html_includes/date.html' %}
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Egg Sale Section -->
+            <section name="flock-core-info">
+                <a href="">
+                    <h4>{{ form.customer_name_eggs_collection }}</h4>
+                </a>
+                <!-- Normal Order Qty -->
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Normal Order Qty:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right label-float">
+                        {{ form.normal_order_qty_eggs_collection }}
+                        <label for="normal-order-qty-eggs-collection" class="hidden-label">Normal Order Qty</label>
+                    </div>
+                </div>
+
+                <div class="bottom-margin label-float">
+                    {{ form.qty_sold_eggs_collection }}
+                    <label for="qty-sold-eggs-collection">Qty of Eggs Sold</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.qty_given_free_eggs_collection }}
+                    <label for="qty-given-free-eggs-collection">Qty of Eggs Given Free</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.amount_paid_eggs_collection }}
+                    <label for="amount-paid-eggs-collection">Dozen Eggs Price</label>
+                </div>
+
+                <!-- Balance Owed -->
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Balance Owed:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right label-float">
+                        {{ form.balance_owed_eggs_collection}}
+                        <label for="balance-owed-eggs-collection" class="hidden-label">Balance Owed</label>
+                    </div>
+                </div>
+
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Egg Breakages or Loses Section -->
+            <section name="flock-core-info">
+                <div class="bottom-margin label-float">
+                    <h4>Breakages & Loses</h4>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.breakages_and_loses_eggs_collection }}
+                    <label for="breakages-and-loses-eggs-collection">Qty of Eggs Broken, Stolen or Lost</label>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Notes & Images Section -->
+            {% include 'html_includes/notes_and_pics.html' %}
+
+            <!-- Used as a warning instead of an Alert -->
+            {% include 'html_includes/validation_warning.html' %}
+
+            <!-- Buttons Section -->
+            <div class="button-container">
+                <input type="hidden" name="redirect_url" value="onboard_produce"/>
+                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
+                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+{% endblock %}

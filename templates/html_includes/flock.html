@@ -1,0 +1,9 @@
+<div class="bottom-margin label-float">
+    <select name="flock" id="flock-name" onchange="displaySelectLabel()" required>
+        <option value="" disabled selected>Select Flock</option>
+        {% for flock in flocks %}
+            <option type="text" name="flock_name" value="{{ flock.id }}" placeholder="flock.flock_name" id="flock-name">{{ flock.flock_name.title }}</option>
+        {% endfor %}
+    </select>
+    <label id="select-input-label" for="flock-name">Flock Name</label>
+</div>

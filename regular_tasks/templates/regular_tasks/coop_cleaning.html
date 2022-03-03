@@ -3,7 +3,9 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/regular_tasks.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static 'regular_tasks/css/regular_tasks.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -69,19 +71,21 @@
         {% csrf_token %}
         <div class="form-data">
 
-            {% include 'html_includes/date_flock.html' %}
+            {% include 'html_includes/date.html' %}
+            {% include 'html_includes/flock.html' %}
 
             <div class="row bottom-margin" id="disinfected-row">
                 <div class="col-11 col-css">
                     <h6 class="col-css-element checkbox-label">Disinfected?</h6>
                 </div>
                 <div class="col-1 col-css col-css-right">
-                    <input type="checkbox" name="disinfected-check" id="disinfected-check" class="col-css-element">
+                    {{ form.disinfected }}
                 </div>
             </div>
 
-            <div class="bottom-margin checkbox-display-hide-div" name="checkbox-display-hide-div">
-                <input type="text" name="disinfectant_name" placeholder="Disinfectant Name" id="disinfectant-name" required>
+            <div class="bottom-margin label-float show-on-click">
+                {{ form.disinfectant }}
+                <label id="disinfectant-label" for="disinfectant">Disinfectant Name</label>
             </div>
 
             <div class="bottom-margin">

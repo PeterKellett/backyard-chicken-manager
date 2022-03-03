@@ -1,1 +1,56 @@
-Sales and income dah
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'profiles/css/sales_and_income.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Sales & Income
+{% endblock %}
+
+{% block content %}
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Sales & Income" %}
+
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <a href="{% url 'egg_roadside_sales' %}">
+            <div class="col-2 col-css dashboard-icon-div">
+                <img src="{{ MEDIA_URL }}sales_eggs.png" alt="egg sales icon">
+            </div>
+            <div class="col-10 col-css col-css-left dashboard-icon-name-div">
+                <h2 class="menu-h2">Egg Sales</h2>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <a href="{% url 'bird_sales' %}">
+            <div class="col-2 col-css dashboard-icon-div">
+                <img src="{{ MEDIA_URL }}sales_birds.png" alt="bird sales icon">
+            </div>
+            <div class="col-10 col-css col-css-left dashboard-icon-name-div">
+                <h2 class="menu-h2">Bird Sales</h2>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <a href="{% url 'customers' %}">
+            <div class="col-2 col-css dashboard-icon-div">
+                <img src="{{ MEDIA_URL }}sales_customers.png" alt="customers icon">
+            </div>
+            <div class="col-10 col-css col-css-left dashboard-icon-name-div">
+                <h2 class="menu-h2">Customers</h2>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}
