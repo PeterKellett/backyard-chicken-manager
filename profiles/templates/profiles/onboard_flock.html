@@ -82,7 +82,7 @@
                     {% if 'acquired_date' in onboard_profile_data %}
                     <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required>
                     {% else %}
-                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired-date" required>
+                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="date-today" class="acquired-date" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
@@ -115,6 +115,7 @@
                     </div>
                 </div>
             </section>
+
             {% include 'html_includes/hens_chicks_cocks.html' %}
 
             <!-- Used as a warning instead of an Alert -->
@@ -129,4 +130,9 @@
     </form>
 </div>
 
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+{% include 'js_includes/datepicker_date_today_script.html' %}
+{% include 'js_includes/hcc_quantities_script.html' %}
 {% endblock %}

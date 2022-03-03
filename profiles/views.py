@@ -44,6 +44,7 @@ def get_onboarding_data(request):
     onboard_profile_data = request.session.get('onboard_profile_data', {})
     # Get the form data
     raw_form_data = request.POST
+    print("raw_form_data = ", raw_form_data)
     # Declare a white list of field names as a filter prior to processing /
     # the raw_form_data to the session onboard_profile_data. This will allow /
     # only certain fields to be saved to the session and will exclude all /
@@ -116,12 +117,15 @@ def get_onboarding_data(request):
             else:
                 cleaned_form_data[key] = False
     # Run the raw_form_data against the list of items in the white list
-    for key in raw_form_data:
+    for key, val in raw_form_data.items():
         if key in white_list:
             # Check if it requires the value to be an integer field
             if key in integer_fields:
-                # if Y: write the values as int
-                cleaned_form_data[key] = int(request.POST[key])
+                if val == '':
+                    cleaned_form_data[key] = 0
+                    # if Y: write the values as int
+                else:
+                    cleaned_form_data[key] = int(request.POST[key])
             else:
                 # Else N: write the value as is.
                 cleaned_form_data[key] = request.POST[key]

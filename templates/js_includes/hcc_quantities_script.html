@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    // HCC Section - Calculation: Calculation to sum total number of birds
+function hccTotal() {
+    console.log("hccTotal")
+    var totalHens = document.querySelector('input[name=hens_qty]').value;
+    var totalChicks = document.querySelector('input[name=chicks_qty]').value;
+    var totalCocks = document.querySelector('input[name=cocks_qty]').value;
+    var total = Number(totalHens) + Number(totalChicks) + Number(totalCocks);
+    document.getElementById("total-birds").value = Number(total);
+}
+
+// HCC Section - Validation: Ensures at least one quantity is indicated before user can move on
+function validateQtys() {
+    const totalBirds = document.getElementById('total-birds').value;
+    const totalBirdsNumber = Number(totalBirds);
+
+    if (totalBirdsNumber == 0) {
+        document.getElementById("warning-section-text").textContent =
+            "Please provide at least one quantity for Hens, Chicks or Cocks.";
+        document.getElementById("submit-form").addEventListener('submit', (event) => {
+            // stop form submission
+            event.preventDefault();
+        });
+    } else {
+        document.getElementById("submit-form").submit();
+    }
+}
+hccTotal();
+</script>
