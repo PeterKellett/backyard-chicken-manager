@@ -223,8 +223,7 @@ class CoopCleaningForm(ModelForm):
 
         widgets = {
             'date': forms.DateInput(attrs={'class': 'class-name'}),
-            'disinfected': forms.CheckboxInput(attrs={'class':
-                                                      'click-to-show',
+            'disinfected': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                       'id': 'disinfected',
                                                       'name': 'disinfected'}),
             'disinfectant': forms.TextInput(attrs={'class': '',
