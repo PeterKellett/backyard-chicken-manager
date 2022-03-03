@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'profiles/css/onboarding.css' %}" />
-  <link rel="stylesheet" href="{% static 'profiles/css/flocks.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'profiles/css/onboarding.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -110,13 +110,12 @@
                             {% endfor %}
                         {% endif %}
                     </select>
-                           
                     <div class="bottom-margin">
                         <hr class="hr-small">
                     </div>
                 </div>
             </section>
-            
+
             {% include 'html_includes/hens_chicks_cocks.html' %}
 
             <!-- Used as a warning instead of an Alert -->

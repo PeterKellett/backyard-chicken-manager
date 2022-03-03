@@ -1,9 +1,6 @@
 $(document).ready(function () {
     console.log("Document ready!");
-
-    
-    
-
+  
     // PK function
     var flock_form_iteration = 0;
     function addFlockForm() {
@@ -73,6 +70,22 @@ $(document).ready(function () {
         }
     }
 
+    // Floating Input Labels: If a label is for a field that displays when a checkbox is checked this
+    // function allows the label to display. Otherwise it shows up onscreen even though the input
+    // it is for, doesn't.
+    var checkbox = document.getElementById("disinfected");
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            document.getElementById("disinfectant-label").style.display="block";
+            console.log("Checkbox is checked..");
+        } else {
+            document.getElementById("disinfectant-label").style.display="none";
+            console.log("Checkbox is not checked..");
+        }
+    });
+
+    // Call hccTotal function on page load
+    hccTotal();
     
 // !!!!!!! (document).ready function end
 })
@@ -123,6 +136,7 @@ function addAnotherFlock() {
     document.querySelector('div[name=flocks-container]').outerHTML = flockCodeBlock;
     }
 
+
 // FEEDS: Adds another set of fields when the "Add Another" button is clicked
 function addAnotherFeed() {
     var feedsCodeBlock = `<div class="bottom-margin">
@@ -148,6 +162,7 @@ function addAnotherFeed() {
                         </div>`
         document.querySelector('div[name=feeds-container]').outerHTML = feedsCodeBlock;
         }
+
 
 // SUPPLEMENTS: Adds another set of fields when the "Add Another" button is clicked
 function addAnotherSupplement() {
@@ -175,20 +190,22 @@ function addAnotherSupplement() {
     document.querySelector('div[name=supplements-container]').outerHTML = supplementsCodeBlock;
     }
 
+
 // Function to display additional fields or content when a checkbpx is checked
 // Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
 $(function () {
-    $('input[name="disinfectant_name"]').hide();
+    $('div.show-on-click').hide();
 
     //show it when the checkbox is clicked
-    $('input[name="disinfected-check"]').on('click', function () {
+    $('input[class="click-to-show"]').on('click', function () {
         if ($(this).prop('checked')) {
-            $('input[name="disinfectant_name"]').fadeIn();
+            $('div.show-on-click').fadeIn();
         } else {
-            $('input[name="disinfectant_name"]').hide();
+            $('div.show-on-click').hide();
         }
     });
 });
+
 
 // Function to make textarea height to expand based on amopunt of text added by the user.
 // Taken from https://www.techiedelight.com/automatically-resize-textarea-height-javascript/
@@ -199,28 +216,11 @@ $(document).ready(function() {
     });
 });
 
-// Functions (2) to autosuggest cities.
-// Taken from https://www.youtube.com/watch?v=c3MjU9E9buQ&t=165s
-let autocomplete;
-function initAutocomplete() {
-    console.log("Map Called");
-    autocomplete = new google.maps.places.Autocomplete(
-        document.getElementById('city-country'),
-        {
-            // Don't know why it's not working when I include this. See table 3 in https://developers.google.com/maps/documentation/places/web-service/supported_types
-            //types: ['cities'],
-            fields: ['address_components','geometry'] //https://developers.google.com/maps/documentation/javascript/place-data-fields?hl=en
-        });
-    autocomplete.addListener('place_changed', onPlaceChanged);
+
+// Floating Input Labels: Display floating label on Select inputs when a selection is made
+function displaySelectLabel() {
+    console.log("displaySelectLabel Fires");
+    document.getElementById('select-input-label').style.display = "block";
 }
 
-function onPlaceChanged() {
-    var place = autocomplete.getPlace();
 
-    if (!place.geometry) {
-        document.getElementById('city-country').placeholder =
-        'Enter a City or Town';
-    } else {
-        document.getElementById('city-country').innerHTML = place.name;
-    }
-}
