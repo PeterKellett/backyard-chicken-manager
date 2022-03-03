@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/onboarding.css' %}" />
+  <link rel="stylesheet" href="{% static 'profiles/css/onboarding.css' %}" />
+  <link rel="stylesheet" href="{% static 'profiles/css/flocks.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -81,7 +82,7 @@
                     {% if 'acquired_date' in onboard_profile_data %}
                     <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required>
                     {% else %}
-                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired-date" required>
+                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="date-today" class="acquired-date" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
@@ -108,45 +109,14 @@
                             <option value="{{ breed.id }}">{{ breed|title }}</option>
                             {% endfor %}
                         {% endif %}
-                    </div>
-                    <div class="bottom-margin">
-                        {% if 'acquired_date' in onboard_profile_data %}
-                        <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired_date" required>
-                        {% else %}
-                        <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired_date" required>
-                        {% endif %}
-                    </div>
-                    <div class="bottom-margin">
-                        {% if 'coop_name' in onboard_profile_data %}
-                        <input type="text" name="coop_name" value="{{ onboard_profile_data.coop_name }}" placeholder="Coop Name" id="coop_name" required>
-                        {% else %}
-                        <input type="text" name="coop_name" placeholder="Coop Name" id="coop_name" required>
-                        {% endif %}
-                    </div>
-                    <div class="bottom-margin">
-                        <select name="breed" id="breed" required>
-                            {% if 'breed' in onboard_profile_data %}
-                            <option value="" disabled>Breed</option>
-                                {% for breed in breed %}
-                                    {% if breed.id == onboard_profile_data.breed %}
-                                    <option value="{{ breed.id }}" selected>{{ breed|title }}</option>
-                                    {% else %}
-                                    <option value="{{ breed.id }}">{{ breed|title }}</option>
-                                    {% endif %}
-                                {% endfor %}
-                            {% else %}     
-                            <option value="" disabled selected>Breed</option>
-                                {% for breed in breed %}
-                                <option value="{{ breed.id }}">{{ breed|title }}</option>
-                                {% endfor %}
-                            {% endif %}
-                        </select>
-                    </div>
+                    </select>
+                           
                     <div class="bottom-margin">
                         <hr class="hr-small">
                     </div>
-                </section>
-            </fieldset>
+                </div>
+            </section>
+            
             {% include 'html_includes/hens_chicks_cocks.html' %}
 
             <!-- Used as a warning instead of an Alert -->
@@ -161,4 +131,9 @@
     </form>
 </div>
 
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+{% include 'js_includes/datepicker_date_today_script.html' %}
+{% include 'js_includes/hcc_quantities_script.html' %}
 {% endblock %}

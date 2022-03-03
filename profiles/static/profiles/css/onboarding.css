@@ -1,6 +1,6 @@
 /*-- Applies to home page and onboarding only so needs to be moved from here --*/
 body {
-    background: url(../images/chicken.jpg);
+    background: url(/static/images/chicken.jpg);
     background-size: cover;
     background-position: center;
 }

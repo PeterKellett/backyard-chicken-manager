@@ -1,13 +1,7 @@
 $(document).ready(function () {
     console.log("Document ready!");
 
-    // DATE: Automatically have date fields display the current date based on the User's location
-    // Taken from: https://stackoverflow.com/questions/67659091/why-i-am-getting-this-warning-message-does-not-conform-to-the-required-format
-    const todayDate = new Date(); 
-    const formatDate = todayDate.getDate() < 10 ? `0${todayDate.getDate()}`:todayDate.getDate();
-    const formatMonth = todayDate.getMonth() < 10 ? `0${todayDate.getMonth()+1}`: todayDate.getMonth()+1;
-    const formattedDate = [todayDate.getFullYear(), formatMonth, formatDate].join('-');
-    document.getElementById('todays-date').value = formattedDate;
+    
     
 
     // PK function
@@ -15,69 +9,56 @@ $(document).ready(function () {
     function addFlockForm() {
         console.log("flock_form_iteration " + flock_form_iteration);
         $("#form-data").append(
-            `<!-- Flock Core Info Section -->
-            <section name="flock-core-info">
-                <div>
-                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
-                </div>
-                <div>
-                    {% if 'acquired_date' in onboard_profile_data %}
-                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required>
-                    {% else %}
-                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired-date" required>
+            `<section name="flock-core-info">
+            <div class="bottom-margin">
+                {% if 'flock_name' in onboard_profile_data %}
+                <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" autofocus required>
+                {% else %}
+                <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" autofocus required>
+                {% endif %}
+            </div>
+            <div class="bottom-margin">
+                {% if 'acquired_date' in onboard_profile_data %}
+                <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required>
+                {% else %}
+                <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired-date" required>
+                {% endif %}
+            </div>
+            <div class="bottom-margin">
+                {% if 'coop_name' in onboard_profile_data %}
+                <input type="text" name="coop_name" value="{{ onboard_profile_data.coop_name }}" placeholder="Coop Name" id="coop-name" required>
+                {% else %}
+                <input type="text" name="coop_name" placeholder="Coop Name" id="coop-name" required>
+                {% endif %}
+            </div>
+            <div class="bottom-margin">
+                <select name="breed" id="breed" required>
+                    {% if 'breed' in onboard_profile_data %}
+                    <option value="" disabled>Breed</option>
+                        {% for breed in breed %}
+                            {% if breed.id == onboard_profile_data.breed %}
+                            <option value="{{ breed.id }}" selected>{{ breed|title }}</option>
+                            {% else %}
+                            <option value="{{ breed.id }}">{{ breed|title }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}     
+                    <option value="" disabled selected>Breed</option>
+                        {% for breed in breed %}
+                        <option value="{{ breed.id }}">{{ breed|title }}</option>
+                        {% endfor %}
                     {% endif %}
-                </div>
-                <div>
-                    <input type="text" name="coop1_name" placeholder="Coop Name" id="coop-name" required>
-                </div>
-                <div>
-                    <select name="breed" id="breed" required>
-                        {% if 'breed' in onboard_profile_data %}
-                        <option value="" disabled>Breed</option>
-                            {% for breed in breed %}
-                                {% if breed == onboard_Profile_data.breed %}
-                                <option value="{{ breed }}" selected>{{ breed|title }}</option>
-                                {% else %}
-                                <option value="{{ breed }}">{{ breed|title }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}     
-                        <option value="" disabled selected>Breed</option>
-                            {% for breed in breed %}
-                            <option value="{{ breed }}">{{ breed|title }}</option>
-                            {% endfor %}
-                        {% endif %}
-                    </select>
-                </div>
-                <!-- <div class="form-data">
-                    <div>
-                        <select name="purpose" id="purpose" required>
-                            {% if 'purpose' in onboard_profile_data %}
-                            <option value="" disabled>Purpose</option>
-                            {% for purpose in purpose %}
-                                {% if purpose == onboard_Profile_data.purpose %}
-                                <option value="{{ purpose }}" selected>{{ purpose|title }}</option>
-                                {% else %}
-                                <option value="{{ purpose }}">{{ purpose|title }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}     
-                        <option value="" disabled selected>Purpose</option>
-                            {% for purpose in purpose %}
-                            <option value="{{ purpose }}">{{ purpose|title }}</option>
-                            {% endfor %}
-                        {% endif %}
-                        </select>
-                    </div>
-                </div> -->
-                <div>
+                </select>
+                       
+                <div class="bottom-margin">
                     <hr class="hr-small">
                 </div>
-            </section>`
+            </div>
+        </section>`
         )
         flock_form_iteration++; // Increments the iteration by +1 
     }
-    //addFlockForm();
+    // addFlockForm();
     $("#PKaddAnotherFlock").click(function () {
         addFlockForm();
     })
@@ -92,36 +73,11 @@ $(document).ready(function () {
         }
     }
 
-    hccTotal();
     
 // !!!!!!! (document).ready function end
 })
 
-// HCC Section - Calculation: Calculation to sum total number of birds
-function hccTotal() {
-    var totalHens = document.querySelector('input[name=hens_qty]').value;
-    var totalChicks = document.querySelector('input[name=chicks_qty]').value;
-    var totalCocks = document.querySelector('input[name=cocks_qty]').value;
-    var total = Number(totalHens) + Number(totalChicks) + Number(totalCocks);
-    document.getElementById("total-birds").value = Number(total);
-}
 
-// HCC Section - Validation: Ensures at least one quantity is indicated before user can move on
-function validateQtys() {
-    const totalBirds = document.getElementById('total-birds').value;
-    const totalBirdsNumber = Number(totalBirds);
-
-    if (totalBirdsNumber == 0) {
-        document.getElementById("warning-section-text").textContent =
-            "Please provide at least one quantity for Hens, Chicks or Cocks.";
-        document.getElementById("submit-form").addEventListener('submit', (event) => {
-            // stop form submission
-            event.preventDefault();
-        });
-    } else {
-        document.getElementById("submit-form").submit();
-    }
-}
 
 // Sales Methods & Units Function to ensure at least one checkbox
 // is checked in each section before next page can be loaded
@@ -151,7 +107,7 @@ function injectHref() {
     if (salesMethods == true && salesUnits == true){
         document.getElementById("submit-form").submit();
     } else {
-        document.getElementById('sales-unit-method-warning').textContent =
+        document.getElementById('warning-section-text').textContent =
             "Please select at least one option each from Sales Methods and Sales Units";
             document.getElementById("submit-form").addEventListener('submit', (event) => {
                 // stop form submission
