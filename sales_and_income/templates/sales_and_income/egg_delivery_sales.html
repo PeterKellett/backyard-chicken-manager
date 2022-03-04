@@ -33,14 +33,14 @@
             </a>
         </li>
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link active" href="{% url 'egg_delivery_sales' %}">
+            <a class="nav-link sub-nav-link active" href="{% url 'egg_delivery_sales_dashboard' %}">
                 <img src="{{ MEDIA_URL }}sales_deliveries.png" alt="Egg Sales Deliveries Icon" class="nav-link-image sub-nav-link-image">
                 Deliveries
             </a>
         </li>
         <li class="nav-item text-wrap">
             <a class="nav-link sub-nav-link" href="{% url 'egg_market_sales' %}">
-                <img src="{{ MEDIA_URL }}sales_markets.png" alt="Egg Sales Markets Icon" class="nav-link-image sub-nav-link-image">
+                <img src="{{ MEDIA_URL }}ales_markets.png" alt="Egg Sales Markets Icon" class="nav-link-image sub-nav-link-image">
                 Markets
             </a>
         </li>
@@ -146,20 +146,6 @@
                 <hr class="hr-large">
             </div>
 
-            <!-- Egg Breakages or Loses Section -->
-            <section name="flock-core-info">
-                <div class="bottom-margin label-float">
-                    <h4>Breakages & Loses</h4>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ form.breakages_and_loses_eggs_delivery }}
-                    <label for="breakages-and-loses-eggs-delivery">Qty of Eggs Broken, Stolen or Lost</label>
-                </div>
-            </section>
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
-
             <!-- Notes & Images Section -->
             {% include 'html_includes/notes_and_pics.html' %}
 
@@ -169,69 +155,8 @@
             <!-- Buttons Section -->
             <div class="button-container">
                 <input type="hidden" name="redirect_url" value="onboard_produce"/>
-                <button type='submit' id="save-button" class="btn button button-full-size save-button">Next</button> 
+                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
                 <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
-            </div>
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
-
-            <!-- Customer Delivery List -->
-            <div class="bottom-margin panel-div label-float">
-                <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    <h6>Customer Delivery List (Click on me)</h6>
-                </a>
-            </div>
-            <div class="collapse in" id="collapseExample">
-                <!-- Include Overdue Deliveries -->
-                <div class="row bottom-margin">
-                    <div class="col-10 col-css">
-                        <h6 class="row-name">Include Overdue Deliveries</h6>
-                    </div>
-                    <div class="col-2 col-css col-css-right label-float">
-                        <input type="checkbox" id="include-overdue-deliveries" name="include_overdue_deliveries" value="include-overdue-deliveries">
-                        <label for="include-overdue-deliveries" class="hidden-label">Include Overdue Deliveries</label>
-                    </div>
-                </div>
-                <!-- Customer List -->
-                <div class="row bottom-margin">
-                    <div class="col-7 col-css">
-                        <h6 class="row-name">Customer Name</h6>
-                    </div>
-                    <div class="col-2 col-css">
-                        <h6 class="row-name">Qty</h6>
-                    </div>
-                    <div class="col-3 col-css col-css-right label-float">
-                        <h6 class="row-name">Due Date</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-7 col-css">
-                        <a href="">
-                            <p class="row-name">Customer Name Temp</p>
-                        </a>
-                    </div>
-                    <div class="col-2 col-css">
-                        <p class="row-name">#</p>
-                    </div>
-                    <div class="col-3 col-css col-css-right label-float">
-                        <p class="row-name">dd/mm/yyyy</p>
-                    </div>
-                </div>
-                <!-- This section only included for demo purposes. Needs top be removed when dynamica populating is in place -->
-                <div class="row">
-                    <div class="col-7 col-css">
-                        <a href="">
-                            <p class="row-name">Customer Name Temp</p>
-                        </a>
-                    </div>
-                    <div class="col-2 col-css">
-                        <p class="row-name">#</p>
-                    </div>
-                    <div class="col-3 col-css col-css-right label-float">
-                        <p class="row-name">dd/mm/yyyy</p>
-                    </div>
-                </div>
             </div>
             <div class="bottom-margin">
                 <hr class="hr-large">

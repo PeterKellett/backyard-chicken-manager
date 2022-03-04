@@ -51,8 +51,9 @@
                 <ul class="text-start">
                     <li><span class="fw-bold">Single Eggs:</span> If you sell your eggs singularly, select this option.</li>
                     <li><span class="fw-bold">1/2 Dozen Cartons:</span> Eggs sold in 6's.</li>
+                    <li><span class="fw-bold">Cartons of 10:</span>  Eggs sold in 10's.</li>
                     <li><span class="fw-bold">Dozen Cartons:</span>  Eggs sold in 12's.</li>
-                    <li><span class="fw-bold">Trays:</span> The default tray qty is 30, but you can change it in the Qty field.</li>
+                    <li><span class="fw-bold">Trays/Other:</span> If you have an alternative carton size tick this option. The default qty is 30, but you can change it in the Qty field.</li>
                 </ul>
             </div>
             
@@ -186,22 +187,22 @@
                     </div>
                     <div class="row bottom-margin" id="trays-row">
                         <div class="col-7 col-css">
-                            <h6 class="col-css-element checkbox-label">Trays</h6>
+                            <h6 class="col-css-element checkbox-label">Trays/Other</h6>
                         </div>
                         <div class="col-4 col-css">
                             {% if 'trays_qty' in onboard_profile_data %}
                             <input type="number" name="trays_qty" value="{{ onboard_profile_data.trays_qty }}" placeholder="Tray Qty" id="trays-qty" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
+                                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element show-on-click">
                             {% else %}
                             <input type="number" name="trays_qty" value="30" placeholder="Tray Qty" id="trays-qty" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
+                                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element show-on-click">
                             {% endif %}
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.trays_check %}
-                            <input type="checkbox" name="trays_check" id="single-eggs-check" class="col-css-element" checked>
+                            <input type="checkbox" name="trays_check" id="single-eggs-check" class="col-css-element click-to-show" checked>
                             {% else %}
-                            <input type="checkbox" name="trays_check" id="trays-check" class="col-css-element">
+                            <input type="checkbox" name="trays_check" id="trays-check" class="col-css-element click-to-show">
                             {% endif %}
                         </div>
                     </div>

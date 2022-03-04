@@ -91,7 +91,6 @@ $(document).ready(function () {
 })
 
 
-
 // Sales Methods & Units Function to ensure at least one checkbox
 // is checked in each section before next page can be loaded
 // Taken from (kind of): https://www.javascripttutorial.net/javascript-dom/javascript-form/
@@ -191,10 +190,11 @@ function addAnotherSupplement() {
     }
 
 
-// Function to display additional fields or content when a checkbpx is checked
+// Function to display additional field(s) or content when a checkbox is checked
 // Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
 $(function () {
     $('div.show-on-click').hide();
+    console.log("Show on click fires");
 
     //show it when the checkbox is clicked
     $('input[class="click-to-show"]').on('click', function () {
@@ -222,5 +222,3 @@ function displaySelectLabel() {
     console.log("displaySelectLabel Fires");
     document.getElementById('select-input-label').style.display = "block";
 }
-
-

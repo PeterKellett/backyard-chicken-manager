@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySales, EggMarketSales
+from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales
 
 # Create an Egg Roadside Sales form
 class EggRoadsideSalesForm(ModelForm):
@@ -235,8 +235,7 @@ class EggDeliverySalesForm(ModelForm):
                   'qty_sold_eggs_delivery',
                   'qty_given_free_eggs_delivery',
                   'amount_paid_eggs_delivery',
-                  'balance_owed_eggs_delivery',
-                  'breakages_and_loses_eggs_delivery')
+                  'balance_owed_eggs_delivery')
 
         widgets = {
             'date': forms.DateInput(attrs={'class': 'class-name'}),
@@ -301,7 +300,20 @@ class EggDeliverySalesForm(ModelForm):
                                                                  'placeholder':
                                                                  "Balance Owed",
                                                                  'value': '# Temp',
-                                                                 'disabled': 'true'}),
+                                                                 'disabled': 'true'})
+        }
+
+# Create an Egg Delivery Sales Dashboard form
+class EggDeliverySalesDashboardForm(ModelForm):
+    """ Create an Egg Delivery Sales form """
+    class Meta:
+        """ Meta Class Docstring here as required """
+        model = EggDeliverySalesDashboard
+        fields = ('date',
+                  'breakages_and_loses_eggs_delivery')
+
+        widgets = {
+            'date': forms.DateInput(attrs={'class': 'class-name'}),
             'breakages_and_loses_eggs_delivery': forms.TextInput(attrs={'class': 'class-name',
                                                             	        'id': 'breakages-and-loses-eggs-delivery',
                                                             	        'name': 'breakages_and_loses_eggs_delivery',
