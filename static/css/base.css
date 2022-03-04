@@ -385,6 +385,16 @@ input:-webkit-autofill:active {
     border: hidden;
     outline: none;
 }
+/*-- Removes Incrementer --*/
+.h-style-input::-webkit-outer-spin-button,
+.h-style-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+.h-style-input input[type=number] {
+  -moz-appearance: textfield;
+}
 
 /*-- Relates to Inputs that need to be shown/hidden when a checkbox is checked --*/
 .show-hide-input

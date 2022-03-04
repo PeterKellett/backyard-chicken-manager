@@ -17,7 +17,7 @@
 {% include 'html_includes/page_name_non_mobile.html' with page_name="Onboarding Flock(s)" %}
 
 <!-- Page Counter & Intro -->
-{% include 'html_includes/onboard_page_counter_and_info.html' with page_number="2 of 4" page_intro="Tell us about your flock(s)..." %}
+{% include 'html_includes/onboard_page_counter_and_info.html' with page_number="2 of 4" page_intro="Tell us about your flock...(if you have more than one you can add more inside)." %}
 
 <!-- "i" icon modal -->
 <div class="modal" id="myModal">
@@ -73,16 +73,18 @@
             <section name="flock-core-info">
                 <div class="bottom-margin">
                     {% if 'flock_name' in onboard_profile_data %}
-                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" autofocus required>
+                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" required>
                     {% else %}
-                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" autofocus required>
+                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
+                    <!-- Input type changes to date on focus in. Allows Placeholder to work.-->
+                    <!-- Taken from https://stackoverflow.com/questions/20321202/not-showing-placeholder-for-input-type-date-field -->
                     {% if 'acquired_date' in onboard_profile_data %}
-                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required>
+                    <input placeholder="Acquired Date" name="acquired_date" id="acquired-date" type="text" onfocusin="(this.type='date')" onfocusout="(this.type='text')" value="{{ onboard_profile_data.acquired_date }}" required>
                     {% else %}
-                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="date-today" class="acquired-date" required>
+                    <input placeholder="Acquired Date" name="acquired_date" id="acquired-date" type="text" onfocusin="(this.type='date')" onfocusout="(this.type='text')" value="{{ onboard_profile_data.acquired_date }}" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
@@ -110,11 +112,11 @@
                             {% endfor %}
                         {% endif %}
                     </select>
-                    <div class="bottom-margin">
-                        <hr class="hr-small">
-                    </div>
                 </div>
             </section>
+            <div class="bottom-margin">
+                <hr class="hr-small">
+            </div>
 
             {% include 'html_includes/hens_chicks_cocks.html' %}
 
@@ -123,16 +125,17 @@
 
             <!-- Buttons Section -->
             <div class="button-container">
-                <a href="{% url 'onboard_personal' %}" class="btn button button-small-size">Previous</a> 
-                <button type='submit' id="hcc-button" class="btn button button-small-size" onclick="validateQtys()">Next</button>
+                <a href="{% url 'onboard_personal' %}" class="btn button button-full-size">Previous</a> 
+                <button type='submit' id="hcc-button" class="btn button button-full-size" onclick="validateFlock()">Next</button>
             </div>
         </div>
     </form>
 </div>
 
 {% endblock %}
+
 {% block postloadjs %}
 {{ block.super }}
-{% include 'js_includes/datepicker_date_today_script.html' %}
-{% include 'js_includes/hcc_quantities_script.html' %}
+    {% include 'js_includes/datepicker_date_today_script.html' %}
+    {% include 'js_includes/hcc_quantities_script.html' %}
 {% endblock %}

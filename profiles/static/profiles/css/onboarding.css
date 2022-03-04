@@ -51,3 +51,9 @@ label,
 i {
     text-shadow: 0px 2px 5px var(--black);
 }
+
+/*-- The Add Another buttons are not required in onboarding, but as they are part
+    part of global Includes, they must be hidden. --*/
+.add-another-btn-div {
+    display: none;
+}

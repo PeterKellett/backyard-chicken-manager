@@ -3,14 +3,33 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
-from .forms import EggRoadsideSalesForm, EggCollectionSalesForm, EggDeliverySalesForm, EggMarketSalesForm
+from .forms import EggRoadsideSalesForm, EggCollectionSalesForm, EggDeliverySalesDashboardForm, EggDeliverySalesForm, EggMarketSalesForm
 
 
 @login_required
 def sales_and_income(request):
+    """sales & Income View"""
     template = 'sales_and_income/sales_and_income.html'
     context = {}
     return render(request, template, context)
+
+
+@login_required
+def egg_delivery_sales_dashboard(request):
+    """egg delivery sales dashboard view"""
+    if request.POST:
+        date = request.POST['date']
+        breakages_and_loses_eggs_delivery = request.POST['breakages_and_loses_eggs_delivery']
+        userprofile = UserProfile.objects.get(user=request.user)
+        farmprofile = userprofile.farmprofiles.all()
+        template = 'sales_and_income/egg_delivery_sales_dashboard.html'
+    else:
+        form = EggDeliverySalesForm
+        userprofile = UserProfile.objects.get(user=request.user)
+        farmprofile = userprofile.farmprofiles.all()
+        template = 'sales_and_income/egg_delivery_sales_dashboard.html'
+        context = {'form': form}
+        return render(request, template, context)
 
 
 @login_required

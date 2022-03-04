@@ -1,9 +1,14 @@
 from django.db import models
+# from profiles.models import FarmProfile
 
 
 class EggRoadsideSales(models.Model):
     """Model used for roadside sales data"""
-    # farm_profile = models.ForeignKey(farmprofile.id, related_name=eggcollections)
+    # farm_profile = models.ForeignKey(FarmProfile,
+    #                                  blank=False,
+    #                                  null=False,
+    #                                  on_delete=models.CASCADE,
+    #                                  related_name='farmprofile')
     date = models.DateTimeField(null=False,
                                 blank=False)
     single_egg_price = models.DecimalField(max_digits=5,
@@ -66,7 +71,11 @@ class EggRoadsideSales(models.Model):
 
 class EggCollectionSales(models.Model):
     """Model used for collection egg sales data"""
-    # farm_profile = models.ForeignKey(farmprofile.id, related_name=eggcollections)
+    # farm_profile = models.ForeignKey(FarmProfile,
+    #                                 blank=False,
+    #                                 null=False,
+    #                                 on_delete=models.CASCADE,
+    #                                 related_name='farmprofile')
     date = models.DateTimeField(null=False,
                                 blank=False)
     customer_name_eggs_collection = models.CharField(max_length=250,
@@ -90,9 +99,26 @@ class EggCollectionSales(models.Model):
                                                               blank=True)
 
 
+class EggDeliverySalesDashboard(models.Model):
+    """Model used for collection egg sales data"""
+    # farm_profile = models.ForeignKey(FarmProfile,
+    #                                 blank=False,
+    #                                 null=False,
+    #                                 on_delete=models.CASCADE,
+    #                                 related_name='farmprofile')
+    date = models.DateTimeField(null=False,
+                                blank=False)
+    breakages_and_loses_eggs_delivery = models.IntegerField(null=False,
+                                                            blank=True)
+
+
 class EggDeliverySales(models.Model):
     """Model used for collection egg sales data"""
-    # farm_profile = models.ForeignKey(farmprofile.id, related_name=eggcollections)
+    # farm_profile = models.ForeignKey(FarmProfile,
+    #                                 blank=False,
+    #                                 null=False,
+    #                                 on_delete=models.CASCADE,
+    #                                 related_name='farmprofile')
     date = models.DateTimeField(null=False,
                                 blank=False)
     customer_name_eggs_delivery = models.CharField(max_length=250,
@@ -119,13 +145,15 @@ class EggDeliverySales(models.Model):
                                                      decimal_places=2,
                                                      null=False,
                                                      blank=True)
-    breakages_and_loses_eggs_delivery = models.IntegerField(null=False,
-                                                            blank=True)
 
 
 class EggMarketSales(models.Model):
     """Model used for market sales data"""
-    # farm_profile = models.ForeignKey(farmprofile.id, related_name=eggcollections)
+    # farm_profile = models.ForeignKey(FarmProfile,
+    #                                 blank=False,
+    #                                 null=False,
+    #                                 on_delete=models.CASCADE,
+    #                                 related_name='farmprofile')
     date = models.DateTimeField(null=False,
                                 blank=False)
     venue_location_eggs_market = models.CharField(max_length=250,
@@ -177,5 +205,3 @@ class EggMarketSales(models.Model):
 
     loses_eggs_market = models.IntegerField(null=False,
                                             blank=True)
-
-
