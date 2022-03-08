@@ -4,7 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from .models import UserProfile, FarmProfile, FarmType, Breed, FarmPurpose
-from flock_management.models import Flocks
+from flock_management.models import Flocks, Coops
+from health_and_wellfare.models import Supplements
+from regular_tasks.models import Foods
 
 
 # Create your views here.
@@ -60,24 +62,15 @@ def get_onboarding_data(request):
         'acquired_date',
         'coop_name',
         'breed',
-        'purpose',
-        'all_hens_check',
         'hens_qty',
-        'all_chicks_check',
         'chicks_qty',
-        'all_cocks_check',
         'cocks_qty',
         'trays_qty',
         'feed_name',
         'saleable_eggs_qty',
         'feed_qty_stock',
-        'feed_qty_stock',
         'supplement_name',
         'supplement_amount_stock'
-        # 'roadside-check',
-        # 'markets-check',
-        # 'deliveries-check',
-        # 'collections-check'
     ]
 
     # Declare a list of the fields that require integers in order to format /
@@ -181,18 +174,36 @@ def get_onboarding_data(request):
             eggs_in_stock=onboard_profile_data['saleable_eggs_qty']
         )
         farmprofile.save()
+        # Create a new Coop entry
+        coop = Coops(
+            farm_profile=farmprofile,
+            coop_name=onboard_profile_data['coop_name']
+        )
+        coop.save()
         # Create a new Flocks entry
         breed = Breed(pk=onboard_profile_data['breed'])
         flock = Flocks(
-            farm_id=farmprofile,
+            farm_profile=farmprofile,
             breed=breed,
             flock_name=onboard_profile_data['flock_name'],
-            coop_name=onboard_profile_data['coop_name'],
             hens_qty=onboard_profile_data['hens_qty'],
             chicks_qty=onboard_profile_data['chicks_qty'],
             cocks_qty=onboard_profile_data['cocks_qty']
         )
         flock.save()
+        flock.coop.add(coop)
+        supplement = Supplements(
+            farm_profile=farmprofile,
+            supplement_name=onboard_profile_data['supplement_name'],
+            qty_supplements=onboard_profile_data['supplement_amount_stock']
+        )
+        supplement.save()
+        feed = Foods(
+            farm_profile=farmprofile,
+            feed_name=onboard_profile_data['feed_name'],
+            qty_food=onboard_profile_data['feed_qty_stock']
+        )
+        feed.save()
         farmprofile.onboard_complete = True
         farmprofile.save()
         return redirect(dashboard)

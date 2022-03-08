@@ -154,10 +154,10 @@ class FeedingTimeForm(ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = FeedingTime
-        fields = ('date', 'food_type',
+        fields = ('date', 'feed_type',
                   'amount_food_rem', 'amount_food_added',
                   'amount_water_rem', 'amount_water_added',
-                  'feeding_notes', 'image_url')
+                  'feeding_notes')
 
         widgets = {
             'date': forms.DateInput(attrs={'class': 'class-name'}),
@@ -204,10 +204,10 @@ class FeedingTimeForm(ModelForm):
                                                            'name': 'feeding_notes',
                                                            'placeholder':
                                                            "Today's Feeding \
-                                                           Time Notes"}),
-            'image_url': forms.TextInput(attrs={'class': 'class-name',
-                                                'id': 'image-url',
-                                                'name': 'image_url'})
+                                                           Time Notes"})
+            # 'image_url': forms.TextInput(attrs={'class': 'class-name',
+            #                                     'id': 'image-url',
+            #                                     'name': 'image_url'})
         }
 
 
@@ -219,7 +219,7 @@ class CoopCleaningForm(ModelForm):
         model = CoopCleaning
         fields = ('date',
                   'disinfected', 'disinfectant',
-                  'coop_cleaning_notes', 'image_url')
+                  'coop_cleaning_notes')
 
         widgets = {
             'date': forms.DateInput(attrs={'class': 'class-name'}),

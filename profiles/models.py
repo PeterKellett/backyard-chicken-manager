@@ -73,7 +73,6 @@ class FarmProfile(models.Model):
                                      blank=False,
                                      on_delete=models.CASCADE,
                                      related_name='farmprofiles')
-
     farm_business_name = models.CharField(max_length=20,
                                           null=False,
                                           blank=False)
