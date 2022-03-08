@@ -36,16 +36,16 @@ class Disinfectants(models.Model):
 
 class EggCollection(models.Model):
     """Model used for storing egg collection data"""
-    # farm_profile = models.ForeignKey(FarmProfile,
-    #                                  null=False,
-    #                                  blank=False,
-    #                                  on_delete=models.CASCADE)
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=False,
+                                     blank=False,
+                                     on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False)
-    # flock = models.ForeignKey(Flocks,
-    #                           null=False,
-    #                           blank=False,
-    #                           on_delete=models.CASCADE)
+    flock = models.ForeignKey(Flocks,
+                              null=False,
+                              blank=False,
+                              on_delete=models.CASCADE)
     qty_egg_trays = models.IntegerField(null=False,
                                         blank=True)
     qty_egg_singles = models.IntegerField(null=False,

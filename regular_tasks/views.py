@@ -4,36 +4,86 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from flock_management.models import Flocks
+from .models import EggCollection
 from .forms import EggCollectionForm, FeedingTimeForm, CoopCleaningForm
 
 
 @login_required
 def egg_collection(request):
     """view to current flock"""
+    userprofile = UserProfile.objects.get(user=request.user)
+    print("userprofile = ", userprofile)
+    farmprofile = userprofile.farmprofiles.all()
+    print("farmprofile = ", farmprofile)
+    print("qty eggs in stock = ", farmprofile[0].eggs_in_stock)
     if request.POST:
-        date = request.POST['date']
-        flock = request.POST['flock_name']
-        qty_egg_trays = request.POST['qty_egg_trays']
-        qty_egg_singles = request.POST['qty_egg_singles']
-        qty_total_eggs_laid = request.POST['qty_total_eggs_laid']
-        qty_eggs_damaged = request.POST['qty_eggs_damaged']
-        qty_eggs_broken = request.POST['qty_eggs_broken']
-        qty_eggs_personal_use = request.POST['qty_eggs_personal_use']
-        qty_eggs_given_free = request.POST['qty_eggs_given_free']
-        weight_total_eggs_laid = request.POST['weight_total_eggs_laid']
-        avg_egg_weight = request.POST['avg_egg_weight']
-        qty_saleable_eggs = request.POST['qty_saleable_eggs']
-        egg_collection_notes = request.POST['egg_collection_notes']
+        form = request.POST
+        print("form = ", form)
+        date = form['date']
+        # flock = int(request.POST['flock'])
+        flock = farmprofile[0].flocks.get(pk=int(form['flock']))
+        print("flock = ", flock)
+        if form['qty_egg_trays'] != '':
+            qty_egg_trays = int(form['qty_egg_trays'])
+        else:
+            qty_egg_trays = 0
+        if form['qty_egg_singles'] != '':
+            qty_egg_singles = int(form['qty_egg_singles'])
+        else:
+            qty_egg_singles = 0
+        qty_total_eggs_laid = ((farmprofile[0].trays_quantity * qty_egg_trays) + qty_egg_singles)
+        if form['qty_eggs_damaged'] != '':
+            qty_eggs_damaged = int(form['qty_eggs_damaged'])
+        else:
+            qty_eggs_damaged = 0
+        if form['qty_eggs_broken'] != '':
+            qty_eggs_broken = int(form['qty_eggs_broken'])
+        else:
+            qty_eggs_broken = 0
+        if form['qty_eggs_personal_use'] != '':
+            qty_eggs_personal_use = int(form['qty_eggs_personal_use'])
+        else:
+            qty_eggs_personal_use = 0
+        if form['qty_eggs_given_free'] != '':
+            qty_eggs_given_free = int(form['qty_eggs_given_free'])
+        else:
+            qty_eggs_given_free = 0
+        if form['weight_total_eggs_laid'] != '':
+            weight_total_eggs_laid = int(form['weight_total_eggs_laid'])
+            avg_egg_weight = (weight_total_eggs_laid / qty_total_eggs_laid)
+        else:
+            weight_total_eggs_laid = 0
+            avg_egg_weight = 0
+        egg_collection_notes = form['egg_collection_notes']
         # image_url = request.POST['image_url']
-        userprofile = UserProfile.objects.get(user=request.user)
-        farmprofile = userprofile.farmprofiles.all()
+        task = EggCollection(
+            farm_profile=farmprofile[0],
+            date=date,
+            flock=flock,
+            qty_egg_trays=qty_egg_trays,
+            qty_egg_singles=qty_egg_singles,
+            qty_total_eggs_laid=qty_total_eggs_laid,
+            qty_eggs_damaged=qty_eggs_damaged,
+            qty_eggs_broken=qty_eggs_broken,
+            qty_eggs_personal_use=qty_eggs_personal_use,
+            qty_eggs_given_free=qty_eggs_given_free,
+            weight_total_eggs_laid=weight_total_eggs_laid,
+            avg_egg_weight=avg_egg_weight,
+            qty_saleable_eggs=(qty_total_eggs_laid - (qty_eggs_damaged + qty_eggs_broken + qty_eggs_personal_use + qty_eggs_given_free)),
+            egg_collection_notes=egg_collection_notes
+        )
+        task.save()
+        farm = farmprofile[0]
+        eggs_in_stock = farm.eggs_in_stock + (qty_total_eggs_laid - (qty_eggs_damaged + qty_eggs_broken + qty_eggs_personal_use + qty_eggs_given_free))
+        print("eggs_in_stock = ", eggs_in_stock)
+        farm.eggs_in_stock = eggs_in_stock
+        farm.save()
         template = 'profiles/dashboard.html'
         return render(request, template)
     else:
         form = EggCollectionForm
-        userprofile = UserProfile.objects.get(user=request.user)
-        farmprofile = userprofile.farmprofiles.all()
         flock = farmprofile[0].flocks.all()
+        print("flock = ", flock)
         template = 'regular_tasks/egg_collection.html'
         context = {'form': form,
                    'flocks': flock}

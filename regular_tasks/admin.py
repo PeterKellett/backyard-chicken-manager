@@ -22,9 +22,9 @@ class FoodsAdmin(admin.ModelAdmin):
 class EggCollectionAdmin(admin.ModelAdmin):
     """Admin layout for EggCollection Admin table"""
     list_display = (
-        # 'farm_profile',
+        'farm_profile',
         'date',
-        # 'flock',
+        'flock',
         'qty_egg_trays',
         'qty_egg_singles',
         'qty_total_eggs_laid',
