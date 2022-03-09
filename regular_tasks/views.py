@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from flock_management.models import Flocks
-from .models import EggCollection
+from .models import EggCollection, Foods
 from .forms import EggCollectionForm, FeedingTimeForm, CoopCleaningForm
 
 
@@ -75,7 +75,6 @@ def egg_collection(request):
         task.save()
         farm = farmprofile[0]
         eggs_in_stock = farm.eggs_in_stock + (qty_total_eggs_laid - (qty_eggs_damaged + qty_eggs_broken + qty_eggs_personal_use + qty_eggs_given_free))
-        print("eggs_in_stock = ", eggs_in_stock)
         farm.eggs_in_stock = eggs_in_stock
         farm.save()
         template = 'profiles/dashboard.html'
@@ -93,10 +92,14 @@ def egg_collection(request):
 @login_required
 def feeding_time(request):
     """view to add food & water"""
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
     form = FeedingTimeForm
     if request.POST:
+        form = request.POST
+        print("form = ", form)
         date = request.POST['date']
-        flock = request.POST['flock_name']
+        flock = request.POST['flock']
         food_type = request.POST['food_type']
         amount_food_rem = request.POST['amount_food_rem']
         amount_food_added = request.POST['amount_food_added']
@@ -107,8 +110,13 @@ def feeding_time(request):
         context = {}
         return render(request, template)
     else:
+        flock = farmprofile[0].flocks.all()
+        feeds = Foods.objects.filter(farm_profile__id=farmprofile[0].id)
+        print("feeds = ", feeds)
         template = 'regular_tasks/feeding_time.html'
-        context = {'form': form}
+        context = {'form': form,
+                   'flocks': flock,
+                   'feeds': feeds}
         return render(request, template, context)
 
 

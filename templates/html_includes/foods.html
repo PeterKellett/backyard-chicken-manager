@@ -1,0 +1,9 @@
+<div class="bottom-margin label-float">
+    <select name="food" id="food-name" onchange="displaySelectLabel()" required>
+        <option value="" disabled selected>Select Food</option>
+        {% for food in feeds %}
+            <option type="text" name="food_name" value="{{ food.id }}" placeholder="food.feed_name" id="feed-name">{{ food.feed_name.title }}</option>
+        {% endfor %}
+    </select>
+    <label id="select-input-label" for="food-name">Food Name</label>
+</div>

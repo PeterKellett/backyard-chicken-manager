@@ -7,7 +7,7 @@ class Foods(models.Model):
     """Model used for storing Food data"""
     class Meta:
         """Overwrite the default Django pluralisation"""
-        verbose_name_plural = 'Feeds'
+        verbose_name_plural = 'Foods'
     farm_profile = models.ForeignKey(FarmProfile,
                                      null=False,
                                      blank=False,
