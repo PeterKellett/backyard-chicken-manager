@@ -6,7 +6,7 @@ from customAuth.models import CustomUser
 from .models import UserProfile, FarmProfile, FarmType, Breed, FarmPurpose
 from flock_management.models import Flocks, Coops
 from health_and_wellfare.models import Supplements
-from regular_tasks.models import Foods
+from regular_tasks.models import Feeds
 
 
 # Create your views here.
@@ -16,7 +16,6 @@ def dashboard(request):
     # 1. Try to get the userprofile from the UserProfile model
     try:
         userprofile = UserProfile.objects.get(user=request.user)
-        print("userprofile = ", userprofile.id)
     except ObjectDoesNotExist:
         return redirect(onboard_personal)
     # 2. Try to get the farmprofile for the user

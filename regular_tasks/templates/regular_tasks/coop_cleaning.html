@@ -67,12 +67,12 @@
 
 <!-- MAIN SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form">
+    <form method="POST" action="{% url 'coop_cleaning' %}" name="hcc-form">
         {% csrf_token %}
         <div class="form-data">
 
             {% include 'html_includes/date.html' %}
-            {% include 'html_includes/flock.html' %}
+            {% include 'html_includes/coop.html' %}
 
             <div class="row bottom-margin" id="disinfected-row">
                 <div class="col-11 col-css">

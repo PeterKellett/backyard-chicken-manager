@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import EggCollection, FeedingTime, CoopCleaning
+from .models import EggCollection, FeedingTime, CoopCleaning, Feeds
 
 
 # Create an Egg Collection form
@@ -9,12 +9,12 @@ class EggCollectionForm(ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = EggCollection
-        fields = ('date', 'qty_egg_trays',
-                  'qty_egg_singles', 'qty_total_eggs_laid',
+        fields = ('date', 'flock', 'qty_egg_trays',
+                  'qty_egg_singles',
                   'qty_eggs_damaged', 'qty_eggs_broken', 'qty_eggs_personal_use',
                   'qty_eggs_given_free', 'weight_total_eggs_laid',
                   'avg_egg_weight', 'qty_saleable_eggs',
-                  'egg_collection_notes')
+                  'notes')
 
         widgets = {
             'date': forms.DateInput(attrs={'class': 'class-name'}),
@@ -38,17 +38,17 @@ class EggCollectionForm(ModelForm):
                                                         'placeholder':
                                                         'Qty Laid - Single',
                                                         'value': ''}),
-            'qty_total_eggs_laid': forms.NumberInput(attrs={'class':
-                                                            'text-end \
-                                                            h-style-input',
-                                                            'id':
-                                                            'qty-total-eggs-laid',
-                                                            'name':
-                                                            'qty_total_eggs_laid',
-                                                            'placeholder':
-                                                            'Qty Laid - Single',
-                                                            'value': '0',
-                                                            'disabled': 'true'}),
+            # 'qty_total_eggs_laid': forms.NumberInput(attrs={'class':
+            #                                                 'text-end \
+            #                                                 h-style-input',
+            #                                                 'id':
+            #                                                 'qty-total-eggs-laid',
+            #                                                 'name':
+            #                                                 'qty_total_eggs_laid',
+            #                                                 'placeholder':
+            #                                                 'Qty Laid - Single',
+            #                                                 'value': '0',
+            #                                                 'disabled': 'true'}),
             'qty_eggs_damaged': forms.NumberInput(attrs={'class':
                                                          'saleable-eggs-input',
                                                          'id':
@@ -62,18 +62,18 @@ class EggCollectionForm(ModelForm):
                                                          'step': '1',
                                                          'min': '0'}),
             'qty_eggs_broken': forms.NumberInput(attrs={'class':
-                                                   'saleable-eggs-input \
-                                                   average-weight-input',
-                                                   'id':
-                                                   'qty-eggs-broken',
-                                                   'name':
-                                                   'qty_eggs_broken',
-                                                   'placeholder':
-                                                   'Qty of Eggs Broken \
-                                                   (Unuseable)',
-                                                   'value': '',
-                                                   'step': '1',
-                                                   'min': '0'}),
+                                                        'saleable-eggs-input \
+                                                        average-weight-input',
+                                                        'id':
+                                                        'qty-eggs-broken',
+                                                        'name':
+                                                        'qty_eggs_broken',
+                                                        'placeholder':
+                                                        'Qty of Eggs Broken \
+                                                        (Unuseable)',
+                                                        'value': '',
+                                                        'step': '1',
+                                                        'min': '0'}),
             'qty_eggs_personal_use': forms.NumberInput(attrs={'class':
                                                               'saleable-eggs-input',
                                                               'id':
@@ -137,11 +137,11 @@ class EggCollectionForm(ModelForm):
                                                           'Eggs Saleable Qty',
                                                           'value': '0',
                                                           'disabled': 'true'}),
-            'egg_collection_notes': forms.TextInput(attrs={'id': 'egg-collection-notes',
-                                                           'name': 'egg_collection_notes',
-                                                           'placeholder':
-                                                           "Today's Egg \
-                                                           Collection Notes"}),
+            'notes': forms.TextInput(attrs={'id': 'egg-collection-notes',
+                                            'name': 'egg_collection_notes',
+                                            'placeholder':
+                                            "Today's Egg \
+                                            Collection Notes"}),
             # 'image_url': forms.TextInput(attrs={'class': 'class-name',
             #                                     'id': 'image-url',
             #                                     'name': 'image_url'})
@@ -154,16 +154,14 @@ class FeedingTimeForm(ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = FeedingTime
-        fields = ('date', 'feed_type',
+        fields = ('date', 'flock', 'feed_type',
                   'amount_food_rem', 'amount_food_added',
                   'amount_water_rem', 'amount_water_added',
-                  'feeding_notes')
+                  'notes')
 
         widgets = {
             'date': forms.DateInput(attrs={'class': 'class-name'}),
-            'food_type': forms.TextInput(attrs={'id': 'feed-type',
-                                                'name': 'feed_type',
-                                                'placeholder': 'Feed Name'}),
+            # 'feed_type': forms.Select(queryset=Feeds.objects.all()),
             'amount_food_rem': forms.NumberInput(attrs={'id': 'amount-food-rem',
                                                         'name': 'amount_food_rem',
                                                         'placeholder': 'Amount of Food Remaining',
@@ -191,20 +189,20 @@ class FeedingTimeForm(ModelForm):
                                                          'min': '0',
                                                          'oninput': 'this.value = Math.abs(this.value)'}),
             'amount_water_added': forms.NumberInput(attrs={'id':
-                                                          'amount-water-added',
-                                                          'name':
-                                                          'amount_water_added',
-                                                          'placeholder':
-                                                          'Amount of Water Added',
-                                                          'value': '',
-                                                          'step': '1',
-                                                          'min': '0',
-                                                          'oninput': 'this.value = Math.abs(this.value)'}),
-            'feeding_notes': forms.TextInput(attrs={'id': 'feeding-notes',
-                                                           'name': 'feeding_notes',
+                                                           'amount-water-added',
+                                                           'name':
+                                                           'amount_water_added',
                                                            'placeholder':
-                                                           "Today's Feeding \
-                                                           Time Notes"})
+                                                           'Amount of Water Added',
+                                                           'value': '',
+                                                           'step': '1',
+                                                           'min': '0',
+                                                           'oninput': 'this.value = Math.abs(this.value)'}),
+            'notes': forms.TextInput(attrs={'id': 'feeding-notes',
+                                            'name': 'feeding_notes',
+                                            'placeholder':
+                                            "Today's Feeding \
+                                            Time Notes"})
             # 'image_url': forms.TextInput(attrs={'class': 'class-name',
             #                                     'id': 'image-url',
             #                                     'name': 'image_url'})
@@ -217,26 +215,25 @@ class CoopCleaningForm(ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = CoopCleaning
-        fields = ('date',
+        fields = ('date', 'coop',
                   'disinfected', 'disinfectant',
-                  'coop_cleaning_notes')
+                  'notes')
 
         widgets = {
             'date': forms.DateInput(attrs={'class': 'class-name'}),
             'disinfected': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                       'id': 'disinfected',
                                                       'name': 'disinfected'}),
-            'disinfectant': forms.TextInput(attrs={'class': '',
-                                                   'id': 'disinfectant',
-                                                   'name': 'disinfectant',
-                                                   'placeholder': 'Disinfectant Name'}),
-            'coop_cleaning_notes': forms.TextInput(attrs={'id': 'coop-cleaning-notes',
-                                                          'name': 'coop_cleaning_notes',
-                                                          'placeholder':
-                                                          "Today's Coop \
-                                                          Cleaning Notes"}),
-            'image_url': forms.TextInput(attrs={'class': 'class-name',
-                                                'id': 'image-url',
-                                                'name': 'image_url'})
+            # 'disinfectant': forms.TextInput(attrs={'class': '',
+            #                                        'id': 'disinfectant',
+            #                                        'name': 'disinfectant',
+            #                                        'placeholder': 'Disinfectant Name'}),
+            'notes': forms.TextInput(attrs={'id': 'coop-cleaning-notes',
+                                            'name': 'coop_cleaning_notes',
+                                            'placeholder':
+                                            "Today's Coop \
+                                            Cleaning Notes"}),
+            # 'image_url': forms.TextInput(attrs={'class': 'class-name',
+            #                                     'id': 'image-url',
+            #                                     'name': 'image_url'})
         }
-

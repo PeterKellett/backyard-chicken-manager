@@ -1,18 +1,20 @@
 from django.contrib import admin
-from .models import EggCollection, FeedingTime, CoopCleaning, Foods, Disinfectants
+from .models import EggCollection, FeedingTime, CoopCleaning, Feeds, Disinfectants
 
 
 class DisinfectantsAdmin(admin.ModelAdmin):
     """Admin layout for Disinfectants Admin table"""
     list_display = (
+        'id',
         'disinfectant_name',
     )
 
 
-class FoodsAdmin(admin.ModelAdmin):
+class FeedsAdmin(admin.ModelAdmin):
     """Admin layout for EggCollection Admin table"""
     list_display = (
-        'farm_profile',
+        'id',
+        'farm_profile_id',
         'feed_name',
         'qty_food'
     )
@@ -22,9 +24,10 @@ class FoodsAdmin(admin.ModelAdmin):
 class EggCollectionAdmin(admin.ModelAdmin):
     """Admin layout for EggCollection Admin table"""
     list_display = (
-        'farm_profile',
+        'id',
         'date',
-        'flock',
+        'farm_profile_id',
+        'flock_id',
         'qty_egg_trays',
         'qty_egg_singles',
         'qty_total_eggs_laid',
@@ -35,38 +38,40 @@ class EggCollectionAdmin(admin.ModelAdmin):
         'weight_total_eggs_laid',
         'avg_egg_weight',
         'qty_saleable_eggs',
-        'egg_collection_notes'
+        'notes'
     )
 
 
 class FeedingTimeAdmin(admin.ModelAdmin):
     """Admin layout for EggCollection Admin table"""
     list_display = (
-        # 'farm_profile',
+        'id',
         'date',
-        # 'flock',
-        'feed_type',
+        'farm_profile_id',
+        'flock_id',
+        'feed_type_id',
         'amount_food_rem',
         'amount_food_added',
         'amount_water_rem',
         'amount_water_added',
-        'feeding_notes'
+        'notes'
     )
 
 
 class CoopCleaningAdmin(admin.ModelAdmin):
     """Admin layout for EggCollection Admin table"""
     list_display = (
-        # 'coop',
+        'id',
         'date',
+        'coop_id',
         'disinfected',
         'disinfectant',
-        'coop_cleaning_notes'
+        'notes'
     )
 
 
 admin.site.register(EggCollection, EggCollectionAdmin)
 admin.site.register(FeedingTime, FeedingTimeAdmin)
 admin.site.register(CoopCleaning, CoopCleaningAdmin)
-admin.site.register(Foods, FoodsAdmin)
+admin.site.register(Feeds, FeedsAdmin)
 admin.site.register(Disinfectants, DisinfectantsAdmin)

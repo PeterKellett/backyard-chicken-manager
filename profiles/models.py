@@ -100,7 +100,7 @@ class FarmProfile(models.Model):
     onboard_complete = models.BooleanField(default=False)
 
     # def __str__(self):
-    #     return self.str(id)
+    #     return self.farm_business_name
 
 
 

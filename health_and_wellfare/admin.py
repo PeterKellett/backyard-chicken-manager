@@ -6,7 +6,8 @@ from .models import Supplements
 class SupplementsAdmin(admin.ModelAdmin):
     """Admin layout for EggCollection Admin table"""
     list_display = (
-        'farm_profile',
+        'id',
+        'farm_profile_id',
         'supplement_name',
         'qty_supplements'
     )

@@ -15,6 +15,6 @@ class Supplements(models.Model):
                                        null=False,
                                        blank=False)
     qty_supplements = models.DecimalField(max_digits=6,
-                                         decimal_places=2,
-                                         null=False,
-                                         blank=False)
+                                          decimal_places=2,
+                                          null=False,
+                                          blank=False)

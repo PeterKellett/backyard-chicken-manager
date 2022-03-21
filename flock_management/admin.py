@@ -6,7 +6,8 @@ from .models import Flocks, Coops
 class FlocksAdmin(admin.ModelAdmin):
     """Admin model"""
     list_display = (
-        'farm_profile',
+        'id',
+        'farm_profile_id',
         'flock_name',
         'identifier',
         'breed',
@@ -19,7 +20,8 @@ class FlocksAdmin(admin.ModelAdmin):
 class CoopsAdmin(admin.ModelAdmin):
     """Admin model"""
     list_display = (
-        'farm_profile',
+        'id',
+        'farm_profile_id',
         'coop_name'
         )
 
