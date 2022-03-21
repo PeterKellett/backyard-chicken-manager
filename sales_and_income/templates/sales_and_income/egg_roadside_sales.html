@@ -67,7 +67,8 @@
 
 <!-- FORM SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'egg_roadside_sales' %}" name="egg_roadside_sales" id="submit-form">
+    <!--  enctype="multipart/form-data" allows for the addition of images in the form. https://docs.djangoproject.com/en/4.0/topics/http/file-uploads/ -->
+    <form method="POST" action="{% url 'egg_roadside_sales' %}" enctype="multipart/form-data" name="egg_roadside_sales" id="submit-form">
         {% csrf_token %}
         
         <div class="form-data">

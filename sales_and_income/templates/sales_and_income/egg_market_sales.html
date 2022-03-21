@@ -67,7 +67,7 @@
 
 <!-- FORM SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'egg_market_sales' %}" name="egg_market_sales" id="submit-form">
+    <form method="POST" action="{% url 'egg_market_sales' %}" enctype="multipart/form-data" name="egg_market_sales" id="submit-form">
         {% csrf_token %}
         
         <div class="form-data">
