@@ -26,8 +26,7 @@ class EggCollectionForm(forms.ModelForm):
                                                       'id': 'qty-egg-trays',
                                                       'name': 'qty_egg_trays',
                                                       'placeholder':
-                                                      'Qty Laid Trays',
-                                                      'value': ''}),
+                                                      'Qty Laid Trays'}),
             'qty_egg_singles': forms.NumberInput(attrs={'class':
                                                         'egg-collection-qty-input \
                                                         saleable-eggs-input \
@@ -37,8 +36,7 @@ class EggCollectionForm(forms.ModelForm):
                                                         'name':
                                                         'qty_egg_singles',
                                                         'placeholder':
-                                                        'Qty Laid - Single',
-                                                        'value': ''}),
+                                                        'Qty Laid - Single'}),
             # 'qty_total_eggs_laid': forms.NumberInput(attrs={'class':
             #                                                 'text-end \
             #                                                 h-style-input',

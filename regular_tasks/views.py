@@ -17,75 +17,36 @@ def egg_collection(request):
     trays_quantity = farmprofile[0].trays_quantity
     if request.POST:
         form = EggCollectionForm(request.POST)
-        print("form raw = ", form)
         if form.is_valid():
-            print("form is_valid = ", form.cleaned_data)
-            form = form.save(commit=False)
-            # print("form save false = ", form.cleaned_data)
-            form.farm_profile = farmprofile[0]
-            # print("form add profile = ", form.cleaned_data)
-            # form.qty_total_eggs_laid = ((form.cleaned_data["qty_egg_trays"] * trays_quantity) + form.cleaned_data["qty_egg_singles"])
-            form.save()
-            return HttpResponseRedirect('/profile')
-        # date = form['date']
-        # flock = farmprofile[0].flocks.get(pk=int(form['flock']))
-        # print("flock = ", flock)
-        # if form['qty_egg_trays'] != '':
-        #     qty_egg_trays = int(form['qty_egg_trays'])
-        # else:
-        #     qty_egg_trays = 0
-        # if form['qty_egg_singles'] != '':
-        #     qty_egg_singles = int(form['qty_egg_singles'])
-        # else:
-        #     qty_egg_singles = 0
-        # qty_total_eggs_laid = ((farmprofile[0].trays_quantity * qty_egg_trays) + qty_egg_singles)
-        # if form['qty_eggs_damaged'] != '':
-        #     qty_eggs_damaged = int(form['qty_eggs_damaged'])
-        # else:
-        #     qty_eggs_damaged = 0
-        # if form['qty_eggs_broken'] != '':
-        #     qty_eggs_broken = int(form['qty_eggs_broken'])
-        # else:
-        #     qty_eggs_broken = 0
-        # if form['qty_eggs_personal_use'] != '':
-        #     qty_eggs_personal_use = int(form['qty_eggs_personal_use'])
-        # else:
-        #     qty_eggs_personal_use = 0
-        # if form['qty_eggs_given_free'] != '':
-        #     qty_eggs_given_free = int(form['qty_eggs_given_free'])
-        # else:
-        #     qty_eggs_given_free = 0
-        # if form['weight_total_eggs_laid'] != '':
-        #     weight_total_eggs_laid = int(form['weight_total_eggs_laid'])
-        #     avg_egg_weight = (weight_total_eggs_laid / qty_total_eggs_laid)
-        # else:
-        #     weight_total_eggs_laid = 0
-        #     avg_egg_weight = 0
-        # egg_collection_notes = form['egg_collection_notes']
-        # # image_url = request.POST['image_url']
-        # task = EggCollection(
-        #     farm_profile=farmprofile[0],
-        #     date=date,
-        #     flock=flock,
-        #     qty_egg_trays=qty_egg_trays,
-        #     qty_egg_singles=qty_egg_singles,
-        #     qty_total_eggs_laid=qty_total_eggs_laid,
-        #     qty_eggs_damaged=qty_eggs_damaged,
-        #     qty_eggs_broken=qty_eggs_broken,
-        #     qty_eggs_personal_use=qty_eggs_personal_use,
-        #     qty_eggs_given_free=qty_eggs_given_free,
-        #     weight_total_eggs_laid=weight_total_eggs_laid,
-        #     avg_egg_weight=avg_egg_weight,
-        #     qty_saleable_eggs=(qty_total_eggs_laid - (qty_eggs_damaged + qty_eggs_broken + qty_eggs_personal_use + qty_eggs_given_free)),
-        #     egg_collection_notes=egg_collection_notes
-        # )
-        # task.save()
-        # farm = farmprofile[0]
-        # eggs_in_stock = farm.eggs_in_stock + (qty_total_eggs_laid - (qty_eggs_damaged + qty_eggs_broken + qty_eggs_personal_use + qty_eggs_given_free))
-        # farm.eggs_in_stock = eggs_in_stock
-        # farm.save()
-        # template = 'profiles/dashboard.html'
-        # return render(request, template)
+            print(("form cleaned date =", form.cleaned_data))
+            form = form.save(commit=False)  # Presave the form values to create an instance of the model but don't commit to db.
+            form.farm_profile = farmprofile[0]  # Add in the farmprofile ForeignKey value
+            # Manual check of integer fields is required here to set field variables to 0 if NoneType or '' is returned /
+            # because setting the model default = 0 affects floating labels.
+            if not form.qty_egg_trays:
+                form.qty_egg_trays = 0
+            if not form.qty_egg_singles:
+                form.qty_egg_singles = 0
+            if not form.qty_eggs_damaged:
+                form.qty_eggs_damaged = 0
+            if not form.qty_eggs_broken:
+                form.qty_eggs_broken = 0
+            if not form.qty_eggs_personal_use:
+                form.qty_eggs_personal_use = form.qty_eggs_damaged  # This is a customised value to allow for damaged eggs to be used for personal eggs in egg calculations below.
+            if not form.qty_eggs_given_free:
+                form.qty_eggs_given_free = 0
+            if not form.weight_total_eggs_laid:
+                form.weight_total_eggs_laid = 0
+            # Form update and calculations for qty_total_eggs_laid, qty_saleable_eggs, avg_egg_weight fields
+            form.qty_total_eggs_laid = ((farmprofile[0].trays_quantity * form.qty_egg_trays) + form.qty_egg_singles)
+            form.qty_saleable_eggs = form.qty_total_eggs_laid - (form.qty_eggs_damaged + (form.qty_eggs_personal_use - form.qty_eggs_damaged) + form.qty_eggs_broken + form.qty_eggs_given_free)
+            form.avg_egg_weight = (form.weight_total_eggs_laid / form.qty_total_eggs_laid)
+            form.save()  # Save the form fully.
+            # Update 'eggs_in_stock' field of the FarmProfile of the user (signals)
+            farm = farmprofile[0]  # Refer to the farmprofile object which is obtained above
+            farm.eggs_in_stock += form.qty_saleable_eggs  # Update the eggs_in_stock value to itself
+            farm.save()  # Save the farmprofile to the db.
+            return HttpResponseRedirect('/profile')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
     else:
         form = EggCollectionForm
         flock = farmprofile[0].flocks.all()
@@ -105,20 +66,18 @@ def feeding_time(request):
     if request.POST:
         form = FeedingTimeForm(request.POST)
         if form.is_valid():
-            # print("form cleaned = ", form.cleaned_data)
-            form = form.save(commit=False)
-            form.farm_profile = farmprofile[0]
-            # print("form cleaned = ", form)
-            form.save()
-            # print("form cleaned = ", form)
-            feed = Feeds.objects.get(pk=form.feed_type.id)
-            feed.qty_food -= form.amount_food_added
-            feed.save()
+            form = form.save(commit=False)  # Presave the form
+            form.farm_profile = farmprofile[0]  # Add the farmprofile ForeignKey
+            form.save()  # Save the form fully to the db
+            # Now update the qty_food value in the Feed table (will be using django signals for this at a later stage)
+            feed = Feeds.objects.get(pk=form.feed_type.id)  # Get the feed object using the feed_type id submitted with the form.
+            feed.qty_food -= form.amount_food_added  # Update this qty_food value by subtracting it from itself
+            feed.save()  # Save this new value to the db.
             return HttpResponseRedirect('/profile')
     else:
         form = FeedingTimeForm
-        flock = farmprofile[0].flocks.all()
-        feeds = Feeds.objects.filter(farm_profile__id=farmprofile[0].id)
+        flock = farmprofile[0].flocks.all()  # We can use this syntax because this model FK has a related_name provided.
+        feeds = Feeds.objects.filter(farm_profile__id=farmprofile[0].id)  # This is the syntax used when the FK related_name is not provided with the model.
         template = 'regular_tasks/feeding_time.html'
         context = {'form': form,
                    'flocks': flock,
