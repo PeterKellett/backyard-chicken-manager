@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('BCM_SECRET_KEY', '')
+
 BCM_MAP_KEY = os.environ.get('BCM_MAPS_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -110,7 +111,7 @@ SITE_ID = 1
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Signup and login settings
+# Signup and login settings https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 if 'DEVELOPMENT' in os.environ:

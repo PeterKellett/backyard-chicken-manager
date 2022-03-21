@@ -144,7 +144,6 @@ class EggRoadsideSalesForm(forms.ModelForm):
                                                       'name': 'imagess_eggs_roadside'})
         }
 
-
 # Create an Egg Collection Sales form
 class EggCollectionSalesForm(forms.ModelForm):
     """ Create an Egg Collection Sales form """
@@ -252,7 +251,7 @@ class EggDeliverySalesForm(forms.ModelForm):
         """ Meta Class Docstring here as required """
         model = EggDeliverySales
         fields = '__all__'
-
+        
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': ''}),
             'customer_name_eggs_delivery': forms.TextInput(attrs={'class':
@@ -336,7 +335,7 @@ class EggDeliverySalesDashboardForm(forms.ModelForm):
         """ Meta Class Docstring here as required """
         model = EggDeliverySalesDashboard
         fields = '__all__'
-
+        
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': ''}),
             'breakages_and_loses_eggs_delivery': forms.TextInput(attrs={'class': '',
@@ -355,7 +354,7 @@ class EggDeliverySalesDashboardForm(forms.ModelForm):
                                                       'id': 'images-eggs-delivery-dash',
                                                       'name': 'images_eggs_delivery_dash'})                                                               
         }
-
+  
 
 # Create an Egg Market Sales form
 class EggMarketSalesForm(forms.ModelForm):

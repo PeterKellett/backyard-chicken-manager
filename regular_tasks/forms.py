@@ -71,6 +71,7 @@ class EggCollectionForm(forms.ModelForm):
                                                       'step': '1',
                                                       'min': '0'}),
             'qty_eggs_personal_use': forms.TextInput(attrs={'class':
+
                                                             'saleable-eggs-input',
                                                             'id':
                                                             'qty-eggs-personal-use',
