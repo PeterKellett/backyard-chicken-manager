@@ -16,7 +16,7 @@ def egg_collection(request):
     farmprofile = userprofile.farmprofiles.all()
     trays_quantity = farmprofile[0].trays_quantity
     if request.POST:
-        form = EggCollectionForm(request.POST)
+        form = EggCollectionForm(request.POST, request.FILES)
         print("form raw = ", form)
         if form.is_valid():
             print("form is_valid = ", form.cleaned_data)

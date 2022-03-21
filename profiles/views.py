@@ -197,7 +197,7 @@ def get_onboarding_data(request):
             qty_supplements=onboard_profile_data['supplement_amount_stock']
         )
         supplement.save()
-        feed = Foods(
+        feed = Feeds(
             farm_profile=farmprofile,
             feed_name=onboard_profile_data['feed_name'],
             qty_food=onboard_profile_data['feed_qty_stock']

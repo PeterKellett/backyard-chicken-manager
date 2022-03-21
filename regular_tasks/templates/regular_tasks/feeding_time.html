@@ -64,7 +64,7 @@
 
 <!-- MAIN SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'feeding_time' %}" name="feeding_time">
+    <form method="POST" action="{% url 'feeding_time' %}" enctype="multipart/form-data" name="feeding_time">
         {% csrf_token %}
 
         <div class="form-data">
