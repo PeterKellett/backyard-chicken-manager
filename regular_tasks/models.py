@@ -41,10 +41,10 @@ class Disinfectants(models.Model):
 
 class EggCollection(models.Model):
     """Model used for storing egg collection data"""
-    # farm_profile = models.ForeignKey(FarmProfile,
-    #                                  null=False,
-    #                                  blank=False,
-    #                                  on_delete=models.CASCADE)
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=False,
+                                     blank=False,
+                                     on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False)
     flock = models.ForeignKey(Flocks,
@@ -84,10 +84,10 @@ class EggCollection(models.Model):
 
 class FeedingTime(models.Model):
     """Model used for storing feeding time data"""
-    # farm_profile = models.ForeignKey(FarmProfile,
-    #                                  null=False,
-    #                                  blank=False,
-    #                                  on_delete=models.CASCADE)
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=True,
+                                     blank=True,
+                                     on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False,
                                 verbose_name='date')
@@ -120,10 +120,10 @@ class FeedingTime(models.Model):
 
 class CoopCleaning(models.Model):
     """Model used for storing coop cleaning data"""
-    # coop = models.ForeignKey(Coops,
-    #                          null=False,
-    #                          blank=False,
-    #                          on_delete=models.CASCADE)
+    coop = models.ForeignKey(Coops,
+                             null=True,
+                             blank=True,
+                             on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False)
     disinfected = models.BooleanField(null=False,
