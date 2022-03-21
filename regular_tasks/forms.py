@@ -3,8 +3,9 @@ from django.forms import ModelForm
 from .models import EggCollection, FeedingTime, CoopCleaning, Feeds
 
 
+
 # Create an Egg Collection form
-class EggCollectionForm(ModelForm):
+class EggCollectionForm(forms.ModelForm):
     """ Create an Egg Collection form """
     class Meta:
         """ Meta Class Docstring here as required """
@@ -149,7 +150,7 @@ class EggCollectionForm(ModelForm):
 
 
 # Create a Feeding Time form
-class FeedingTimeForm(ModelForm):
+class FeedingTimeForm(forms.ModelForm):
     """ Create a feeding time form """
     class Meta:
         """ Meta Class Docstring here as required """
@@ -161,7 +162,6 @@ class FeedingTimeForm(ModelForm):
 
         widgets = {
             'date': forms.DateInput(attrs={'class': 'class-name'}),
-            # 'feed_type': forms.Select(queryset=Feeds.objects.all()),
             'amount_food_rem': forms.NumberInput(attrs={'id': 'amount-food-rem',
                                                         'name': 'amount_food_rem',
                                                         'placeholder': 'Amount of Food Remaining',
@@ -210,7 +210,7 @@ class FeedingTimeForm(ModelForm):
 
 
 # Create a Coop Cleaning form
-class CoopCleaningForm(ModelForm):
+class CoopCleaningForm(forms.ModelForm):
     """ Create a coop cleaning form """
     class Meta:
         """ Meta Class Docstring here as required """

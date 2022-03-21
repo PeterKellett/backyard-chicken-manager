@@ -84,7 +84,7 @@
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
-                    <hr class="hr-small">
+                    <hr class="hr-large">
                 </div>
             </section>
 
@@ -92,6 +92,7 @@
             <section name="feeds">
                 <div class="bottom-margin">
                     <h4>Feeds</h4>
+                    <p>If you have several different feeds, you can add others in the Stocks section once inside.</p>
                 </div>
                 <div class="bottom-margin">
                     {% if 'feed_name' in onboard_profile_data %}
@@ -123,7 +124,7 @@
                     <button href="" type="button" class="button add-another-btn" onclick="addAnotherFeed()">Add Another</button>
                 </div>
                 <div class="bottom-margin">
-                    <hr class="hr-small">
+                    <hr class="hr-large">
                 </div>
             </section>
 
@@ -131,6 +132,7 @@
             <section name="supplements">
                 <div class="bottom-margin">
                     <h4>Supplements</h4>
+                    <p>You can add more supplements inside.</p>
                 </div>
               
                 <div class="bottom-margin">
@@ -170,8 +172,8 @@
             
             <div class="button-container">
                 <!--<button class="button button-full-size">Prev page</button>-->
-                <a href="{% url 'onboard_produce' %}" class="btn button button-small-size">Previous</a> 
-                <button type='submit' class="btn button button-small-size">Finish</button>
+                <a href="{% url 'onboard_produce' %}" class="btn button button-full-size">Previous</a> 
+                <button type='submit' class="btn button button-full-size">Finish</button>
             </div>
         </div>
     </form>

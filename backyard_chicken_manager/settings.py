@@ -166,6 +166,10 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+# Allows localizes inputs formats for Users
+# https://docs.djangoproject.com/en/4.0/ref/settings/
+USE_L10N = True
+
 USE_TZ = True
 
 

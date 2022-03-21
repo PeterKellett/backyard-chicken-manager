@@ -1,0 +1,309 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static 'regular_tasks/css/sales_and_income.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Egg Sales - Deliveries
+{% endblock %}
+
+{% block sub-nav %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Sub Navigation Section -->
+<div class="element-container container-fluid sub-nav-container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'egg_roadside_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_roadside.png" alt="Egg Sales Roadside Icon" class="nav-link-image sub-nav-link-image">
+                Roadside
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'egg_collection_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_collections.png" alt="Egg Sales Collections Icon" class="nav-link-image sub-nav-link-image">
+                Collections
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link active" href="{% url 'egg_delivery_sales_dashboard' %}">
+                <img src="{{ MEDIA_URL }}sales_deliveries.png" alt="Egg Sales Deliveries Icon" class="nav-link-image sub-nav-link-image">
+                Deliveries
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'egg_market_sales' %}">
+                <img src="{{ MEDIA_URL }}sales_markets.png" alt="Egg Sales Markets Icon" class="nav-link-image sub-nav-link-image">
+                Markets
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Icons and Links Section -->
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle icon-orange"></i>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}reports_income.png" alt="Income reports icon" class="non-round-icon"></a>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting_settings.png" alt="Profile and Settings icon" class="non-round-icon"></a>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<!-- FORM SECTION  -->
+<div class="element-container">
+    <form method="POST" action="{% url 'egg_delivery_sales_dashboard' %}" enctype="multipart/form-data" name="egg_delivery_sales_dashboard" id="submit-form">
+        {% csrf_token %}
+        
+        <div class="form-data">
+            <!-- Sale Date Section -->
+            {% include 'html_includes/date.html' %}
+
+            <!-- Include Overdue Deliveries -->
+            <div class="row bottom-margin">
+                <div class="col-10 col-css">
+                    <h6 class="row-name">Include Overdue Deliveries</h6>
+                </div>
+                <div class="col-2 col-css col-css-right">
+                    <input type="checkbox" id="include-overdue-deliveries" name="include_overdue_deliveries" value="include-overdue-deliveries">
+                    <label for="include-overdue-deliveries" class="hidden-label">Include Overdue Deliveries</label>
+                </div>
+            </div>
+
+            <!-- Total Eggs Required -->
+            <div class="row bottom-margin">
+                <h5>Today's Requirments</h5>
+                <div class="col-10 col-css">
+                    <h6 class="row-name">Total Eggs Required:</h6>
+                </div>
+                <div class="col-2 col-css col-css-right">
+                    <h5>#Temp</h5>
+                </div>
+            
+                <!-- Eggs Required for Delivery -->
+                <div class="row ">
+                    <div class="col-10 col-css">
+                        <p class="row-name">Single Eggs:</p>
+                    </div>
+                    <div class="col-2 col-css col-css-right">
+                        <h6>#Temp</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10 col-css">
+                        <p class="row-name">Half Dozen Boxes:</p>
+                    </div>
+                    <div class="col-2 col-css col-css-right">
+                        <h6>#Temp</h6>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-10 col-css">
+                        <p class="row-name">Dozen Boxes:</p>
+                    </div>
+                    <div class="col-2 col-css col-css-right">
+                        <h6>#Temp</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Current Deliveries List -->
+            <div class="bottom-margin panel-div">
+                <h5>Awaiting Delivery</h5>
+            </div>
+            <!-- Customer List -->
+            <div class="row bottom-margin">
+                <div class="col-7 col-css">
+                    <h6 class="row-name">Customer Name</h6>
+                </div>
+                <div class="col-2 col-css">
+                    <h6 class="row-name">Qty</h6>
+                </div>
+                <div class="col-3 col-css col-css-right">
+                    <h6 class="row-name">Due Date</h6>
+                </div>
+            </div>
+            <div class="bottom-margin">
+                <div class="bottom-margin">
+                    <div class="row">
+                        <div class="col-7 col-css">
+                            <a href="{% url 'egg_delivery_sales' %}">
+                                <p class="row-name">Customer Name Temp</p>
+                            </a>
+                        </div>
+                        <div class="col-2 col-css">
+                            <p class="row-name">#</p>
+                        </div>
+                        <div class="col-3 col-css col-css-right">
+                            <p class="row-name">dd/mm/yyyy</p>
+                        </div>
+                    </div>
+                    <!-- This section only included for demo purposes. Needs top be removed when dynamica populating is in place -->
+                    <div class="row">
+                        <div class="col-7 col-css">
+                            <a href="">
+                                <p class="row-name">Customer Name Temp</p>
+                            </a>
+                        </div>
+                        <div class="col-2 col-css">
+                            <p class="row-name">#</p>
+                        </div>
+                        <div class="col-3 col-css col-css-right">
+                            <p class="row-name">dd/mm/yyyy</p>
+                        </div>
+                    </div>
+                    <!-- This section only included for demo purposes. Needs top be removed when dynamica populating is in place -->
+                    <div class="row">
+                        <div class="col-7 col-css">
+                            <a href="">
+                                <p class="row-name">Customer Name Temp</p>
+                            </a>
+                        </div>
+                        <div class="col-2 col-css">
+                            <p class="row-name">#</p>
+                        </div>
+                        <div class="col-3 col-css col-css-right">
+                            <p class="row-name">dd/mm/yyyy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Deliveries Complete List -->
+            <div class="bottom-margin panel-div">
+                <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <h5>Deliveries Made</h5>
+                </a>
+            </div>
+            <div class="collapse in" id="collapseExample">
+                <div class="bottom-margin">
+                    <div class="row bottom-margin">
+                        <div class="col-7 col-css">
+                            <h6 class="row-name">Customer Name</h6>
+                        </div>
+                        <div class="col-2 col-css">
+                            <h6 class="row-name">Qty</h6>
+                        </div>
+                        <div class="col-3 col-css col-css-right">
+                            <h6 class="row-name">Delivered</h6>
+                        </div>
+                    </div>
+                    <div class="bottom-margin">
+                        <div class="row">
+                            <div class="col-7 col-css">
+                                <a href="">
+                                    <p class="row-name">Customer Name Temp</p>
+                                </a>
+                            </div>
+                            <div class="col-2 col-css">
+                                <p class="row-name">#</p>
+                            </div>
+                            <div class="col-3 col-css col-css-right">
+                                <p class="row-name">dd/mm/yyyy</p>
+                            </div>
+                        </div>
+                        <!-- This section only included for demo purposes. Needs top be removed when dynamica populating is in place -->
+                        <div class="row">
+                            <div class="col-7 col-css">
+                                <a href="">
+                                    <p class="row-name">Customer Name Temp</p>
+                                </a>
+                            </div>
+                            <div class="col-2 col-css">
+                                <p class="row-name">#</p>
+                            </div>
+                            <div class="col-3 col-css col-css-right">
+                                <p class="row-name">dd/mm/yyyy</p>
+                            </div>
+                        </div>
+                        <!-- This section only included for demo purposes. Needs top be removed when dynamica populating is in place -->
+                        <div class="row">
+                            <div class="col-7 col-css">
+                                <a href="">
+                                    <p class="row-name">Customer Name Temp</p>
+                                </a>
+                            </div>
+                            <div class="col-2 col-css">
+                                <p class="row-name">#</p>
+                            </div>
+                            <div class="col-3 col-css col-css-right">
+                                <p class="row-name">dd/mm/yyyy</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Total Eggs Required -->
+                    <div class="row bottom-margin">
+                        <div class="col-10 col-css">
+                            <h6 class="row-name">Total Eggs Delivered:</h6>
+                        </div>
+                        <div class="col-2 col-css col-css-right">
+                            <h5>#Temp</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Egg Breakages or Loses Section -->
+            <section name="flock-core-info">
+                <div class="bottom-margin">
+                    <h4>Breakages & Loses</h4>
+                </div>
+                <div class="bottom-margin">
+                    {{ form.breakages_and_loses_eggs_delivery }}
+                    <label for="breakages-and-loses-eggs-delivery">Qty of Eggs Broken, Stolen or Lost</label>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Notes & Images Section -->
+            {% include 'html_includes/notes_and_pics.html' %}
+
+            <!-- Used as a warning instead of an Alert -->
+            {% include 'html_includes/validation_warning.html' %}
+
+            <!-- Buttons Section -->
+            <div class="button-container">
+                <input type="hidden" name="redirect_url" value="onboard_produce"/>
+                <button type='submit' id="save-button" class="btn button button-full-size save-button">Next</button> 
+                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
+            </div>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+{% endblock %}

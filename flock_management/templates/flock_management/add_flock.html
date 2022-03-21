@@ -78,10 +78,12 @@
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
+                    <!-- Input type changes to date on focus in. Allows Placeholder to work.-->
+                    <!-- Taken from https://stackoverflow.com/questions/20321202/not-showing-placeholder-for-input-type-date-field -->
                     {% if 'acquired_date' in onboard_profile_data %}
-                    <input type="date" name="acquired_date" value="{{ onboard_profile_data.acquired_date }}" placeholder="Acquired Date" id="acquired-date" required autofocus>
+                    <input placeholder="Acquired Date" name="acquired_date" id="acquired-date" type="text" onfocusin="(this.type='date')" onfocusout="(this.type='text')" value="{{ onboard_profile_data.acquired_date }}" required>
                     {% else %}
-                    <input type="date" name="acquired_date" placeholder="Acquired Date" id="acquired-date" required>
+                    <input placeholder="Acquired Date" name="acquired_date" id="acquired-date" type="text" onfocusin="(this.type='date')" onfocusout="(this.type='text')" value="{{ onboard_profile_data.acquired_date }}" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
