@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
-from .forms import EggRoadsideSalesForm, EggCollectionSalesForm, EggDeliverySalesDashboardForm, EggDeliverySalesForm, EggMarketSalesForm
+from .forms import EggRoadsideSalesForm, EggCollectionSalesForm, EggDeliverySalesDashboardForm, EggDeliverySalesForm, EggMarketSalesForm # EggCollectionSalesDashboardForm 
 
 
 @login_required
@@ -24,7 +24,7 @@ def egg_delivery_sales_dashboard(request):
         farmprofile = userprofile.farmprofiles.all()
         template = 'sales_and_income/egg_delivery_sales_dashboard.html'
     else:
-        form = EggDeliverySalesForm
+        form = EggDeliverySalesFormDashboard
         userprofile = UserProfile.objects.get(user=request.user)
         farmprofile = userprofile.farmprofiles.all()
         template = 'sales_and_income/egg_delivery_sales_dashboard.html'
@@ -56,6 +56,24 @@ def egg_delivery_sales(request):
         template = 'sales_and_income/egg_delivery_sales.html'
         context = {'form': form}
         return render(request, template, context)
+
+
+# @login_required
+# def egg_collection_sales_dashboard(request):
+#     """egg collection sales dashboard view"""
+#     if request.POST:
+#         date = request.POST['date']
+#         breakages_and_loses_eggs_collection = request.POST['breakages_and_loses_eggs_collection']
+#         userprofile = UserProfile.objects.get(user=request.user)
+#         farmprofile = userprofile.farmprofiles.all()
+#         template = 'sales_and_income/egg_collection_sales_dashboard.html'
+#     else:
+#         form = EggcollectionSalesFormDashboard
+#         userprofile = UserProfile.objects.get(user=request.user)
+#         farmprofile = userprofile.farmprofiles.all()
+#         template = 'sales_and_income/egg_collection_sales_dashboard.html'
+#         context = {'form': form}
+#         return render(request, template, context)
 
 
 @login_required

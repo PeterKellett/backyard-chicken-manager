@@ -26,7 +26,7 @@ class EggCollectionAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'date',
-        'farm_profile_id',
+        # 'farm_profile_id',
         'flock_id',
         'qty_egg_trays',
         'qty_egg_singles',
@@ -47,7 +47,7 @@ class FeedingTimeAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'date',
-        'farm_profile_id',
+        # 'farm_profile_id',
         'flock_id',
         'feed_type_id',
         'amount_food_rem',
@@ -63,7 +63,7 @@ class CoopCleaningAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'date',
-        'coop_id',
+        # 'coop_id',
         'disinfected',
         'disinfectant',
         'notes'

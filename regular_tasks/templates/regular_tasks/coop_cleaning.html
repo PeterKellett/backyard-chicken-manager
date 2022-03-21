@@ -67,7 +67,7 @@
 
 <!-- MAIN SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'coop_cleaning' %}" name="hcc-form">
+    <form method="POST" action="{% url 'coop_cleaning' %}" enctype="multipart/form-data" name="hcc-form">
         {% csrf_token %}
         <div class="form-data">
 

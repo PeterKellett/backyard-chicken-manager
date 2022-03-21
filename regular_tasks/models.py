@@ -41,10 +41,10 @@ class Disinfectants(models.Model):
 
 class EggCollection(models.Model):
     """Model used for storing egg collection data"""
-    farm_profile = models.ForeignKey(FarmProfile,
-                                     null=False,
-                                     blank=False,
-                                     on_delete=models.CASCADE)
+    # farm_profile = models.ForeignKey(FarmProfile,
+    #                                  null=False,
+    #                                  blank=False,
+    #                                  on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False)
     flock = models.ForeignKey(Flocks,
@@ -75,19 +75,19 @@ class EggCollection(models.Model):
                                          blank=True)
     qty_saleable_eggs = models.IntegerField(null=True,
                                             blank=True)
-    notes = models.CharField(max_length=500,
-                             null=True,
+    notes = models.TextField(null=True,
                              blank=True)
-    # image_url = models.URLField(null=False,
-    #                             blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")
 
 
 class FeedingTime(models.Model):
     """Model used for storing feeding time data"""
-    farm_profile = models.ForeignKey(FarmProfile,
-                                     null=False,
-                                     blank=False,
-                                     on_delete=models.CASCADE)
+    # farm_profile = models.ForeignKey(FarmProfile,
+    #                                  null=False,
+    #                                  blank=False,
+    #                                  on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False,
                                 verbose_name='date')
@@ -111,19 +111,19 @@ class FeedingTime(models.Model):
     amount_water_added = models.IntegerField(null=False,
                                              blank=False,
                                              verbose_name='amount of water added')
-    notes = models.CharField(max_length=500,
-                             null=False,
+    notes = models.TextField(null=True,
                              blank=True)
-    # image_url = models.URLField(null=False,
-    #                             blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")
 
 
 class CoopCleaning(models.Model):
     """Model used for storing coop cleaning data"""
-    coop = models.ForeignKey(Coops,
-                             null=False,
-                             blank=False,
-                             on_delete=models.CASCADE)
+    # coop = models.ForeignKey(Coops,
+    #                          null=False,
+    #                          blank=False,
+    #                          on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False)
     disinfected = models.BooleanField(null=False,
@@ -132,6 +132,8 @@ class CoopCleaning(models.Model):
                                      null=False,
                                      blank=True,
                                      on_delete=models.CASCADE)
-    notes = models.CharField(max_length=500,
-                             null=False,
+    notes = models.TextField(null=True,
                              blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")

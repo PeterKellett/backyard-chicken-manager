@@ -16,7 +16,7 @@ def egg_collection(request):
     farmprofile = userprofile.farmprofiles.all()
     trays_quantity = farmprofile[0].trays_quantity
     if request.POST:
-        form = EggCollectionForm(request.POST)
+        form = EggCollectionForm(request.POST, request.FILES)
         if form.is_valid():
             print(("form cleaned date =", form.cleaned_data))
             form = form.save(commit=False)  # Presave the form values to create an instance of the model but don't commit to db.

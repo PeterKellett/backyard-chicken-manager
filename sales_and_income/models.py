@@ -68,11 +68,11 @@ class EggRoadsideSales(models.Model):
     loses_eggs_roadside = models.IntegerField(null=False,
                                               blank=True)
 
-    notes_roadside_egg_sales = models.TextField(null=True,
-                                                blank=True)
-    images_roadside_egg_sales = models.ImageField(null=True,
-                                                  blank=True,
-                                                  upload_to="images/")
+    notes = models.TextField(null=True,
+                             blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")
 
 
 class EggCollectionSales(models.Model):
@@ -85,7 +85,7 @@ class EggCollectionSales(models.Model):
     date = models.DateTimeField(null=False,
                                 blank=False)
     customer_name_eggs_collection = models.CharField(max_length=250,
-                                                     null=False,
+                                                     default='',
                                                      blank=False)
     normal_order_qty_eggs_collection = models.IntegerField(null=False,
                                                            blank=True)
@@ -103,6 +103,11 @@ class EggCollectionSales(models.Model):
                                                        blank=True)
     breakages_and_loses_eggs_collection = models.IntegerField(null=False,
                                                               blank=True)
+    notes = models.TextField(null=True,
+                             blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")
 
 
 class EggDeliverySalesDashboard(models.Model):
@@ -151,6 +156,11 @@ class EggDeliverySales(models.Model):
                                                      decimal_places=2,
                                                      null=False,
                                                      blank=True)
+    notes = models.TextField(null=True,
+                             blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")
 
 
 class EggMarketSales(models.Model):
@@ -211,3 +221,8 @@ class EggMarketSales(models.Model):
 
     loses_eggs_market = models.IntegerField(null=False,
                                             blank=True)
+    notes = models.TextField(null=True,
+                             blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")
