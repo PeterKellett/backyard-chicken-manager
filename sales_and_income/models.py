@@ -68,6 +68,12 @@ class EggRoadsideSales(models.Model):
     loses_eggs_roadside = models.IntegerField(null=False,
                                               blank=True)
 
+    notes_roadside_egg_sales = models.TextField(null=True,
+                                                blank=True)
+    images_roadside_egg_sales = models.ImageField(null=True,
+                                                  blank=True,
+                                                  upload_to="images/")
+
 
 class EggCollectionSales(models.Model):
     """Model used for collection egg sales data"""

@@ -1,155 +1,19 @@
 from django import forms
-from django.forms import ModelForm
 from .models import EggCollection, FeedingTime, CoopCleaning
 
 
+
 # Create an Egg Collection form
-class EggCollectionForm(ModelForm):
+class EggCollectionForm(forms.ModelForm):
     """ Create an Egg Collection form """
     class Meta:
         """ Meta Class Docstring here as required """
         model = EggCollection
-        fields = ('date', 'qty_egg_trays',
-                  'qty_egg_singles', 'qty_total_eggs_laid',
-                  'qty_eggs_damaged', 'qty_eggs_broken', 'qty_eggs_personal_use',
-                  'qty_eggs_given_free', 'weight_total_eggs_laid',
-                  'avg_egg_weight', 'qty_saleable_eggs',
-                  'egg_collection_notes')
-
-        widgets = {
-            'date': forms.DateInput(attrs={'class': 'class-name'}),
-            'qty_egg_trays': forms.NumberInput(attrs={'class':
-                                                      'egg-collection-qty-input \
-                                                      saleable-eggs-input \
-                                                      average-weight-input',
-                                                      'id': 'qty-egg-trays',
-                                                      'name': 'qty_egg_trays',
-                                                      'placeholder':
-                                                      'Qty Laid Trays',
-                                                      'value': ''}),
-            'qty_egg_singles': forms.NumberInput(attrs={'class':
-                                                        'egg-collection-qty-input \
-                                                        saleable-eggs-input \
-                                                        average-weight-input',
-                                                        'id':
-                                                        'qty-egg-singles',
-                                                        'name':
-                                                        'qty_egg_singles',
-                                                        'placeholder':
-                                                        'Qty Laid - Single',
-                                                        'value': ''}),
-            'qty_total_eggs_laid': forms.NumberInput(attrs={'class':
-                                                            'text-end \
-                                                            h-style-input',
-                                                            'id':
-                                                            'qty-total-eggs-laid',
-                                                            'name':
-                                                            'qty_total_eggs_laid',
-                                                            'placeholder':
-                                                            'Qty Laid - Single',
-                                                            'value': '0',
-                                                            'disabled': 'true'}),
-            'qty_eggs_damaged': forms.NumberInput(attrs={'class':
-                                                         'saleable-eggs-input',
-                                                         'id':
-                                                         'qty-eggs-damaged',
-                                                         'name':
-                                                         'qty_eggs_damaged',
-                                                         'placeholder':
-                                                         'Qty of Eggs Damaged (OK \
-                                                         for personal use)',
-                                                         'value': '',
-                                                         'step': '1',
-                                                         'min': '0'}),
-            'qty_eggs_broken': forms.NumberInput(attrs={'class':
-                                                   'saleable-eggs-input \
-                                                   average-weight-input',
-                                                   'id':
-                                                   'qty-eggs-broken',
-                                                   'name':
-                                                   'qty_eggs_broken',
-                                                   'placeholder':
-                                                   'Qty of Eggs Broken \
-                                                   (Unuseable)',
-                                                   'value': '',
-                                                   'step': '1',
-                                                   'min': '0'}),
-            'qty_eggs_personal_use': forms.NumberInput(attrs={'class':
-                                                              'saleable-eggs-input',
-                                                              'id':
-                                                              'qty-eggs-personal-use',
-                                                              'name':
-                                                              'qty_eggs_personal_use',
-                                                              'placeholder':
-                                                              'Qty of Eggs Taken \
-                                                              for Personal Use)',
-                                                              'value': '',
-                                                              'min': '0',
-                                                              'step': '1'}),
-            'qty_eggs_given_free': forms.NumberInput(attrs={'class':
-                                                            'saleable-eggs-input',
-                                                            'id':
-                                                            'qty-eggs-given-free',
-                                                            'name':
-                                                            'qty_eggs_given_free',
-                                                            'placeholder':
-                                                            'Qty of Eggs Given \
-                                                            Away Free',
-                                                            'value': '',
-                                                            'min': '0',
-                                                            'step': '1'}),
-            'weight_total_eggs_laid': forms.NumberInput(attrs={'class':
-                                                               'average-weight-input',
-                                                               'id':
-                                                               'weight-total-eggs-laid',
-                                                               'name':
-                                                               'weight_total_eggs_laid',
-                                                               'placeholder':
-                                                               'Total weight of \
-                                                               eggs laid \
-                                                               (excl. Broken)',
-                                                               'value': '',
-                                                               'min': '0',
-                                                               'oninput':
-                                                               'this.value = \
-                                                               Math.abs(this.value)'
-                                                               }),
-            'avg_egg_weight': forms.NumberInput(attrs={'class':
-                                                       'text-end h-style-input',
-                                                       'id':
-                                                       'avg-egg-weight',
-                                                       'name':
-                                                       'avg_egg_weight',
-                                                       'placeholder':
-                                                       'Total weight of \
-                                                       eggs laid (excl. \
-                                                       Broken)',
-                                                       'value': '0',
-                                                       'min': '0',
-                                                       'disabled': 'true'}),
-            'qty_saleable_eggs': forms.NumberInput(attrs={'class':
-                                                          'text-end h-style-input',
-                                                          'id':
-                                                          'qty-saleable-eggs',
-                                                          'name':
-                                                          'qty_saleable_eggs',
-                                                          'placeholder':
-                                                          'Eggs Saleable Qty',
-                                                          'value': '0',
-                                                          'disabled': 'true'}),
-            'egg_collection_notes': forms.TextInput(attrs={'id': 'egg-collection-notes',
-                                                           'name': 'egg_collection_notes',
-                                                           'placeholder':
-                                                           "Today's Egg \
-                                                           Collection Notes"}),
-            # 'image_url': forms.TextInput(attrs={'class': 'class-name',
-            #                                     'id': 'image-url',
-            #                                     'name': 'image_url'})
-        }
+        fields = '__all__'
 
 
 # Create a Feeding Time form
-class FeedingTimeForm(ModelForm):
+class FeedingTimeForm(forms.ModelForm):
     """ Create a feeding time form """
     class Meta:
         """ Meta Class Docstring here as required """
@@ -160,7 +24,6 @@ class FeedingTimeForm(ModelForm):
                   'feeding_notes', 'image_url')
 
         widgets = {
-            'date': forms.DateInput(attrs={'class': 'class-name'}),
             'food_type': forms.TextInput(attrs={'id': 'feed-type',
                                                 'name': 'feed_type',
                                                 'placeholder': 'Feed Name'}),
@@ -212,7 +75,7 @@ class FeedingTimeForm(ModelForm):
 
 
 # Create a Coop Cleaning form
-class CoopCleaningForm(ModelForm):
+class CoopCleaningForm(forms.ModelForm):
     """ Create a coop cleaning form """
     class Meta:
         """ Meta Class Docstring here as required """
