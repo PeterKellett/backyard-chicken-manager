@@ -6,6 +6,7 @@ from .models import FarmType, UserProfile, FarmProfile, Breed, FarmPurpose
 class FarmTypeAdmin(admin.ModelAdmin):
     """Admin model"""
     list_display = (
+        'id',
         'type',
     )
 
@@ -13,6 +14,7 @@ class FarmTypeAdmin(admin.ModelAdmin):
 class BreedsAdmin(admin.ModelAdmin):
     """Admin model"""
     list_display = (
+        'id',
         'type',
     )
 
@@ -20,6 +22,7 @@ class BreedsAdmin(admin.ModelAdmin):
 class FarmPurposeAdmin(admin.ModelAdmin):
     """Admin model"""
     list_display = (
+        'id',
         'type',
     )
 
@@ -27,6 +30,7 @@ class FarmPurposeAdmin(admin.ModelAdmin):
 class UserProfileAdmin(admin.ModelAdmin):
     """Admin layout for UserProfile table"""
     list_display = (
+        'id',
         'user',
         'first_name',
         'last_name',
@@ -37,9 +41,10 @@ class UserProfileAdmin(admin.ModelAdmin):
 class FarmProfileAdmin(admin.ModelAdmin):
     """Admin layout for FarmProfile table"""
     list_display = (
-        'user_profile',
+        'id',
+        'user_profile_id',
         'farm_business_name',
-        'farm_type',
+        'farm_type_id',
         'farm_sales_roadside',
         'farm_sales_markets',
         'farm_sales_deliveries',
