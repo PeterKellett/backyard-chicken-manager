@@ -30,20 +30,6 @@ body {
     position: relative;
 }
 
-/*-- Positions items in the centre of the page --*/
-.page-centre {
-    width: 100%;
-    padding-right: var(--bs-gutter-x,.75rem);
-    padding-left: var(--bs-gutter-x,.75rem);
-    margin-right: auto;
-    margin-left: auto;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 /*-- COLOURS START --*/
 
 :root {
@@ -115,6 +101,19 @@ p {
     font-size: 16px;
     line-height: 1.25;
     color: var(--black);
+}
+
+/*-- Used to target pieces of text, such as a "More..." link --*/
+span.highlight-text {
+    color: var(--green);
+    font-weight: 900;
+}
+
+/*-- These are p tags that display as an actual paragraph of text --*/
+.paragraph-text {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*-- FONTS END --*/
@@ -198,12 +197,19 @@ i {
 hr {
     border-top: 3px solid var(--green);
     opacity: 1;
-    margin:auto;
+}
+
+hr.hr-large,
+hr.hr-small {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hr-large {
     width: 50%;
     min-width: 275px;
+    /* margin-left: auto;
+    margin-right: auto; */
 }
 
 .hr-small {

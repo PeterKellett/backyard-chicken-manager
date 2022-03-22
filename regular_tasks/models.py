@@ -126,10 +126,10 @@ class CoopCleaning(models.Model):
                              on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False)
-    disinfected = models.BooleanField(null=False,
+    disinfected = models.BooleanField(null=True,
                                       blank=True)
     disinfectant = models.ForeignKey(Disinfectants,
-                                     null=False,
+                                     null=True,
                                      blank=True,
                                      on_delete=models.CASCADE)
     notes = models.TextField(null=True,

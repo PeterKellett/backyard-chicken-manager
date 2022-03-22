@@ -10,7 +10,7 @@ class EggCollectionForm(forms.ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = EggCollection
-        fields = '__all__'
+        exclude = ['farm_profile']
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
@@ -153,7 +153,7 @@ class FeedingTimeForm(forms.ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = FeedingTime
-        fields = '__all__'
+        exclude = ['farm_profile']
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
@@ -211,7 +211,9 @@ class CoopCleaningForm(forms.ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = CoopCleaning
-        fields = '__all__'
+        fields = ('date', 'coop',
+                  'disinfected', 'disinfectant',
+                  'notes')
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
