@@ -3,14 +3,18 @@ from django.forms import ModelForm
 from .models import EggCollection, FeedingTime, CoopCleaning, Feeds
 
 
-
 # Create an Egg Collection form
 class EggCollectionForm(forms.ModelForm):
     """ Create an Egg Collection form """
     class Meta:
         """ Meta Class Docstring here as required """
         model = EggCollection
-        fields = '__all__'
+        fields = ('date', 'flock', 'qty_egg_trays',
+                  'qty_egg_singles', 'qty_eggs_damaged',
+                  'qty_eggs_damaged', 'qty_eggs_broken',
+                  'qty_eggs_personal_use', 'qty_eggs_given_free',
+                  'weight_total_eggs_laid', 'notes', 'images'
+                  )
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
@@ -153,7 +157,11 @@ class FeedingTimeForm(forms.ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = FeedingTime
-        fields = '__all__'
+        fields = ('date', 'flock', 'feed_type',
+                  'amount_food_rem', 'amount_food_added',
+                  'amount_water_rem', 'amount_water_added',
+                  'notes', 'images'
+                  )
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
@@ -211,7 +219,10 @@ class CoopCleaningForm(forms.ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = CoopCleaning
-        fields = '__all__'
+        fields = ('date', 'coop', 'disinfected',
+                  'disinfectant',
+                  'notes', 'images'
+                  )
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),

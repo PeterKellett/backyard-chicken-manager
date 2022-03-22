@@ -5,4 +5,4 @@ from django.shortcuts import render, redirect
 def index(request):
     '''A view to return the homepage'''
     return redirect('account_signup')
-    # return render(request, template, context)
+    # return render(request, 'home/index.html')
