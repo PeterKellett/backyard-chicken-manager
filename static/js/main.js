@@ -31,6 +31,22 @@ $(document).ready(function () {
 // !!!!!!! (document).ready function end
 })
 
+// Function to display additional field(s) or content when a checkbox is checked
+// Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
+$(function () {
+    $('div.show-on-click').hide();
+    console.log("Show on click fires");
+
+    //show it when the checkbox is clicked
+    $('input[class="click-to-show"]').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('div.show-on-click').fadeIn();
+        } else {
+            $('div.show-on-click').hide();
+        }
+    });
+});
+
 
 // Sales Methods & Units Function to ensure at least one checkbox
 // is checked in each section before next page can be loaded
@@ -68,23 +84,6 @@ function injectHref() {
             });
         }
     }
-
-
-// Function to display additional field(s) or content when a checkbox is checked
-// Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
-$(function () {
-    $('div.show-on-click').hide();
-    console.log("Show on click fires");
-
-    //show it when the checkbox is clicked
-    $('input[class="click-to-show"]').on('click', function () {
-        if ($(this).prop('checked')) {
-            $('div.show-on-click').fadeIn();
-        } else {
-            $('div.show-on-click').hide();
-        }
-    });
-});
 
 
 // Function to make textarea height to expand based on amopunt of text added by the user.

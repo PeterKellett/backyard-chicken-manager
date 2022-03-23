@@ -31,7 +31,7 @@ class Disinfectants(models.Model):
         """Overwrite the default Django pluralisation"""
         verbose_name_plural = 'Disinfectants'
     """Model used for storing different disinfectants"""
-    disinfectant_name = models.CharField(max_length=20,
+    disinfectant_name = models.CharField(max_length=40,
                                          null=False,
                                          blank=False)
 
