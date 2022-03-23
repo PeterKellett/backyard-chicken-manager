@@ -1,71 +1,74 @@
 from django.db import models
-# from profiles.models import FarmProfile
+from profiles.models import FarmProfile
+from flock_management.models import Flocks, Coops
+from django.utils.translation import gettext_lazy as _
 
 
 class EggRoadsideSales(models.Model):
     """Model used for roadside sales data"""
-    # farm_profile = models.ForeignKey(FarmProfile,
-    #                                  blank=False,
-    #                                  null=False,
-    #                                  on_delete=models.CASCADE,
-    #                                  related_name='farmprofile')
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     blank=False,
+                                     null=False,
+                                     on_delete=models.CASCADE)
+                                    #  related_name='farmprofile')
     date = models.DateTimeField(null=False,
                                 blank=False)
     single_egg_price = models.DecimalField(max_digits=5,
                                            decimal_places=2,
-                                           null=False,
+                                           null=True,
                                            blank=True)
     half_dozen_eggs_price = models.DecimalField(max_digits=5,
                                                 decimal_places=2,
-                                                null=False,
+                                                null=True,
                                                 blank=True)
     ten_eggs_price = models.DecimalField(max_digits=5,
                                          decimal_places=2,
-                                         null=False,
+                                         null=True,
                                          blank=True)
     dozen_eggs_price = models.DecimalField(max_digits=5,
                                            decimal_places=2,
-                                           null=False,
+                                           null=True,
                                            blank=True)
     trays_of_eggs_price = models.DecimalField(max_digits=5,
                                               decimal_places=2,
-                                              null=False,
+                                              null=True,
                                               blank=True)
 
-    qty_single_eggs_remaining = models.IntegerField(null=False,
+    qty_single_eggs_remaining = models.IntegerField(null=True,
                                                     blank=True)
-    qty_single_eggs_added = models.IntegerField(null=False,
+    qty_single_eggs_added = models.IntegerField(null=True,
                                                 blank=True)
-    qty_half_dozen_egg_boxes_remaining = models.IntegerField(null=False,
+    qty_half_dozen_egg_boxes_remaining = models.IntegerField(null=True,
                                                              blank=True)
-    qty_half_dozen_egg_boxes_added = models.IntegerField(null=False,
+    qty_half_dozen_egg_boxes_added = models.IntegerField(null=True,
                                                          blank=True)
-    qty_ten_egg_boxes_remaining = models.IntegerField(null=False,
+    qty_ten_egg_boxes_remaining = models.IntegerField(null=True,
                                                       blank=True)
-    qty_ten_egg_boxes_added = models.IntegerField(null=False,
+    qty_ten_egg_boxes_added = models.IntegerField(null=True,
                                                   blank=True)
-    qty_dozen_egg_boxes_remaining = models.IntegerField(null=False,
+    qty_dozen_egg_boxes_remaining = models.IntegerField(null=True,
                                                         blank=True)
-    qty_dozen_egg_boxes_added = models.IntegerField(null=False,
+    qty_dozen_egg_boxes_added = models.IntegerField(null=True,
                                                     blank=True)
-    qty_trays_of_eggs_remaining = models.IntegerField(null=False,
+    qty_trays_of_eggs_remaining = models.IntegerField(null=True,
                                                       blank=True)
-    qty_trays_of_eggs_added = models.IntegerField(null=False,
+    qty_trays_of_eggs_added = models.IntegerField(null=True,
                                                   blank=True)
-    amount_paid_eggs_roadside = models.DecimalField(max_digits=5,
+    amount_paid_eggs_roadside = models.DecimalField(max_digits=7,
                                                     decimal_places=2,
-                                                    null=False,
+                                                    null=True,
                                                     blank=True)
-    sales_amount_eggs_roadside = models.DecimalField(max_digits=5,
-                                                     decimal_places=2,
-                                                     null=False,
-                                                     blank=True)
-    sales_paid_difference_eggs_roadside = models.DecimalField(max_digits=5,
-                                                              decimal_places=2,
-                                                              null=False,
-                                                              blank=True)
+    # Below temporarily removed as involves a more complex wiring
+    # sales_amount_eggs_roadside = models.DecimalField(max_digits=7,
+    #                                                  decimal_places=2,
+    #                                                  null=True,
+    #                                                  blank=True)
+    # sales_paid_difference_eggs_roadside = models.DecimalField(max_digits=7,
+    #                                                           decimal_places=2,
+    #                                                           null=True,
+    #                                                           blank=True)
 
-    loses_eggs_roadside = models.IntegerField(null=False,
+    loses_eggs_roadside = models.IntegerField(null=True,
                                               blank=True)
 
     notes = models.TextField(null=True,

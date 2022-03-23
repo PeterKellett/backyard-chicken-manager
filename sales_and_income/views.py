@@ -102,36 +102,68 @@ def egg_collection_sales(request):
 @login_required
 def egg_roadside_sales(request):
     """view to roadside sales"""
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    # trays_quantity = farmprofile[0].trays_quantity
+    print(farmprofile)
     if request.POST:
-        date = request.POST['date']
-        single_egg_price = request.POST['single_egg_price']
-        half_dozen_eggs_price = request.POST['half_dozen_eggs_price']
-        ten_eggs_price = request.POST['ten_eggs_price']
-        dozen_eggs_price = request.POST['dozen_eggs_price']
-        trays_of_eggs_price = request.POST['trays_of_ eggs_price']
-        qty_single_eggs_remaining = request.POST['qty_single_eggs_remaining']
-        qty_single_eggs_added = request.POST['qty_single_eggs_added']
-        qty_half_dozen_egg_boxes_remaining = request.POST['qty_half_dozen_egg_boxes_remaining']
-        qty_half_dozen_egg_boxes_added = request.POST['qty_half_dozen_egg_boxes_added']
-        qty_ten_egg_boxes_remaining = request.POST['qty_ten_egg_boxes_remaining']
-        qty_ten_egg_boxes_added = request.POST['qty_ten_egg_boxes_added']
-        qty_dozen_egg_boxes_remaining = request.POST['qty_dozen_egg_boxes_remaining']
-        qty_dozen_egg_boxes_added = request.POST['qty_dozen_egg_boxes_added']
-        qty_trays_of_eggs_remaining = request.POST['qty_trays_of_eggs_remaining']
-        qty_trays_of_eggs_added = request.POST['qty_trays_of_eggs_added']
-        amount_paid_eggs_roadside = request.POST['amount_paid_eggs_roadside']
-        sales_amount_eggs_roadside = request.POST['sales_amount_eggs_roadside']
-        sales_paid_difference_eggs_roadside = request.POST['sales_paid_difference_eggs_roadside']
-        loses_eggs_roadside = request.POST['loses_eggs_roadside']
-        userprofile = UserProfile.objects.get(user=request.user)
-        farmprofile = userprofile.farmprofiles.all()
-        template = 'sales_and_income/egg_roadside_sales.html'
+        form = EggRoadsideSalesForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(("form cleaned date =", form.cleaned_data))
+            form = form.save(commit=False)  # Presave the form values to create an instance of the model but don't commit to db.
+            form.farm_profile = farmprofile[0]  # Add in the farmprofile ForeignKey value
+            print(form.farm_profile)
+            # Manual check of integer fields is required here to set field variables to 0 if NoneType or '' is returned /
+            # because setting the model default = 0 affects floating labels.
+            date = request.POST['date']
+
+            if not form.single_egg_price:
+                form.single_egg_price = 0
+            if not form.half_dozen_eggs_price:
+                form.half_dozen_eggs_price = 0
+            if not form.ten_eggs_price:
+                form.ten_eggs_price = 0
+            if not form.dozen_eggs_price:
+                form.dozen_eggs_price = 0
+            if not form.trays_of_eggs_price:
+                form.trays_of_eggs_price = 0
+            if not form.qty_single_eggs_remaining:
+                form.qty_single_eggs_remaining = 0
+            if not form.qty_single_eggs_added:
+                form.qty_single_eggs_added = 0
+            if not form.qty_half_dozen_egg_boxes_remaining:
+                form.qty_half_dozen_egg_boxes_remaining = 0
+            if not form.qty_half_dozen_egg_boxes_added:
+                form.qty_half_dozen_egg_boxes_added = 0
+            if not form.qty_ten_egg_boxes_remaining:
+                form.qty_ten_egg_boxes_remaining = 0
+            if not form.qty_ten_egg_boxes_added:
+                form.qty_ten_egg_boxes_added = 0
+            if not form.qty_dozen_egg_boxes_remaining:
+                form.qty_dozen_egg_boxes_remaining = 0
+            if not form.qty_dozen_egg_boxes_added:
+                form.qty_dozen_egg_boxes_added = 0
+            if not form.qty_trays_of_eggs_remaining:
+                form.qty_trays_of_eggs_remaining = 0
+            if not form.qty_trays_of_eggs_added:
+                form.qty_trays_of_eggs_added = 0
+            if not form.amount_paid_eggs_roadside:
+                form.amount_paid_eggs_roadside = 0
+            
+            if not form.loses_eggs_roadside:
+                form.loses_eggs_roadside = 0
+
+            form.save() # Save the form fully
+            farm = farmprofile[0] # Refer to the farmprofile object which is obtained above
+            farm.save() # Save the farmprofile to the db.
+            return HttpResponseRedirect('/sales_and_income')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
     else:
         form = EggRoadsideSalesForm
-        userprofile = UserProfile.objects.get(user=request.user)
-        farmprofile = userprofile.farmprofiles.all()
+        flock = farmprofile[0].flocks.all()
+        print("flock = ", flock)
         template = 'sales_and_income/egg_roadside_sales.html'
-        context = {'form': form}
+        context = {'form': form,
+                   'flocks': flock}
         return render(request, template, context)
 
 

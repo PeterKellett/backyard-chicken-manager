@@ -11,7 +11,7 @@ $(document).ready(function () {
         }
     }
 
-    // Floating Input Labels: If a label is for a field that displays when a checkbox is checked this
+    // Show Hide Part 1: If a label is for a field that displays when a checkbox is checked this
     // function allows the label to display. Otherwise it shows up onscreen even though the input
     // it is for, doesn't.
     var checkbox = document.getElementById("disinfected");
@@ -31,7 +31,7 @@ $(document).ready(function () {
 // !!!!!!! (document).ready function end
 })
 
-// Function to display additional field(s) or content when a checkbox is checked
+// Show Hide Part 2: Function to display additional field(s) or content when a checkbox is checked
 // Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
 $(function () {
     $('div.show-on-click').hide();

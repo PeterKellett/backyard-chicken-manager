@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ModelForm
 from profiles.models import FarmProfile
 from flock_management.models import Flocks, Coops
 from django.utils.translation import gettext_lazy as _
