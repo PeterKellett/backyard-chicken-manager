@@ -18,14 +18,15 @@ def sales_and_income(request):
 @login_required
 def egg_roadside_sales(request):
     """view to roadside sales"""
-    # userprofile = UserProfile.objects.get(user=request.user)
-    # farmprofile = userprofile.farmprofiles.all()
-    # print(farmprofile)
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    print(farmprofile)
     if request.POST:
         form = EggRoadsideSalesForm(request.POST, request.FILES)
         if form.is_valid():
             print(("form cleaned date =", form.cleaned_data))
             form = form.save(commit=False)  # Presave the form values to create an instance of the model but don't commit to db.
+            form.farm_profile = farmprofile[0]  # Add in the farmprofile ForeignKey value
             # Manual check of integer fields is required here to set field variables to 0 if NoneType or '' is returned /
             # because setting the model default = 0 affects floating labels.
             if not form.single_egg_price:
@@ -66,8 +67,12 @@ def egg_roadside_sales(request):
             # form.sales_paid_difference_eggs_roadside = (tbc)
             if not form.loses_eggs_roadside:
                 form.loses_eggs_roadside = 0
+            form.save()
 
-            form.save()  # Save the form fully
+            farm = farmprofile[0]  # Refer to the farmprofile object which is obtained above
+            farm.eggs_in_stock -= form.qty_saleable_eggs  # Update the eggs_in_stock value to itself
+            farm.save()  # Save the farmprofile to the db.
+
             return HttpResponseRedirect('/sales_and_income')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
     else:
         form = EggRoadsideSalesForm
@@ -84,9 +89,9 @@ def egg_delivery_sales_dashboard(request):
         if form.is_valid():
             print(("form cleaned date =", form.cleaned_data))
             form = form.save(commit=False)  # Presave the form values to create an instance of the model but don't commit to db.
+            
             # Manual check of integer fields is required here to set field variables to 0 if NoneType or '' is returned /
             # because setting the model default = 0 affects floating labels.
-
             if not form.breakages_and_loses_eggs_delivery:
                 form.breakages_and_loses_eggs_delivery = 0
             form.save()  # Save the form fully
@@ -114,7 +119,6 @@ def egg_delivery_sales(request):
                 form.qty_given_free_eggs_delivery = 0
             if not form.amount_paid_eggs_delivery:
                 form.amount_paid_eggs_delivery = 0
-
             form.save()  # Save the form fully
             return HttpResponseRedirect('/sales_and_income')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
     else:
@@ -144,22 +148,26 @@ def egg_delivery_sales(request):
 
 @login_required
 def egg_collection_sales(request):
+    """view to collection sales"""
     if request.POST:
-        date = request.POST['date']
-        customer_name_eggs_collection = request.POST['customer_name_eggs_collection']
-        normal_order_qty_eggs_collection = request.POST['normal_order_qty_eggs_collection']
-        qty_sold_eggs_collection = request.POST['qty_sold_eggs_collection']
-        qty_given_free_eggs_collection = request.POST['qty_given_free_eggs_collection']
-        amount_paid_eggs_collection = request.POST['amount_paid_eggs_collection']
-        balance_owed_eggs_collection = request.POST['balance_owed_eggs_collection']
-        breakages_and_loses_eggs_collection = request.POST['breakages_and_loses_eggs_collection']
-        userprofile = UserProfile.objects.get(user=request.user)
-        farmprofile = userprofile.farmprofiles.all()
-        template = 'sales_and_income/egg_collection_sales.html'
+        form = EggCollectionSalesForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(("form cleaned date =", form.cleaned_data))
+            form = form.save(commit=False)  # Presave the form values to create an instance of the model but don't commit to db.
+            # Manual check of integer fields is required here to set field variables to 0 if NoneType or '' is returned /
+            # because setting the model default = 0 affects floating labels.
+            if not form.qty_sold_eggs_collection:
+                form.qty_sold_eggs_collection = 0
+            if not form.qty_given_free_eggs_collection:
+                form.qty_given_free_eggs_collection = 0
+            if not form.amount_paid_eggs_collection:
+                form.amount_paid_eggs_collection = 0
+            if not form.breakages_and_loses_eggs_collection:
+                form.breakages_and_loses_eggs_collection = 0
+            form.save()  # Save the form fully
+            return HttpResponseRedirect('/sales_and_income')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
     else:
         form = EggCollectionSalesForm
-        userprofile = UserProfile.objects.get(user=request.user)
-        farmprofile = userprofile.farmprofiles.all()
         template = 'sales_and_income/egg_collection_sales.html'
         context = {'form': form}
         return render(request, template, context)

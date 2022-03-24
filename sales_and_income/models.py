@@ -87,24 +87,24 @@ class EggCollectionSales(models.Model):
     #                                 related_name='farmprofile')
     date = models.DateTimeField(null=False,
                                 blank=False)
-    customer_name_eggs_collection = models.CharField(max_length=250,
-                                                     default='',
-                                                     blank=False)
-    normal_order_qty_eggs_collection = models.IntegerField(null=False,
+    # customer_name_eggs_collection = models.CharField(max_length=250,
+    #                                                  default='',
+    #                                                  blank=False)
+    normal_order_qty_eggs_collection = models.IntegerField(null=True,
                                                            blank=True)
-    qty_sold_eggs_collection = models.IntegerField(null=False,
-                                                   blank=False)
-    qty_given_free_eggs_collection = models.IntegerField(null=False,
+    qty_sold_eggs_collection = models.IntegerField(null=True,
+                                                   blank=True)
+    qty_given_free_eggs_collection = models.IntegerField(null=True,
                                                          blank=True)
     amount_paid_eggs_collection = models.DecimalField(max_digits=5,
                                                       decimal_places=2,
-                                                      null=False,
+                                                      null=True,
                                                       blank=True)
     balance_owed_eggs_collection = models.DecimalField(max_digits=5,
                                                        decimal_places=2,
-                                                       null=False,
+                                                       null=True,
                                                        blank=True)
-    breakages_and_loses_eggs_collection = models.IntegerField(null=False,
+    breakages_and_loses_eggs_collection = models.IntegerField(null=True,
                                                               blank=True)
     notes = models.TextField(null=True,
                              blank=True)
@@ -136,28 +136,28 @@ class EggDeliverySales(models.Model):
     date = models.DateTimeField(null=False,
                                 blank=False)
     customer_name_eggs_delivery = models.CharField(max_length=250,
-                                                   null=False,
-                                                   blank=False)
-    normal_order_qty_eggs_delivery = models.IntegerField(null=False,
+                                                   null=True,
+                                                   blank=True)
+    normal_order_qty_eggs_delivery = models.IntegerField(null=True,
                                                          blank=True)
-    delivery_due_date = models.DateTimeField(null=False,
-                                             blank=False)
-    delivery_not_made = models.BooleanField(null=False,
+    delivery_due_date = models.DateTimeField(null=True,
+                                             blank=True)
+    delivery_not_made = models.BooleanField(null=True,
                                             blank=True)
     delivery_not_made_reason = models.CharField(max_length=250,
-                                                null=False,
-                                                blank=False)
-    qty_sold_eggs_delivery = models.IntegerField(null=False,
-                                                 blank=False)
-    qty_given_free_eggs_delivery = models.IntegerField(null=False,
+                                                null=True,
+                                                blank=True)
+    qty_sold_eggs_delivery = models.IntegerField(null=True,
+                                                 blank=True)
+    qty_given_free_eggs_delivery = models.IntegerField(null=True,
                                                        blank=True)
     amount_paid_eggs_delivery = models.DecimalField(max_digits=5,
                                                     decimal_places=2,
-                                                    null=False,
+                                                    null=True,
                                                     blank=True)
     balance_owed_eggs_delivery = models.DecimalField(max_digits=5,
                                                      decimal_places=2,
-                                                     null=False,
+                                                     null=True,
                                                      blank=True)
     notes = models.TextField(null=True,
                              blank=True)

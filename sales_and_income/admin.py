@@ -51,6 +51,20 @@ class EggDeliverySalesAdmin(admin.ModelAdmin):
     )
 
 
+class EggCollectionSalesAdmin(admin.ModelAdmin):
+    """Admin layout for Egg Collection Sales Admin table"""
+    list_display = (
+        'id',
+        'date',
+        # 'farm_profile_id',
+        'qty_sold_eggs_collection',
+        'qty_given_free_eggs_collection',
+        'amount_paid_eggs_collection',
+        'breakages_and_loses_eggs_collection'
+    )
+
+
 admin.site.register(EggRoadsideSales, EggRoadsideSalesAdmin)
 admin.site.register(EggDeliverySalesDashboard, EggDeliverySalesDashboardAdmin)
 admin.site.register(EggDeliverySales, EggDeliverySalesAdmin)
+admin.site.register(EggCollectionSales, EggCollectionSalesAdmin)
