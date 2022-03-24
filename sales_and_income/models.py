@@ -176,53 +176,53 @@ class EggMarketSales(models.Model):
     date = models.DateTimeField(null=False,
                                 blank=False)
     venue_location_eggs_market = models.CharField(max_length=250,
-                                                  null=False,
+                                                  null=True,
                                                   blank=True)
     single_egg_price = models.DecimalField(max_digits=5,
                                            decimal_places=2,
-                                           null=False,
+                                           null=True,
                                            blank=True)
     half_dozen_eggs_price = models.DecimalField(max_digits=5,
                                                 decimal_places=2,
-                                                null=False,
+                                                null=True,
                                                 blank=True)
     ten_eggs_price = models.DecimalField(max_digits=5,
                                          decimal_places=2,
-                                         null=False,
+                                         null=True,
                                          blank=True)
     dozen_eggs_price = models.DecimalField(max_digits=5,
                                            decimal_places=2,
-                                           null=False,
+                                           null=True,
                                            blank=True)
     trays_of_eggs_price = models.DecimalField(max_digits=5,
                                               decimal_places=2,
-                                              null=False,
+                                              null=True,
                                               blank=True)
 
-    qty_single_eggs_sold = models.IntegerField(null=False,
+    qty_single_eggs_sold = models.IntegerField(null=True,
                                                blank=True)
-    qty_half_dozen_egg_boxes_sold = models.IntegerField(null=False,
+    qty_half_dozen_egg_boxes_sold = models.IntegerField(null=True,
                                                         blank=True)
-    qty_ten_egg_boxes_sold = models.IntegerField(null=False,
+    qty_ten_egg_boxes_sold = models.IntegerField(null=True,
                                                  blank=True)
-    qty_dozen_egg_boxes_sold = models.IntegerField(null=False,
+    qty_dozen_egg_boxes_sold = models.IntegerField(null=True,
                                                    blank=True)
-    qty_trays_of_eggs_sold = models.IntegerField(null=False,
+    qty_trays_of_eggs_sold = models.IntegerField(null=True,
                                                  blank=True)
     amount_paid_eggs_market = models.DecimalField(max_digits=5,
                                                   decimal_places=2,
-                                                  null=False,
+                                                  null=True,
                                                   blank=True)
-    sales_amount_eggs_roadside = models.DecimalField(max_digits=5,
+    sales_amount_eggs_market = models.DecimalField(max_digits=5,
                                                      decimal_places=2,
-                                                     null=False,
+                                                     null=True,
                                                      blank=True)
-    sales_paid_difference_eggs_roadside = models.DecimalField(max_digits=5,
+    sales_paid_difference_eggs_market = models.DecimalField(max_digits=5,
                                                               decimal_places=2,
-                                                              null=False,
+                                                              null=True,
                                                               blank=True)
 
-    loses_eggs_market = models.IntegerField(null=False,
+    loses_eggs_market = models.IntegerField(null=True,
                                             blank=True)
     notes = models.TextField(null=True,
                              blank=True)
