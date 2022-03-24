@@ -100,25 +100,25 @@ def egg_delivery_sales_dashboard(request):
 
 @login_required
 def egg_delivery_sales(request):
+    """view to egg delivery sales"""
     if request.POST:
-        date = request.POST['date']
-        customer_name_eggs_delivery = request.POST['customer_name_eggs_delivery']
-        normal_order_qty_eggs_delivery = request.POST['normal_order_qty_eggs_delivery']
-        delivery_due_date = request.POST['delivery_due_date']
-        delivery_not_made = request.POST['delivery_not_made']
-        delivery_not_made_reason = request.POST['delivery_not_made_reason']
-        qty_sold_eggs_delivery = request.POST['qty_sold_eggs_delivery']
-        qty_given_free_eggs_delivery = request.POST['qty_given_free_eggs_delivery']
-        amount_paid_eggs_delivery = request.POST['amount_paid_eggs_delivery']
-        balance_owed_eggs_delivery = request.POST['balance_owed_eggs_delivery']
-        breakages_and_loses_eggs_delivery = request.POST['breakages_and_loses_eggs_delivery']
-        userprofile = UserProfile.objects.get(user=request.user)
-        farmprofile = userprofile.farmprofiles.all()
-        template = 'sales_and_income/egg_delivery_sales.html'
+        form = EggDeliverySalesForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(("form cleaned date =", form.cleaned_data))
+            form = form.save(commit=False)  # Presave the form values to create an instance of the model but don't commit to db.
+            # Manual check of integer fields is required here to set field variables to 0 if NoneType or '' is returned /
+            # because setting the model default = 0 affects floating labels.
+            if not form.qty_sold_eggs_delivery:
+                form.qty_sold_eggs_delivery = 0
+            if not form.qty_given_free_eggs_delivery:
+                form.qty_given_free_eggs_delivery = 0
+            if not form.amount_paid_eggs_delivery:
+                form.amount_paid_eggs_delivery = 0
+
+            form.save()  # Save the form fully
+            return HttpResponseRedirect('/sales_and_income')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
     else:
         form = EggDeliverySalesForm
-        userprofile = UserProfile.objects.get(user=request.user)
-        farmprofile = userprofile.farmprofiles.all()
         template = 'sales_and_income/egg_delivery_sales.html'
         context = {'form': form}
         return render(request, template, context)
