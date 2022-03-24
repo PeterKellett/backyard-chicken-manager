@@ -124,6 +124,12 @@ class EggDeliverySalesDashboard(models.Model):
                                 blank=False)
     breakages_and_loses_eggs_delivery = models.IntegerField(null=False,
                                                             blank=True)
+    
+    notes = models.TextField(null=True,
+                             blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")
 
 
 class EggDeliverySales(models.Model):

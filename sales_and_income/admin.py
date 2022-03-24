@@ -25,7 +25,8 @@ class EggRoadsideSalesAdmin(admin.ModelAdmin):
         'qty_trays_of_eggs_added',
         'amount_paid_eggs_roadside',
         'loses_eggs_roadside',
-        'notes'
+        'notes',
+        'images'
     )
 
 
@@ -35,7 +36,9 @@ class EggDeliverySalesDashboardAdmin(admin.ModelAdmin):
         'id',
         'date',
         # 'farm_profile_id',
-        'breakages_and_loses_eggs_delivery'
+        'breakages_and_loses_eggs_delivery',
+        'notes',
+        'images'
     )
 
 
@@ -45,9 +48,17 @@ class EggDeliverySalesAdmin(admin.ModelAdmin):
         'id',
         'date',
         # 'farm_profile_id',
+        'customer_name_eggs_delivery',
+        'normal_order_qty_eggs_delivery',
+        'delivery_due_date',
+        'delivery_not_made',
+        'delivery_not_made_reason',
         'qty_sold_eggs_delivery',
         'qty_given_free_eggs_delivery',
-        'amount_paid_eggs_delivery'
+        'amount_paid_eggs_delivery',
+        'balance_owed_eggs_delivery',
+        'notes',
+        'images'
     )
 
 
@@ -57,10 +68,15 @@ class EggCollectionSalesAdmin(admin.ModelAdmin):
         'id',
         'date',
         # 'farm_profile_id',
+        # 'customer_name_eggs_collection',
+        'normal_order_qty_eggs_collection',
         'qty_sold_eggs_collection',
         'qty_given_free_eggs_collection',
         'amount_paid_eggs_collection',
-        'breakages_and_loses_eggs_collection'
+        'balance_owed_eggs_collection',
+        'breakages_and_loses_eggs_collection',
+        'notes',
+        'images'
     )
 
 
@@ -70,6 +86,7 @@ class EggMarketSalesAdmin(admin.ModelAdmin):
         'id',
         'date',
         # 'farm_profile_id',
+        'venue_location_eggs_market',
         'single_egg_price',
         'half_dozen_eggs_price',
         'ten_eggs_price',
@@ -81,8 +98,11 @@ class EggMarketSalesAdmin(admin.ModelAdmin):
         'qty_dozen_egg_boxes_sold',
         'qty_trays_of_eggs_sold',
         'amount_paid_eggs_market',
+        'sales_amount_eggs_market',
+        'sales_paid_difference_eggs_market',
         'loses_eggs_market',
-        'notes'
+        'notes',
+        'images'
     )
 
 
