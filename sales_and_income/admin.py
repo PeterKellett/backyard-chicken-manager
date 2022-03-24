@@ -7,8 +7,7 @@ class EggRoadsideSalesAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'date',
-        'farm_profile_id',
-        'date',
+        # 'farm_profile_id',
         'single_egg_price',
         'half_dozen_eggs_price',
         'ten_eggs_price',
@@ -30,4 +29,15 @@ class EggRoadsideSalesAdmin(admin.ModelAdmin):
     )
 
 
+class EggDeliverySalesDashboardAdmin(admin.ModelAdmin):
+    """Admin layout for Egg Delivery Sales Dashboard Admin table"""
+    list_display = (
+        'id',
+        'date',
+        # 'farm_profile_id',
+        'breakages_and_loses_eggs_delivery'
+    )
+
+
 admin.site.register(EggRoadsideSales, EggRoadsideSalesAdmin)
+admin.site.register(EggDeliverySalesDashboard, EggDeliverySalesDashboardAdmin)

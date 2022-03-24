@@ -6,11 +6,11 @@ from django.utils.translation import gettext_lazy as _
 
 class EggRoadsideSales(models.Model):
     """Model used for roadside sales data"""
-    farm_profile = models.ForeignKey(FarmProfile,
-                                     blank=False,
-                                     null=False,
-                                     on_delete=models.CASCADE)
-                                    #  related_name='farmprofile')
+    # farm_profile = models.ForeignKey(FarmProfile,
+    #                                  blank=False,
+    #                                  null=False,
+    #                                  on_delete=models.CASCADE)
+    #                                 #  related_name='farmprofile')
     date = models.DateTimeField(null=False,
                                 blank=False)
     single_egg_price = models.DecimalField(max_digits=5,
