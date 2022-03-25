@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from .forms import EggRoadsideSalesForm, EggCollectionSalesForm, EggDeliverySalesDashboardForm, EggDeliverySalesForm, EggMarketSalesForm, PricingForm # EggCollectionSalesDashboardForm
-from .models import Pricing
+from .models import Pricing, EggRoadsideSales
 
 
 @login_required
@@ -21,7 +21,16 @@ def egg_roadside_sales(request):
     """view to roadside sales"""
     userprofile = UserProfile.objects.get(user=request.user)
     farmprofile = userprofile.farmprofiles.all()
+    trays_quantity = farmprofile[0].trays_quantity
     prices = Pricing.objects.filter(farm_profile=farmprofile[0]).filter(sales_type=1)
+    roadside_sale_history = EggRoadsideSales.objects.filter(farm_profile=farmprofile[0])
+    if roadside_sale_history.exists():
+        print("NONE")
+        recent_roadside_sale = {}
+        recent_roadside_sale['qty_single_eggs_added'] = 0
+    else:
+        recent_roadside_sale = roadside_sale_history[:1]
+    print("recent_roadside_sale = ", recent_roadside_sale)
     # print("prices = ", prices)
     # print("prices[0] = ", prices[0].id)
     # print("dir prices[0] = ", dir(prices[0]))
@@ -33,10 +42,9 @@ def egg_roadside_sales(request):
         if sales_form.is_valid() and pricing_form.is_valid():
             print(("sales_form cleaned data =", sales_form.cleaned_data))
             print(("pricing_form cleaned data =", pricing_form.cleaned_data))
-            pricing_form.save()  # Presave the form values to create an instance of the model but don't commit to db.
+            prices = pricing_form.save()  # Presave the form values to create an instance of the model but don't commit to db.
             sales_form = sales_form.save(commit=False)
             sales_form.farm_profile = farmprofile[0]  # Add in the farmprofile ForeignKey value
-
             # Manual check of integer fields is required here to set field variables to 0 if NoneType or '' is returned /
             # because setting the model default = 0 affects floating labels.
             if not sales_form.qty_single_eggs_remaining:
@@ -59,6 +67,7 @@ def egg_roadside_sales(request):
                 sales_form.qty_trays_eggs_remaining = 0
             if not sales_form.qty_trays_eggs_added:
                 sales_form.qty_trays_eggs_added = 0
+            #sales_form.qty_single_eggs_sold = recent_roadside_sale.qty_single_eggs_added - sales_form.qty_single_eggs_remaining
             if not sales_form.income:
                 sales_form.income = 0
             # Below temporarily removed as involves a more complex wiring

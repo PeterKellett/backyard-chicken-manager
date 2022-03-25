@@ -170,6 +170,7 @@ class EggRoadsideSalesForm(forms.ModelForm):
                                                       'name': 'imagess_eggs_roadside'})
         }
 
+
 # Create an Egg Collection Sales form
 class EggCollectionSalesForm(forms.ModelForm):
     """ Create an Egg Collection Sales form """
