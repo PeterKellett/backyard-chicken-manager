@@ -47,6 +47,9 @@
     </ul>
 </div>
 
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Roadside Sales" %}
+
 <!-- Icons and Links Section -->
 <div class="container element-container">
     <div class="row bottom-margin">
@@ -113,11 +116,11 @@
                 <div class="bottom-margin label-float">
                     <h4>Sales & Stocks</h4>
                 </div>
-                <div class="bottom-margin label-float">
+                <div class="bottom-margin label-float hide-show-div">
                     {{ form.qty_single_eggs_remaining }}
                     <label for="qty-single-eggs-remaining">Qty of Single Eggs Remaining</label>
                 </div>
-                <div class="bottom-margin label-float">
+                <div class="bottom-margin label-float hide-show-div">
                     {{ form.qty_single_eggs_added }}
                     <label for="qty-single-eggs-added">Qty of Single Eggs Added</label>
                 </div>

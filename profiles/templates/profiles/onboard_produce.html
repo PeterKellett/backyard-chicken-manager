@@ -173,6 +173,18 @@
                             {% endif %}
                         </div>
                     </div>
+                    <div class="row bottom-margin" id="ten-egg-carton-row">
+                        <div class="col-11 col-css">
+                            <h6 class="col-css-element checkbox-label">10 Egg Cartons</h6>
+                        </div>
+                        <div class="col-1 col-css col-css-right">
+                            {% if onboard_profile_data.ten_egg_carton_check %}
+                            <input type="checkbox" name="ten_egg_carton_check" id="ten-egg-carton-check" class="col-css-element" checked>
+                            {% else %}
+                            <input type="checkbox" name="ten_egg_carton_check" id="ten-egg-carton-check" class="col-css-element">
+                            {% endif %}
+                        </div>
+                    </div>
                     <div class="row bottom-margin" id="dozen-carton-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Dozen Cartons</h6>
@@ -186,10 +198,10 @@
                         </div>
                     </div>
                     <div class="row bottom-margin" id="trays-row">
-                        <div class="col-7 col-css">
-                            <h6 class="col-css-element checkbox-label">Trays/Other</h6>
+                        <div class="col-8 col-css">
+                            <h6 class="col-css-element checkbox-label">Trays/Other Carton Sizes</h6>
                         </div>
-                        <div class="col-4 col-css">
+                        <div class="col-3 col-css">
                             {% if 'trays_qty' in onboard_profile_data %}
                             <input type="number" name="trays_qty" value="{{ onboard_profile_data.trays_qty }}" placeholder="Tray Qty" id="trays-qty" 
                                 step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element show-on-click">
@@ -200,7 +212,7 @@
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.trays_check %}
-                            <input type="checkbox" name="trays_check" id="single-eggs-check" class="col-css-element click-to-show" checked>
+                            <input type="checkbox" name="trays_check" id="trays-check" class="col-css-element click-to-show" checked>
                             {% else %}
                             <input type="checkbox" name="trays_check" id="trays-check" class="col-css-element click-to-show">
                             {% endif %}

@@ -233,7 +233,7 @@ class CoopCleaningForm(forms.ModelForm):
             'disinfected': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                       'id': 'disinfected',
                                                       'name': 'disinfected'}),
-            'disinfectant': forms.TextInput(attrs={'class': '',
+            'disinfectant': forms.TextInput(attrs={'class': 'show-on-click',
                                                    'id': 'disinfectant',
                                                    'name': 'disinfectant',
                                                    'placeholder': 'Disinfectant Name'}),

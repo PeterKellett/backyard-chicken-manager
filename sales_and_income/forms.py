@@ -109,22 +109,23 @@ class EggRoadsideSalesForm(forms.ModelForm):
                                                                 'placeholder':
                                                                 "€ Amount Collected",
                                                                 'value': ''}),
-            'sales_amount_eggs_roadside': forms.TextInput(attrs={'class':
-                                                                 'text-end h-style-input',
-                                                                 'id': 'sales-amount-eggs-roadside',
-                                                                 'name': 'sales_amount_eggs_roadside',
-                                                                 'placeholder':
-                                                                 "Value of Eggs Sold",
-                                                                 'value': '# Temp',
-                                                                 'disabled': 'true'}),
-            'sales_paid_difference_eggs_roadside': forms.TextInput(attrs={'class':
-                                                                        'text-end h-style-input',
-                                                                        'id': 'sales-paid-difference-eggs-roadside',
-                                                                        'name': 'sales_paid_difference_eggs_roadside',
-                                                                        'placeholder':
-                                                                        "Sales vs Received Difference",
-                                                                        'value': '# Temp',
-                                                                        'disabled': 'true'}),
+            # Below temporarily removed as involves a more complex wiring
+            # 'sales_amount_eggs_roadside': forms.TextInput(attrs={'class':
+            #                                                      'text-end h-style-input',
+            #                                                      'id': 'sales-amount-eggs-roadside',
+            #                                                      'name': 'sales_amount_eggs_roadside',
+            #                                                      'placeholder':
+            #                                                      "Value of Eggs Sold",
+            #                                                      'value': '# Temp',
+            #                                                      'disabled': 'true'}),
+            # 'sales_paid_difference_eggs_roadside': forms.TextInput(attrs={'class':
+            #                                                             'text-end h-style-input',
+            #                                                             'id': 'sales-paid-difference-eggs-roadside',
+            #                                                             'name': 'sales_paid_difference_eggs_roadside',
+            #                                                             'placeholder':
+            #                                                             "Sales vs Received Difference",
+            #                                                             'value': '# Temp',
+            #                                                             'disabled': 'true'}),
 
             'loses_eggs_roadside': forms.TextInput(attrs={'class': '',
                                                           'id': 'loses-eggs-roadside',
