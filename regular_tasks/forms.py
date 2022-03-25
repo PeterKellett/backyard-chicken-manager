@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, modelformset_factory
 from .models import EggCollection, FeedingTime, CoopCleaning, Feeds
 
 
@@ -151,6 +151,10 @@ class EggCollectionForm(forms.ModelForm):
         }
 
 
+FeedingTimeFormSet = modelformset_factory(FeedingTime,
+                                          fields=('feed_type',
+                                                  'amount_food_rem',
+                                                  'amount_food_added'))
 # Create a Feeding Time form
 class FeedingTimeForm(forms.ModelForm):
     """ Create a feeding time form """
