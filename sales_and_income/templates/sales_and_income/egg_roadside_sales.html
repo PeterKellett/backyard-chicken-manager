@@ -87,23 +87,23 @@
                     <h4>Pricing</h4>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.single_egg_price }}
+                    {{ pricing_form.single_egg_price }}
                     <label for="single-egg-price">Single Eggs Price</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.half_dozen_eggs_price }}
+                    {{ pricing_form.half_dozen_eggs_price }}
                     <label for="half-dozen-eggs-price">Half Dozen Eggs Price</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.ten_eggs_price }}
+                    {{ pricing_form.ten_eggs_price }}
                     <label for="ten-eggs-price">10 Eggs Price</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.dozen_eggs_price }}
+                    {{ pricing_form.dozen_eggs_price }}
                     <label for="dozen-eggs-price">Dozen Eggs Price</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.trays_of_eggs_price }}
+                    {{ pricing_form.trays_of_eggs_price }}
                     <label for="trays-of-eggs-price">Tray of Eggs Price</label>
                 </div>
             </section>
@@ -117,47 +117,47 @@
                     <h4>Sales & Stocks</h4>
                 </div>
                 <div class="bottom-margin label-float hide-show-div">
-                    {{ form.qty_single_eggs_remaining }}
+                    {{ sales_form.qty_single_eggs_remaining }}
                     <label for="qty-single-eggs-remaining">Qty of Single Eggs Remaining</label>
                 </div>
                 <div class="bottom-margin label-float hide-show-div">
-                    {{ form.qty_single_eggs_added }}
+                    {{ sales_form.qty_single_eggs_added }}
                     <label for="qty-single-eggs-added">Qty of Single Eggs Added</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.qty_half_dozen_egg_boxes_remaining }}
+                    {{ sales_form.qty_half_dozen_egg_boxes_remaining }}
                     <label for="qty-half-dozen-egg-boxes-remaining">Qty of Half Dozens Remaining</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.qty_half_dozen_egg_boxes_added }}
+                    {{ sales_form.qty_half_dozen_egg_boxes_added }}
                     <label for="qty-half-dozen-egg-boxes-added">Qty of Half Dozens Added</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.qty_ten_egg_boxes_remaining }}
+                    {{ sales_form.qty_ten_egg_boxes_remaining }}
                     <label for="qty-ten-egg-boxes-remaining">Qty of 10's Remaining</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.qty_ten_egg_boxes_added}}
+                    {{ sales_form.qty_ten_egg_boxes_added}}
                     <label for="qty-ten-egg-boxes-added">Qty of 10's Added</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.qty_dozen_egg_boxes_remaining }}
+                    {{ sales_form.qty_dozen_egg_boxes_remaining }}
                     <label for="qty-dozen-egg-boxes-remaining">Qty of Dozens Remaining</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.qty_dozen_egg_boxes_added }}
+                    {{ sales_form.qty_dozen_egg_boxes_added }}
                     <label for="qty-dozen-egg-boxes-added">Qty of Dozens Added</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.qty_trays_of_eggs_remaining }}
+                    {{ sales_form.qty_trays_eggs_remaining }}
                     <label for="qty-trays-of-eggs-remaining">Qty of Trays Remaining</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.qty_trays_of_eggs_added }}
+                    {{ sales_form.qty_trays_eggs_added }}
                     <label for="qty-trays-of-eggs-added">Qty of Trays Added</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.amount_paid_eggs_roadside }}
+                    {{ sales_form.amount_paid_eggs_roadside }}
                     <label for="amount-paid-eggs-roadside">€ Amount Collected</label>
                 </div>
                 <!-- Total Selling Value of Eggs Sold -->
@@ -166,7 +166,7 @@
                         <h6 class="row-name">Value of Eggs Sold:</h6>
                     </div>
                     <div class="col-2 col-css col-css-right label-float">
-                        {{ form.sales_amount_eggs_roadside }}
+                        <!-- {{ form.sales_amount_eggs_roadside }} -->
                         <label for="sales-amount-eggs-roadside" class="hidden-label">Value of Eggs Sold</label>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                         <h6 class="row-name">Differece Between Egg Sales and Amount Collected:</h6>
                     </div>
                     <div class="col-2 col-css col-css-right label-float">
-                        {{ form.sales_paid_difference_eggs_roadside }}
+                        <!-- {{ form.sales_paid_difference_eggs_roadside }} -->
                         <label for="sales-paid-difference-eggs-roadside" class="hidden-label">Differece Between Egg Sales and Amount Collected</label>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                     <h4>Breakages & Loses</h4>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.loses_eggs_roadside }}
+                    {{ sales_form.loses_eggs_roadside }}
                     <label for="loses-eggs-roadside">Qty of Eggs Broken, Stolen or Lost</label>
                 </div>
             </section>

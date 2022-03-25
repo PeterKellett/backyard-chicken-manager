@@ -1,17 +1,18 @@
 from django import forms
-from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales
+from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Pricing
 
 
-# Create an Egg Roadside Sales form
-class EggRoadsideSalesForm(forms.ModelForm):
+class PricingForm(forms.ModelForm):
     """ Create a Roadside Sales form """
     class Meta:
         """ Meta Class Docstring here as required """
-        model = EggRoadsideSales
-        fields = '__all__'
-
+        model = Pricing
+        fields = ('single_egg_price',
+                  'half_dozen_eggs_price',
+                  'ten_eggs_price',
+                  'dozen_eggs_price',
+                  'trays_of_eggs_price')
         widgets = {
-            'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
             'single_egg_price': forms.TextInput(attrs={'class': '',
                                                        'id': 'single-egg-price',
                                                        'name': 'single_egg_price',
@@ -42,7 +43,31 @@ class EggRoadsideSalesForm(forms.ModelForm):
                                                           'placeholder':
                                                           "Tray of Eggs Price",
                                                           'value': ''}),
+        }
 
+
+# Create an Egg Roadside Sales form
+class EggRoadsideSalesForm(forms.ModelForm):
+    """ Create a Roadside Sales form """
+    class Meta:
+        """ Meta Class Docstring here as required """
+        model = EggRoadsideSales
+        fields = ('date',
+                  'qty_single_eggs_remaining',
+                  'qty_single_eggs_added',
+                  'qty_half_dozen_egg_boxes_remaining',
+                  'qty_half_dozen_egg_boxes_added',
+                  'qty_ten_egg_boxes_remaining',
+                  'qty_ten_egg_boxes_added',
+                  'qty_dozen_egg_boxes_remaining',
+                  'qty_dozen_egg_boxes_added',
+                  'qty_trays_eggs_remaining',
+                  'qty_trays_eggs_added',
+                  'income',
+                  'notes',
+                  'images')
+        widgets = {
+            'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
             'qty_single_eggs_remaining': forms.TextInput(attrs={'class': '',
                                                                 'id': 'qty-single-eggs-remaining',
                                                                 'name': 'qty_single_eggs_remaining',
@@ -91,24 +116,24 @@ class EggRoadsideSalesForm(forms.ModelForm):
                                                                 'placeholder':
                                                                 "Qty of Dozens Added",
                                                                 'value': ''}),
-            'qty_trays_of_eggs_remaining': forms.TextInput(attrs={'class': '',
+            'qty_trays_eggs_remaining': forms.TextInput(attrs={'class': '',
                                                                   'id': 'qty-trays-of-eggs-remaining',
                                                                   'name': 'qty_trays_of_eggs_remaining',
                                                                   'placeholder':
                                                                   "Qty of Trays Remaining",
                                                                   'value': ''}),
-            'qty_trays_of_eggs_added': forms.TextInput(attrs={'class': '',
+            'qty_trays_eggs_added': forms.TextInput(attrs={'class': '',
                                                               'id': 'qty-trays-of-eggs-added',
                                                               'name': 'qty_trays_of_eggs_added',
                                                               'placeholder':
                                                               "Qty of Trays Added",
                                                               'value': ''}),
-            'amount_paid_eggs_roadside': forms.TextInput(attrs={'class': '',
-                                                                'id': 'amount-paid-eggs-roadside',
-                                                                'name': 'amount_paid_eggs_roadside',
-                                                                'placeholder':
-                                                                "€ Amount Collected",
-                                                                'value': ''}),
+            'income': forms.TextInput(attrs={'class': '',
+                                             'id': 'amount-paid-eggs-roadside',
+                                             'name': 'amount_paid_eggs_roadside',
+                                             'placeholder':
+                                             "€ Amount Collected",
+                                             'value': ''}),
             # Below temporarily removed as involves a more complex wiring
             # 'sales_amount_eggs_roadside': forms.TextInput(attrs={'class':
             #                                                      'text-end h-style-input',

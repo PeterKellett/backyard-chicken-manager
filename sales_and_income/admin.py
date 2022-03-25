@@ -1,5 +1,26 @@
 from django.contrib import admin
-from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales
+from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Pricing, SalesType
+
+
+class SalesTypeAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'type'
+    )
+
+
+class PricingAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'farm_profile',
+        'sales_type',
+        'single_egg_price',
+        'half_dozen_eggs_price',
+        'ten_eggs_price',
+        'dozen_eggs_price',
+        'trays_of_eggs_price'
+    )
+
 
 # Register your models here.
 class EggRoadsideSalesAdmin(admin.ModelAdmin):
@@ -7,12 +28,7 @@ class EggRoadsideSalesAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'date',
-        # 'farm_profile_id',
-        'single_egg_price',
-        'half_dozen_eggs_price',
-        'ten_eggs_price',
-        'dozen_eggs_price',
-        'trays_of_eggs_price',
+        'farm_profile_id',
         'qty_single_eggs_remaining',
         'qty_single_eggs_added',
         'qty_half_dozen_egg_boxes_remaining',
@@ -21,9 +37,9 @@ class EggRoadsideSalesAdmin(admin.ModelAdmin):
         'qty_ten_egg_boxes_added',
         'qty_dozen_egg_boxes_remaining',
         'qty_dozen_egg_boxes_added',
-        'qty_trays_of_eggs_remaining',
-        'qty_trays_of_eggs_added',
-        'amount_paid_eggs_roadside',
+        'qty_trays_eggs_remaining',
+        'qty_trays_eggs_added',
+        'income',
         'loses_eggs_roadside',
         'notes',
         'images'
@@ -106,6 +122,8 @@ class EggMarketSalesAdmin(admin.ModelAdmin):
     )
 
 
+admin.site.register(SalesType, SalesTypeAdmin)
+admin.site.register(Pricing, PricingAdmin)
 admin.site.register(EggRoadsideSales, EggRoadsideSalesAdmin)
 admin.site.register(EggDeliverySalesDashboard, EggDeliverySalesDashboardAdmin)
 admin.site.register(EggDeliverySales, EggDeliverySalesAdmin)
