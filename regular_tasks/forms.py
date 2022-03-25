@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import ModelForm
 from .models import EggCollection, FeedingTime, CoopCleaning, Feeds
 
 
@@ -10,7 +9,7 @@ class EggCollectionForm(forms.ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = EggCollection
-        fields = '__all__'
+        exclude = ['farm_profile']
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
@@ -153,7 +152,7 @@ class FeedingTimeForm(forms.ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = FeedingTime
-        fields = '__all__'
+        exclude = ['farm_profile']
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
@@ -211,14 +210,16 @@ class CoopCleaningForm(forms.ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = CoopCleaning
-        fields = '__all__'
+        fields = ('date', 'coop',
+                  'disinfected', 'disinfectant',
+                  'notes')
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
             'disinfected': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                       'id': 'disinfected',
                                                       'name': 'disinfected'}),
-            'disinfectant': forms.TextInput(attrs={'class': '',
+            'disinfectant': forms.TextInput(attrs={'class': 'show-on-click',
                                                    'id': 'disinfectant',
                                                    'name': 'disinfectant',
                                                    'placeholder': 'Disinfectant Name'}),

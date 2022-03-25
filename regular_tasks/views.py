@@ -15,12 +15,14 @@ def egg_collection(request):
     userprofile = UserProfile.objects.get(user=request.user)
     farmprofile = userprofile.farmprofiles.all()
     trays_quantity = farmprofile[0].trays_quantity
+    print(trays_quantity)
     if request.POST:
         form = EggCollectionForm(request.POST, request.FILES)
         if form.is_valid():
             print(("form cleaned date =", form.cleaned_data))
             form = form.save(commit=False)  # Presave the form values to create an instance of the model but don't commit to db.
             form.farm_profile = farmprofile[0]  # Add in the farmprofile ForeignKey value
+            print(form.farm_profile)
             # Manual check of integer fields is required here to set field variables to 0 if NoneType or '' is returned /
             # because setting the model default = 0 affects floating labels.
             if not form.qty_egg_trays:

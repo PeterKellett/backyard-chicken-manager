@@ -1,8 +1,8 @@
-{% extends "account/base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/onboarding.css' %}" />
+    <link rel="stylesheet" href="{% static 'profiles/css/onboarding.css' %}" />
 {% endblock %}
 
 {% load i18n %}
@@ -14,9 +14,9 @@
     Sign In
 {% endblock %}
 
-{% block inner_content %}
+{% block content %}
 
-<div class="page-centre">
+<div class="">
     <div class="large-screen-h1">
         <div class="bottom-margin">
             <h1>Sign In</h1>
@@ -53,24 +53,37 @@
     <div class="element-container">
         <form class="login" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
-            {{ form }}
             <div class="bottom-margin">
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
             </div>
+            <div class="bottom-margin">
+                {{ form.login}}
+            </div>
+            <div class="bottom-margin">
+                {{ form.password}}
+            </div>
+            <div class="bottom-margin row">
+                <div class="col-5 row">
+                    <h6>Keep me Signed in</h6>>
+                </div>
+                <div class="col-7 row text-start">
+                    {{ form.remember}}
+                </div>
+            </div>
             <div class="form-data bottom-margin">
                 <button class="primaryAction button button-full-size" type="submit">{% trans "Sign In" %}</button>
             </div>
             <div class="form-data bottom-margin">
-                <p>
+                <h6>
                   <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-                </p>
+                </h6>
             </div>
             <div class="form-data bottom-margin">
-                <p>{% blocktrans %}Don't have an account yet, then please
-                  <a href="{{ signup_url }}">Sign Up</a>.{% endblocktrans %}
-                </p>
+                <h6>{% blocktrans %}Don't have an account yet? 
+                  <a href="{{ signup_url }}"><span class="highlight-text">Sign Up Here</span></a>.{% endblocktrans %}
+                </h6>
             </div>
             {% endif %}
         </form>

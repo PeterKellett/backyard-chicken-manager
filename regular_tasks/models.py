@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ModelForm
 from profiles.models import FarmProfile
 from flock_management.models import Flocks, Coops
 from django.utils.translation import gettext_lazy as _
@@ -31,7 +30,7 @@ class Disinfectants(models.Model):
         """Overwrite the default Django pluralisation"""
         verbose_name_plural = 'Disinfectants'
     """Model used for storing different disinfectants"""
-    disinfectant_name = models.CharField(max_length=20,
+    disinfectant_name = models.CharField(max_length=40,
                                          null=False,
                                          blank=False)
 
@@ -126,10 +125,10 @@ class CoopCleaning(models.Model):
                              on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False)
-    disinfected = models.BooleanField(null=False,
+    disinfected = models.BooleanField(null=True,
                                       blank=True)
     disinfectant = models.ForeignKey(Disinfectants,
-                                     null=False,
+                                     null=True,
                                      blank=True,
                                      on_delete=models.CASCADE)
     notes = models.TextField(null=True,
