@@ -19,7 +19,7 @@ def egg_collection(request):
     if request.POST:
         form = EggCollectionForm(request.POST, request.FILES)
         if form.is_valid():
-            print(("form cleaned date =", form.cleaned_data))
+            print(("form.cleaned_data = ", form.cleaned_data))
             form = form.save(commit=False)  # Presave the form values to create an instance of the model but don't commit to db.
             form.farm_profile = farmprofile[0]  # Add in the farmprofile ForeignKey value
             print(form.farm_profile)
@@ -68,6 +68,7 @@ def feeding_time(request):
     if request.POST:
         form = FeedingTimeForm(request.POST)
         if form.is_valid():
+            print(("form.cleaned_data = ", form.cleaned_data))
             form = form.save(commit=False)  # Presave the form
             form.farm_profile = farmprofile[0]  # Add the farmprofile ForeignKey
             form.save()  # Save the form fully to the db
