@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales
+from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Customer
 
 # Register your models here.
 class EggRoadsideSalesAdmin(admin.ModelAdmin):
@@ -108,8 +108,34 @@ class EggMarketSalesAdmin(admin.ModelAdmin):
     )
 
 
+class CustomerAdmin(admin.ModelAdmin):
+    """Admin layout for Customer (Singular) Admin table"""
+    list_display = (
+        'id',
+        # 'farm_profile_id',
+        # customer_type,
+        'customer_name',
+        'address',
+        'postcode',
+        'phone',
+        'date_added',
+        # status,
+        'order_qty',
+        'route_day',
+        'route_position',
+        'single_egg_price',
+        'six_egg_price',
+        'ten_egg_price',
+        'twelve_egg_price',
+        'tray_price',
+        'notes',
+        'images'
+    )
+
+
 admin.site.register(EggRoadsideSales, EggRoadsideSalesAdmin)
 admin.site.register(EggDeliverySalesDashboard, EggDeliverySalesDashboardAdmin)
 admin.site.register(EggDeliverySales, EggDeliverySalesAdmin)
 admin.site.register(EggCollectionSales, EggCollectionSalesAdmin)
 admin.site.register(EggMarketSales, EggMarketSalesAdmin)
+admin.site.register(Customer, CustomerAdmin)

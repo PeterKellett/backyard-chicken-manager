@@ -1,5 +1,5 @@
 from django import forms
-from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales
+from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Customer
 
 
 # Create an Egg Roadside Sales form
@@ -425,58 +425,58 @@ class EggMarketSalesForm(forms.ModelForm):
                                                               "Qty of Single Eggs Sold",
                                                               'value': ''}),
             'qty_half_dozen_egg_boxes_sold': forms.TextInput(attrs={'class': 'class-name',
-                                                                       'id': 'qty-half-dozen-egg-boxes-sold',
-                                                                       'name': 'qty_half_dozen_egg_boxes_sold',
-                                                                       'placeholder':
-                                                                       "Qty of Half Dozens Sold",
-                                                                       'value': ''}),
-            'qty_ten_egg_boxes_sold': forms.TextInput(attrs={'class': 'class-name',
-                                                                'id': 'qty-ten-egg-boxes-sold',
-                                                                'name': 'qty_ten_egg_boxes_sold',
-                                                                'placeholder':
-                                                                "Qty of 10's Sold",
-                                                                'value': ''}),
-            'qty_dozen_egg_boxes_sold': forms.TextInput(attrs={'class': 'class-name',
-                                                                  'id': 'qty-dozen-egg-boxes-sold',
-                                                                  'name': 'qty_dozen_egg_boxes_sold',
-                                                                  'placeholder':
-                                                                  "Qty of Dozens Sold",
-                                                                  'value': ''}),
-            'qty_trays_of_eggs_sold': forms.TextInput(attrs={'class': 'class-name',
-                                                                'id': 'qty-trays-of-eggs-sold',
-                                                                'name': 'qty_trays_of_eggs_sold',
-                                                                'placeholder':
-                                                                "Qty of Trays Sold",
-                                                                'value': ''}),
-            'amount_paid_eggs_market': forms.TextInput(attrs={'class': 'class-name',
-                                                                 'id': 'amount-paid-eggs-market',
-                                                                 'name': 'amount_paid_eggs_market',
-                                                                 'placeholder':
-                                                                 "€ Amount Collected",
-                                                                 'value': ''}),
-            'sales_amount_eggs_market': forms.TextInput(attrs={'class':
-                                                                    'text-end h-style-input',
-                                                                    'id': 'sales-amount-eggs-market',
-                                                                    'name': 'sales_amount_eggs_market',
+                                                                    'id': 'qty-half-dozen-egg-boxes-sold',
+                                                                    'name': 'qty_half_dozen_egg_boxes_sold',
                                                                     'placeholder':
-                                                                    "Value of Eggs Sold",
-                                                                    'value': '# Temp',
-                                                                    'disabled': 'true'}),
+                                                                    "Qty of Half Dozens Sold",
+                                                                    'value': ''}),
+            'qty_ten_egg_boxes_sold': forms.TextInput(attrs={'class': 'class-name',
+                                                             'id': 'qty-ten-egg-boxes-sold',
+                                                             'name': 'qty_ten_egg_boxes_sold',
+                                                             'placeholder':
+                                                             "Qty of 10's Sold",
+                                                             'value': ''}),
+            'qty_dozen_egg_boxes_sold': forms.TextInput(attrs={'class': 'class-name',
+                                                               'id': 'qty-dozen-egg-boxes-sold',
+                                                               'name': 'qty_dozen_egg_boxes_sold',
+                                                               'placeholder':
+                                                               "Qty of Dozens Sold",
+                                                               'value': ''}),
+            'qty_trays_of_eggs_sold': forms.TextInput(attrs={'class': 'class-name',
+                                                             'id': 'qty-trays-of-eggs-sold',
+                                                             'name': 'qty_trays_of_eggs_sold',
+                                                             'placeholder':
+                                                             "Qty of Trays Sold",
+                                                             'value': ''}),
+            'amount_paid_eggs_market': forms.TextInput(attrs={'class': 'class-name',
+                                                              'id': 'amount-paid-eggs-market',
+                                                              'name': 'amount_paid_eggs_market',
+                                                              'placeholder':
+                                                              "€ Amount Collected",
+                                                              'value': ''}),
+            'sales_amount_eggs_market': forms.TextInput(attrs={'class':
+                                                               'text-end h-style-input',
+                                                               'id': 'sales-amount-eggs-market',
+                                                               'name': 'sales_amount_eggs_market',
+                                                               'placeholder':
+                                                               "Value of Eggs Sold",
+                                                               'value': '# Temp',
+                                                               'disabled': 'true'}),
             'sales_paid_difference_eggs_market': forms.TextInput(attrs={'class':
-                                                                             'text-end h-style-input',
-                                                                             'id': 'sales-paid-difference-eggs-market',
-                                                                             'name': 'sales_paid_difference_eggs_market',
-                                                                             'placeholder':
-                                                                             "Sales vs Received Difference",
-                                                                             'value': '# Temp',
-                                                                             'disabled': 'true'}),
+                                                                        'text-end h-style-input',
+                                                                        'id': 'sales-paid-difference-eggs-market',
+                                                                        'name': 'sales_paid_difference_eggs_market',
+                                                                        'placeholder':
+                                                                        "Sales vs Received Difference",
+                                                                        'value': '# Temp',
+                                                                        'disabled': 'true'}),
 
             'loses_eggs_market': forms.TextInput(attrs={'class': 'class-name',
-                                                           'id': 'loses-eggs-market',
-                                                           'name': 'loses_eggs_market',
-                                                           'placeholder':
-                                                           "Qty of Eggs Broken, Stolen or Lost",
-                                                           'value': ''}),
+                                                        'id': 'loses-eggs-market',
+                                                        'name': 'loses_eggs_market',
+                                                        'placeholder':
+                                                        "Qty of Eggs Broken, Stolen or Lost",
+                                                        'value': ''}),
             'notes': forms.Textarea(attrs={'class': '',
                                            'id': 'notes-eggs-market',
                                            'name': 'notes_eggs_market',
@@ -486,4 +486,120 @@ class EggMarketSalesForm(forms.ModelForm):
             'images': forms.ClearableFileInput(attrs={'class': 'upload',
                                                       'id': 'images-eggs-market',
                                                       'name': 'images_eggs_market'})                                               
+        }
+
+
+# Create a Customer form
+class CustomerForm(forms.ModelForm):
+    """ Create a Customer form """
+    class Meta:
+        """ Meta Class Docstring here as required """
+        model = Customer
+        fields = '__all__'
+
+        widgets = {
+                # farm_profile = models.ForeignKey(FarmProfile,
+                #                                 blank=False,
+                #                                 null=False,
+                #                                 on_delete=models.CASCADE,
+                #                                 related_name='farmprofile')
+                # customer_type = models.ForeignKey(CustomerType,
+                #                                   blank=False,
+                #                                   null=False,
+                #                                   on_delete=models.CASCADE,
+                #                                   related_name='customertype'
+                #                                   )
+                'customer_name': forms.TextInput(attrs={'class': 'class-name',
+                                                           'id': 'customer-name',
+                                                           'name': 'customer_name',
+                                                           'placeholder':
+                                                           "Customer Name",
+                                                           'value': ''}),
+                'address': forms.TextInput(attrs={'class': 'class-name',
+                                                           'id': 'address',
+                                                           'name': 'address',
+                                                           'placeholder':
+                                                           "Address",
+                                                           'value': ''}),
+                'postcode': forms.TextInput(attrs={'class': 'class-name',
+                                                           'id': 'postcode',
+                                                           'name': 'postcode',
+                                                           'placeholder':
+                                                           "Postcode",
+                                                           'value': ''}),
+                'phone': forms.TextInput(attrs={'class': 'class-name',
+                                                           'id': 'phone',
+                                                           'name': 'phone',
+                                                           'placeholder':
+                                                           "Phone",
+                                                           'value': ''}),
+                'date_added': forms.DateInput(attrs={'class': 'class-name',
+                                                           'id': 'date-added',
+                                                           'name': 'date_added',
+                                                           'placeholder':
+                                                           "Date Customer was Added",
+                                                           'value': ''}),
+                # status = models.ForeignKey(customerStatus.id,
+                #                            blank=False,
+                #                            null=False,
+                #                            on_delete=models.CASCADE,
+                #                            related_name='customerstatus'
+                #                            )
+                'order_qty': forms.TextInput(attrs={'class': 'class-name',
+                                                           'id': 'order-qty',
+                                                           'name': 'order_qty',
+                                                           'placeholder':
+                                                           "Normal Order Qty",
+                                                           'value': ''}),
+                'route_day': forms.DateInput(attrs={'class': 'class-name',
+                                                           'id': 'route-day',
+                                                           'name': 'route_day',
+                                                           'placeholder':
+                                                           "Route Day",
+                                                           'value': ''}),
+                'route_position': forms.TextInput(attrs={'class': 'class-name',
+                                                           'id': 'route-position',
+                                                           'name': 'route_position',
+                                                           'placeholder':
+                                                           "Route Position",
+                                                           'value': ''}),
+                'single_egg_price': forms.TextInput(attrs={'class': 'class-name',
+                                                           'id': 'single-egg-price',
+                                                           'name': 'single_egg_price',
+                                                           'placeholder':
+                                                           "Single Egg Price",
+                                                           'value': ''}),
+                'six_egg_price': forms.TextInput(attrs={'class': 'class-name',
+                                                           'id': 'six-egg-price',
+                                                           'name': 'six_egg_price',
+                                                           'placeholder':
+                                                           "Half Dozen Eggs Price",
+                                                           'value': ''}),
+                'ten_egg_price': forms.TextInput(attrs={'class': 'class-name',
+                                                           'id': 'ten-egg-price',
+                                                           'name': 'ten_egg_price',
+                                                           'placeholder':
+                                                           "Ten Eggs Price",
+                                                           'value': ''}),
+                'twelve_egg_price': forms.TextInput(attrs={'class': 'class-name',
+                                                           'id': 'twelve-egg-price',
+                                                           'name': 'twelve_egg_price',
+                                                           'placeholder':
+                                                           "Dozen Eggs Price",
+                                                           'value': ''}),
+                'tray_price': forms.TextInput(attrs={'class': 'class-name',
+                                                           'id': 'tray-price',
+                                                           'name': 'tray_price',
+                                                           'placeholder':
+                                                           "Tray Price",
+                                                           'value': ''}),
+                'notes': forms.Textarea(attrs={'class': '',
+                                               'id': 'notes-customer',
+                                               'name': 'notes_customer',
+                                               'placeholder':
+                                               "Notes",
+                                               'value': ''}),
+                'images': forms.ClearableFileInput(attrs={'class': 'upload',
+                                                          'id': 'images-customer',
+                                                          'name': 'images_customer'})
         }

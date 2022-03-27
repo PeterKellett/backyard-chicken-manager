@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
     <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
     <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
     <link rel="stylesheet" href="{% static 'regular_tasks/css/sales_and_income.css' %}" />
 {% endblock %}
 
@@ -116,46 +117,62 @@
                 <div class="bottom-margin label-float">
                     <h4>Sales & Stocks</h4>
                 </div>
-                <div class="bottom-margin label-float hide-show-div">
-                    {{ form.qty_single_eggs_remaining }}
-                    <label for="qty-single-eggs-remaining">Qty of Single Eggs Remaining</label>
+                <!-- Single Eggs -->
+                <div>
+                    <div class="bottom-margin label-float hide-show-div">
+                        {{ form.qty_single_eggs_remaining }}
+                        <label for="qty-single-eggs-remaining">Qty of Single Eggs Remaining</label>
+                    </div>
+                    <div class="bottom-margin label-float hide-show-div">
+                        {{ form.qty_single_eggs_added }}
+                        <label for="qty-single-eggs-added">Qty of Single Eggs Added</label>
+                    </div>
                 </div>
-                <div class="bottom-margin label-float hide-show-div">
-                    {{ form.qty_single_eggs_added }}
-                    <label for="qty-single-eggs-added">Qty of Single Eggs Added</label>
+                <!-- Half dozen -->
+                <div>
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_half_dozen_egg_boxes_remaining }}
+                        <label for="qty-half-dozen-egg-boxes-remaining">Qty of Half Dozens Remaining</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_half_dozen_egg_boxes_added }}
+                        <label for="qty-half-dozen-egg-boxes-added">Qty of Half Dozens Added</label>
+                    </div>
                 </div>
-                <div class="bottom-margin label-float">
-                    {{ form.qty_half_dozen_egg_boxes_remaining }}
-                    <label for="qty-half-dozen-egg-boxes-remaining">Qty of Half Dozens Remaining</label>
+                <!-- Tens -->
+                <div>
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_ten_egg_boxes_remaining }}
+                        <label for="qty-ten-egg-boxes-remaining">Qty of 10's Remaining</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_ten_egg_boxes_added}}
+                        <label for="qty-ten-egg-boxes-added">Qty of 10's Added</label>
+                    </div>
                 </div>
-                <div class="bottom-margin label-float">
-                    {{ form.qty_half_dozen_egg_boxes_added }}
-                    <label for="qty-half-dozen-egg-boxes-added">Qty of Half Dozens Added</label>
+                <!-- Dozen -->
+                <div>
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_dozen_egg_boxes_remaining }}
+                        <label for="qty-dozen-egg-boxes-remaining">Qty of Dozens Remaining</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_dozen_egg_boxes_added }}
+                        <label for="qty-dozen-egg-boxes-added">Qty of Dozens Added</label>
+                    </div>
                 </div>
-                <div class="bottom-margin label-float">
-                    {{ form.qty_ten_egg_boxes_remaining }}
-                    <label for="qty-ten-egg-boxes-remaining">Qty of 10's Remaining</label>
+                <!-- Trays -->
+                <div>
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_trays_of_eggs_remaining }}
+                        <label for="qty-trays-of-eggs-remaining">Qty of Trays Remaining</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_trays_of_eggs_added }}
+                        <label for="qty-trays-of-eggs-added">Qty of Trays Added</label>
+                    </div>
                 </div>
-                <div class="bottom-margin label-float">
-                    {{ form.qty_ten_egg_boxes_added}}
-                    <label for="qty-ten-egg-boxes-added">Qty of 10's Added</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ form.qty_dozen_egg_boxes_remaining }}
-                    <label for="qty-dozen-egg-boxes-remaining">Qty of Dozens Remaining</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ form.qty_dozen_egg_boxes_added }}
-                    <label for="qty-dozen-egg-boxes-added">Qty of Dozens Added</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ form.qty_trays_of_eggs_remaining }}
-                    <label for="qty-trays-of-eggs-remaining">Qty of Trays Remaining</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ form.qty_trays_of_eggs_added }}
-                    <label for="qty-trays-of-eggs-added">Qty of Trays Added</label>
-                </div>
+                <!-- Amount Paid -->
                 <div class="bottom-margin label-float">
                     {{ form.amount_paid_eggs_roadside }}
                     <label for="amount-paid-eggs-roadside">€ Amount Collected</label>

@@ -21,7 +21,7 @@ document.querySelectorAll('.egg-collection-qty-input').forEach(item => {
         console.log("totalSingles", totalSingles);
         total_eggs_laid = Number(totalTraysQty) + Number(totalSingles);
         console.log("total_eggs_laid", total_eggs_laid);
-        //document.getElementById("qty-total-eggs-laid").value = Number(total_eggs_laid);
+        document.getElementById("qty-total-eggs-laid").innerHTML = total_eggs_laid;
     })
 });
 
@@ -47,7 +47,9 @@ document.querySelectorAll('.average-weight-input').forEach(item => {
         var weighable_eggs = Number(total_eggs_laid) - Number(broken_eggs);
         console.log("Weighable Eggs: " + weighable_eggs);
         total_weight = document.getElementById('weight-total-eggs-laid').value;
+        console.log("total_weight: " + total_weight);
         var average_egg_weight = Number(total_weight) / Number(weighable_eggs);
+        console.log("average_egg_weight: " + average_egg_weight);
         var average_egg_weight_metric = Math.ceil(average_egg_weight * 1000);
         document.getElementById("avg-egg-weight").value = Number(average_egg_weight_metric);
     })

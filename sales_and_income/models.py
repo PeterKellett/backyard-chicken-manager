@@ -243,3 +243,72 @@ class EggMarketSales(models.Model):
     images = models.ImageField(null=True,
                                blank=True,
                                upload_to="images/")
+
+
+class Customer(models.Model):
+    """Model used for market sales data"""
+    # farm_profile = models.ForeignKey(FarmProfile,
+    #                                 blank=False,
+    #                                 null=False,
+    #                                 on_delete=models.CASCADE,
+    #                                 related_name='farmprofile')
+    # customer_type = models.ForeignKey(CustomerType,
+    #                                   blank=False,
+    #                                   null=False,
+    #                                   on_delete=models.CASCADE,
+    #                                   related_name='customertype'
+    #                                   )
+    customer_name = models.CharField(max_length=250,
+                                     null=True,
+                                     blank=True)
+    address = models.CharField(max_length=250,
+                               null=True,
+                               blank=True)
+    postcode = models.CharField(max_length=250,
+                                null=True,
+                                blank=True)
+    phone = models.IntegerField(null=True,
+                                blank=True)
+    date_added = models.DateField(null=True,
+                                  blank=True,
+                                  auto_now_add=True
+                                  )
+    # status = models.ForeignKey(customerStatus.id,
+    #                            blank=False,
+    #                            null=False,
+    #                            on_delete=models.CASCADE,
+    #                            related_name='customerstatus'
+    #                            )
+    order_qty = models.IntegerField(null=True,
+                                    blank=True)
+    # Djgonm doesn;t have a day specific field. Can calc day from date
+    route_day = models.DateField(null=True,
+                                 blank=True)
+                                 # dayOfWeek.id)
+    route_position = models.IntegerField(null=True,
+                                         blank=True)
+    single_egg_price = models.DecimalField(max_digits=5,
+                                           decimal_places=2,
+                                           null=True,
+                                           blank=True)
+    six_egg_price = models.DecimalField(max_digits=5,
+                                        decimal_places=2,
+                                        null=True,
+                                        blank=True)
+    ten_egg_price = models.DecimalField(max_digits=5,
+                                        decimal_places=2,
+                                        null=True,
+                                        blank=True)
+    twelve_egg_price = models.DecimalField(max_digits=5,
+                                           decimal_places=2,
+                                           null=True,
+                                           blank=True)
+    tray_price = models.DecimalField(max_digits=5,
+                                     decimal_places=2,
+                                     null=True,
+                                     blank=True)
+    notes = models.TextField(null=True,
+                             blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")
