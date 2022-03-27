@@ -10,18 +10,18 @@ var total_weight;
 var total_nonsaleable_eggs;
 
 // Egg Collection - Eggs Laid Calculation: Calculation to sum total number of eggs laid
-function testFunction(){
-    console.log("Test Function")
-};
-
 document.querySelectorAll('.egg-collection-qty-input').forEach(item => {
     item.addEventListener('keyup', event => {
-        console.log("Eggs Laid Calc Fires");
+        console.log("Eggs Laid Calc Fires Now");
         var totalTrays = document.getElementById('qty-egg-trays').value;
+        console.log("totalTrays", totalTrays);
         var totalTraysQty = totalTrays * trayQty;
+        console.log("totalTraysQty", totalTraysQty);
         var totalSingles = document.getElementById('qty-egg-singles').value;
+        console.log("totalSingles", totalSingles);
         total_eggs_laid = Number(totalTraysQty) + Number(totalSingles);
-        document.getElementById("qty-total-eggs-laid").value = Number(total_eggs_laid);
+        console.log("total_eggs_laid", total_eggs_laid);
+        //document.getElementById("qty-total-eggs-laid").value = Number(total_eggs_laid);
     })
 });
 
@@ -35,6 +35,7 @@ document.querySelectorAll('.saleable-eggs-input').forEach(item => {
         eggs_given_free = document.getElementById('qty-eggs-given-free').value;
         saleable_eggs = Number(total_eggs_laid) - (Number(damaged_eggs) + Number(broken_eggs) + Number(eggs_personal_use) + Number(eggs_given_free));
         console.log("qty_total_eggs_laid: " + total_eggs_laid);
+        console.log("saleable_eggs: " + saleable_eggs);
         document.getElementById('qty-saleable-eggs').value = Number(saleable_eggs);
     })
 });

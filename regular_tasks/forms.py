@@ -211,7 +211,7 @@ class FeedingTimeForm(forms.ModelForm):
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
-            'images': forms.ClearableFileInput(attrs={'class': '',
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
                                                       'id': 'images-feeding-time',
                                                       'name': 'images_feeding_time'})
         }
@@ -243,7 +243,7 @@ class CoopCleaningForm(forms.ModelForm):
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
-            'images': forms.ClearableFileInput(attrs={'class': '',
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
                                                       'id': 'images-coop-cleaning',
                                                       'name': 'images_coop_cleaning'})
         }

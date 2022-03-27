@@ -96,6 +96,10 @@ class EggCollectionSales(models.Model):
                                                    blank=True)
     qty_given_free_eggs_collection = models.IntegerField(null=True,
                                                          blank=True)
+    sale_amount_eggs_collection = models.DecimalField(max_digits=5,
+                                      decimal_places=2,
+                                      null=True,
+                                      blank=True)
     amount_paid_eggs_collection = models.DecimalField(max_digits=5,
                                                       decimal_places=2,
                                                       null=True,
@@ -157,6 +161,10 @@ class EggDeliverySales(models.Model):
                                                  blank=True)
     qty_given_free_eggs_delivery = models.IntegerField(null=True,
                                                        blank=True)
+    sale_amount_eggs_delivery = models.DecimalField(max_digits=5,
+                                      decimal_places=2,
+                                      null=True,
+                                      blank=True)
     amount_paid_eggs_delivery = models.DecimalField(max_digits=5,
                                                     decimal_places=2,
                                                     null=True,

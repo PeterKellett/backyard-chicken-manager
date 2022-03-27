@@ -48,6 +48,21 @@ $(function () {
 });
 
 
+// https://www.geeksforgeeks.org/how-to-pass-data-to-javascript-in-django-framework/
+fetch('https://8000-peterkellett-backyardchi-z5c38sm5p00.ws-eu38.gitpod.io/regular_tasks/js_test')
+.then(response => response.json())
+.then(data => {
+    console.log("DATA: ", data);
+    var dataNode = document.getElementById('alldata');
+    dataNode.innerHTML+="{{data|escapejs}}";
+    dataNode = document.getElementById('neatdata');
+    for(var x in data){
+            dataNode.innerHTML+=x+' : '+data[x]+'<br><br>';
+    }
+});
+
+
+
 // Sales Methods & Units Function to ensure at least one checkbox
 // is checked in each section before next page can be loaded
 // Taken from (kind of): https://www.javascripttutorial.net/javascript-dom/javascript-form/

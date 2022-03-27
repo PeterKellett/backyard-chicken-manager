@@ -1,12 +1,26 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from flock_management.models import Flocks, Coops
-from .models import EggCollection, Feeds, Disinfectants
+from .models import EggCollection, Feeds, Disinfectants, jsTest
 from .forms import EggCollectionForm, FeedingTimeForm, CoopCleaningForm
+from json import dumps
+from django.core import serializers
+import json
+
+
+def js_test(request):
+    data = list(jsTest.objects.values())
+    data_json = serializers.serialize("json", jsTest.objects.all())
+    dataJSON = dumps(data)
+    print("DATA", data)
+    print(("dataJSON", dataJSON))
+    print(("data_json", data_json))
+    return JsonResponse(dataJSON, safe=False)
+    # return render(request, "regular_tasks/jstest.html", {"data": data})
 
 
 @login_required

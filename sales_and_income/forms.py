@@ -140,7 +140,7 @@ class EggRoadsideSalesForm(forms.ModelForm):
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
-            'images': forms.ClearableFileInput(attrs={'class': '',
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
                                                       'id': 'imagess-eggs-roadside',
                                                       'name': 'imagess_eggs_roadside'})
         }
@@ -183,11 +183,18 @@ class EggCollectionSalesForm(forms.ModelForm):
                                                                      'placeholder':
                                                                      "Qty of Eggs Given Free",
                                                                      'value': ''}),
+            'sale_amount_eggs_collection': forms.TextInput(attrs={'class': 
+                                                                  'text-end h-style-input',
+                                                                  'id': 'sale-amount-eggs-collection',
+                                                                  'name': 'sale_amount_eggs_collection',
+                                                                  'placeholder':
+                                                                  "Qty of Eggs Given Free",
+                                                                  'value': '# Temp'}),
             'amount_paid_eggs_collection': forms.TextInput(attrs={'class': 'class-name',
                                                                   'id': 'amount-paid-eggs-collection',
                                                                   'name': 'amount_paid_eggs_collection',
                                                                   'placeholder':
-                                                                  "Dozen Eggs Price",
+                                                                  "Amount Paid",
                                                                   'value': ''}),
             'balance_owed_eggs_collection': forms.TextInput(attrs={'class':
                                                                    'text-end h-style-input',
@@ -209,7 +216,7 @@ class EggCollectionSalesForm(forms.ModelForm):
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
-            'images': forms.ClearableFileInput(attrs={'class': '',
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
                                                       'id': 'images-eggs-collection',
                                                       'name': 'images_eggs_collection'})                                                                 
         }
@@ -239,7 +246,7 @@ class EggCollectionSalesForm(forms.ModelForm):
 #                                            'placeholder':
 #                                            "Notes",
 #                                            'value': ''}),
-#             'images': forms.ClearableFileInput(attrs={'class': '',
+#             'images': forms.ClearableFileInput(attrs={'class': 'upload',
 #                                                       'id': 'images-eggs-delivery',
 #                                                       'name': 'images_eggs_delivery'})                                                                
 #         }
@@ -303,6 +310,13 @@ class EggDeliverySalesForm(forms.ModelForm):
                                                                       'placeholder':
                                                                       "Qty of Eggs Given Free",
                                                                       'value': ''}),
+            'sale_amount_eggs_delivery': forms.TextInput(attrs={'class': 
+                                                                 'text-end h-style-input',
+                                                                 'id': 'sale-amount-eggs-collection',
+                                                                 'name': 'sale_amount_eggs_collection',
+                                                                 'placeholder':
+                                                                 "Qty of Eggs Given Free",
+                                                                 'value': '# Temp'}),
             'amount_paid_eggs_delivery': forms.TextInput(attrs={'class': '',
                                                                    'id': 'amount-paid-eggs-delivery',
                                                                    'name': 'amount_paid_eggs_delivery',
@@ -323,7 +337,7 @@ class EggDeliverySalesForm(forms.ModelForm):
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
-            'images': forms.ClearableFileInput(attrs={'class': '',
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
                                                       'id': 'images-eggs-delivery',
                                                       'name': 'images_eggs_delivery'})                                                        
         }
@@ -351,7 +365,7 @@ class EggDeliverySalesDashboardForm(forms.ModelForm):
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
-            'images': forms.ClearableFileInput(attrs={'class': '',
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
                                                       'id': 'images-eggs-delivery-dash',
                                                       'name': 'images_eggs_delivery_dash'})                                                               
         }
@@ -469,7 +483,7 @@ class EggMarketSalesForm(forms.ModelForm):
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
-            'images': forms.ClearableFileInput(attrs={'class': '',
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
                                                       'id': 'images-eggs-market',
                                                       'name': 'images_eggs_market'})                                               
         }
