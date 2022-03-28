@@ -2,50 +2,19 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
     <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
     <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
     <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
-    Egg Sales - Collections
+    "{{ customer_name }}"
 {% endblock %}
 
 {% block sub-nav %}
 {% endblock %}
 
 {% block content %}
-
-<!-- Sub Navigation Section -->
-<div class="element-container container-fluid sub-nav-container">
-    <ul class="nav nav-tabs nav-justified">
-        <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link" href="{% url 'egg_roadside_sales' %}">
-                <img src="{{ MEDIA_URL }}sales_roadside.png" alt="Egg Sales Roadside Icon" class="nav-link-image sub-nav-link-image">
-                Roadside
-            </a>
-        </li>
-        <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link active" href="{% url 'egg_collection_sales' %}">
-                <img src="{{ MEDIA_URL }}sales_collections.png" alt="Egg Sales Collections Icon" class="nav-link-image sub-nav-link-image">
-                Collections
-            </a>
-        </li>
-        <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link" href="{% url 'egg_delivery_sales_dashboard' %}">
-                <img src="{{ MEDIA_URL }}sales_deliveries.png" alt="Egg Sales Deliveries Icon" class="nav-link-image sub-nav-link-image">
-                Deliveries
-            </a>
-        </li>
-        <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link" href="{% url 'egg_market_sales' %}">
-                <img src="{{ MEDIA_URL }}sales_markets.png" alt="Egg Sales Markets Icon" class="nav-link-image sub-nav-link-image">
-                Markets
-            </a>
-        </li>
-    </ul>
-</div>
 
 <!-- Icons and Links Section -->
 <div class="container element-container">
@@ -65,83 +34,152 @@
     <hr class="hr-large">
 </div>
 
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="{{ customer_name }}" %}
+
+<!-- Balance Due -->
+<div class="element-container">
+    <div class="row bottom-margin">
+        <div class="col-10 col-css">
+            <h6 class="row-name">Balance Due:</h6>
+        </div>
+        <div class="col-2 col-css col-css-right label-float">
+            <div>
+                <h6>Bal Due</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-small">
+</div>
+
 <!-- FORM SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'egg_collection_sales' %}" enctype="multipart/form-data" name="egg_collection_sales" id="submit-form">
+    <form method="POST" action="{% url 'customer' %}" enctype="multipart/form-data" name="customer" id="submit-form">
         {% csrf_token %}
         
         <div class="form-data">
-            <!-- Sale Date Section -->
-            {% include 'html_includes/date.html' %}
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
 
-            <!-- Egg Sale Section -->
-            <section name="flock-core-info">
-                <a href="">
-                    <h4>{{ form.customer_name_eggs_collection }}</h4>
-                </a>
-                <!-- Normal Order Qty -->
-                <div class="row bottom-margin">
-                    <div class="col-10 col-css">
-                        <h6 class="row-name">Normal Order Qty:</h6>
-                    </div>
-                    <div class="col-2 col-css col-css-right label-float">
-                        {{ form.normal_order_qty_eggs_collection }}
-                        <label for="normal-order-qty-eggs-collection" class="hidden-label">Normal Order Qty</label>
-                    </div>
-                </div>
-                <!-- Qty Eggs Broken -->
+            <!-- Customer Contact Details Section -->
+            <section name="customer-details-info">
                 <div class="bottom-margin label-float">
-                    {{ form.qty_sold_eggs_collection }}
-                    <label for="qty-sold-eggs-collection">Qty of Eggs Sold</label>
+                    {{ form.customer_name }}
+                    <label for="customer-name">Customer Name</label>
                 </div>
-                <!-- Qty Eggs Given Free -->
                 <div class="bottom-margin label-float">
-                    {{ form.qty_given_free_eggs_collection }}
-                    <label for="qty-given-free-eggs-collection">Qty of Eggs Given Free</label>
+                    {{ form.address }}
+                    <label for="address">Address</label>
                 </div>
-                <!-- Sale Amount -->
-                <div class="row bottom-margin">
-                    <div class="col-10 col-css">
-                        <h6 class="row-name">Sale Amount:</h6>
-                    </div>
-                    <div class="col-2 col-css col-css-right label-float">
-                        {{ form.sale_amount_eggs_collection }}
-                        <label for="sale-amount-eggs-collection" class="hidden-label">Sale Amount</label>
-                    </div>
-                </div>
-                <!-- Amount Paid -->
                 <div class="bottom-margin label-float">
-                    {{ form.amount_paid_eggs_collection }}
-                    <label for="amount-paid-eggs-collection">Amount Paid</label>
+                    {{ form.postcode }}
+                    <label for="postcode">Postcode</label>
                 </div>
-
-                <!-- Balance Owed -->
-                <div class="row bottom-margin">
-                    <div class="col-10 col-css">
-                        <h6 class="row-name">Balance Owed:</h6>
-                    </div>
-                    <div class="col-2 col-css col-css-right label-float">
-                        {{ form.balance_owed_eggs_collection}}
-                        <label for="balance-owed-eggs-collection" class="hidden-label">Balance Owed</label>
-                    </div>
+                <div class="bottom-margin label-float">
+                    {{ form.phone }}
+                    <label for="phone">Phone</label>
                 </div>
-
             </section>
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
 
-            <!-- Egg Breakages or Loses Section -->
-            <section name="flock-core-info">
+            <!-- Customer Sales Details Section -->
+            <section name="customer-sales-details-info">
+                {% include 'html_includes/date.html' %}
                 <div class="bottom-margin label-float">
-                    <h4>Breakages & Loses</h4>
+                    {{ form.customer_status }}
+                    <label for="customer-name">Customer Status (Input)</label>
                 </div>
                 <div class="bottom-margin label-float">
-                    {{ form.breakages_and_loses_eggs_collection }}
-                    <label for="breakages-and-loses-eggs-collection">Qty of Eggs Broken, Stolen or Lost</label>
+                    {{ form.order_qty }}
+                    <label for="order-qty">Normal Order Qty</label>
+                </div>
+                <div class="row bottom-margin">
+                    <div class="col-6 col-css label-float">
+                        {{ form.route_day }}
+                        <label for="route-day">Route Day</label>
+                    </div>
+                    <div class="col-6 col-css label-float">
+                        {{ form.route_position }}
+                        <label for="route-position">Route Position</label>
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Customer Pricing Section -->
+            <!-- Bootstrap Collapse https://getbootstrap.com/docs/5.0/components/collapse/-->
+            <section name="pricing-section">
+                <div class="bottom-margin panel-div label-float">
+                    <a class="bottom-margin panel-title" id="pricing-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <h5>Pricing (Click on me)</h5>
+                    </a>
+                </div>
+                <div class="collapse in" id="collapseExample">
+                    <div class="bottom-margin label-float">
+                        {{ form.single_egg_price }}
+                        <label for="single-egg-price">Single Egg Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.six_egg_price }}
+                        <label for="six-egg-price">Half Dozen Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.ten_egg_price }}
+                        <label for="ten-egg-price">Ten Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.twelve_egg_price }}
+                        <label for="twelve-egg-price">Dozen Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.tray_price }}
+                        <label for="tray-price">Tray Price</label>
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Customer Reports Section -->
+            <section name="customer-reports-info">
+                <div class="bottom-margin label-float">
+                    <input type="text" id="time-period" placeholder="Time Period">
+                    <label for="time-period">Time Period</label>
+                </div>
+                <div class="row bottom-margin">
+                    <div class="col-6 col-css label-float">
+                        <input type="date" id="from-date" placeholder="From">
+                        <label for="from-datey">From</label>
+                    </div>
+                    <div class="col-6 col-css label-float">
+                        <input type="date" id="to-date" placeholder="To">
+                        <label for="to-datey">To</label>
+                    </div>
+                </div>
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Total Spend:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right label-float">
+                        <div>
+                            <h6>€Temp</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Total Eggs:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right label-float">
+                        <div>
+                            <h6>#Temp</h6>
+                        </div>
+                    </div>
                 </div>
             </section>
             <div class="bottom-margin">
@@ -156,9 +194,10 @@
 
             <!-- Buttons Section -->
             <div class="button-container">
-                <input type="hidden" name="redirect_url" value="onboard_produce"/>
-                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
-                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
+                <input type="hidden" name="redirect_url" value="sales_and_income"/>
+                <button id="back-button" class="btn button button-small-size back-button">Back</button>
+                <button type='submit' id="save-button" class="btn button button-small-size save-button">Save</button> 
+                <button id="cancel-button" class="btn button button-small-size cancel-button">Cancel</button>
             </div>
         </div>
     </form>

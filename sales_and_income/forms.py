@@ -528,41 +528,40 @@ class CustomerForm(forms.ModelForm):
                                                            "Postcode",
                                                            'value': ''}),
                 'phone': forms.TextInput(attrs={'class': 'class-name',
-                                                           'id': 'phone',
-                                                           'name': 'phone',
-                                                           'placeholder':
-                                                           "Phone",
-                                                           'value': ''}),
+                                                'id': 'phone',
+                                                'name': 'phone',
+                                                'placeholder':
+                                                "Phone",
+                                                'value': ''}),
                 'date_added': forms.DateInput(attrs={'class': 'class-name',
-                                                           'id': 'date-added',
-                                                           'name': 'date_added',
-                                                           'placeholder':
-                                                           "Date Customer was Added",
-                                                           'value': ''}),
-                # status = models.ForeignKey(customerStatus.id,
-                #                            blank=False,
-                #                            null=False,
-                #                            on_delete=models.CASCADE,
-                #                            related_name='customerstatus'
-                #                            )
+                                                     'id': 'date-added',
+                                                     'name': 'date_added',
+                                                     'placeholder':
+                                                     "Date Customer was Added",
+                                                     'value': ''}),
+                # status = models.ForeignKey(attrs={'class': 'class-name',
+                                                    # 'id': 'customer-status',
+                                                    # 'name': 'customer_status',
+                                                    # 'placeholder':
+                                                    # "Customer Status"}),
                 'order_qty': forms.TextInput(attrs={'class': 'class-name',
-                                                           'id': 'order-qty',
-                                                           'name': 'order_qty',
-                                                           'placeholder':
-                                                           "Normal Order Qty",
-                                                           'value': ''}),
+                                                    'id': 'order-qty',
+                                                    'name': 'order_qty',
+                                                    'placeholder':
+                                                    "Normal Order Qty",
+                                                    'value': ''}),
                 'route_day': forms.DateInput(attrs={'class': 'class-name',
-                                                           'id': 'route-day',
-                                                           'name': 'route_day',
-                                                           'placeholder':
-                                                           "Route Day",
-                                                           'value': ''}),
+                                                    'id': 'route-day',
+                                                    'name': 'route_day',
+                                                    'placeholder':
+                                                    "Route Day",
+                                                    'value': ''}),
                 'route_position': forms.TextInput(attrs={'class': 'class-name',
-                                                           'id': 'route-position',
-                                                           'name': 'route_position',
-                                                           'placeholder':
-                                                           "Route Position",
-                                                           'value': ''}),
+                                                         'id': 'route-position',
+                                                         'name': 'route_position',
+                                                         'placeholder':
+                                                         "Route Position",
+                                                         'value': ''}),
                 'single_egg_price': forms.TextInput(attrs={'class': 'class-name',
                                                            'id': 'single-egg-price',
                                                            'name': 'single_egg_price',
