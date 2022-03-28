@@ -29,7 +29,6 @@ def egg_collection(request):
     userprofile = UserProfile.objects.get(user=request.user)
     farmprofile = userprofile.farmprofiles.all()
     trays_quantity = farmprofile[0].trays_quantity
-    print(trays_quantity)
     if request.POST:
         form = EggCollectionForm(request.POST, request.FILES)
         if form.is_valid():
@@ -70,7 +69,8 @@ def egg_collection(request):
         template = 'regular_tasks/egg_collection.html'
         context = {'form': form,
                    'flocks': flock,
-                   'trays_quantity': trays_quantity}
+                   'trays_quantity': json.dumps(trays_quantity)}
+        print("context :", type(context))
         return render(request, template, context)
 
 

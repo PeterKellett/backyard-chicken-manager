@@ -1,5 +1,5 @@
 // Egg Collection - Variables
-var trayQty = 30; // trayQty needs to be updated to dynamically take in number of eggs per tray
+var trayQty = "{{ trays_quantity|safe }}";
 var total_eggs_laid = 0;
 var damaged_eggs;
 var broken_eggs;

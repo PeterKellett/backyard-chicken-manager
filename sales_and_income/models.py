@@ -4,6 +4,16 @@ from flock_management.models import Flocks, Coops
 from django.utils.translation import gettext_lazy as _
 
 
+class SalesType(models.Model):
+    """Model used for storing different sales types"""
+    type = models.CharField(max_length=20,
+                            null=False,
+                            blank=False)
+
+    def __str__(self):
+        return self.type
+
+
 class EggRoadsideSales(models.Model):
     """Model used for roadside sales data"""
     # farm_profile = models.ForeignKey(FarmProfile,

@@ -62,7 +62,6 @@ fetch('https://8000-peterkellett-backyardchi-z5c38sm5p00.ws-eu38.gitpod.io/regul
 });
 
 
-
 // Sales Methods & Units Function to ensure at least one checkbox
 // is checked in each section before next page can be loaded
 // Taken from (kind of): https://www.javascripttutorial.net/javascript-dom/javascript-form/
@@ -115,4 +114,9 @@ $(document).ready(function() {
 function displaySelectLabel() {
     console.log("displaySelectLabel Fires");
     document.getElementById('select-input-label').style.display = "block";
+}
+// Floating Input Labels: Display floating label on Select inputs when a selection is made
+function displaySelectLabel2() {
+    console.log("displaySelectLabel2 Fires");
+    document.querySelectorAll('.select-input-label').style.display = "block";
 }

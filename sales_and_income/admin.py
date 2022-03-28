@@ -1,7 +1,14 @@
 from django.contrib import admin
-from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Customer
+from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Customer, SalesType
 
 # Register your models here.
+class SalesTypeAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'type'
+    )
+
+
 class EggRoadsideSalesAdmin(admin.ModelAdmin):
     """Admin layout for Egg Roadside Sales Admin table"""
     list_display = (
@@ -139,3 +146,4 @@ admin.site.register(EggDeliverySales, EggDeliverySalesAdmin)
 admin.site.register(EggCollectionSales, EggCollectionSalesAdmin)
 admin.site.register(EggMarketSales, EggMarketSalesAdmin)
 admin.site.register(Customer, CustomerAdmin)
+admin.site.register(SalesType, SalesTypeAdmin)

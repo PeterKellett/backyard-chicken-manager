@@ -22,6 +22,7 @@ body {
     margin-top: 4px;
 }
 
-#select-input-label {
-    display:none;
+#select-input-label,
+.select-input-label {
+    display: none;
 }
