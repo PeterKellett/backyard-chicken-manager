@@ -1,5 +1,4 @@
 // Egg Collection - Variables
-var trayQty = "{{ trays_quantity|safe }}";
 var total_eggs_laid = 0;
 var damaged_eggs;
 var broken_eggs;
@@ -8,17 +7,24 @@ var eggs_given_free;
 var saleable_eggs;
 var total_weight;
 var total_nonsaleable_eggs;
+let traysQuantity;
+
+// Extracts the Tray Quantity from Farm Profile in the db
+fetch('https://8000-peterkellett-backyardchi-z5c38sm5p00.ws-eu38.gitpod.io/regular_tasks/trays_quantity')
+.then(response => response.json())
+.then(data => {
+    console.log({data});
+    traysQuantity = data.trays_quantity;
+});
 
 // Egg Collection - Eggs Laid Calculation: Calculation to sum total number of eggs laid
 document.querySelectorAll('.egg-collection-qty-input').forEach(item => {
     item.addEventListener('keyup', event => {
+        // send request to latest no of trays
         console.log("Eggs Laid Calc Fires Now");
         var totalTrays = document.getElementById('qty-egg-trays').value;
-        console.log("totalTrays", totalTrays);
-        var totalTraysQty = totalTrays * trayQty;
-        console.log("totalTraysQty", totalTraysQty);
+        var totalTraysQty = totalTrays * traysQuantity;
         var totalSingles = document.getElementById('qty-egg-singles').value;
-        console.log("totalSingles", totalSingles);
         total_eggs_laid = Number(totalTraysQty) + Number(totalSingles);
         console.log("total_eggs_laid", total_eggs_laid);
         document.getElementById("qty-total-eggs-laid").innerHTML = total_eggs_laid;
@@ -36,7 +42,7 @@ document.querySelectorAll('.saleable-eggs-input').forEach(item => {
         saleable_eggs = Number(total_eggs_laid) - (Number(damaged_eggs) + Number(broken_eggs) + Number(eggs_personal_use) + Number(eggs_given_free));
         console.log("qty_total_eggs_laid: " + total_eggs_laid);
         console.log("saleable_eggs: " + saleable_eggs);
-        document.getElementById('qty-saleable-eggs').value = Number(saleable_eggs);
+        document.getElementById('qty-saleable-eggs').innerHTML = Number(saleable_eggs);
     })
 });
 
@@ -50,8 +56,7 @@ document.querySelectorAll('.average-weight-input').forEach(item => {
         console.log("total_weight: " + total_weight);
         var average_egg_weight = Number(total_weight) / Number(weighable_eggs);
         console.log("average_egg_weight: " + average_egg_weight);
-        var average_egg_weight_metric = Math.ceil(average_egg_weight * 1000);
-        document.getElementById("avg-egg-weight").value = Number(average_egg_weight_metric);
+        document.getElementById("avg-egg-weight").innerHTML = average_egg_weight;
     })
 });
 

@@ -1,11 +1,53 @@
 from django.contrib import admin
-from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Customer, SalesType
+from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Customer, SalesType, CustomerStatus, NonDeliveryReason, NonCollectionReason, DeliveryRouteDay, LastOrderReceivedWithin, NextOrderDueWithin
 
 # Register your models here.
 class SalesTypeAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'type'
+    )
+
+
+class CustomerStatusAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'status'
+    )
+
+
+class NonDeliveryReasonAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'reason'
+    )
+
+
+class NonCollectionReasonAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'reason'
+    )
+
+
+class DeliveryRouteDayAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'day'
+    )
+
+
+class LastOrderReceivedWithinAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'time_period'
+    )
+
+
+class NextOrderDueWithinAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'time_period'
     )
 
 
@@ -147,3 +189,9 @@ admin.site.register(EggCollectionSales, EggCollectionSalesAdmin)
 admin.site.register(EggMarketSales, EggMarketSalesAdmin)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(SalesType, SalesTypeAdmin)
+admin.site.register(CustomerStatus, CustomerStatusAdmin)
+admin.site.register(NonDeliveryReason, NonDeliveryReasonAdmin)
+admin.site.register(NonCollectionReason, NonCollectionReasonAdmin)
+admin.site.register(DeliveryRouteDay, DeliveryRouteDayAdmin)
+admin.site.register(LastOrderReceivedWithin, LastOrderReceivedWithinAdmin)
+admin.site.register(NextOrderDueWithin, NextOrderDueWithinAdmin)

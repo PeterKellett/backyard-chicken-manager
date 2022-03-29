@@ -84,28 +84,32 @@
 
             <!-- Egg Prices Section -->
             <section name="flock-core-info">
-                <div class="bottom-margin label-float">
-                    <h4>Pricing</h4>
+                <div class="bottom-margin panel-div label-float">
+                    <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <h4>Pricing (Click on me)</h4>
+                    </a>
                 </div>
-                <div class="bottom-margin label-float">
-                    {{ form.single_egg_price }}
-                    <label for="single-egg-price">Single Eggs Price</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ form.half_dozen_eggs_price }}
-                    <label for="half-dozen-eggs-price">Half Dozen Eggs Price</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ form.ten_eggs_price }}
-                    <label for="ten-eggs-price">10 Eggs Price</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ form.dozen_eggs_price }}
-                    <label for="dozen-eggs-price">Dozen Eggs Price</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ form.trays_of_eggs_price }}
-                    <label for="trays-of-eggs-price">Tray of Eggs Price</label>
+                <div class="collapse in" id="collapseExample">
+                    <div class="bottom-margin label-float">
+                        {{ form.single_egg_price }}
+                        <label for="single-egg-price">Single Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.half_dozen_eggs_price }}
+                        <label for="half-dozen-eggs-price">Half Dozen Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.ten_eggs_price }}
+                        <label for="ten-eggs-price">10 Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.dozen_eggs_price }}
+                        <label for="dozen-eggs-price">Dozen Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.trays_of_eggs_price }}
+                        <label for="trays-of-eggs-price">Tray of Eggs Price</label>
+                    </div>
                 </div>
             </section>
             <div class="bottom-margin">
@@ -118,12 +122,12 @@
                     <h4>Sales & Stocks</h4>
                 </div>
                 <!-- Single Eggs -->
-                <div>
-                    <div class="bottom-margin label-float hide-show-div">
+                <div class="hide-show-div">
+                    <div class="bottom-margin label-float">
                         {{ form.qty_single_eggs_remaining }}
                         <label for="qty-single-eggs-remaining">Qty of Single Eggs Remaining</label>
                     </div>
-                    <div class="bottom-margin label-float hide-show-div">
+                    <div class="bottom-margin label-float">
                         {{ form.qty_single_eggs_added }}
                         <label for="qty-single-eggs-added">Qty of Single Eggs Added</label>
                     </div>

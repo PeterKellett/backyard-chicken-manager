@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Health & Welfare - Medicines
+{% endblock %}
+
+{% block sub-nav %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Sub Navigation Section -->
+<div class="element-container container-fluid sub-nav-container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'supplements' %}">
+                <img src="{{ MEDIA_URL }}health_and_welfare_supplements.png" alt="Supplements Icon" class="nav-link-image sub-nav-link-image">
+                Supplements
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link active" href="{% url 'medicines' %}">
+                <img src="{{ MEDIA_URL }}health_and_welfare_medicines.png" alt="Medicines Icon" class="nav-link-image sub-nav-link-image">
+                Medicines
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="">
+                <img src="{{ MEDIA_URL }}health_and_welfare_vaccines.png" alt="Vaccines Icon" class="nav-link-image sub-nav-link-image">
+                Vaccines
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Icons and Links Section -->
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle icon-orange"></i>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}reports_income.png" alt="Income reports icon" class="non-round-icon"></a>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting_settings.png" alt="Profile and Settings icon" class="non-round-icon"></a>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<!-- FORM SECTION  -->
+<div class="element-container">
+    <form method="POST" action="{% url 'egg_collection_sales' %}" enctype="multipart/form-data" name="egg_collection_sales" id="submit-form">
+        {% csrf_token %}
+        
+        <div class="form-data">
+            <!-- Sale Date Section -->
+            {% include 'html_includes/date.html' %}
+            {% include 'html_includes/flock.html' %}
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Medicine Core Details Section -->
+            <section name="medicines-core-info">
+                <!-- Medicine Name -->
+                <div class="bottom-margin label-float">
+                    {{ form.medicine_name }}
+                    <label for="medicine-name">Medicine Name</label>
+                </div>
+                <!-- Disease Protected Against -->
+                <div class="bottom-margin label-float">
+                    {{ form.disease_protected_against }}
+                    <label for="disease-protected-against">Disease Protected Against</label>
+                </div>
+                <!-- Medicine Recipients -->
+                <div class="bottom-margin label-float">
+                    {#{{ medicine_recipients }}#}
+                    <label for="medicine-recipients">Recipient(s)</label>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- HCC Section Section -->
+            {% include 'html_includes/hens_chicks_cocks.html' %}
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Doseage/Administration Section -->
+            <section name="doseage-core-info">
+                <!-- Doseage Amount -->
+                <div class="bottom-margin label-float">
+                    {{ form.doseage_amount }}
+                    <label for="doseage-amount">Doseage Amount</label>
+                </div>
+                <!-- Disease Protected Against -->
+                <div class="row bottom-margin" id="vet-administered-row">
+                    <div class="col-11 col-css">
+                        <h6 class="col-css-element checkbox-label">VET Administered?</h6>
+                    </div>
+                    <div class="col-1 col-css col-css-right">
+                        {{ form.vet_administered }}
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <div>
+                <button class="btn button button-small-size">Add Another</button>
+            </div>
+
+            <!-- Notes & Images Section -->
+            {% include 'html_includes/notes_and_pics.html' %}
+
+            <!-- Used as a warning instead of an Alert -->
+            {% include 'html_includes/validation_warning.html' %}
+
+            <!-- Buttons Section -->
+            <div class="button-container">
+                <input type="hidden" name="redirect_url" value="onboard_produce"/>
+                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
+                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+{% endblock %}

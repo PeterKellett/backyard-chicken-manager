@@ -14,6 +14,66 @@ class SalesType(models.Model):
         return self.type
 
 
+class CustomerStatus(models.Model):
+    """Model used for storing different customer status'"""
+    status = models.CharField(max_length=20,
+                              null=False,
+                              blank=False)
+
+    def __str__(self):
+        return self.status
+
+
+class NonDeliveryReason(models.Model):
+    """Model used for storing different customer status'"""
+    reason = models.CharField(max_length=20,
+                              null=False,
+                              blank=False)
+
+    def __str__(self):
+        return self.reason
+
+
+class NonCollectionReason(models.Model):
+    """Model used for storing different customer status'"""
+    reason = models.CharField(max_length=20,
+                              null=False,
+                              blank=False)
+
+    def __str__(self):
+        return self.reason
+
+
+class DeliveryRouteDay(models.Model):
+    """Model used for storing different customer status'"""
+    day = models.CharField(max_length=20,
+                           null=False,
+                           blank=False)
+
+    def __str__(self):
+        return self.day
+
+
+class LastOrderReceivedWithin(models.Model):
+    """Model used for storing different customer status'"""
+    time_period = models.CharField(max_length=20,
+                                   null=False,
+                                   blank=False)
+
+    def __str__(self):
+        return self.time_period
+
+
+class NextOrderDueWithin(models.Model):
+    """Model used for storing different customer status'"""
+    time_period = models.CharField(max_length=20,
+                                   null=False,
+                                   blank=False)
+
+    def __str__(self):
+        return self.time_period
+
+
 class EggRoadsideSales(models.Model):
     """Model used for roadside sales data"""
     # farm_profile = models.ForeignKey(FarmProfile,

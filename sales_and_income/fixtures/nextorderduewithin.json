@@ -1,0 +1,5 @@
+[
+    {"pk": 1, "model": "sales_and_income.nextorderduewithin", "fields": {"time_period": "1 Day"}},
+    {"pk": 2, "model": "sales_and_income.nextorderduewithin", "fields": {"time_period": "2 Days"}},
+    {"pk": 3, "model": "sales_and_income.nextorderduewithin", "fields": {"time_period": "1 Week"}}
+]

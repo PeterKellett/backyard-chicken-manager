@@ -1,4 +1,4 @@
-<!-- The HCC section appears on multiple pages and is ued for individually counting Hens, Chicks and Cocks-->
+<!-- The HCC section appears on multiple pages and is used for individually counting Hens, Chicks and Cocks-->
 
 <section name="flock-hcc" id="flock-hcc">
     <div class="container form-data flock-hcc-form-data">
@@ -17,11 +17,11 @@
             </div>
             <div class="col-3 col-css col-css-right">
                 {% if 'hens_qty' in onboard_profile_data %}
-                <input type="number" name="hens_qty" value="{{ onboard_profile_data.hens_qty }}" placeholder="Qty" id="hens-qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
+                    <input type="number" name="hens_qty" value="{{ onboard_profile_data.hens_qty }}" placeholder="Qty" id="hens-qty" 
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
                 {% else %}
-                <input type="number" name="hens_qty" placeholder="Qty" id="hens-qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
+                    <input type="number" name="hens_qty" placeholder="Qty" id="hens-qty" 
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
                 {% endif %}
             </div>
         </div>

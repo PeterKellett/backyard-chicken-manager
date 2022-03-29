@@ -22,6 +22,11 @@ def js_test(request):
     return JsonResponse(dataJSON, safe=False)
     # return render(request, "regular_tasks/jstest.html", {"data": data})
 
+def get_trays_quantity(request):
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    trays_quantity = farmprofile[0].trays_quantity
+    return JsonResponse({"trays_quantity": trays_quantity}, safe=False)
 
 @login_required
 def egg_collection(request):
