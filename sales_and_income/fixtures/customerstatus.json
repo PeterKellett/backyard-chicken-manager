@@ -1,0 +1,6 @@
+[
+    {"pk": 1, "model": "sales_and_income.customerstatus", "fields": {"status": "regular_customer"}},
+    {"pk": 2, "model": "sales_and_income.customerstatus", "fields": {"status": "irregular_customer"}},
+    {"pk": 3, "model": "sales_and_income.customerstatus", "fields": {"status": "former_customer"}},
+    {"pk": 4, "model": "sales_and_income.customerstatus", "fields": {"status": "not_a_customer"}}
+]

@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
-from .forms import EggRoadsideSalesForm, EggCollectionSalesForm, EggDeliverySalesDashboardForm, EggDeliverySalesForm, EggMarketSalesForm # EggCollectionSalesDashboardForm 
+from .forms import EggRoadsideSalesForm, EggCollectionSalesForm, EggDeliverySalesDashboardForm, EggDeliverySalesForm, EggMarketSalesForm, CustomerForm  # EggCollectionSalesDashboardForm 
 
 
 @login_required
@@ -241,3 +241,33 @@ def customers(request):
     template = 'sales_and_income/customers.html'
     context = {}
     return render(request, template, context)
+
+
+@login_required
+def customer(request):
+    """view to collection sales"""
+    if request.POST:
+        form = CustomerForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(("form cleaned date =", form.cleaned_data))
+            form = form.save(commit=False)  # Presave the form values to create an instance of the model but don't commit to db.
+
+            # Manual check of integer fields is required here to set field variables to 0 if NoneType or '' is returned /
+            # because setting the model default = 0 affects floating labels.
+            if not form.single_egg_price:
+                form.single_egg_price = 0
+            if not form.six_egg_price:
+                form.six_egg_price = 0
+            if not form.ten_egg_price:
+                form.ten_egg_price = 0
+            if not form.twelve_egg_price:
+                form.twelve_egg_price = 0
+            if not form.tray_price:
+                form.tray_price = 0
+            form.save()  # Save the form fully
+            return HttpResponseRedirect('/customer')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
+    else:
+        form = CustomerForm
+        template = 'sales_and_income/customer.html'
+        context = {'form': form}
+        return render(request, template, context)

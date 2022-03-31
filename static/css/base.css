@@ -192,6 +192,7 @@ i {
 
 /*-- ICONS END --*/
 
+
 /*-- HR RULES START --*/
 
 hr {
@@ -301,6 +302,7 @@ hr.hr-small {
 
 /*-- NAVBAR END */
 
+
 /*-- BOTTOM MARGIN START --*/
 
 .text-start
@@ -316,6 +318,8 @@ input,
  {
     background-color: var(--orange_bg);
 }
+
+/*-- BOTTOM MARGIN END --*/
 
 
 /*-- INPUT FIELDS START --*/

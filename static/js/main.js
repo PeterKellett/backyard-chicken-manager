@@ -14,16 +14,17 @@ $(document).ready(function () {
     // Show Hide Part 1: If a label is for a field that displays when a checkbox is checked this
     // function allows the label to display. Otherwise it shows up onscreen even though the input
     // it is for, doesn't.
-    var checkbox = document.getElementById("disinfected");
-    checkbox.addEventListener('change', function() {
-        if (this.checked) {
-            document.getElementById("disinfectant-label").style.display="block";
-            console.log("Checkbox is checked..");
-        } else {
-            document.getElementById("disinfectant-label").style.display="none";
-            console.log("Checkbox is not checked..");
-        }
-    });
+    // DON'T THINK THIS IS REQUIRED. COMMENTED OUT TO SEE IF ANY ISSUES ARISE IN THE COMING WEEKS.
+    // var checkbox = document.getElementById("disinfected");
+    // checkbox.addEventListener('change', function() {
+    //     if (this.checked) {
+    //         document.getElementById("disinfectant-label").style.display="block";
+    //         console.log("Checkbox is checked..");
+    //     } else {
+    //         document.getElementById("disinfectant-label").style.display="none";
+    //         console.log("Checkbox is not checked..");
+    //     }
+    // });
 
     // Call hccTotal function on page load
     hccTotal();
@@ -46,6 +47,33 @@ $(function () {
         }
     });
 });
+
+
+// Show/Hide - Add Names: Function to display a text input when a User selects "Add Other" from a dropdown
+function addName() {
+    var dropdown = document.getElementById("medicine-name").value;
+    if (dropdown === "Add Other") {
+        document.getElementById("add-name-div").style.display="block";
+        console.log("Add Other is chosen..");
+    } else {
+        document.getElementById("add-name-div").style.display="none";
+        console.log("Add Other is not chosen..");
+    }
+};
+
+
+// https://www.geeksforgeeks.org/how-to-pass-data-to-javascript-in-django-framework/
+// fetch('https://8000-peterkellett-backyardchi-z5c38sm5p00.ws-eu38.gitpod.io/regular_tasks/js_test')
+// .then(response => response.json())
+// .then(data => {
+//     console.log("DATA: ", data);
+//     var dataNode = document.getElementById('alldata');
+//     dataNode.innerHTML+="{{data|escapejs}}";
+//     dataNode = document.getElementById('neatdata');
+//     for(var x in data){
+//             dataNode.innerHTML+=x+' : '+data[x]+'<br><br>';
+//     }
+// });
 
 
 // Sales Methods & Units Function to ensure at least one checkbox
@@ -100,4 +128,9 @@ $(document).ready(function() {
 function displaySelectLabel() {
     console.log("displaySelectLabel Fires");
     document.getElementById('select-input-label').style.display = "block";
+}
+// Floating Input Labels: Display floating label on Select inputs when a selection is made
+function displaySelectLabel2() {
+    console.log("displaySelectLabel2 Fires");
+    document.querySelectorAll('.select-input-label').style.display = "block";
 }

@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import EggCollection, FeedingTime, CoopCleaning, Feeds, Disinfectants
+from .models import EggCollection, FeedingTime, CoopCleaning, Feeds, Disinfectants, jsTest
+
+
+class jsTestAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'age'
+    )
 
 
 class DisinfectantsAdmin(admin.ModelAdmin):
@@ -70,6 +77,7 @@ class CoopCleaningAdmin(admin.ModelAdmin):
     )
 
 
+admin.site.register(jsTest, jsTestAdmin)
 admin.site.register(EggCollection, EggCollectionAdmin)
 admin.site.register(FeedingTime, FeedingTimeAdmin)
 admin.site.register(CoopCleaning, CoopCleaningAdmin)
