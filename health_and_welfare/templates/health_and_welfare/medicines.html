@@ -76,7 +76,11 @@
             <section name="medicines-core-info">
                 <!-- Medicine Name -->
                 <div class="bottom-margin label-float">
-                    {{ form.medicine_name }}
+                    {{ form.medicine_name_1 }}
+                    <label for="medicine-name">Medicine Name</label>
+                </div>
+                <div class="bottom-margin label-float" id="add-name-div">
+                    {{ form.medicine_name_user }}
                     <label for="medicine-name">Medicine Name</label>
                 </div>
                 <!-- Disease Protected Against -->
@@ -88,6 +92,15 @@
                 <div class="bottom-margin label-float">
                     {#{{ medicine_recipients }}#}
                     <label for="medicine-recipients">Recipient(s)</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    <select name="recipients" id="recipients-name" onchange="displaySelectLabel()" required>
+                        <option value="" disabled selected>Recipients</option>
+                        {% for recipients in recipients %}
+                            <option type="text" name="recipients_name" value="{{ recipients.id }}" placeholder="recipients.recipients" id="recipients">{{ recipients.recipients }}</option>
+                        {% endfor %}
+                    </select>
+                    <label id="select-input-label" for="flock-name">Flock Name</label>
                 </div>
             </section>
             <div class="bottom-margin">
@@ -105,16 +118,26 @@
                 <!-- Doseage Amount -->
                 <div class="bottom-margin label-float">
                     {{ form.doseage_amount }}
-                    <label for="doseage-amount">Doseage Amount</label>
+                    <label for="doseage-amount">Doseage - Total Amount</label>
                 </div>
-                <!-- Disease Protected Against -->
+                <!-- Administration Method -->
+                <div class="bottom-margin label-float">
+                    {{ form.administration_method }}
+                    <label for="administration-method">Administration Method</label>
+                </div>
+                <!-- VET Administered? -->
                 <div class="row bottom-margin" id="vet-administered-row">
                     <div class="col-11 col-css">
-                        <h6 class="col-css-element checkbox-label">VET Administered?</h6>
+                        <h5 class="col-css-element checkbox-label">VET Administered?</h5>
                     </div>
                     <div class="col-1 col-css col-css-right">
                         {{ form.vet_administered }}
                     </div>
+                </div>
+                <!-- VET Name -->
+                <div class="bottom-margin label-float show-on-click">
+                    {{ form.vet_name }}
+                    <label for="vet-name">VET Name</label>
                 </div>
             </section>
             <div class="bottom-margin">

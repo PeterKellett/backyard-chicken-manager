@@ -61,13 +61,13 @@ document.querySelectorAll('.average-weight-input').forEach(item => {
 });
 
 // Egg Collection - Validation: Prevents form being submitted if 
-// User hasn't provided a quantity or laid eggs and/or
+// User hasn't provided a quantity of laid eggs and/or
 // if non-saleable eggs qty is greater than total of non-saleable elements
 document.getElementById("save-button").onclick = function() {preventFormSubmission()};
 function preventFormSubmission() {
         console.log("preventFormSubmission Fires");
         var totalTrays = document.getElementById('qty-egg-trays').value;
-        var totalTraysQty = totalTrays * trayQty;
+        var totalTraysQty = totalTrays * traysQuantity;
         var totalSingles = document.getElementById('qty-egg-singles').value;
         total_eggs_laid = Number(totalTraysQty) + Number(totalSingles);
         total_nonsaleable_eggs = Number(damaged_eggs) + Number(broken_eggs) + Number(eggs_personal_use) + Number(eggs_given_free);

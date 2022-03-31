@@ -19,12 +19,12 @@ def supplements(request):
 def medicines(request):
     """view to current flock"""
     form = MedicinesForm
-    medicines1 = MedicinesName.objects.all()
+    medicines_name = MedicinesName.objects.all()
     userprofile = UserProfile.objects.get(user=request.user)
     farmprofile = userprofile.farmprofiles.all()
     flock = farmprofile[0].flocks.all()
     template = 'health_and_welfare/medicines.html'
     context = {'form': form,
-               'medicines': medicines1,
+               'medicines_name': medicines_name,
                'flocks': flock}
     return render(request, template, context)

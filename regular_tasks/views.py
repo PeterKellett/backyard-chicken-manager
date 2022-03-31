@@ -13,6 +13,7 @@ import json
 
 
 def js_test(request):
+    """Just a test"""
     data = list(jsTest.objects.values())
     data_json = serializers.serialize("json", jsTest.objects.all())
     dataJSON = dumps(data)
@@ -23,6 +24,7 @@ def js_test(request):
     # return render(request, "regular_tasks/jstest.html", {"data": data})
 
 def get_trays_quantity(request):
+    """Get Qty of eggs per tray from db"""
     userprofile = UserProfile.objects.get(user=request.user)
     farmprofile = userprofile.farmprofiles.all()
     trays_quantity = farmprofile[0].trays_quantity

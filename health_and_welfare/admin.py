@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Supplements, SupplementsName, Medicines, MedicinesName, Vaccines, VaccinesName, DiseasesName
+from .models import Supplements, SupplementsName, Medicines, MedicinesName, Vaccines, VaccinesName, DiseasesName, Recipients, AdministrationMethod
 
 
 class SupplementsAdmin(admin.ModelAdmin):
@@ -61,6 +61,22 @@ class DiseasesNameAdmin(admin.ModelAdmin):
     )
 
 
+class RecipientsAdmin(admin.ModelAdmin):
+    """Admin layout for Disease Names Admin table"""
+    list_display = (
+        'id',
+        'recipients'
+    )
+
+
+class AdministrationMethodAdmin(admin.ModelAdmin):
+    """Admin layout for dose administration method Admin table"""
+    list_display = (
+        'id',
+        'administration_method'
+    )
+
+
 admin.site.register(Supplements, SupplementsAdmin)
 admin.site.register(SupplementsName, SupplementsNameAdmin)
 admin.site.register(Medicines, MedicinesAdmin)
@@ -68,3 +84,5 @@ admin.site.register(MedicinesName, MedicinesNameAdmin)
 admin.site.register(Vaccines, VaccinesAdmin)
 admin.site.register(VaccinesName, VaccinesNameAdmin)
 admin.site.register(DiseasesName, DiseasesNameAdmin)
+admin.site.register(Recipients, RecipientsAdmin)
+admin.site.register(AdministrationMethod, AdministrationMethodAdmin)
