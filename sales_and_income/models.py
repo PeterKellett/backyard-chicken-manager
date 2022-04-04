@@ -63,47 +63,61 @@ class EggRoadsideSales(models.Model):
                                                     blank=True)
     qty_single_eggs_added = models.IntegerField(null=True,
                                                 blank=True)
+    qty_single_eggs_in_stock = models.IntegerField(null=True,
+                                                   blank=True)
     qty_single_eggs_sold = models.IntegerField(null=True,
                                                blank=True)
     qty_half_dozen_egg_boxes_remaining = models.IntegerField(null=True,
                                                              blank=True)
     qty_half_dozen_egg_boxes_added = models.IntegerField(null=True,
                                                          blank=True)
+    qty_half_dozen_egg_boxes_in_stock = models.IntegerField(null=True,
+                                                            blank=True)
     qty_half_dozen_egg_boxes_sold = models.IntegerField(null=True,
                                                         blank=True)
     qty_ten_egg_boxes_remaining = models.IntegerField(null=True,
                                                       blank=True)
     qty_ten_egg_boxes_added = models.IntegerField(null=True,
                                                   blank=True)
+    qty_ten_egg_boxes_in_stock = models.IntegerField(null=True,
+                                                     blank=True)
     qty_ten_egg_boxes_sold = models.IntegerField(null=True,
                                                  blank=True)
     qty_dozen_egg_boxes_remaining = models.IntegerField(null=True,
                                                         blank=True)
     qty_dozen_egg_boxes_added = models.IntegerField(null=True,
                                                     blank=True)
+    qty_dozen_egg_boxes_in_stock = models.IntegerField(null=True,
+                                                       blank=True)
     qty_dozen_egg_boxes_sold = models.IntegerField(null=True,
                                                    blank=True)
     qty_trays_eggs_remaining = models.IntegerField(null=True,
                                                    blank=True)
     qty_trays_eggs_added = models.IntegerField(null=True,
                                                blank=True)
+    qty_trays_eggs_in_stock = models.IntegerField(null=True,
+                                                  blank=True)
     qty_trays_eggs_sold = models.IntegerField(null=True,
                                               blank=True)
-    loses_eggs_roadside = models.IntegerField(null=True,
-                                              blank=True)
+    losses_eggs_roadside = models.IntegerField(null=True,
+                                               blank=True)
+    income = models.DecimalField(max_digits=7,
+                                 decimal_places=2,
+                                 null=False,
+                                 blank=False)
+    pricing = models.ForeignKey(Pricing,
+                                blank=False,
+                                null=False,
+                                on_delete=models.CASCADE)
+    # Below temporarily removed as involves a more complex wiring
     income = models.DecimalField(max_digits=7,
                                  decimal_places=2,
                                  null=True,
                                  blank=True)
-    # Below temporarily removed as involves a more complex wiring
-    # sales_amount_eggs_roadside = models.DecimalField(max_digits=7,
-    #                                                  decimal_places=2,
-    #                                                  null=True,
-    #                                                  blank=True)
-    # sales_paid_difference_eggs_roadside = models.DecimalField(max_digits=7,
-    #                                                           decimal_places=2,
-    #                                                           null=True,
-    #                                                           blank=True)
+    income_deficit = models.DecimalField(max_digits=7,
+                                         decimal_places=2,
+                                         null=True,
+                                         blank=True)
     notes = models.TextField(null=True,
                              blank=True)
     images = models.ImageField(null=True,
