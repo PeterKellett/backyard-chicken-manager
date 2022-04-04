@@ -109,7 +109,7 @@ def feeding_time(request):
         return render(request, template, context)
 
 
-@login_required
+# @login_required
 def coop_cleaning(request):
     """view for Coop Cleaning"""
     userprofile = UserProfile.objects.get(user=request.user)

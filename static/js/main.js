@@ -34,7 +34,7 @@ $(document).ready(function () {
 
 // Show Hide Part 2: Function to display additional field(s) or content when a checkbox is checked
 // Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
-$(function () {
+$(document).ready(function () {
     $('div.show-on-click').hide();
     console.log("Show on click fires");
 
@@ -48,6 +48,21 @@ $(function () {
     });
 });
 
+$(document).ready(function () {
+    $('div.single-egg-price-section').hide();
+    $('div.half-dozen-eggs-price-section').hide();
+    $('div.ten-eggs-price-section').hide();
+    $('div.dozen-eggs-price-section').hide();
+    $('div.trays-of-eggs-price-section').hide();
+});
+
+function showHideInputFields(value, className) {
+    if(value.length > 0) {
+        $(`div.${className}`).fadeIn();
+    } else {
+        $(`div.${className}`).hide();
+    }
+}
 
 // Show/Hide - Add Names: Function to display a text input when a User selects "Add Other" from a dropdown
 function addName() {

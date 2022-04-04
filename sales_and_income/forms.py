@@ -17,30 +17,35 @@ class EggRoadsideSalesForm(forms.ModelForm):
                                                        'name': 'single_egg_price',
                                                        'placeholder':
                                                        "Single Eggs Price",
+                                                       'onchange': "showHideInputFields(this.value, 'single-egg-price-section')",
                                                        'value': ''}),
             'half_dozen_eggs_price': forms.TextInput(attrs={'class': '',
                                                             'id': 'half-dozen-eggs-price',
                                                             'name': 'half_dozen_eggs_price',
                                                             'placeholder':
                                                             "Half Dozen Eggs Price",
+                                                            'onchange': "showHideInputFields(this.value, 'half-dozen-eggs-price-section')",
                                                             'value': ''}),
             'ten_eggs_price': forms.TextInput(attrs={'class': '',
                                                      'id': 'ten-eggs-price',
                                                      'name': 'ten_eggs_price',
                                                      'placeholder':
                                                      "10 Eggs Price",
+                                                     'onchange': "showHideInputFields(this.value, 'ten-eggs-price-section')",
                                                      'value': ''}),
             'dozen_eggs_price': forms.TextInput(attrs={'class': '',
                                                        'id': 'dozen-eggs-price',
                                                        'name': 'dozen_eggs_price',
                                                        'placeholder':
                                                        "Dozen Eggs Price",
+                                                       'onchange': "showHideInputFields(this.value, 'dozen-eggs-price-section')",
                                                        'value': ''}),
             'trays_of_eggs_price': forms.TextInput(attrs={'class': '',
                                                           'id': 'trays-of-eggs-price',
                                                           'name': 'trays_of_eggs_price',
                                                           'placeholder':
                                                           "Tray of Eggs Price",
+                                                          'onchange': "showHideInputFields(this.value, 'trays-of-eggs-price-section')",
                                                           'value': ''}),
 
             'qty_single_eggs_remaining': forms.TextInput(attrs={'class': '',

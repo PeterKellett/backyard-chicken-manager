@@ -1,6 +1,10 @@
 <!-- The HCC section appears on multiple pages and is used for individually counting Hens, Chicks and Cocks-->
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/hcc.css' %}" />
+{% endblock %}
+
 <section name="flock-hcc" id="flock-hcc">
     <div class="container form-data flock-hcc-form-data">
         <div class="row bottom-margin" id="hens-row">
@@ -53,7 +57,7 @@
             <div class="col-3 col-css col-css-right">
                 {% if 'chicks_qty' in onboard_profile_data %}
                 <input type="number" name="chicks_qty" value="{{ onboard_profile_data.chicks_qty }}" placeholder="Qty" id="chicks-qty" 
-                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
+                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
                 {% else %}
                 <input type="number" name="chicks_qty" placeholder="Qty" id="chicks-qty" 
                     step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()"> 
