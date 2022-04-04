@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
     <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
     <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
-    <link rel="stylesheet" href="{% static 'regular_tasks/css/sales_and_income.css' %}" />
+    <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -82,6 +82,10 @@
                 <a href="">
                     <h4>{{ form.customer_name_eggs_collection }}</h4>
                 </a>
+                <div class="bottom-margin label-float">
+                    <input type="text" placeholder="Customer Search" id="customer-search">
+                    <label for="customer-search">Customer Search</label>
+                </div>
                 <!-- Normal Order Qty -->
                 <div class="row bottom-margin">
                     <div class="col-10 col-css">
@@ -92,18 +96,30 @@
                         <label for="normal-order-qty-eggs-collection" class="hidden-label">Normal Order Qty</label>
                     </div>
                 </div>
-
+                <!-- Qty Eggs Broken -->
                 <div class="bottom-margin label-float">
                     {{ form.qty_sold_eggs_collection }}
                     <label for="qty-sold-eggs-collection">Qty of Eggs Sold</label>
                 </div>
+                <!-- Qty Eggs Given Free -->
                 <div class="bottom-margin label-float">
                     {{ form.qty_given_free_eggs_collection }}
                     <label for="qty-given-free-eggs-collection">Qty of Eggs Given Free</label>
                 </div>
+                <!-- Sale Amount -->
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Sale Amount:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right label-float">
+                        {{ form.sale_amount_eggs_collection }}
+                        <label for="sale-amount-eggs-collection" class="hidden-label">Sale Amount</label>
+                    </div>
+                </div>
+                <!-- Amount Paid -->
                 <div class="bottom-margin label-float">
                     {{ form.amount_paid_eggs_collection }}
-                    <label for="amount-paid-eggs-collection">Dozen Eggs Price</label>
+                    <label for="amount-paid-eggs-collection">Amount Paid</label>
                 </div>
 
                 <!-- Balance Owed -->
@@ -156,4 +172,5 @@
 
 {% block postloadjs %}
     <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+    <script src="{% static 'sales_and_income/js/sales_and_income.js' %}"></script>
 {% endblock %}

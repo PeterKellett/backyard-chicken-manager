@@ -11,5 +11,6 @@ urlpatterns = [
     path('egg_roadside_sales', views.egg_roadside_sales, name='egg_roadside_sales'),
     path('egg_market_sales', views.egg_market_sales, name='egg_market_sales'),
     path('bird_sales', views.bird_sales, name='bird_sales'),
-    path('customers', views.customers, name='customers')
+    path('customers', views.customers, name='customers'),
+    path('customer', views.customer, name='customer')
 ]

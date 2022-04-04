@@ -211,7 +211,7 @@ class FeedingTimeForm(forms.ModelForm):
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
-            'images': forms.ClearableFileInput(attrs={'class': '',
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
                                                       'id': 'images-feeding-time',
                                                       'name': 'images_feeding_time'})
         }
@@ -233,7 +233,7 @@ class CoopCleaningForm(forms.ModelForm):
             'disinfected': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                       'id': 'disinfected',
                                                       'name': 'disinfected'}),
-            'disinfectant': forms.TextInput(attrs={'class': 'show-on-click',
+            'disinfectant': forms.TextInput(attrs={'class': '',
                                                    'id': 'disinfectant',
                                                    'name': 'disinfectant',
                                                    'placeholder': 'Disinfectant Name'}),
@@ -243,7 +243,7 @@ class CoopCleaningForm(forms.ModelForm):
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
-            'images': forms.ClearableFileInput(attrs={'class': '',
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
                                                       'id': 'images-coop-cleaning',
                                                       'name': 'images_coop_cleaning'})
         }

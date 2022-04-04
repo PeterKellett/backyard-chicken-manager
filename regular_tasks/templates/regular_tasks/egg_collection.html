@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
     <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
     <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
-    <link rel="stylesheet" href="{% static 'regular_tasks/css/regular_tasks.css' %}" />
+    <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -61,6 +61,9 @@
 <div class="bottom-margin">
     <hr class="hr-large">
 </div>
+<div class="d-none" id="trays-quantity">
+    {{ trays_quantity }}
+</div>
 
 <!-- FORM SECTION  -->
 <div class="element-container">
@@ -93,10 +96,10 @@
                 <!-- Total Eggs Laid -->
                 <div class="row bottom-margin">
                     <div class="col-10 col-css">
-                        <h6 class="row-name">Total Eggs Laid:</h6>
+                        <h5 class="row-name">Total Eggs Laid:</h5>
                     </div>
                     <div class="col-2 col-css col-css-right label-float">
-                        {{ trays_quantity }}
+                        <h5 id="qty-total-eggs-laid"></h5>
                         <label for="qty-total-eggs-laid" class="hidden-label">Total Eggs Laid</label>
                     </div>
                 </div>
@@ -109,12 +112,12 @@
             <section name="advanced-section">
                 <div class="bottom-margin panel-div label-float">
                     <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <h6>Advanced (Click on me)</h6>
+                        <h5>Advanced (Click on me)</h5>
                     </a>
                 </div>
                 <div class="collapse in" id="collapseExample">
                     <!-- Eggs Damaged -->
-                    <div class="bottom-margin label-float">
+                    <div class="bottom-margin label-float col-css-right">
                         {{ form.qty_eggs_damaged }}
                         <label for="qty-eggs-damaged">Qty of Eggs Damaged (OK for personal use)</label>
                     </div>
@@ -145,47 +148,37 @@
                             <div class="col-10 col-css">
                                 <div class="bottom-margin label-float">
                                     {{ form.weight_total_eggs_laid }}
-                                    <label for="weight-total-eggs-laid">Weight of all eggs laid (excl. broken)</label>
+                                    <label for="weight-total-eggs-laid">Weight of all eggs laid (excl. Broken)</label>
                                 </div>
                             </div>
                             <div class="col-2 col-css">
                                 <div class="bottom-margin">
                                     <h5 class="text-end">
-                                        kg
+                                        <span class="unit-of-measurement">g</span>
                                     </h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Eggs Average Weight -->
-                    <div class="row">
+                    <div class="row bottom-margin">
                         <div class="col-10 col-css">
-                            <div class="bottom-margin">
-                                <h6 class="row-name">Average Egg Weight:</h6>
-                            </div>
+                            <h5 class="row-name">Average Egg Weight:</h5>
                         </div>
-                        <div class="col-2 col-css col-css-right">
-                            <div class="bottom-margin label-float">
-                                {{ form.avg_egg_weight }}
-                                <label for="avg-egg-weight" class="hidden-label">Average Eggs Weight</label>
-                            </div>
+                        <div class="col-2 col-css col-css-right label-float">
+                            <h5><span id="avg-egg-weight"></span><span class="unit-of-measurement">g</span></h5>
                         </div>
                     </div>
                     <div class="bottom-margin">
                         <hr class="hr-large">
                     </div>
                     <!-- Eggs Saleable Qty -->
-                    <div class="row">
+                    <div class="row bottom-margin">
                         <div class="col-10 col-css">
-                            <div class="bottom-margin">
-                                <h6 class="row-name">Saleable Quantity:</h6>
-                            </div>
+                            <h5 class="row-name">Saleable Quantity:</h5>
                         </div>
-                        <div class="col-2 col-css col-css-right">
-                            <div class="bottom-margin label-float">
-                                {{ form.qty_saleable_eggs }}
-                                <label for="qty-saleable-eggs" class=" hidden-label">Eggs Saleable Quantity</label>
-                            </div>
+                        <div class="col-2 col-css col-css-right label-float">
+                            <h5 id="qty-saleable-eggs"></h5>
                         </div>
                     </div>
                 </div>
@@ -209,6 +202,7 @@
         </div>
     </form>
 </div>
+
 
 {% endblock %}
 

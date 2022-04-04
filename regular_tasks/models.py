@@ -4,6 +4,15 @@ from flock_management.models import Flocks, Coops
 from django.utils.translation import gettext_lazy as _
 
 
+# https://www.youtube.com/watch?v=mBvDJ_Ig7zo
+class jsTest(models.Model):
+    name = models.CharField(max_length=50)
+    age = models.IntegerField
+
+    def __str__(self):
+        return self.name
+    
+
 class Feeds(models.Model):
     """Model used for storing Food data"""
     class Meta:

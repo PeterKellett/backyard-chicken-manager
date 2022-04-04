@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from .models import UserProfile, FarmProfile, FarmType, Breed, FarmPurpose
 from flock_management.models import Flocks, Coops
-from health_and_wellfare.models import Supplements
+from health_and_welfare.models import Supplements
 from regular_tasks.models import Feeds
 
 

@@ -1,1 +1,197 @@
-Customers
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    "{{ customer_name }}"
+{% endblock %}
+
+{% block sub-nav %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Icons and Links Section -->
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle icon-orange"></i>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}reports_income.png" alt="Income reports icon" class="non-round-icon"></a>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting_settings.png" alt="Profile and Settings icon" class="non-round-icon"></a>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<!-- FORM SECTION  -->
+<div class="element-container">
+    <form method="POST" action="{% url 'customer' %}" enctype="multipart/form-data" name="customer" id="submit-form">
+        {% csrf_token %}
+        
+        <div class="form-data">
+
+            <!-- Customer Type & Search -->
+            <div class="bottom-margin label-float">
+                <select name="payment_outstanding" id="payment-outstanding" onchange="displaySelectLabel2()">
+                    <option value="" disabled selected>Customer Type</option>
+                    <!-- Options need to be dynamically filled -->
+                    <option type="text" name="eggs" value="eggs" placeholder="Eggs" id="eggs">Eggs</option>
+                    <option type="text" name="birds" value="birds" placeholder="Birds" id="birds">Birds</option>
+                </select>
+                <label class="select-input-label" for="payment-outstanding">Customer Type</label>
+            </div>
+            <div class="bottom-margin label-float">
+                <input type="text" id="customer-search" placeholder="Customer Search">
+                <label for="customer-search">Customer Search</label>
+            </div>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Advanced Search Section -->
+            <!-- Bootstrap Collapse https://getbootstrap.com/docs/5.0/components/collapse/-->
+            <section name="advanced-search-section">
+                <div class="bottom-margin panel-div label-float">
+                    <a class="bottom-margin panel-title" id="advanced-search-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <h5>Advanced Filters (Click on me)</h5>
+                    </a>
+                </div>
+                <div class="collapse in" id="collapseExample">
+                    <!-- Sales Method -->
+                    <div class="bottom-margin label-float">
+                        <select name="sales_method" id="sales-method" onchange="displaySelectLabel2()">
+                            <option value="" disabled selected>Sales Method</option>
+                            <option type="text" name="delivery" value="delivery" placeholder="Delivery" id="delivery">Delivery</option>
+                            <option type="text" name="collection" value="collection" placeholder="Collection" id="collection">Collection</option>
+                        </select>
+                        <label class="select-input-label" for="payment-outstanding">Sales Method</label>
+                    </div>
+                    <!-- Payment Outstanding -->
+                    <div class="bottom-margin label-float">
+                        <select name="payment_outstanding" id="payment-outstanding" onchange="displaySelectLabel2()">
+                            <option value="" disabled selected>Payment Outstanding</option>
+                            <option type="text" name="yes" value="yes" placeholder="Yes" id="yes">Yes</option>
+                            <option type="text" name="no" value="no" placeholder="No" id="no">No</option>
+                        </select>
+                        <label class="select-input-label" for="payment-outstanding">Payment Outstanding</label>
+                    </div>
+                    <!-- Delivery Route Day -->
+                    <div class="bottom-margin label-float">
+                        <select name="delivery_route_day" id="delivery-route-day" onchange="displaySelectLabel2()">
+                            <option value="" disabled selected>Delivery Route Day</option>
+                            <option type="text" name="monday" value="monday" placeholder="Monday" id="monday">Monday</option>
+                            <!-- Monday option above is only a placeholder. The options need to be dynamically added based on
+                                the specific days that the User makes deliveries. If they only deliver on one day, this field
+                                will not be required at all, maybe...
+                            {% for day in delivery_route_day %}
+                                <option type="text" name="delivery_route_day" value="{{ delivery_route_day.id }}" placeholder="delivery_route_day.title" id="delivery-route-day">{{ delivery_route_day.title }}</option>
+                            {% endfor %} -->
+                        </select>
+                        <label class="select-input-label" for="delivery-route-day">Delivery Route Day</label>
+                    </div>
+                    <!-- Ordered within Last -->
+                    <div class="bottom-margin label-float">
+                        <select name="ordered_within_last" id="ordered-within-last" onchange="displaySelectLabel2()">
+                            <option value="" disabled selected>Ordered Within Last...</option>
+                            <option type="text" name="week" value="week" placeholder="Week" id="week">Week</option>
+                            <option type="text" name="month" value="month" placeholder="Month" id="month">Month</option>
+                            <option type="text" name="3_months" value="3_months" placeholder="3 Months" id="3-months">3 Months</option>
+                            <option type="text" name="6_months" value="6_months" placeholder="6 Months" id="6-months">6 Months</option>
+                            <option type="text" name="year" value="year" placeholder="Year" id="year">Year</option>
+                        </select>
+                        <label class="select-input-label" for="ordered-within-last">Ordered Within Last...</label>
+                    </div>
+                    <!-- Delivery Due Within -->
+                    <div class="bottom-margin label-float">
+                        <select name="delivery_due_within" id="delivery-due-within" onchange="displaySelectLabel2()">
+                            <option value="" disabled selected>Delivery Due Within...</option>
+                            <option type="text" name="1_day" value="1_day" placeholder="1 Day" id="1-day">1 Day</option>
+                            <option type="text" name="2_days" value="2_days" placeholder="2 Days" id="2-days">2 Days</option>
+                            <option type="text" name="1_week" value="1_week" placeholder="1 Week" id="1-week">1 Week</option>
+                            <option type="text" name="2_weeks" value="2_weeks" placeholder="2 Weeks" id="2-weeks">2 Weeks</option>
+                            <option type="text" name="30_days" value="30_days" placeholder="30 Days" id="30-days">30 Days</option>
+                        </select>
+                        <label class="select-input-label" for="flock-name">Payment Outstanding</label>
+                    </div>
+                    <!-- Customer Status -->
+                    <div class="bottom-margin label-float">
+                        <select name="customer_status" id="customer-status" onchange="displaySelectLabel2()">
+                            <option value="" disabled selected>Customer Status</option>
+                            <option type="text" name="regular_customer" value="regular_customer" placeholder="Regular Customer" id="regular-customer">Regular Customer</option>
+                            <option type="text" name="irregular_customer" value="irregular_customer" placeholder="Irregular Customer" id="irregular-customer">Irregular Customer</option>
+                            <option type="text" name="former_customer" value="former_customer" placeholder="Former Customer" id="former-customer">Former Customer</option>
+                            <option type="text" name="not_a_customer" value="not_a_customer" placeholder="Not a Customer" id="not-a-customer">Not a Customer</option>
+                        </select>
+                        <label class="select-input-label" for="flock-name">Customer Status</label>
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Search Button -->
+            <div class="button-container">
+                <input type="hidden" name="redirect_url" value="sales_and_income"/>
+                <button type='submit' id="search-button" class="btn button button-large-size save-button">Search</button> 
+            </div>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Number of Customers -->
+            <div class="row bottom-margin">
+                <div class="col-10 col-css">
+                    <h6 class="row-name">Number of Customers:</h6>
+                </div>
+                <div class="col-2 col-css col-css-right label-float">
+                    <h6 class="row-name" id="number-of-customers">#Temp</h6>
+                    <!-- {{ number_of_customers }} -->
+                    <label for="number-of-customers" class="hidden-label">Number of Customers</label>
+                </div>
+            </div>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Customer Card -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Customer Name</h5>
+                    <p class="card-text">Balance Due:</p>
+                    <p class="card-text">Customer Status:</p>
+                    <p class="card-text">Next Order Due:</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="#" class="btn button button-large">Make a Sale</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="btn button button-large">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-margin">
+                <hr class="hr-small">
+            </div>
+
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+{% endblock %}

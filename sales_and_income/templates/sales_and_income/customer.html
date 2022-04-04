@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    "{{ customer_name }}"
+{% endblock %}
+
+{% block sub-nav %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Icons and Links Section -->
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle icon-orange"></i>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}reports_income.png" alt="Income reports icon" class="non-round-icon"></a>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting_settings.png" alt="Profile and Settings icon" class="non-round-icon"></a>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="{{ customer_name }}" %}
+
+<!-- Balance Due -->
+<div class="element-container">
+    <div class="row bottom-margin">
+        <div class="col-10 col-css">
+            <h6 class="row-name">Balance Due:</h6>
+        </div>
+        <div class="col-2 col-css col-css-right label-float">
+            <div>
+                <h6>Bal Due</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-small">
+</div>
+
+<!-- FORM SECTION  -->
+<div class="element-container">
+    <form method="POST" action="{% url 'customer' %}" enctype="multipart/form-data" name="customer" id="submit-form">
+        {% csrf_token %}
+        
+        <div class="form-data">
+
+            <!-- Customer Contact Details Section -->
+            <section name="customer-details-info">
+                <div class="bottom-margin label-float">
+                    {{ form.customer_name }}
+                    <label for="customer-name">Customer Name</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.address }}
+                    <label for="address">Address</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.postcode }}
+                    <label for="postcode">Postcode</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.phone }}
+                    <label for="phone">Phone</label>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Customer Sales Details Section -->
+            <section name="customer-sales-details-info">
+                {% include 'html_includes/date.html' %}
+                <div class="bottom-margin label-float">
+                    {{ form.customer_status }}
+                    <label for="customer-name">Customer Status (Input)</label>
+                </div>
+                <div class="bottom-margin label-float">
+                    {{ form.order_qty }}
+                    <label for="order-qty">Normal Order Qty</label>
+                </div>
+                <div class="row bottom-margin">
+                    <div class="col-6 col-css label-float">
+                        {{ form.route_day }}
+                        <label for="route-day">Route Day</label>
+                    </div>
+                    <div class="col-6 col-css label-float">
+                        {{ form.route_position }}
+                        <label for="route-position">Route Position</label>
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Customer Pricing Section -->
+            <!-- Bootstrap Collapse https://getbootstrap.com/docs/5.0/components/collapse/-->
+            <section name="pricing-section">
+                <div class="bottom-margin panel-div label-float">
+                    <a class="bottom-margin panel-title" id="pricing-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <h5>Pricing (Click on me)</h5>
+                    </a>
+                </div>
+                <div class="collapse in" id="collapseExample">
+                    <div class="bottom-margin label-float">
+                        {{ form.single_egg_price }}
+                        <label for="single-egg-price">Single Egg Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.six_egg_price }}
+                        <label for="six-egg-price">Half Dozen Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.ten_egg_price }}
+                        <label for="ten-egg-price">Ten Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.twelve_egg_price }}
+                        <label for="twelve-egg-price">Dozen Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ form.tray_price }}
+                        <label for="tray-price">Tray Price</label>
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Customer Reports Section -->
+            <section name="customer-reports-info">
+                <div class="bottom-margin label-float">
+                    <input type="text" id="time-period" placeholder="Time Period">
+                    <label for="time-period">Time Period</label>
+                </div>
+                <div class="row bottom-margin">
+                    <div class="col-6 col-css label-float">
+                        <input type="date" id="from-date" placeholder="From">
+                        <label for="from-datey">From</label>
+                    </div>
+                    <div class="col-6 col-css label-float">
+                        <input type="date" id="to-date" placeholder="To">
+                        <label for="to-datey">To</label>
+                    </div>
+                </div>
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Total Spend:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right label-float">
+                        <div>
+                            <h6>€Temp</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Total Eggs:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right label-float">
+                        <div>
+                            <h6>#Temp</h6>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Notes & Images Section -->
+            {% include 'html_includes/notes_and_pics.html' %}
+
+            <!-- Used as a warning instead of an Alert -->
+            {% include 'html_includes/validation_warning.html' %}
+
+            <!-- Buttons Section -->
+            <div class="button-container">
+                <input type="hidden" name="redirect_url" value="sales_and_income"/>
+                <button id="back-button" class="btn button button-small-size back-button">Back</button>
+                <button type='submit' id="save-button" class="btn button button-small-size save-button">Save</button> 
+                <button id="cancel-button" class="btn button button-small-size cancel-button">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+{% endblock %}

@@ -1,11 +1,54 @@
 from django.contrib import admin
-from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Pricing, SalesType
+from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Customer, SalesType, CustomerStatus, NonDeliveryReason, NonCollectionReason, DeliveryRouteDay, LastOrderReceivedWithin, NextOrderDueWithin
 
 
+# Register your models here.
 class SalesTypeAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'type'
+    )
+
+
+class CustomerStatusAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'status'
+    )
+
+
+class NonDeliveryReasonAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'reason'
+    )
+
+
+class NonCollectionReasonAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'reason'
+    )
+
+
+class DeliveryRouteDayAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'day'
+    )
+
+
+class LastOrderReceivedWithinAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'time_period'
+    )
+
+
+class NextOrderDueWithinAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'time_period'
     )
 
 
@@ -83,6 +126,7 @@ class EggDeliverySalesAdmin(admin.ModelAdmin):
         'delivery_not_made_reason',
         'qty_sold_eggs_delivery',
         'qty_given_free_eggs_delivery',
+        'sale_amount_eggs_delivery',
         'amount_paid_eggs_delivery',
         'balance_owed_eggs_delivery',
         'notes',
@@ -100,6 +144,7 @@ class EggCollectionSalesAdmin(admin.ModelAdmin):
         'normal_order_qty_eggs_collection',
         'qty_sold_eggs_collection',
         'qty_given_free_eggs_collection',
+        'sale_amount_eggs_collection',
         'amount_paid_eggs_collection',
         'balance_owed_eggs_collection',
         'breakages_and_loses_eggs_collection',
@@ -134,10 +179,42 @@ class EggMarketSalesAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(SalesType, SalesTypeAdmin)
+class CustomerAdmin(admin.ModelAdmin):
+    """Admin layout for Customer (Singular) Admin table"""
+    list_display = (
+        'id',
+        # 'farm_profile_id',
+        # customer_type,
+        'customer_name',
+        'address',
+        'postcode',
+        'phone',
+        'date_added',
+        # status,
+        'order_qty',
+        'route_day',
+        'route_position',
+        'single_egg_price',
+        'six_egg_price',
+        'ten_egg_price',
+        'twelve_egg_price',
+        'tray_price',
+        'notes',
+        'images'
+    )
+
+
 admin.site.register(Pricing, PricingAdmin)
 admin.site.register(EggRoadsideSales, EggRoadsideSalesAdmin)
 admin.site.register(EggDeliverySalesDashboard, EggDeliverySalesDashboardAdmin)
 admin.site.register(EggDeliverySales, EggDeliverySalesAdmin)
 admin.site.register(EggCollectionSales, EggCollectionSalesAdmin)
 admin.site.register(EggMarketSales, EggMarketSalesAdmin)
+admin.site.register(Customer, CustomerAdmin)
+admin.site.register(SalesType, SalesTypeAdmin)
+admin.site.register(CustomerStatus, CustomerStatusAdmin)
+admin.site.register(NonDeliveryReason, NonDeliveryReasonAdmin)
+admin.site.register(NonCollectionReason, NonCollectionReasonAdmin)
+admin.site.register(DeliveryRouteDay, DeliveryRouteDayAdmin)
+admin.site.register(LastOrderReceivedWithin, LastOrderReceivedWithinAdmin)
+admin.site.register(NextOrderDueWithin, NextOrderDueWithinAdmin)

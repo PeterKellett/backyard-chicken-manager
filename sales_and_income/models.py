@@ -26,26 +26,66 @@ class Pricing(models.Model):
                                    blank=False,
                                    null=False,
                                    on_delete=models.CASCADE)
-    single_egg_price = models.DecimalField(max_digits=5,
-                                           decimal_places=2,
-                                           null=True,
-                                           blank=True)
-    half_dozen_eggs_price = models.DecimalField(max_digits=5,
-                                                decimal_places=2,
-                                                null=True,
-                                                blank=True)
-    ten_eggs_price = models.DecimalField(max_digits=5,
-                                         decimal_places=2,
-                                         null=True,
-                                         blank=True)
-    dozen_eggs_price = models.DecimalField(max_digits=5,
-                                           decimal_places=2,
-                                           null=True,
-                                           blank=True)
-    trays_of_eggs_price = models.DecimalField(max_digits=5,
-                                              decimal_places=2,
-                                              null=True,
-                                              blank=True)
+
+
+class CustomerStatus(models.Model):
+    """Model used for storing different customer status'"""
+    status = models.CharField(max_length=20,
+                              null=False,
+                              blank=False)
+
+    def __str__(self):
+        return self.status
+
+
+class NonDeliveryReason(models.Model):
+    """Model used for storing different customer status'"""
+    reason = models.CharField(max_length=20,
+                              null=False,
+                              blank=False)
+
+    def __str__(self):
+        return self.reason
+
+
+class NonCollectionReason(models.Model):
+    """Model used for storing different customer status'"""
+    reason = models.CharField(max_length=20,
+                              null=False,
+                              blank=False)
+
+    def __str__(self):
+        return self.reason
+
+
+class DeliveryRouteDay(models.Model):
+    """Model used for storing different customer status'"""
+    day = models.CharField(max_length=20,
+                           null=False,
+                           blank=False)
+
+    def __str__(self):
+        return self.day
+
+
+class LastOrderReceivedWithin(models.Model):
+    """Model used for storing different customer status'"""
+    time_period = models.CharField(max_length=20,
+                                   null=False,
+                                   blank=False)
+
+    def __str__(self):
+        return self.time_period
+
+
+class NextOrderDueWithin(models.Model):
+    """Model used for storing different customer status'"""
+    time_period = models.CharField(max_length=20,
+                                   null=False,
+                                   blank=False)
+
+    def __str__(self):
+        return self.time_period
 
 
 class EggRoadsideSales(models.Model):
@@ -143,6 +183,10 @@ class EggCollectionSales(models.Model):
                                                    blank=True)
     qty_given_free_eggs_collection = models.IntegerField(null=True,
                                                          blank=True)
+    sale_amount_eggs_collection = models.DecimalField(max_digits=5,
+                                      decimal_places=2,
+                                      null=True,
+                                      blank=True)
     amount_paid_eggs_collection = models.DecimalField(max_digits=5,
                                                       decimal_places=2,
                                                       null=True,
@@ -204,6 +248,10 @@ class EggDeliverySales(models.Model):
                                                  blank=True)
     qty_given_free_eggs_delivery = models.IntegerField(null=True,
                                                        blank=True)
+    sale_amount_eggs_delivery = models.DecimalField(max_digits=5,
+                                      decimal_places=2,
+                                      null=True,
+                                      blank=True)
     amount_paid_eggs_delivery = models.DecimalField(max_digits=5,
                                                     decimal_places=2,
                                                     null=True,
@@ -277,6 +325,75 @@ class EggMarketSales(models.Model):
 
     loses_eggs_market = models.IntegerField(null=True,
                                             blank=True)
+    notes = models.TextField(null=True,
+                             blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")
+
+
+class Customer(models.Model):
+    """Model used for market sales data"""
+    # farm_profile = models.ForeignKey(FarmProfile,
+    #                                 blank=False,
+    #                                 null=False,
+    #                                 on_delete=models.CASCADE,
+    #                                 related_name='farmprofile')
+    # customer_type = models.ForeignKey(CustomerType,
+    #                                   blank=False,
+    #                                   null=False,
+    #                                   on_delete=models.CASCADE,
+    #                                   related_name='customertype'
+    #                                   )
+    customer_name = models.CharField(max_length=250,
+                                     null=True,
+                                     blank=True)
+    address = models.CharField(max_length=250,
+                               null=True,
+                               blank=True)
+    postcode = models.CharField(max_length=250,
+                                null=True,
+                                blank=True)
+    phone = models.IntegerField(null=True,
+                                blank=True)
+    date_added = models.DateField(null=True,
+                                  blank=True,
+                                  auto_now_add=True
+                                  )
+    # status = models.ForeignKey(customerStatus.id,
+    #                            blank=False,
+    #                            null=False,
+    #                            on_delete=models.CASCADE,
+    #                            related_name='customerstatus'
+    #                            )
+    order_qty = models.IntegerField(null=True,
+                                    blank=True)
+    # Djgonm doesn;t have a day specific field. Can calc day from date
+    route_day = models.DateField(null=True,
+                                 blank=True)
+                                 # dayOfWeek.id)
+    route_position = models.IntegerField(null=True,
+                                         blank=True)
+    single_egg_price = models.DecimalField(max_digits=5,
+                                           decimal_places=2,
+                                           null=True,
+                                           blank=True)
+    six_egg_price = models.DecimalField(max_digits=5,
+                                        decimal_places=2,
+                                        null=True,
+                                        blank=True)
+    ten_egg_price = models.DecimalField(max_digits=5,
+                                        decimal_places=2,
+                                        null=True,
+                                        blank=True)
+    twelve_egg_price = models.DecimalField(max_digits=5,
+                                           decimal_places=2,
+                                           null=True,
+                                           blank=True)
+    tray_price = models.DecimalField(max_digits=5,
+                                     decimal_places=2,
+                                     null=True,
+                                     blank=True)
     notes = models.TextField(null=True,
                              blank=True)
     images = models.ImageField(null=True,

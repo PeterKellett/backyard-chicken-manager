@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
     <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
     <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
     <link rel="stylesheet" href="{% static 'regular_tasks/css/sales_and_income.css' %}" />
 {% endblock %}
 
@@ -106,7 +107,7 @@
                 <div class="row bottom-margin">
                     <div class="col-10 col-css">
                         <h6 class="row-name">Delivery Not Made</h6>
-                    </div>
+                    </div>  
                     <div class="col-2 col-css col-css-right label-float">
                         {{ form.delivery_not_made }}
                         <label for="delivery-not-made" class="hidden-label">Delivery Not Made</label>
@@ -125,6 +126,17 @@
                     {{ form.qty_given_free_eggs_delivery }}
                     <label for="qty-given-free-eggs-delivery">Qty of Eggs Given Free</label>
                 </div>
+                <!-- Sale Amount -->
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Sale Amount:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right label-float">
+                        {{ form.sale_amount_eggs_delivery }}
+                        <label for="sale-amount-eggs-delivery" class="hidden-label">Sale Amount</label>
+                    </div>
+                </div>
+
                 <div class="bottom-margin label-float">
                     {{ form.amount_paid_eggs_delivery }}
                     <label for="amount-paid-eggs-delivery">Amount Paid</label>

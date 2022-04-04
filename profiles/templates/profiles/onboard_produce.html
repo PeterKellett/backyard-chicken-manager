@@ -201,20 +201,20 @@
                         <div class="col-8 col-css">
                             <h6 class="col-css-element checkbox-label">Trays/Other Carton Sizes</h6>
                         </div>
-                        <div class="col-3 col-css">
+                        <div class="col-3 col-css show-on-click">
                             {% if 'trays_qty' in onboard_profile_data %}
-                            <input type="number" name="trays_qty" value="{{ onboard_profile_data.trays_qty }}" placeholder="Tray Qty" id="trays-qty" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element show-on-click">
+                                <input type="number" name="trays_qty" value="{{ onboard_profile_data.trays_qty }}" placeholder="Tray Qty" id="trays-qty" 
+                                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
                             {% else %}
-                            <input type="number" name="trays_qty" value="30" placeholder="Tray Qty" id="trays-qty" 
-                                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element show-on-click">
+                                <input type="number" name="trays_qty" value="30" placeholder="Tray Qty" id="trays-qty" 
+                                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
                             {% endif %}
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.trays_check %}
-                            <input type="checkbox" name="trays_check" id="trays-check" class="col-css-element click-to-show" checked>
+                                <input type="checkbox" name="trays_check" id="trays-check" class="click-to-show" checked>
                             {% else %}
-                            <input type="checkbox" name="trays_check" id="trays-check" class="col-css-element click-to-show">
+                                <input type="checkbox" name="trays_check" id="trays-check" class="click-to-show">
                             {% endif %}
                         </div>
                     </div>

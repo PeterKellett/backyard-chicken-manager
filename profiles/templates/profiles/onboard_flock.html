@@ -73,9 +73,9 @@
             <section name="flock-core-info">
                 <div class="bottom-margin">
                     {% if 'flock_name' in onboard_profile_data %}
-                    <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" required>
+                        <input type="text" name="flock_name" value="{{ onboard_profile_data.flock_name }}" placeholder="Flock Name" id="flock-name" required>
                     {% else %}
-                    <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
+                        <input type="text" name="flock_name" placeholder="Flock Name" id="flock-name" required>
                     {% endif %}
                 </div>
                 <div class="bottom-margin">
@@ -137,5 +137,4 @@
 {% block postloadjs %}
 {{ block.super }}
     {% include 'js_includes/datepicker_date_today_script.html' %}
-    {% include 'js_includes/hcc_quantities_script.html' %}
 {% endblock %}

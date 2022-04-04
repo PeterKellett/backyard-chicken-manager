@@ -1,0 +1,9 @@
+[
+    {"pk": 1, "model": "sales_and_income.lastorderreceivedwithin", "fields": {"time_period": "1 Day"}},
+    {"pk": 2, "model": "sales_and_income.lastorderreceivedwithin", "fields": {"time_period": "2 Days"}},
+    {"pk": 3, "model": "sales_and_income.lastorderreceivedwithin", "fields": {"time_period": "1 Week"}},
+    {"pk": 4, "model": "sales_and_income.lastorderreceivedwithin", "fields": {"time_period": "1 Month"}},
+    {"pk": 5, "model": "sales_and_income.lastorderreceivedwithin", "fields": {"time_period": "3 Months"}},
+    {"pk": 6, "model": "sales_and_income.lastorderreceivedwithin", "fields": {"time_period": "1 Year"}},
+    {"pk": 7, "model": "sales_and_income.lastorderreceivedwithin", "fields": {"time_period": "More than 1 Year"}}
+]
