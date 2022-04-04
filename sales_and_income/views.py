@@ -4,7 +4,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
-from .forms import EggRoadsideSalesForm, EggCollectionSalesForm, EggDeliverySalesDashboardForm, EggDeliverySalesForm, EggMarketSalesForm, CustomerForm  # EggCollectionSalesDashboardForm 
+from .forms import EggRoadsideSalesForm, EggCollectionSalesForm, EggDeliverySalesDashboardForm, EggDeliverySalesForm, EggMarketSalesForm, PricingForm, CustomerForm # EggCollectionSalesDashboardForm
+from .models import Pricing, SalesType, EggRoadsideSales
+import datetime
+import decimal
 
 
 @login_required
@@ -15,70 +18,183 @@ def sales_and_income(request):
     return render(request, template, context)
 
 
+class CreateRecentRoadsideSale:
+    def __init__(self):
+        self.qty_single_eggs_in_stock = 0
+        self.qty_half_dozen_egg_boxes_in_stock = 0
+        self.qty_ten_egg_boxes_in_stock = 0
+        self.qty_dozen_egg_boxes_in_stock = 0
+        self.qty_trays_eggs_in_stock = 0
+
+
 @login_required
 def egg_roadside_sales(request):
     """view to roadside sales"""
-    # userprofile = UserProfile.objects.get(user=request.user)
-    # farmprofile = userprofile.farmprofiles.all()
-    # print(farmprofile)
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    trays_quantity = farmprofile[0].trays_quantity
+    sales_type = SalesType.objects.get(type='roadside')
+    prices = Pricing.objects.filter(farm_profile=farmprofile[0]).filter(sales_type=sales_type).last()
+    roadside_sale = EggRoadsideSales.objects.filter(farm_profile=farmprofile[0]).last()
+    previous_sale = True
+    if not roadside_sale:
+        previous_sale = False
+        # roadside_sale = CreateRecentRoadsideSale()
     if request.POST:
-        form = EggRoadsideSalesForm(request.POST, request.FILES)
-        if form.is_valid():
-            print(("form cleaned date =", form.cleaned_data))
-            form = form.save(commit=False)  # Presave the form values to create an instance of the model but don't commit to db.
-            # form.farm_profile = farmprofile[0]  # Add in the farmprofile ForeignKey value
-            
+        pricing_form = PricingForm(request.POST, instance=prices)
+        sales_form = EggRoadsideSalesForm(request.POST, request.FILES, instance=roadside_sale)
+        previous_roadside_sale = EggRoadsideSales.objects.filter(farm_profile=farmprofile[0]).last()
+        if sales_form.is_valid() and pricing_form.is_valid():
+            print("pricing_form = ", pricing_form.cleaned_data)
+            # print("sales_form = ", sales_form.cleaned_data)
+            if pricing_form.has_changed():
+                print("Changed")
+                prices = Pricing(
+                    farm_profile=farmprofile[0],
+                    sales_type=sales_type,
+                    single_egg_price=pricing_form.cleaned_data['single_egg_price'],
+                    half_dozen_eggs_price=pricing_form.cleaned_data['half_dozen_eggs_price'],
+                    ten_eggs_price=pricing_form.cleaned_data['ten_eggs_price'],
+                    dozen_eggs_price=pricing_form.cleaned_data['dozen_eggs_price'],
+                    trays_of_eggs_price=pricing_form.cleaned_data['trays_of_eggs_price'],
+                )
+                prices.save()
+                print("prices = ", prices)
+            sales_form = sales_form.save(commit=False)
+            sales_form.farm_profile = farmprofile[0]  # Add in the farmprofile ForeignKey value
+            sales_form.pricing = prices
             # Manual check of integer fields is required here to set field variables to 0 if NoneType or '' is returned /
             # because setting the model default = 0 affects floating labels.
-            if not form.single_egg_price:
-                form.single_egg_price = 0
-            if not form.half_dozen_eggs_price:
-                form.half_dozen_eggs_price = 0
-            if not form.ten_eggs_price:
-                form.ten_eggs_price = 0
-            if not form.dozen_eggs_price:
-                form.dozen_eggs_price = 0
-            if not form.trays_of_eggs_price:
-                form.trays_of_eggs_price = 0
-            if not form.qty_single_eggs_remaining:
-                form.qty_single_eggs_remaining = 0
-            if not form.qty_single_eggs_added:
-                form.qty_single_eggs_added = 0
-            if not form.qty_half_dozen_egg_boxes_remaining:
-                form.qty_half_dozen_egg_boxes_remaining = 0
-            if not form.qty_half_dozen_egg_boxes_added:
-                form.qty_half_dozen_egg_boxes_added = 0
-            if not form.qty_ten_egg_boxes_remaining:
-                form.qty_ten_egg_boxes_remaining = 0
-            if not form.qty_ten_egg_boxes_added:
-                form.qty_ten_egg_boxes_added = 0
-            if not form.qty_dozen_egg_boxes_remaining:
-                form.qty_dozen_egg_boxes_remaining = 0
-            if not form.qty_dozen_egg_boxes_added:
-                form.qty_dozen_egg_boxes_added = 0
-            if not form.qty_trays_of_eggs_remaining:
-                form.qty_trays_of_eggs_remaining = 0
-            if not form.qty_trays_of_eggs_added:
-                form.qty_trays_of_eggs_added = 0
-            if not form.amount_paid_eggs_roadside:
-                form.amount_paid_eggs_roadside = 0
-            # Below temporarily removed as involves a more complex wiring
-            # if not form.sales_amount_eggs_roadside:
-            #     form.sales_amount_eggs_roadside = 0
-            # form.sales_paid_difference_eggs_roadside = (tbc)
-            if not form.loses_eggs_roadside:
-                form.loses_eggs_roadside = 0
-            form.save()
+            if not roadside_sale:
+                sales_form.save()
+            else:
+                print("sales_form = ", sales_form.qty_single_eggs_in_stock)
+                print("roadside_sale = ", roadside_sale.qty_single_eggs_in_stock)
+                # Calculations for eggs sold
+                if previous_roadside_sale.qty_single_eggs_in_stock is not None:
+                    sales_form.qty_single_eggs_sold = previous_roadside_sale.qty_single_eggs_in_stock - sales_form.qty_single_eggs_remaining
+                else:
+                    sales_form.qty_single_eggs_sold = 0
+                if previous_roadside_sale.qty_half_dozen_egg_boxes_in_stock is not None:
+                    sales_form.qty_half_dozen_egg_boxes_sold = previous_roadside_sale.qty_half_dozen_egg_boxes_in_stock - sales_form.qty_half_dozen_egg_boxes_remaining
+                else:
+                    sales_form.qty_half_dozen_egg_boxes_sold = 0
+                if previous_roadside_sale.qty_ten_egg_boxes_in_stock is not None:
+                    sales_form.qty_ten_egg_boxes_sold = previous_roadside_sale.qty_ten_egg_boxes_in_stock - sales_form.qty_ten_egg_boxes_remaining
+                else:
+                    sales_form.qty_ten_egg_boxes_sold = 0
+                if previous_roadside_sale.qty_dozen_egg_boxes_in_stock is not None:
+                    sales_form.qty_dozen_egg_boxes_sold = previous_roadside_sale.qty_dozen_egg_boxes_in_stock - sales_form.qty_dozen_egg_boxes_remaining
+                else:
+                    sales_form.qty_dozen_egg_boxes_sold = 0
+                if previous_roadside_sale.qty_trays_eggs_in_stock is not None:
+                    sales_form.qty_trays_eggs_sold = previous_roadside_sale.qty_trays_eggs_in_stock - sales_form.qty_trays_eggs_remaining
+                else:
+                    sales_form.qty_trays_eggs_sold = 0
+                # Calculations for updating eggs in stock for the next sale
+                next_roadside_sale = {}
+                # Single eggs
+                if sales_form.qty_single_eggs_in_stock is not None:
+                    next_roadside_sale['qty_single_eggs_in_stock'] = sales_form.qty_single_eggs_in_stock
+                else:
+                    next_roadside_sale['qty_single_eggs_in_stock'] = None
+                if previous_roadside_sale.qty_single_eggs_in_stock is not None:
+                    next_roadside_sale['qty_single_eggs_in_stock'] = previous_roadside_sale.qty_single_eggs_in_stock \
+                                                                     - sales_form.qty_single_eggs_sold \
+                                                                     + sales_form.qty_single_eggs_added
+                    sales_form.qty_single_eggs_in_stock = previous_roadside_sale.qty_single_eggs_in_stock
+                    if next_roadside_sale['qty_single_eggs_in_stock'] == 0:
+                        next_roadside_sale['qty_single_eggs_in_stock'] = None
+                # 6/12 eggs
+                if sales_form.qty_half_dozen_egg_boxes_in_stock is not None:
+                    next_roadside_sale['qty_half_dozen_egg_boxes_in_stock'] = sales_form.qty_half_dozen_egg_boxes_in_stock
+                else:
+                    next_roadside_sale['qty_half_dozen_egg_boxes_in_stock'] = None
+                if previous_roadside_sale.qty_half_dozen_egg_boxes_in_stock is not None:
+                    next_roadside_sale['qty_half_dozen_egg_boxes_in_stock'] = previous_roadside_sale.qty_half_dozen_egg_boxes_in_stock \
+                                                                              - sales_form.qty_half_dozen_egg_boxes_sold \
+                                                                              + sales_form.qty_half_dozen_egg_boxes_added
+                    sales_form.qty_half_dozen_egg_boxes_in_stock = previous_roadside_sale.qty_half_dozen_egg_boxes_in_stock
+                    if next_roadside_sale['qty_half_dozen_egg_boxes_in_stock'] == 0:
+                        next_roadside_sale['qty_half_dozen_egg_boxes_in_stock'] = None
+                # 10 eggs
+                if sales_form.qty_ten_egg_boxes_in_stock is not None:
+                    next_roadside_sale['qty_ten_egg_boxes_in_stock'] = sales_form.qty_ten_egg_boxes_in_stock
+                else:
+                    next_roadside_sale['qty_ten_egg_boxes_in_stock'] = None
+                if previous_roadside_sale.qty_ten_egg_boxes_in_stock is not None:
+                    next_roadside_sale['qty_ten_egg_boxes_in_stock'] = previous_roadside_sale.qty_ten_egg_boxes_in_stock \
+                                                                       - sales_form.qty_ten_egg_boxes_sold \
+                                                                       + sales_form.qty_ten_egg_boxes_added
+                    sales_form.qty_ten_egg_boxes_in_stock = previous_roadside_sale.qty_ten_egg_boxes_in_stock
+                    if next_roadside_sale['qty_ten_egg_boxes_in_stock'] == 0:
+                        next_roadside_sale['qty_ten_egg_boxes_in_stock'] = None
+                # 12/12 eggs
+                if sales_form.qty_dozen_egg_boxes_in_stock is not None:
+                    next_roadside_sale['qty_dozen_egg_boxes_in_stock'] = sales_form.qty_dozen_egg_boxes_in_stock
+                else:
+                    next_roadside_sale['qty_dozen_egg_boxes_in_stock'] = None
+                if previous_roadside_sale.qty_dozen_egg_boxes_in_stock is not None:
+                    next_roadside_sale['qty_dozen_egg_boxes_in_stock'] = previous_roadside_sale.qty_dozen_egg_boxes_in_stock \
+                                                                       - sales_form.qty_dozen_egg_boxes_sold \
+                                                                       + sales_form.qty_dozen_egg_boxes_added
+                    sales_form.qty_dozen_egg_boxes_in_stock = previous_roadside_sale.qty_dozen_egg_boxes_in_stock
+                    if next_roadside_sale['qty_dozen_egg_boxes_in_stock'] == 0:
+                        next_roadside_sale['qty_dozen_egg_boxes_in_stock'] = None
+                # Trays eggs
+                if sales_form.qty_trays_eggs_in_stock is not None:
+                    next_roadside_sale['qty_trays_eggs_in_stock'] = sales_form.qty_trays_eggs_in_stock
+                else:
+                    next_roadside_sale['qty_trays_eggs_in_stock'] = None
+                if previous_roadside_sale.qty_trays_eggs_in_stock is not None:
+                    next_roadside_sale['qty_trays_eggs_in_stock'] = previous_roadside_sale.qty_trays_eggs_in_stock \
+                                                                       - sales_form.qty_trays_eggs_sold \
+                                                                       + sales_form.qty_trays_eggs_added
+                    sales_form.qty_trays_eggs_in_stock = previous_roadside_sale.qty_trays_eggs_in_stock
+                    if next_roadside_sale['qty_trays_eggs_in_stock'] == 0:
+                        next_roadside_sale['qty_trays_eggs_in_stock'] = None
 
+                # Calculations for income
+                print("single_egg_price = ", prices.single_egg_price)
+                print("half_dozen_eggs_price = ", prices.half_dozen_eggs_price)
+                print("ten_eggs_price = ", prices.ten_eggs_price)
+                print("dozen_eggs_price = ", prices.dozen_eggs_price)
+                print("trays_of_eggs_price = ", prices.trays_of_eggs_price)
+                print("sales_form.qty_dozen_egg_boxes_sold = ", sales_form.qty_dozen_egg_boxes_sold)
+                if sales_form.losses_eggs_roadside is None:
+                    sales_form.losses_eggs_roadside = 0
+                suggested_income = (sales_form.qty_single_eggs_sold * decimal.Decimal(prices.single_egg_price)) \
+                    + (sales_form.qty_half_dozen_egg_boxes_sold * decimal.Decimal(prices.half_dozen_eggs_price)) \
+                    + (sales_form.qty_ten_egg_boxes_sold * decimal.Decimal(prices.ten_eggs_price)) \
+                    + (sales_form.qty_dozen_egg_boxes_sold * decimal.Decimal(prices.dozen_eggs_price)) \
+                    + (sales_form.qty_trays_eggs_sold * decimal.Decimal(prices.trays_of_eggs_price))
+                sales_form.income_deficit = sales_form.income - suggested_income + (sales_form.losses_eggs_roadside * decimal.Decimal(prices.single_egg_price))
+                sales_form.pricing = prices
+                sales_form.save()
+                print("next_roadside_sale['qty_single_eggs_in_stock'] = ", next_roadside_sale)
+                next_object = EggRoadsideSales(
+                    farm_profile=farmprofile[0],
+                    date=datetime.datetime.now(),
+                    qty_single_eggs_in_stock=next_roadside_sale['qty_single_eggs_in_stock'],
+                    qty_half_dozen_egg_boxes_in_stock=next_roadside_sale['qty_half_dozen_egg_boxes_in_stock'],
+                    qty_ten_egg_boxes_in_stock=next_roadside_sale['qty_ten_egg_boxes_in_stock'],
+                    qty_dozen_egg_boxes_in_stock=next_roadside_sale['qty_dozen_egg_boxes_in_stock'],
+                    qty_trays_eggs_in_stock=next_roadside_sale['qty_trays_eggs_in_stock'],
+                    pricing=prices
+                )
+                next_object.save()
             # farm = farmprofile[0]  # Refer to the farmprofile object which is obtained above
             # farm.eggs_in_stock -= form.qty_saleable_eggs  # Update the eggs_in_stock value to itself
             # farm.save()  # Save the farmprofile to the db.
 
             return HttpResponseRedirect('/sales_and_income')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
     else:
-        form = EggRoadsideSalesForm
+        pricing_form = PricingForm(instance=prices)
+        sales_form = EggRoadsideSalesForm(instance=roadside_sale)
         template = 'sales_and_income/egg_roadside_sales.html'
-        context = {'form': form}
+        context = {'pricing_form': pricing_form,
+                   'sales_form': sales_form,
+                   'previous_sale': previous_sale}
         return render(request, template, context)
 
 

@@ -14,6 +14,20 @@ class SalesType(models.Model):
         return self.type
 
 
+class Pricing(models.Model):
+    class Meta:
+        """Overwrite the default Django pluralisation"""
+        verbose_name_plural = 'Pricing'
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     blank=False,
+                                     null=False,
+                                     on_delete=models.CASCADE)
+    sales_type = models.ForeignKey(SalesType,
+                                   blank=False,
+                                   null=False,
+                                   on_delete=models.CASCADE)
+
+
 class CustomerStatus(models.Model):
     """Model used for storing different customer status'"""
     status = models.CharField(max_length=20,
@@ -76,71 +90,74 @@ class NextOrderDueWithin(models.Model):
 
 class EggRoadsideSales(models.Model):
     """Model used for roadside sales data"""
-    # farm_profile = models.ForeignKey(FarmProfile,
-    #                                  blank=False,
-    #                                  null=False,
-    #                                  on_delete=models.CASCADE)
-    #                                 #  related_name='farmprofile')
+    class Meta:
+        """Overwrite the default Django pluralisation"""
+        verbose_name_plural = 'Egg roadside sales'
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     blank=False,
+                                     null=False,
+                                     on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False)
-    single_egg_price = models.DecimalField(max_digits=5,
-                                           decimal_places=2,
-                                           null=True,
-                                           blank=True)
-    half_dozen_eggs_price = models.DecimalField(max_digits=5,
-                                                decimal_places=2,
-                                                null=True,
-                                                blank=True)
-    ten_eggs_price = models.DecimalField(max_digits=5,
-                                         decimal_places=2,
-                                         null=True,
-                                         blank=True)
-    dozen_eggs_price = models.DecimalField(max_digits=5,
-                                           decimal_places=2,
-                                           null=True,
-                                           blank=True)
-    trays_of_eggs_price = models.DecimalField(max_digits=5,
-                                              decimal_places=2,
-                                              null=True,
-                                              blank=True)
-
     qty_single_eggs_remaining = models.IntegerField(null=True,
                                                     blank=True)
     qty_single_eggs_added = models.IntegerField(null=True,
                                                 blank=True)
+    qty_single_eggs_in_stock = models.IntegerField(null=True,
+                                                   blank=True)
+    qty_single_eggs_sold = models.IntegerField(null=True,
+                                               blank=True)
     qty_half_dozen_egg_boxes_remaining = models.IntegerField(null=True,
                                                              blank=True)
     qty_half_dozen_egg_boxes_added = models.IntegerField(null=True,
                                                          blank=True)
+    qty_half_dozen_egg_boxes_in_stock = models.IntegerField(null=True,
+                                                            blank=True)
+    qty_half_dozen_egg_boxes_sold = models.IntegerField(null=True,
+                                                        blank=True)
     qty_ten_egg_boxes_remaining = models.IntegerField(null=True,
                                                       blank=True)
     qty_ten_egg_boxes_added = models.IntegerField(null=True,
                                                   blank=True)
+    qty_ten_egg_boxes_in_stock = models.IntegerField(null=True,
+                                                     blank=True)
+    qty_ten_egg_boxes_sold = models.IntegerField(null=True,
+                                                 blank=True)
     qty_dozen_egg_boxes_remaining = models.IntegerField(null=True,
                                                         blank=True)
     qty_dozen_egg_boxes_added = models.IntegerField(null=True,
                                                     blank=True)
-    qty_trays_of_eggs_remaining = models.IntegerField(null=True,
-                                                      blank=True)
-    qty_trays_of_eggs_added = models.IntegerField(null=True,
+    qty_dozen_egg_boxes_in_stock = models.IntegerField(null=True,
+                                                       blank=True)
+    qty_dozen_egg_boxes_sold = models.IntegerField(null=True,
+                                                   blank=True)
+    qty_trays_eggs_remaining = models.IntegerField(null=True,
+                                                   blank=True)
+    qty_trays_eggs_added = models.IntegerField(null=True,
+                                               blank=True)
+    qty_trays_eggs_in_stock = models.IntegerField(null=True,
                                                   blank=True)
-    amount_paid_eggs_roadside = models.DecimalField(max_digits=7,
-                                                    decimal_places=2,
-                                                    null=True,
-                                                    blank=True)
-    # Below temporarily removed as involves a more complex wiring
-    # sales_amount_eggs_roadside = models.DecimalField(max_digits=7,
-    #                                                  decimal_places=2,
-    #                                                  null=True,
-    #                                                  blank=True)
-    # sales_paid_difference_eggs_roadside = models.DecimalField(max_digits=7,
-    #                                                           decimal_places=2,
-    #                                                           null=True,
-    #                                                           blank=True)
-
-    loses_eggs_roadside = models.IntegerField(null=True,
+    qty_trays_eggs_sold = models.IntegerField(null=True,
                                               blank=True)
-
+    losses_eggs_roadside = models.IntegerField(null=True,
+                                               blank=True)
+    income = models.DecimalField(max_digits=7,
+                                 decimal_places=2,
+                                 null=False,
+                                 blank=False)
+    pricing = models.ForeignKey(Pricing,
+                                blank=False,
+                                null=False,
+                                on_delete=models.CASCADE)
+    # Below temporarily removed as involves a more complex wiring
+    income = models.DecimalField(max_digits=7,
+                                 decimal_places=2,
+                                 null=True,
+                                 blank=True)
+    income_deficit = models.DecimalField(max_digits=7,
+                                         decimal_places=2,
+                                         null=True,
+                                         blank=True)
     notes = models.TextField(null=True,
                              blank=True)
     images = models.ImageField(null=True,
