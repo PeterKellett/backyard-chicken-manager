@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Customer, SalesType, CustomerStatus, NonDeliveryReason, NonCollectionReason, DeliveryRouteDay, LastOrderReceivedWithin, NextOrderDueWithin
+from .models import Pricing, EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Customer, SalesType, CustomerStatus, NonDeliveryReason, NonCollectionReason, DeliveryRouteDay, LastOrderReceivedWithin, NextOrderDueWithin
 
 
 # Register your models here.

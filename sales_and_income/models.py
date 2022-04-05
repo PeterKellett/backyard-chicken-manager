@@ -26,6 +26,26 @@ class Pricing(models.Model):
                                    blank=False,
                                    null=False,
                                    on_delete=models.CASCADE)
+    single_egg_price = models.DecimalField(max_digits=5,
+                                           decimal_places=2,
+                                           null=True,
+                                           blank=True)
+    half_dozen_eggs_price = models.DecimalField(max_digits=5,
+                                                decimal_places=2,
+                                                null=True,
+                                                blank=True)
+    ten_eggs_price = models.DecimalField(max_digits=5,
+                                         decimal_places=2,
+                                         null=True,
+                                         blank=True)
+    dozen_eggs_price = models.DecimalField(max_digits=5,
+                                           decimal_places=2,
+                                           null=True,
+                                           blank=True)
+    trays_of_eggs_price = models.DecimalField(max_digits=5,
+                                              decimal_places=2,
+                                              null=True,
+                                              blank=True)
 
 
 class CustomerStatus(models.Model):

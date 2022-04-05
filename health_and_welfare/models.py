@@ -149,8 +149,8 @@ class Vaccines(models.Model):
                                      blank=False,
                                      on_delete=models.CASCADE)
     vaccine_name = models.CharField(max_length=50,
-                                       null=True,
-                                       blank=True)
+                                    null=True,
+                                    blank=True)
     qty_vaccines = models.DecimalField(max_digits=6,
                                        decimal_places=2,
                                        null=True,
