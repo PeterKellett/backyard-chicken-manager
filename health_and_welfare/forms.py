@@ -38,13 +38,13 @@ class MedicinesForm(forms.ModelForm):
         widgets = {
             'date': forms.DateTimeInput,
             'flock': forms.CheckboxInput,
-            'medicine_name_1': forms.Select(attrs={'class': 'drop-down',
+            'medicine_name': forms.Select(attrs={'class': 'drop-down',
                                                     'id': 'medicine-name',
                                                     'name': 'medicine_name',
                                                     'placeholder':
                                                     "Medicine Name",
                                                     # 'value': '',
-                                                    'onchange': 'addName()'}, choices= [("None ", '')]),
+                                                    'onchange': 'addName()'}),
             'medicine_name_user': forms.TextInput(attrs={'class': '',
                                                          'id': 'medicine-name-user',
                                                          'name': 'medicine_name_user',
