@@ -87,3 +87,13 @@ function validateFlock() {
 //        document.getElementById("submit-form").submit();
 //    }
 //}
+
+
+function showHideHCC(value, idName) {
+    if(value.length == 0) {
+        $(`div.${idName}`).hide;
+    } else {
+        $(`div.${idName}`).fadeIn();
+    }
+}
+

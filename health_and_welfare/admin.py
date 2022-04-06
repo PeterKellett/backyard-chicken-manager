@@ -5,9 +5,10 @@ from .models import Supplements, SupplementsName, Medicines, MedicinesName, Vacc
 class SupplementsAdmin(admin.ModelAdmin):
     """Admin layout for Supplements Admin table"""
     list_display = (
-        'id',
+
         'farm_profile_id',
-        'supplement_name'
+        'supplement',
+        'qty_supplement_administered'
     )
 
 
@@ -15,7 +16,9 @@ class SupplementsNameAdmin(admin.ModelAdmin):
     """Admin layout for Supplement Names Admin table"""
     list_display = (
         'id',
-        'supplement_name'
+        'farm_profile_id',
+        'supplement_name',
+        'supplement_in_stock',
     )
 
 
