@@ -30,7 +30,7 @@ class SupplementsNameAdmin(admin.ModelAdmin):
     """Admin layout for Supplement Names Admin table"""
     list_display = (
         'id',
-        'supplement_name',
+        'supplement_name'
     )
 
 
@@ -38,8 +38,9 @@ class SupplementsAdmin(admin.ModelAdmin):
     """Admin layout for Supplements Admin table"""
     list_display = (
         'id',
-        'farm_profile_id',
+        'farm_profile',
         'supplement_name',
+        'qty_supplements'
     )
 
 

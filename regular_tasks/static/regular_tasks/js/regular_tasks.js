@@ -1,3 +1,5 @@
+console.log("Regular tasks")
+
 // Egg Collection - Variables
 var total_eggs_laid = 0;
 var damaged_eggs;

@@ -27,7 +27,7 @@ $(document).ready(function () {
     // });
 
     // Call hccTotal function on page load
-    hccTotal();
+    // hccTotal();
     
 // !!!!!!! (document).ready function end
 })
@@ -49,20 +49,53 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('div.single-egg-price-section').hide();
-    $('div.half-dozen-eggs-price-section').hide();
-    $('div.ten-eggs-price-section').hide();
-    $('div.dozen-eggs-price-section').hide();
-    $('div.trays-of-eggs-price-section').hide();
-});
+    $('div.single_egg_price').hide();
+    $('div.half_dozen_eggs_price').hide();
+    $('div.ten_eggs_price').hide();
+    $('div.dozen_eggs_price').hide();
+    $('div.trays_of_eggs_price').hide();
+    $('input[name=qty_single_eggs_added]').parent().hide()
+    $('input[name=qty_single_eggs_remaining]').parent().hide()
+    $('input[name=qty_single_eggs_in_stock]').parent().hide()
+    doCalculations();
+}); 
+function doCalculations() {
+    console.log("doCalculations")
+    
+    
+    var form_data = {}
+    document.querySelectorAll('input').forEach(item => {
+        // item.addEventListener('oninput', doCalculations())
+        // Depending on the values in the prices form hide/show respective sales/stock fields
+        if (item.value > 0) {
+            $(`div.${item.name}`).fadeIn();
+        } else {
+            $(`div.${item.name}`).hide();
+        }    
+        // Save the input field names and values of each form field to the dictionary form_data
+        form_data[item.name] = Number(item.value)    
+    });
 
-function showHideInputFields(value, className) {
-    if(value.length > 0) {
-        $(`div.${className}`).fadeIn();
+    if (form_data['qty_single_eggs_in_stock'] > 0) {
+        console.log("HIDE")
+        $('input[name=qty_single_eggs_in_stock]').parent().hide()
+        $('input[name=qty_single_eggs_added]').parent().show()
+        $('input[name=qty_single_eggs_remaining]').parent().show()
     } else {
-        $(`div.${className}`).hide();
+        $('input[name=qty_single_eggs_in_stock]').parent().show()
+        $('input[name=qty_single_eggs_added]').parent().hide()
+        $('input[name=qty_single_eggs_remaining]').parent().hide()
     }
+
+    for (k in form_data) {
+        console.log("k ", k)
+        console.log("v ", form_data[k])
+    }
+    var total = form_data['single_egg_price'] + form_data['half_dozen_eggs_price'] + form_data['dozen_eggs_price']
+        console.log("total = " + total)
 }
+
+
 
 // Show/Hide - Add Names: Function to display a text input when a User selects "Add Other" from a dropdown
 function addName() {
