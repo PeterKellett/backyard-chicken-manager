@@ -1,5 +1,8 @@
 /*-- CSS to make the labels float within the input border whenever the User adds to the field --*/
 
+/* SEE ALSO: "Field label prior to field being clicked on" in base.css --*/
+
+
 /*-- Makes the input relative so that the label can correctly float in the input border when clicked --*/
 /*-- Some related code still held in base.css --*/
 .label-float {

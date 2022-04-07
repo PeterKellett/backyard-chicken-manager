@@ -353,6 +353,7 @@ input[type=checkbox] {
 }
 
 /*-- Field label prior to field being clicked on --*/
+/*-- This affects input_label_float --*/
 input + label,
 .form-data select + label,
 .form-data textarea + label {

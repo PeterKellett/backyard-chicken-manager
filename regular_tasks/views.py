@@ -5,23 +5,12 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from flock_management.models import Flocks, Coops
-from .models import EggCollection, Feeds, Disinfectants, jsTest
+from .models import EggCollection, Feeds, Disinfectants
 from .forms import EggCollectionForm, FeedingTimeForm, CoopCleaningForm
 from json import dumps
 from django.core import serializers
 import json
 
-
-def js_test(request):
-    """Just a test"""
-    data = list(jsTest.objects.values())
-    data_json = serializers.serialize("json", jsTest.objects.all())
-    dataJSON = dumps(data)
-    print("DATA", data)
-    print(("dataJSON", dataJSON))
-    print(("data_json", data_json))
-    return JsonResponse(dataJSON, safe=False)
-    # return render(request, "regular_tasks/jstest.html", {"data": data})
 
 def get_trays_quantity(request):
     """Get Qty of eggs per tray from db"""
@@ -29,6 +18,7 @@ def get_trays_quantity(request):
     farmprofile = userprofile.farmprofiles.all()
     trays_quantity = farmprofile[0].trays_quantity
     return JsonResponse({"trays_quantity": trays_quantity}, safe=False)
+
 
 @login_required
 def egg_collection(request):
