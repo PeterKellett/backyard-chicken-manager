@@ -15,6 +15,7 @@ fetch('https://8000-peterkellett-backyardchi-z5c38sm5p00.ws-eu38.gitpod.io/regul
 .then(data => {
     console.log({data});
     traysQuantity = data.trays_quantity;
+    console.log("Fectch Tray Qty :", data.trays_quantity)
 });
 
 // Egg Collection - Eggs Laid Calculation: Calculation to sum total number of eggs laid

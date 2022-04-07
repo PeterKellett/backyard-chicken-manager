@@ -64,32 +64,6 @@ function showHideInputFields(value, className) {
     }
 }
 
-// Show/Hide - Add Names: Function to display a text input when a User selects "Add Other" from a dropdown
-function addName() {
-    var dropdown = document.getElementById("medicine-name").value;
-    if (dropdown === "Add Other") {
-        document.getElementById("add-name-div").style.display="block";
-        console.log("Add Other is chosen..");
-    } else {
-        document.getElementById("add-name-div").style.display="none";
-        console.log("Add Other is not chosen..");
-    }
-};
-
-
-// https://www.geeksforgeeks.org/how-to-pass-data-to-javascript-in-django-framework/
-// fetch('https://8000-peterkellett-backyardchi-z5c38sm5p00.ws-eu38.gitpod.io/regular_tasks/js_test')
-// .then(response => response.json())
-// .then(data => {
-//     console.log("DATA: ", data);
-//     var dataNode = document.getElementById('alldata');
-//     dataNode.innerHTML+="{{data|escapejs}}";
-//     dataNode = document.getElementById('neatdata');
-//     for(var x in data){
-//             dataNode.innerHTML+=x+' : '+data[x]+'<br><br>';
-//     }
-// });
-
 
 // Sales Methods & Units Function to ensure at least one checkbox
 // is checked in each section before next page can be loaded
@@ -150,13 +124,13 @@ function displaySelectLabel2() {
     document.querySelectorAll('.select-input-label').style.display = "block";
 }
 
-// Floating Input Labels using Dynamic ID's: Not functioning
-function displaySelectLabel3(value, idName) {
-    console.log("displaySelectLabel3 fires")
-    console.log("Value :", value)
-    if(value.length == "") {
-        $(`div.${idName}`).style.display = "none";
-    } else {
-        $(`div.${idName}`).style.display = "block";
-    }
-}
+// // Floating Input Labels using Dynamic ID's: Not functioning
+// function displaySelectLabel3(value, idName) {
+//     console.log("displaySelectLabel3 fires")
+//     console.log("Value :", value)
+//     if(value.length == "") {
+//         $(`div.${idName}`).style.display = "none";
+//     } else {
+//         $(`div.${idName}`).style.display = "block";
+//     }
+// }

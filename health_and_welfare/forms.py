@@ -24,6 +24,16 @@ class SupplementsNameForm(forms.ModelForm):
 # Create a Medicine form
 class MedicinesForm(forms.ModelForm):
     """ Create a Medicines form """
+
+    def __init__(self, *args, **kwargs):
+        super(MedicinesForm, self).__init__(*args, **kwargs)
+        self.fields['medicine_name'].empty_label = 'Select Medicine'
+        self.fields['medicine_name'].initial = "Select Medicine"
+        self.fields['medicine_name'].show_hidden_initial = True
+        self.fields['disease_protected_against'].empty_label = 'Select Disease'
+        self.fields['disease_protected_against'].initial = "Select Disease"
+        self.fields['disease_protected_against'].show_hidden_initial = True
+
     class Meta:
         """ Meta Class Docstring here as required """
         model = Medicines
