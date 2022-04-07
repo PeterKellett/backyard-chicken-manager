@@ -139,13 +139,24 @@ $(document).ready(function() {
 });
 
 
-// Floating Input Labels: Display floating label on Select inputs when a selection is made
+// Floating Input Labels using ID: Display floating label on Select inputs when a selection is made
 function displaySelectLabel() {
     console.log("displaySelectLabel Fires");
     document.getElementById('select-input-label').style.display = "block";
 }
-// Floating Input Labels: Display floating label on Select inputs when a selection is made
+// Floating Input Labels using Class: Display floating label on Select inputs when a selection is made
 function displaySelectLabel2() {
     console.log("displaySelectLabel2 Fires");
     document.querySelectorAll('.select-input-label').style.display = "block";
+}
+
+// Floating Input Labels using Dynamic ID's: Not functioning
+function displaySelectLabel3(value, idName) {
+    console.log("displaySelectLabel3 fires")
+    console.log("Value :", value)
+    if(value.length == "") {
+        $(`div.${idName}`).style.display = "none";
+    } else {
+        $(`div.${idName}`).style.display = "block";
+    }
 }

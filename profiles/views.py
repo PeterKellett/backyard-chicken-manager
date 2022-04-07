@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from .models import UserProfile, FarmProfile, FarmType, Breed, FarmPurpose
 from flock_management.models import Flocks, Coops
-from health_and_welfare.models import Supplements
+from health_and_welfare.models import Supplements, SupplementsName
 from regular_tasks.models import Feeds
 
 
@@ -191,12 +191,12 @@ def get_onboarding_data(request):
         )
         flock.save()
         flock.coop.add(coop)
-        supplement = Supplements(
-            farm_profile=farmprofile,
-            supplement_name=onboard_profile_data['supplement_name'],
-            qty_supplements=onboard_profile_data['supplement_amount_stock']
-        )
-        supplement.save()
+        # supplement = SupplementsName(
+        #     farm_profile=farmprofile,
+        #     supplement_name=onboard_profile_data['supplement_name'],
+        #     supplement_in_stock=onboard_profile_data['supplement_amount_stock'],
+        # )
+        # supplement.save()
         feed = Feeds(
             farm_profile=farmprofile,
             feed_name=onboard_profile_data['feed_name'],

@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm, modelformset_factory
 from .models import Supplements, SupplementsName, Medicines, MedicinesName, Vaccines, VaccinesName, DiseasesName
 
+
 # Create a Supplement form
 class SupplementsForm(forms.ModelForm):
     """ Create an Egg Collection form """
@@ -27,7 +28,7 @@ class MedicinesForm(forms.ModelForm):
         """ Meta Class Docstring here as required """
         model = Medicines
         fields = ('date', 'flock',
-                  'medicine_name', 'medicine_name_user',
+                  'medicine_name',
                   'disease_protected_against',
                   'qty_hens', 'qty_chicks',
                   'qty_cocks', 'doseage_amount',
@@ -38,37 +39,26 @@ class MedicinesForm(forms.ModelForm):
         widgets = {
             'date': forms.DateTimeInput,
             'flock': forms.CheckboxInput,
-            'medicine_name': forms.Select(attrs={'class': 'drop-down',
+            'medicine_name': forms.TextInput(attrs={'class': '',
                                                     'id': 'medicine-name',
                                                     'name': 'medicine_name',
                                                     'placeholder':
-                                                    "Medicine Name",
-                                                    # 'value': '',
-                                                    'onchange': 'addName()'}),
-            'medicine_name_user': forms.TextInput(attrs={'class': '',
-                                                         'id': 'medicine-name-user',
-                                                         'name': 'medicine_name_user',
-                                                         'placeholder':
-                                                         "Medicine Name",
-                                                         'value': ''}),
+                                                    "Medicine Name"}),
             'disease_protected_against': forms.Select(attrs={'class': '',
                                                              'id': 'disease-protected-against',
                                                              'name': 'disease_protected_against',
                                                              'placeholder':
-                                                             "Disease Protected Against",
-                                                             'value': ''}),
+                                                             "Disease Protected Against"}),
             'doseage_amount': forms.TextInput(attrs={'class': '',
                                                      'id': 'doseage-amount',
                                                      'name': 'doseage_amount',
                                                      'placeholder':
-                                                     "Doseage - Total Amount",
-                                                     'value': ''}),
+                                                     "Doseage - Total Amount"}),
             'administration_method': forms.Select(attrs={'class': '',
-                                                            'id': 'administration-method',
-                                                            'name': 'administration_method',
-                                                            'placeholder':
-                                                            "Administration Method",
-                                                            'value': ''}),
+                                                         'id': 'administration-method',
+                                                         'name': 'administration_method',
+                                                         'placeholder':
+                                                         "Administration Method"}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                            'id': 'vet-administered',
                                                            'name': 'vet_administered'}),

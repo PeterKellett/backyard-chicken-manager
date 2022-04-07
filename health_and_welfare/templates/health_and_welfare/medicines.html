@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
     <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
     <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/hcc.css' %}" />
 {% endblock %}
 
 {% block nav_page_title %}
@@ -79,10 +80,6 @@
                     {{ form.medicine_name }}
                     <label for="medicine-name">Medicine Name</label>
                 </div>
-                <!-- <div class="bottom-margin label-float" id="add-name-div">
-                    {{ form.medicine_name_user }}
-                    <label for="medicine-name">Medicine Name</label>
-                </div> -->
                 <!-- Disease Protected Against -->
                 <div class="bottom-margin label-float">
                     {{ form.disease_protected_against }}
@@ -90,17 +87,12 @@
                 </div>
                 <!-- Medicine Recipients -->
                 <div class="bottom-margin label-float">
-                    {#{{ medicine_recipients }}#}
-                    <label for="medicine-recipients">Recipient(s)</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    <select name="recipients" id="recipients-name" onchange="displaySelectLabel()" required>
+                    <select class="clicker" name="recipients" id="recipients" onclick="displaySelectLabel()" required>
                         <option value="" disabled selected>Recipients</option>
-                        {% for recipients in recipients %}
-                            <option type="text" name="recipients_name" value="{{ recipients.id }}" placeholder="recipients.recipients" id="recipients">{{ recipients.recipients }}</option>
-                        {% endfor %}
+                        <option type="text" name="entire_flock" value="Entire Flock" placeholder="Entire Flock" id="entire-flock">Entire Flock</option>
+                        <option type="text" name="individual_birds" value="0" placeholder="Individual Birds" id="individual-birds">Individual Birds</option>
                     </select>
-                    <label id="select-input-label" for="flock-name">Flock Name</label>
+                    <label id="select-input-label" for="recipients">Recipients 2</label>
                 </div>
             </section>
             <div class="bottom-margin">
@@ -108,7 +100,9 @@
             </div>
 
             <!-- HCC Section Section -->
-            {% include 'html_includes/hens_chicks_cocks.html' %}
+            <div id="hcc-container-div">
+                {% include 'html_includes/hens_chicks_cocks.html' %}
+            </div>
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
@@ -168,4 +162,5 @@
 
 {% block postloadjs %}
     <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+    <script src="{% static 'js/hcc_quantities.js' %}"></script>
 {% endblock %}
