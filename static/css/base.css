@@ -20,6 +20,7 @@ body {
     height: 100vh;
 }
 
+/*-- Sets the bottom margin to provide a uniform space between elements --*/
 .bottom-margin-small,
 .bottom-margin {
     padding-left: 0;
