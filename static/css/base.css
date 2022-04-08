@@ -20,10 +20,17 @@ body {
     height: 100vh;
 }
 
+/*-- Sets the bottom margin to provide a uniform space between elements --*/
+.bottom-margin-small,
 .bottom-margin {
     padding-left: 0;
     padding-right: 0;
+}
+.bottom-margin {
     margin-bottom: 12px;
+}
+.bottom-margin-small {
+    margin-bottom: 8px;
 }
 
 .container-fluid {
@@ -353,6 +360,7 @@ input[type=checkbox] {
 }
 
 /*-- Field label prior to field being clicked on --*/
+/*-- This affects input_label_float --*/
 input + label,
 .form-data select + label,
 .form-data textarea + label {

@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block nav_page_title %}
-    Egg Sales - Deliveries
+    Egg Sales - Deliveries Dash
 {% endblock %}
 
 {% block sub-nav %}
@@ -48,6 +48,9 @@
     </ul>
 </div>
 
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Delivery Sales Dashboard" %}
+
 <!-- Icons and Links Section -->
 <div class="container element-container">
     <div class="row bottom-margin">
@@ -72,32 +75,35 @@
         {% csrf_token %}
         
         <div class="form-data">
-            <!-- Sale Date Section -->
-            {% include 'html_includes/date.html' %}
 
-            <!-- Include Overdue Deliveries -->
-            <div class="row bottom-margin">
-                <div class="col-10 col-css">
-                    <h6 class="row-name">Include Overdue Deliveries</h6>
+            <!-- Egg Quantities Required for delivery section-->
+            <section name="eggs_required_section">
+                <!-- Total Eggs Required -->
+                <div class="row bottom-margin">
+                    <h5>Today's Requirments</h5>
                 </div>
-                <div class="col-2 col-css col-css-right">
-                    <input type="checkbox" id="include-overdue-deliveries" name="include_overdue_deliveries" value="include-overdue-deliveries">
-                    <label for="include-overdue-deliveries" class="hidden-label">Include Overdue Deliveries</label>
+                <!-- Include Overdue Deliveries -->
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h6 class="row-name">Include Overdue Deliveries</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right">
+                        <input type="checkbox" id="include-overdue-deliveries" name="include_overdue_deliveries" value="include-overdue-deliveries">
+                        <label for="include-overdue-deliveries" class="hidden-label">Include Overdue Deliveries</label>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Total Eggs Required -->
-            <div class="row bottom-margin">
-                <h5>Today's Requirments</h5>
-                <div class="col-10 col-css">
-                    <h6 class="row-name">Total Eggs Required:</h6>
-                </div>
-                <div class="col-2 col-css col-css-right">
-                    <h5>#Temp</h5>
+                <!-- Total Eggs Required -->
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css bottom-margin">
+                        <h6 class="row-name">Total Eggs Required:</h6>
+                    </div>
+                    <div class="col-2 col-css col-css-right">
+                        <h5>#Temp</h5>
+                    </div>
                 </div>
             
                 <!-- Eggs Required for Delivery -->
-                <div class="row ">
+                <div class="row bottom-margin-small">
                     <div class="col-10 col-css">
                         <p class="row-name">Single Eggs:</p>
                     </div>
@@ -105,7 +111,7 @@
                         <h6>#Temp</h6>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row bottom-margin-small">
                     <div class="col-10 col-css">
                         <p class="row-name">Half Dozen Boxes:</p>
                     </div>
@@ -113,7 +119,15 @@
                         <h6>#Temp</h6>
                     </div>
                 </div>
-                <div class="row ">
+                <div class="row bottom-margin-small">
+                    <div class="col-10 col-css">
+                        <p class="row-name">10 Egg Boxes:</p>
+                    </div>
+                    <div class="col-2 col-css col-css-right">
+                        <h6>#Temp</h6>
+                    </div>
+                </div>
+                <div class="row bottom-margin-small">
                     <div class="col-10 col-css">
                         <p class="row-name">Dozen Boxes:</p>
                     </div>
@@ -121,100 +135,41 @@
                         <h6>#Temp</h6>
                     </div>
                 </div>
-            </div>
-
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
-
-            <!-- Current Deliveries List -->
-            <div class="bottom-margin panel-div">
-                <h5>Awaiting Delivery</h5>
-            </div>
-            <!-- Customer List -->
-            <div class="row bottom-margin">
-                <div class="col-7 col-css">
-                    <h6 class="row-name">Customer Name</h6>
+                <div class="row bottom-margin-small">
+                    <div class="col-10 col-css">
+                        <p class="row-name">Trays:</p>
+                    </div>
+                    <div class="col-2 col-css col-css-right">
+                        <h6>#Temp</h6>
+                    </div>
                 </div>
-                <div class="col-2 col-css">
-                    <h6 class="row-name">Qty</h6>
-                </div>
-                <div class="col-3 col-css col-css-right">
-                    <h6 class="row-name">Due Date</h6>
-                </div>
-            </div>
-            <div class="bottom-margin">
                 <div class="bottom-margin">
-                    <div class="row">
-                        <div class="col-7 col-css">
-                            <a href="{% url 'egg_delivery_sales' %}">
-                                <p class="row-name">Customer Name Temp</p>
-                            </a>
-                        </div>
-                        <div class="col-2 col-css">
-                            <p class="row-name">#</p>
-                        </div>
-                        <div class="col-3 col-css col-css-right">
-                            <p class="row-name">dd/mm/yyyy</p>
-                        </div>
+                    <hr class="hr-large">
+                </div>
+            </section>
+
+            <!-- Current Deliveries List Section-->
+            <section name="deliveries_list_section">
+                <div class="bottom-margin panel-div">
+                    <h5>Awaiting Delivery</h5>
+                </div>
+                <!-- Customer List -->
+                <div class="row bottom-margin">
+                    <div class="col-7 col-css">
+                        <h6 class="row-name">Customer Name</h6>
                     </div>
-                    <!-- This section only included for demo purposes. Needs top be removed when dynamica populating is in place -->
-                    <div class="row">
-                        <div class="col-7 col-css">
-                            <a href="">
-                                <p class="row-name">Customer Name Temp</p>
-                            </a>
-                        </div>
-                        <div class="col-2 col-css">
-                            <p class="row-name">#</p>
-                        </div>
-                        <div class="col-3 col-css col-css-right">
-                            <p class="row-name">dd/mm/yyyy</p>
-                        </div>
+                    <div class="col-2 col-css">
+                        <h6 class="row-name">Qty</h6>
                     </div>
-                    <!-- This section only included for demo purposes. Needs top be removed when dynamica populating is in place -->
-                    <div class="row">
-                        <div class="col-7 col-css">
-                            <a href="">
-                                <p class="row-name">Customer Name Temp</p>
-                            </a>
-                        </div>
-                        <div class="col-2 col-css">
-                            <p class="row-name">#</p>
-                        </div>
-                        <div class="col-3 col-css col-css-right">
-                            <p class="row-name">dd/mm/yyyy</p>
-                        </div>
+                    <div class="col-3 col-css col-css-right">
+                        <h6 class="row-name">Due Date</h6>
                     </div>
                 </div>
-            </div>
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
-
-            <!-- Deliveries Complete List -->
-            <div class="bottom-margin panel-div">
-                <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    <h5>Deliveries Made</h5>
-                </a>
-            </div>
-            <div class="collapse in" id="collapseExample">
                 <div class="bottom-margin">
-                    <div class="row bottom-margin">
-                        <div class="col-7 col-css">
-                            <h6 class="row-name">Customer Name</h6>
-                        </div>
-                        <div class="col-2 col-css">
-                            <h6 class="row-name">Qty</h6>
-                        </div>
-                        <div class="col-3 col-css col-css-right">
-                            <h6 class="row-name">Delivered</h6>
-                        </div>
-                    </div>
                     <div class="bottom-margin">
                         <div class="row">
                             <div class="col-7 col-css">
-                                <a href="">
+                                <a href="{% url 'egg_delivery_sales' %}">
                                     <p class="row-name">Customer Name Temp</p>
                                 </a>
                             </div>
@@ -252,25 +207,95 @@
                             <div class="col-3 col-css col-css-right">
                                 <p class="row-name">dd/mm/yyyy</p>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Total Eggs Required -->
-                    <div class="row bottom-margin">
-                        <div class="col-10 col-css">
-                            <h6 class="row-name">Total Eggs Delivered:</h6>
-                        </div>
-                        <div class="col-2 col-css col-css-right">
-                            <h5>#Temp</h5>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
+                <div class="bottom-margin">
+                    <hr class="hr-large">
+                </div>
+            </section>
+
+            <!-- Deliveries Complete List Section -->
+            <section name="deliveries_completed_section">
+                <div class="bottom-margin panel-div">
+                    <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <h5>Deliveries Made</h5>
+                    </a>
+                </div>
+                <div class="collapse in" id="collapseExample">
+                    <div class="bottom-margin">
+                        <div class="row bottom-margin">
+                            <div class="col-7 col-css">
+                                <h6 class="row-name">Customer Name</h6>
+                            </div>
+                            <div class="col-2 col-css">
+                                <h6 class="row-name">Qty</h6>
+                            </div>
+                            <div class="col-3 col-css col-css-right">
+                                <h6 class="row-name">Delivered</h6>
+                            </div>
+                        </div>
+                        <div class="bottom-margin">
+                            <div class="row">
+                                <div class="col-7 col-css">
+                                    <a href="">
+                                        <p class="row-name">Customer Name Temp</p>
+                                    </a>
+                                </div>
+                                <div class="col-2 col-css">
+                                    <p class="row-name">#</p>
+                                </div>
+                                <div class="col-3 col-css col-css-right">
+                                    <p class="row-name">dd/mm/yyyy</p>
+                                </div>
+                            </div>
+                            <!-- This section only included for demo purposes. Needs top be removed when dynamica populating is in place -->
+                            <div class="row">
+                                <div class="col-7 col-css">
+                                    <a href="">
+                                        <p class="row-name">Customer Name Temp</p>
+                                    </a>
+                                </div>
+                                <div class="col-2 col-css">
+                                    <p class="row-name">#</p>
+                                </div>
+                                <div class="col-3 col-css col-css-right">
+                                    <p class="row-name">dd/mm/yyyy</p>
+                                </div>
+                            </div>
+                            <!-- This section only included for demo purposes. Needs top be removed when dynamica populating is in place -->
+                            <div class="row">
+                                <div class="col-7 col-css">
+                                    <a href="">
+                                        <p class="row-name">Customer Name Temp</p>
+                                    </a>
+                                </div>
+                                <div class="col-2 col-css">
+                                    <p class="row-name">#</p>
+                                </div>
+                                <div class="col-3 col-css col-css-right">
+                                    <p class="row-name">dd/mm/yyyy</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Total Eggs Required -->
+                        <div class="row bottom-margin">
+                            <div class="col-10 col-css">
+                                <h6 class="row-name">Total Eggs Delivered:</h6>
+                            </div>
+                            <div class="col-2 col-css col-css-right">
+                                <h5>#Temp</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-margin">
+                    <hr class="hr-large">
+                </div>
+            </section>
 
             <!-- Egg Breakages or Loses Section -->
-            <section name="flock-core-info">
+            <section name="breakages_and_loses_section">
                 <div class="bottom-margin">
                     <h4>Breakages & Loses</h4>
                 </div>
@@ -278,10 +303,10 @@
                     {{ form.breakages_and_loses_eggs_delivery }}
                     <label for="breakages-and-loses-eggs-delivery">Qty of Eggs Broken, Stolen or Lost</label>
                 </div>
+                <div class="bottom-margin">
+                    <hr class="hr-large">
+                </div>
             </section>
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
 
             <!-- Notes & Images Section -->
             {% include 'html_includes/notes_and_pics.html' %}

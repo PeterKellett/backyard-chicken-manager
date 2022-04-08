@@ -1,0 +1,5 @@
+[
+    {"pk": 1, "model": "profiles.breed", "fields": {"type": "rhode island red"}},
+    {"pk": 2, "model": "profiles.breed", "fields": {"type": "blue chicks"}},
+    {"pk": 3, "model": "profiles.breed", "fields": {"type": "pink hens"}}
+]

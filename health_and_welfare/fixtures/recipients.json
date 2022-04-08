@@ -1,0 +1,4 @@
+[
+    {"pk": 1, "model": "health_and_welfare.recipients", "fields": {"recipients": "Entire Flock"}},
+    {"pk": 2, "model": "health_and_welfare.recipients", "fields": {"recipients": "Individual Birds"}}
+]

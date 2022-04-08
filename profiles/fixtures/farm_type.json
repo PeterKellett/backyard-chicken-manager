@@ -1,0 +1,5 @@
+[
+    {"pk": 1, "model": "profiles.farmtype", "fields": {"type": "egg sales"}},
+    {"pk": 2, "model": "profiles.farmtype", "fields": {"type": "bird sales"}},
+    {"pk": 3, "model": "profiles.farmtype", "fields": {"type": "egg and bird sales"}}
+]

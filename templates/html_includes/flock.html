@@ -5,20 +5,5 @@
             <option type="text" name="flock_name" value="{{ flock.id }}" placeholder="flock.flock_name" id="flock-name">{{ flock.flock_name.capitalize }}</option>
         {% endfor %}
     </select>
-    <label id="select-input-label2" for="flock-name">Flock Name</label>
+    <label id="select-input-label" for="flock-name">Flock Name</label>
 </div>
-
-
-<!-- Attempt to create a dropdown that also takes User text input -->
-<!-- Taken from: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist -->
-<div class="bottom-margin label-float">
-    <input list="flock-name2" type="text" id="flock-name2-input" name="flock-name2-input" placeholder="PH" onchange="displaySelectLabel()"/>
-    <label id="select-input-label" for="flock-name2-input">Flock Name 2</label>
-    <datalist name="flock" id="flock-name2" required>
-        <option value="" disabled selected>Select Flock 2</option>
-        {% for flock in flocks %}
-            <option type="text" name="flock_name2" value="{{ flock.id }}" placeholder="flock.flock_name" id="flock-name2">{{ flock.flock_name.capitalize }}</option>
-        {% endfor %}
-    </datalist>
-</div>
-

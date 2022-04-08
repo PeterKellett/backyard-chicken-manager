@@ -11,6 +11,9 @@ class Recipients(models.Model):
     recipients = models.CharField(max_length=50,
                                   null=True,
                                   blank=True)
+    
+    def __str__(self):
+        return self.recipients
 
 
 class DiseasesName(models.Model):
@@ -22,6 +25,9 @@ class DiseasesName(models.Model):
                                     null=True,
                                     blank=True)
 
+    def __str__(self):
+        return self.disease_name
+
 
 class AdministrationMethod(models.Model):
     """Model used for identifying methods of administering doses"""
@@ -31,6 +37,8 @@ class AdministrationMethod(models.Model):
     administration_method = models.CharField(max_length=50,
                                              null=True,
                                              blank=True)
+    def __str__(self):
+        return self.administration_method
 
 
 class SupplementsName(models.Model):
@@ -38,10 +46,17 @@ class SupplementsName(models.Model):
     class Meta:
         """Overwrite the default Django pluralisation"""
         verbose_name_plural = 'Supplement Names'
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=False,
+                                     blank=False,
+                                     on_delete=models.CASCADE)
     supplement_name = models.CharField(max_length=50,
                                        null=True,
                                        blank=True)
-
+    supplement_in_stock = models.DecimalField(max_digits=6,
+                                              decimal_places=2,
+                                              null=True,
+                                              blank=True)
 
 class Supplements(models.Model):
     """Model used for storing Supplements data"""
@@ -86,13 +101,9 @@ class Medicines(models.Model):
                               null=False,
                               blank=False,
                               on_delete=models.CASCADE)
-    medicine_name = models.ForeignKey(MedicinesName,
-                                      null=True,
-                                      blank=True,
-                                      on_delete=models.CASCADE)
-    medicine_name_user = models.CharField(max_length=50,
-                                          null=True,
-                                          blank=True)
+    medicine_name = models.CharField(max_length=50,
+                                     null=True,
+                                     blank=True)
     disease_protected_against = models.ForeignKey(DiseasesName,
                                                   null=True,
                                                   blank=True,
