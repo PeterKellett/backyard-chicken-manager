@@ -124,29 +124,37 @@ function doCalculations() {
             $(`div.${item.name}`).hide();
         }    
         // Save the input field names and values of each form field to the dictionary form_data
-        form_data[item.name] = Number(item.value)    
+        form_data[item.name] = item.value    
     });    
     // for (k in form_data) {
     //     console.log("k ", k)
     //     console.log("v ", form_data[k])
     // }
+    if (form_data['qty_single_eggs_remaining'] == '') {
+        form_data['qty_single_eggs_remaining'] = form_data['qty_single_eggs_in_stock']
+    }
+    if (form_data['qty_half_dozen_egg_boxes_remaining'] == '') {
+        form_data['qty_half_dozen_egg_boxes_remaining'] = form_data['qty_half_dozen_egg_boxes_in_stock']
+    }
+    if (form_data['qty_ten_egg_boxes_remaining'] == '') {
+        form_data['qty_ten_egg_boxes_remaining'] = form_data['qty_ten_egg_boxes_in_stock']
+    }
+    if (form_data['qty_dozen_egg_boxes_remaining'] == '') {
+        form_data['qty_dozen_egg_boxes_remaining'] = form_data['qty_dozen_egg_boxes_in_stock']
+    }
+    if (form_data['qty_trays_eggs_remaining'] == '') {
+        form_data['qty_trays_eggs_remaining'] = form_data['qty_trays_eggs_in_stock']
+    }
     var value_of_single_eggs_sold = (form_data['single_egg_price'] * (form_data['qty_single_eggs_in_stock'] - form_data['qty_single_eggs_remaining']));
-    console.log("value_of_single_eggs_sold = " + value_of_single_eggs_sold)
-
     var value_of_half_dozen_egg_boxes_sold = (form_data['half_dozen_eggs_price'] * (form_data['qty_half_dozen_egg_boxes_in_stock'] - form_data['qty_half_dozen_egg_boxes_remaining']));
-    console.log("value_of_half_dozen_egg_boxes_sold = " + value_of_half_dozen_egg_boxes_sold)
-
     var value_of_ten_eggs_sold = (form_data['ten_eggs_price'] * (form_data['qty_ten_egg_boxes_in_stock'] - form_data['qty_ten_egg_boxes_remaining']));
-    console.log("value_of_ten_eggs_sold = " + value_of_ten_eggs_sold)
-    
     var value_of_dozen_eggs_sold = (form_data['dozen_eggs_price'] * (form_data['qty_dozen_egg_boxes_in_stock'] - form_data['qty_dozen_egg_boxes_remaining']));
-    console.log("value_of_dozen_eggs_sold = " + value_of_dozen_eggs_sold)
-
     var value_of_trays_eggs_sold = (form_data['trays_of_eggs_price'] * (form_data['qty_trays_eggs_in_stock'] - form_data['qty_trays_eggs_remaining']));
-    console.log("value_of_trays_eggs_sold = " + value_of_trays_eggs_sold)
 
-    var total_value = value_of_single_eggs_sold + value_of_half_dozen_egg_boxes_sold + value_of_ten_eggs_sold + value_of_dozen_eggs_sold + value_of_trays_eggs_sold;
-    console.log("total_value = " + total_value)
+    var total_value = Number(value_of_single_eggs_sold) + Number(value_of_half_dozen_egg_boxes_sold) + Number(value_of_ten_eggs_sold) + Number(value_of_dozen_eggs_sold) + Number(value_of_trays_eggs_sold) - (Number(form_data['losses_eggs_roadside']) * form_data['single_egg_price']);
+    document.getElementById("eggs-sold-value").innerHTML = total_value;
+    var income_difference = form_data['income'] - total_value;
+    document.getElementById("income-deficit").innerHTML = income_difference;
 }
 
 // Sales Methods & Units Function to ensure at least one checkbox
