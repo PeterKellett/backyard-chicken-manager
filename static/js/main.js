@@ -12,7 +12,7 @@ $(document).ready(function () {
     }
 
     // Call hccTotal function on page load
-    hccTotal();
+    // hccTotal();
     
 })
 
@@ -48,20 +48,106 @@ $(document).ready(function () {
 // field has been completed. The first function hides all of the relevenat fields.
 // The second function allows the fields hidden in teh 1st fn to be shown.
 $(document).ready(function () {
-    $('div.single-egg-price-section').hide();
-    $('div.half-dozen-eggs-price-section').hide();
-    $('div.ten-eggs-price-section').hide();
-    $('div.dozen-eggs-price-section').hide();
-    $('div.trays-of-eggs-price-section').hide();
-});
-function showHideInputFields(value, className) {
-    if(value.length > 0) {
-        $(`div.${className}`).fadeIn();
-    } else {
-        $(`div.${className}`).hide();
+    $('div.single_egg_price').hide();
+    $('div.half_dozen_eggs_price').hide();
+    $('div.ten_eggs_price').hide();
+    $('div.dozen_eggs_price').hide();
+    $('div.trays_of_eggs_price').hide();
+    // singles
+    var qty_single_eggs_in_stock = document.getElementsByName('qty_single_eggs_in_stock');
+    var qty_half_dozen_egg_boxes_in_stock = document.getElementsByName('qty_half_dozen_egg_boxes_in_stock');
+    var qty_ten_egg_boxes_in_stock = document.getElementsByName('qty_ten_egg_boxes_in_stock');
+    var qty_dozen_egg_boxes_in_stock = document.getElementsByName('qty_dozen_egg_boxes_in_stock');
+    var qty_trays_eggs_in_stock = document.getElementsByName('qty_trays_eggs_in_stock');
+    // singles in stock
+    if (qty_single_eggs_in_stock[0].value > 0) {
+        $('input[name=qty_single_eggs_in_stock]').parent().hide();
+        $('input[name=qty_single_eggs_added]').parent().show()
+        $('input[name=qty_single_eggs_remaining]').parent().show()
     }
-}
+    else {
+        $('input[name=qty_single_eggs_in_stock]').parent().show();
+        $('input[name=qty_single_eggs_added]').parent().hide()
+        $('input[name=qty_single_eggs_remaining]').parent().hide()
+    }
+    // 1/2 dozen in stock
+    if (qty_half_dozen_egg_boxes_in_stock[0].value > 0) {
+        $('input[name=qty_half_dozen_egg_boxes_in_stock]').parent().hide()
+        $('input[name=qty_half_dozen_egg_boxes_added]').parent().show()
+        $('input[name=qty_half_dozen_egg_boxes_remaining]').parent().show()
+    } else {
+        $('input[name=qty_half_dozen_egg_boxes_in_stock]').parent().show()
+        $('input[name=qty_half_dozen_egg_boxes_added]').parent().hide()
+        $('input[name=qty_half_dozen_egg_boxes_remaining]').parent().hide()
+    }
+    // 10's in stock
+    if (qty_ten_egg_boxes_in_stock[0].value > 0) {
+        $('input[name=qty_ten_egg_boxes_in_stock]').parent().hide()
+        $('input[name=qty_ten_egg_boxes_added]').parent().show()
+        $('input[name=qty_ten_egg_boxes_remaining]').parent().show()
+    } else {
+        $('input[name=qty_ten_egg_boxes_in_stock]').parent().show()
+        $('input[name=qty_ten_egg_boxes_added]').parent().hide()
+        $('input[name=qty_ten_egg_boxes_remaining]').parent().hide()
+    }
+    // Dozen in stock
+    if (qty_dozen_egg_boxes_in_stock[0].value > 0) {
+        $('input[name=qty_dozen_egg_boxes_in_stock]').parent().hide()
+        $('input[name=qty_dozen_egg_boxes_added]').parent().show()
+        $('input[name=qty_dozen_egg_boxes_remaining]').parent().show()
+    } else {
+        $('input[name=qty_dozen_egg_boxes_in_stock]').parent().show()
+        $('input[name=qty_dozen_egg_boxes_added]').parent().hide()
+        $('input[name=qty_dozen_egg_boxes_remaining]').parent().hide()
+    }
+    // trays in stock
+    if (qty_trays_eggs_in_stock[0].value > 0) {
+        $('input[name=qty_trays_eggs_in_stock]').parent().hide()
+        $('input[name=qty_trays_eggs_added]').parent().show()
+        $('input[name=qty_trays_eggs_remaining]').parent().show()
+    } else {
+        $('input[name=qty_trays_eggs_in_stock]').parent().show()
+        $('input[name=qty_trays_eggs_added]').parent().hide()
+        $('input[name=qty_trays_eggs_remaining]').parent().hide()
+    }
+    doCalculations();
+}); 
+function doCalculations() {
+    console.log("doCalculations")
+    var form_data = {}
+    document.querySelectorAll('input').forEach(item => {
+        // item.addEventListener('oninput', doCalculations())
+        // Depending on the values in the prices form hide/show respective sales/stock fields
+        if (item.value > 0) {
+            $(`div.${item.name}`).fadeIn();
+        } else {
+            $(`div.${item.name}`).hide();
+        }    
+        // Save the input field names and values of each form field to the dictionary form_data
+        form_data[item.name] = Number(item.value)    
+    });    
+    // for (k in form_data) {
+    //     console.log("k ", k)
+    //     console.log("v ", form_data[k])
+    // }
+    var value_of_single_eggs_sold = (form_data['single_egg_price'] * (form_data['qty_single_eggs_in_stock'] - form_data['qty_single_eggs_remaining']));
+    console.log("value_of_single_eggs_sold = " + value_of_single_eggs_sold)
 
+    var value_of_half_dozen_egg_boxes_sold = (form_data['half_dozen_eggs_price'] * (form_data['qty_half_dozen_egg_boxes_in_stock'] - form_data['qty_half_dozen_egg_boxes_remaining']));
+    console.log("value_of_half_dozen_egg_boxes_sold = " + value_of_half_dozen_egg_boxes_sold)
+
+    var value_of_ten_eggs_sold = (form_data['ten_eggs_price'] * (form_data['qty_ten_egg_boxes_in_stock'] - form_data['qty_ten_egg_boxes_remaining']));
+    console.log("value_of_ten_eggs_sold = " + value_of_ten_eggs_sold)
+    
+    var value_of_dozen_eggs_sold = (form_data['dozen_eggs_price'] * (form_data['qty_dozen_egg_boxes_in_stock'] - form_data['qty_dozen_egg_boxes_remaining']));
+    console.log("value_of_dozen_eggs_sold = " + value_of_dozen_eggs_sold)
+
+    var value_of_trays_eggs_sold = (form_data['trays_of_eggs_price'] * (form_data['qty_trays_eggs_in_stock'] - form_data['qty_trays_eggs_remaining']));
+    console.log("value_of_trays_eggs_sold = " + value_of_trays_eggs_sold)
+
+    var total_value = value_of_single_eggs_sold + value_of_half_dozen_egg_boxes_sold + value_of_ten_eggs_sold + value_of_dozen_eggs_sold + value_of_trays_eggs_sold;
+    console.log("total_value = " + total_value)
+}
 
 // Sales Methods & Units Function to ensure at least one checkbox
 // is checked in each section before next page can be loaded

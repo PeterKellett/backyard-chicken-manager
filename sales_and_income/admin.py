@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Customer, Pricing, SalesType, CustomerStatus, NonDeliveryReason, NonCollectionReason, DeliveryRouteDay, LastOrderReceivedWithin, NextOrderDueWithin
+from .models import Pricing, EggRoadsideSales, EggCollectionSales, EggDeliverySalesDashboard, EggDeliverySales, EggMarketSales, Customer, SalesType, CustomerStatus, NonDeliveryReason, NonCollectionReason, DeliveryRouteDay, LastOrderReceivedWithin, NextOrderDueWithin
 
 
 # Register your models here.
@@ -139,15 +139,14 @@ class EggCollectionSalesAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'date',
-        # 'farm_profile_id',
-        # 'customer_name_eggs_collection',
-        'normal_order_qty_eggs_collection',
+        'farm_profile_id',
+        'customer_id',
         'qty_sold_eggs_collection',
         'qty_given_free_eggs_collection',
         'sale_amount_eggs_collection',
         'amount_paid_eggs_collection',
         'balance_owed_eggs_collection',
-        'breakages_and_loses_eggs_collection',
+        'breakages_and_losses_eggs_collection',
         'notes',
         'images'
     )
@@ -183,14 +182,13 @@ class CustomerAdmin(admin.ModelAdmin):
     """Admin layout for Customer (Singular) Admin table"""
     list_display = (
         'id',
-        # 'farm_profile_id',
-        # customer_type,
+        'farm_profile_id',
         'customer_name',
         'address',
         'postcode',
         'phone',
         'date_added',
-        # status,
+        'customer_status',
         'order_qty',
         'route_day',
         'route_position',

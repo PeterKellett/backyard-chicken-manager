@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
     <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
     <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
-    <link rel="stylesheet" href="{% static 'regular_tasks/css/sales_and_income.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static 'regular_tasks/css/sales_and_income.css' %}" /> -->
 {% endblock %}
 
 {% block nav_page_title %}
@@ -84,28 +84,32 @@
 
             <!-- Egg Prices Section -->
             <section name="flock-core-info">
-                <div class="bottom-margin label-float">
-                    <h4>Pricing</h4>
+                <div class="bottom-margin panel-div label-float">
+                    <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <h4>Pricing (Click on me)</h4>
+                    </a>
                 </div>
-                <div class="bottom-margin label-float">
-                    {{ pricing_form.single_egg_price }}
-                    <label for="single-egg-price">Single Eggs Price</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ pricing_form.half_dozen_eggs_price }}
-                    <label for="half-dozen-eggs-price">Half Dozen Eggs Price</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ pricing_form.ten_eggs_price }}
-                    <label for="ten-eggs-price">10 Eggs Price</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ pricing_form.dozen_eggs_price }}
-                    <label for="dozen-eggs-price">Dozen Eggs Price</label>
-                </div>
-                <div class="bottom-margin label-float">
-                    {{ pricing_form.trays_of_eggs_price }}
-                    <label for="trays-of-eggs-price">Tray of Eggs Price</label>
+                <div class="collapse in" id="collapseExample">
+                    <div class="bottom-margin label-float">
+                        {{ pricing_form.single_egg_price }}
+                        <label for="single-egg-price">Single Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ pricing_form.half_dozen_eggs_price }}
+                        <label for="half-dozen-eggs-price">Half Dozen Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ pricing_form.ten_eggs_price }}
+                        <label for="ten-eggs-price">10 Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ pricing_form.dozen_eggs_price }}
+                        <label for="dozen-eggs-price">Dozen Eggs Price</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ pricing_form.trays_of_eggs_price }}
+                        <label for="trays-of-eggs-price">Tray of Eggs Price</label>
+                    </div>
                 </div>
             </section>
             <div class="bottom-margin">
@@ -117,27 +121,24 @@
                 <div class="bottom-margin label-float">
                     <h4>Sales & Stocks</h4>
                 </div>
-                <fieldset>
-                    {% if sales_form.qty_single_eggs_in_stock.value != None %}
-                        <div class="bottom-margin label-float hide-show-div">
-                            {{ sales_form.qty_single_eggs_remaining }}
-                            <label for="qty-single-eggs-remaining">Qty of Single Eggs Remaining</label>
-                        </div>
-                        <div class="bottom-margin label-float hide-show-div">
-                            {{ sales_form.qty_single_eggs_added }}
-                            <label for="qty-single-eggs-added">Qty of Single Eggs Added</label>
-                        </div>
-                    {% else %}
-                        <div class="bottom-margin label-float hide-show-div">
-                            {{ sales_form.qty_single_eggs_in_stock }}
-                            <label for="qty-single-eggs-in-stock">Qty of Single Eggs In Stock</label>
-                        </div>
-                    {% endif %}
-                </fieldset>
+                <!-- Single Eggs -->
+                <div class="single_egg_price">
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_single_eggs_remaining }}
+                        <label for="qty-single-eggs-remaining">Qty of Single Eggs Remaining</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_single_eggs_added }}
+                        <label for="qty-single-eggs-added">Qty of Single Eggs Added</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_single_eggs_in_stock }}
+                        <label for="qty-single-eggs-in-stock">Qty of Single Eggs In Stock</label>
+                    </div>
+                </div>
                 
-                <fieldset>
-                    <legend></legend>
-                    {% if sales_form.qty_half_dozen_egg_boxes_in_stock.value != None %}
+                <!-- Half dozen -->
+                <div class="half_dozen_eggs_price">
                         <div class="bottom-margin label-float">
                             {{ sales_form.qty_half_dozen_egg_boxes_remaining }}
                             <label for="qty-half-dozen-egg-boxes-remaining">Qty of Half Dozens Remaining</label>
@@ -146,17 +147,13 @@
                             {{ sales_form.qty_half_dozen_egg_boxes_added }}
                             <label for="qty-half-dozen-egg-boxes-added">Qty of Half Dozens Added</label>
                         </div>
-                    {% else %}
                         <div class="bottom-margin label-float">
                             {{ sales_form.qty_half_dozen_egg_boxes_in_stock }}
                             <label for="qty-half-dozen-egg-boxes-in-stock">Qty of Half Dozens In Stock</label>
                         </div>
-                    {% endif %}
-                </fieldset>
-                
-                <fieldset>
-                    <legend></legend>
-                    {% if sales_form.qty_ten_egg_boxes_in_stock.value != None %}
+                </div>
+                <!-- Tens -->
+                <div class="ten_eggs_price">
                         <div class="bottom-margin label-float">
                             {{ sales_form.qty_ten_egg_boxes_remaining }}
                             <label for="qty-ten-egg-boxes-remaining">Qty of 10's Remaining</label>
@@ -165,17 +162,13 @@
                             {{ sales_form.qty_ten_egg_boxes_added}}
                             <label for="qty-ten-egg-boxes-added">Qty of 10's Added</label>
                         </div>
-                    {% else %}
                         <div class="bottom-margin label-float">
                             {{ sales_form.qty_ten_egg_boxes_in_stock }}
                             <label for="qty-ten-egg-boxes-in-stock">Qty of 10's In Stock</label>
                         </div>
-                    {% endif %}
-                </fieldset>
-                
-                <fieldset>
-                    <legend></legend>
-                    {% if sales_form.qty_dozen_egg_boxes_in_stock.value != None %}
+                </div>
+                <!-- Dozen -->
+                <div class="dozen_eggs_price">
                         <div class="bottom-margin label-float">
                             {{ sales_form.qty_dozen_egg_boxes_remaining }}
                             <label for="qty-dozen-egg-boxes-remaining">Qty of Dozens Remaining</label>
@@ -184,33 +177,27 @@
                             {{ sales_form.qty_dozen_egg_boxes_added }}
                             <label for="qty-dozen-egg-boxes-added">Qty of Dozens Added</label>
                         </div>
-                    {% else %}
                         <div class="bottom-margin label-float">
                             {{ sales_form.qty_dozen_egg_boxes_in_stock }}
                             <label for="qty-dozen-egg-boxes-in-stock">Qty of Dozens In Stock</label>
                         </div>
-                    {% endif %}
-                </fieldset>
-                
-                <fieldset>
-                    <legend></legend>
-                        {% if sales_form.qty_trays_eggs_in_stock.value != None %}
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_trays_eggs_remaining }}
-                            <label for="qty-trays-of-eggs-remaining">Qty of Trays Remaining</label>
-                        </div>
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_trays_eggs_added }}
-                            <label for="qty-trays-of-eggs-added">Qty of Trays Added</label>
-                        </div>
-                    {% else %}
+                </div>
+                <!-- Trays -->
+                <div class="trays_of_eggs_price">
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_trays_eggs_remaining }}
+                        <label for="qty-trays-of-eggs-remaining">Qty of Trays Remaining</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_trays_eggs_added }}
+                        <label for="qty-trays-of-eggs-added">Qty of Trays Added</label>
+                    </div>
                         <div class="bottom-margin label-float">
                             {{ sales_form.qty_trays_eggs_in_stock }}
                             <label for="qty-trays-of-eggs-in-stock">Qty of Trays In Stock</label>
                         </div>
-                    {% endif %}
-                </fieldset>
- 
+                </div>
+                <!-- Amount Paid -->
                 <div class="bottom-margin label-float">
                     {{ sales_form.income }}
                     <label for="amount-paid-eggs-roadside">€ Amount Collected</label>
@@ -218,7 +205,7 @@
                 <!-- Total Selling Value of Eggs Sold -->
                 <div class="row bottom-margin">
                     <div class="col-10 col-css">
-                        <h6 class="row-name">Value of Eggs Sold:</h6>
+                        <h6 class="row-name">Value of Eggs Sold: <span id="eggs-sold-value"></span></h6>
                     </div>
                     <div class="col-2 col-css col-css-right label-float">
                         <!-- {{ form.sales_amount_eggs_roadside }} -->
@@ -228,7 +215,7 @@
                 <!-- Difference Between Value of Eggs Sold and Money Received -->
                 <div class="row bottom-margin">
                     <div class="col-10 col-css">
-                        <h6 class="row-name">Difference Between Egg Sales and Amount Collected:</h6>
+                        <h6 class="row-name">Difference Between Egg Sales and Amount Collected: <span id="income-deficit"></span></h6>
                     </div>
                     <div class="col-2 col-css col-css-right label-float">
                         <!-- {{ form.sales_paid_difference_eggs_roadside }} -->
@@ -282,7 +269,6 @@
 
             <!-- Buttons Section -->
             <div class="button-container">
-                <input type="hidden" name="redirect_url" value="onboard_produce"/>
                 <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
                 <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
             </div>
@@ -293,5 +279,6 @@
 {% endblock %}
 
 {% block postloadjs %}
-    <script src="{% static 'sales_and_income/js/roadside_sales.js' %}"></script>
+<!-- {{ block.super }}
+<script src="{% static 'sales_and_income/js/roadside_sales.js' %}"></script> -->
 {% endblock %}

@@ -133,5 +133,9 @@
 {% endblock %}
 
 {% block postloadjs %}
-    <script src="{% static 'css/google_maps_api.js' %}"></script>
+{{ block.super }}
+    <script src="{% static 'js/google_maps_api.js' %}"></script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=BCM_MAP_KEY&libraries=places&callback=initAutocomplete" defer>
+    </script>
 {% endblock %}

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from .forms import EggRoadsideSalesForm, EggCollectionSalesForm, EggDeliverySalesDashboardForm, EggDeliverySalesForm, EggMarketSalesForm, PricingForm, CustomerForm # EggCollectionSalesDashboardForm
-from .models import Pricing, SalesType, EggRoadsideSales
+from .models import Pricing, SalesType, EggRoadsideSales, Customer
 import datetime
 import decimal
 
@@ -46,7 +46,7 @@ def egg_roadside_sales(request):
         previous_roadside_sale = EggRoadsideSales.objects.filter(farm_profile=farmprofile[0]).last()
         if sales_form.is_valid() and pricing_form.is_valid():
             print("pricing_form = ", pricing_form.cleaned_data)
-            # print("sales_form = ", sales_form.cleaned_data)
+            print("sales_form = ", sales_form.cleaned_data)
             if pricing_form.has_changed():
                 print("Changed")
                 prices = Pricing(
@@ -68,7 +68,6 @@ def egg_roadside_sales(request):
             if not roadside_sale:
                 sales_form.save()
             else:
-                print("sales_form = ", sales_form.qty_single_eggs_in_stock)
                 print("roadside_sale = ", roadside_sale.qty_single_eggs_in_stock)
                 # Calculations for eggs sold
                 if previous_roadside_sale.qty_single_eggs_in_stock is not None:
@@ -161,6 +160,16 @@ def egg_roadside_sales(request):
                 print("dozen_eggs_price = ", prices.dozen_eggs_price)
                 print("trays_of_eggs_price = ", prices.trays_of_eggs_price)
                 print("sales_form.qty_dozen_egg_boxes_sold = ", sales_form.qty_dozen_egg_boxes_sold)
+                if prices.single_egg_price is None:
+                    prices.single_egg_price = 0
+                if prices.half_dozen_eggs_price is None:
+                    prices.half_dozen_eggs_price = 0
+                if prices.ten_eggs_price is None:
+                    prices.ten_eggs_price = 0
+                if prices.dozen_eggs_price is None:
+                    prices.dozen_eggs_price = 0
+                if prices.trays_of_eggs_price is None:
+                    prices.trays_of_eggs_price = 0
                 if sales_form.losses_eggs_roadside is None:
                     sales_form.losses_eggs_roadside = 0
                 suggested_income = (sales_form.qty_single_eggs_sold * decimal.Decimal(prices.single_egg_price)) \
@@ -170,8 +179,9 @@ def egg_roadside_sales(request):
                     + (sales_form.qty_trays_eggs_sold * decimal.Decimal(prices.trays_of_eggs_price))
                 sales_form.income_deficit = sales_form.income - suggested_income + (sales_form.losses_eggs_roadside * decimal.Decimal(prices.single_egg_price))
                 sales_form.pricing = prices
+                print("suggested_income = ", suggested_income)
+                print("sales_form.income_deficit = ", sales_form.income_deficit)
                 sales_form.save()
-                print("next_roadside_sale['qty_single_eggs_in_stock'] = ", next_roadside_sale)
                 next_object = EggRoadsideSales(
                     farm_profile=farmprofile[0],
                     date=datetime.datetime.now(),
@@ -269,6 +279,10 @@ def egg_delivery_sales(request):
 @login_required
 def egg_collection_sales(request):
     """view to collection sales"""
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    customers = Customer.objects.filter(farm_profile=farmprofile[0])
+    print("customers = ", customers)
     if request.POST:
         form = EggCollectionSalesForm(request.POST, request.FILES)
         if form.is_valid():
@@ -289,7 +303,8 @@ def egg_collection_sales(request):
     else:
         form = EggCollectionSalesForm
         template = 'sales_and_income/egg_collection_sales.html'
-        context = {'form': form}
+        context = {'form': form,
+                   'customers': customers}
         return render(request, template, context)
 
 

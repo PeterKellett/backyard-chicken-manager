@@ -67,14 +67,13 @@ class Supplements(models.Model):
                                      null=False,
                                      blank=False,
                                      on_delete=models.CASCADE)
-    supplement = models.ForeignKey(SupplementsName,
-                                   null=True,
-                                   blank=True,
-                                   on_delete=models.CASCADE)
-    qty_supplement_administered = models.DecimalField(max_digits=6,
-                                                      decimal_places=2,
-                                                      null=True,
-                                                      blank=True)
+    supplement_name = models.CharField(max_length=50,
+                                       null=True,
+                                       blank=True)
+    qty_supplements = models.DecimalField(max_digits=6,
+                                          decimal_places=2,
+                                          null=True,
+                                          blank=True)
 
 
 class MedicinesName(models.Model):
@@ -160,8 +159,8 @@ class Vaccines(models.Model):
                                      blank=False,
                                      on_delete=models.CASCADE)
     vaccine_name = models.CharField(max_length=50,
-                                       null=True,
-                                       blank=True)
+                                    null=True,
+                                    blank=True)
     qty_vaccines = models.DecimalField(max_digits=6,
                                        decimal_places=2,
                                        null=True,
