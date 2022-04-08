@@ -11,32 +11,16 @@ $(document).ready(function () {
         }
     }
 
-    // Show Hide Part 1: If a label is for a field that displays when a checkbox is checked this
-    // function allows the label to display. Otherwise it shows up onscreen even though the input
-    // it is for, doesn't.
-    // DON'T THINK THIS IS REQUIRED. COMMENTED OUT TO SEE IF ANY ISSUES ARISE IN THE COMING WEEKS.
-    // var checkbox = document.getElementById("disinfected");
-    // checkbox.addEventListener('change', function() {
-    //     if (this.checked) {
-    //         document.getElementById("disinfectant-label").style.display="block";
-    //         console.log("Checkbox is checked..");
-    //     } else {
-    //         document.getElementById("disinfectant-label").style.display="none";
-    //         console.log("Checkbox is not checked..");
-    //     }
-    // });
-
     // Call hccTotal function on page load
     hccTotal();
     
-// !!!!!!! (document).ready function end
 })
 
-// Show Hide Part 2: Function to display additional field(s) or content when a checkbox is checked
+
+// Show Hide 1: Function to display additional field(s) or content when a checkbox is checked
 // Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
 $(document).ready(function () {
     $('div.show-on-click').hide();
-    console.log("Show on click fires");
 
     //show it when the checkbox is clicked
     $('input[class="click-to-show"]').on('click', function () {
@@ -47,7 +31,22 @@ $(document).ready(function () {
         }
     });
 });
+// Show Hide 2: This fn allows an existing div to be hidden and replaced by whatever div
+// is displayed Show Hide 1 above. First used on Tray Qty checkbox in onboarding_produce.
+$(document).ready(function () {
+    $('input[class="click-to-show"]').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('div.hide-on-click').hide();;
+        } else {
+            $('div.hide-on-click').fadeIn();
+        }
+    });
+});
 
+
+// Show Hide 3: This set of functions allows a field(s) to be displayed when another
+// field has been completed. The first function hides all of the relevenat fields.
+// The second function allows the fields hidden in teh 1st fn to be shown.
 $(document).ready(function () {
     $('div.single-egg-price-section').hide();
     $('div.half-dozen-eggs-price-section').hide();
@@ -55,7 +54,6 @@ $(document).ready(function () {
     $('div.dozen-eggs-price-section').hide();
     $('div.trays-of-eggs-price-section').hide();
 });
-
 function showHideInputFields(value, className) {
     if(value.length > 0) {
         $(`div.${className}`).fadeIn();
@@ -123,14 +121,3 @@ function displaySelectLabel2() {
     console.log("displaySelectLabel2 Fires");
     document.querySelectorAll('.select-input-label').style.display = "block";
 }
-
-// // Floating Input Labels using Dynamic ID's: Not functioning
-// function displaySelectLabel3(value, idName) {
-//     console.log("displaySelectLabel3 fires")
-//     console.log("Value :", value)
-//     if(value.length == "") {
-//         $(`div.${idName}`).style.display = "none";
-//     } else {
-//         $(`div.${idName}`).style.display = "block";
-//     }
-// }

@@ -20,10 +20,16 @@ body {
     height: 100vh;
 }
 
+.bottom-margin-small,
 .bottom-margin {
     padding-left: 0;
     padding-right: 0;
+}
+.bottom-margin {
     margin-bottom: 12px;
+}
+.bottom-margin-small {
+    margin-bottom: 8px;
 }
 
 .container-fluid {

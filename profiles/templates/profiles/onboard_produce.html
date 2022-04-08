@@ -85,7 +85,7 @@
                     <p>Where do you sell your produce?</p>
                 </div>
                 <div class="container">
-                    <div class="row bottom-margin" id="roadside-row">
+                    <div class="row bottom-margin-small" id="roadside-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Roadside</h6>
                         </div>
@@ -97,7 +97,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row bottom-margin" id="markets-row">
+                    <div class="row bottom-margin-small" id="markets-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Markets</h6>
                         </div>
@@ -109,7 +109,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row bottom-margin" id="deliveries-row">
+                    <div class="row bottom-margin-small" id="deliveries-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Deliveries</h6>
                         </div>
@@ -149,7 +149,7 @@
                     <p>In what unit quantities do you sell your eggs?</p>
                 </div>
                 <div class="container">
-                    <div class="row bottom-margin" id="single-eggs-row">
+                    <div class="row bottom-margin-small" id="single-eggs-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Single Eggs</h6>
                         </div>
@@ -161,7 +161,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row bottom-margin" id="half-dozen-carton-row">
+                    <div class="row bottom-margin-small" id="half-dozen-carton-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">1/2 Dozen Cartons</h6>
                         </div>
@@ -173,7 +173,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row bottom-margin" id="ten-egg-carton-row">
+                    <div class="row bottom-margin-small" id="ten-egg-carton-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">10 Egg Cartons</h6>
                         </div>
@@ -185,7 +185,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="row bottom-margin" id="dozen-carton-row">
+                    <div class="row bottom-margin-small" id="dozen-carton-row">
                         <div class="col-11 col-css">
                             <h6 class="col-css-element checkbox-label">Dozen Cartons</h6>
                         </div>
@@ -209,6 +209,10 @@
                                 <input type="number" name="trays_qty" value="30" placeholder="Tray Qty" id="trays-qty" 
                                     step="1" min="0" oninput="this.value = Math.abs(this.value)" class="col-css-element">
                             {% endif %}
+                        </div>
+                        <div class="col-3 col-css hide-on-click">
+                            <!-- This div allows the checkbox to stay alligned with the others whenever it is unchecked.
+                                 Once checked, it is hidden and replaced by the input field above. -->
                         </div>
                         <div class="col-1 col-css col-css-right">
                             {% if onboard_profile_data.trays_check %}
