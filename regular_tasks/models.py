@@ -98,12 +98,18 @@ class FeedingTime(models.Model):
                                   null=False,
                                   blank=False,
                                   on_delete=models.CASCADE)
+    food_total_setup = models.IntegerField(null=True,
+                                     blank=True,
+                                     verbose_name='Food Total')
     amount_food_rem = models.IntegerField(null=False,
                                           blank=False,
                                           verbose_name='amount of food remaining')
     amount_food_added = models.IntegerField(null=False,
                                             blank=False,
                                             verbose_name='amount of food added')
+    water_total_setup = models.IntegerField(null=True,
+                                      blank=True,
+                                      verbose_name='Water Total')
     amount_water_rem = models.IntegerField(null=False,
                                            blank=False,
                                            verbose_name='amount of water remaining')

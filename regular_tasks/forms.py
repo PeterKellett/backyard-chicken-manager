@@ -155,6 +155,8 @@ FeedingTimeFormSet = modelformset_factory(FeedingTime,
                                           fields=('feed_type',
                                                   'amount_food_rem',
                                                   'amount_food_added'))
+
+
 # Create a Feeding Time form
 class FeedingTimeForm(forms.ModelForm):
     """ Create a feeding time form """
@@ -162,13 +164,22 @@ class FeedingTimeForm(forms.ModelForm):
         """ Meta Class Docstring here as required """
         model = FeedingTime
         fields = ('date', 'flock', 'feed_type',
+                  'food_total_setup',
                   'amount_food_rem', 'amount_food_added',
+                  'water_total_setup',
                   'amount_water_rem', 'amount_water_added',
                   'notes', 'images'
                   )
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
+            'amount_food_rem': forms.TextInput(attrs={'id': 'amount-food-rem',
+                                                      'name': 'amount_food_rem',
+                                                      'placeholder': 'Amount of Food Remaining',
+                                                      'value': '',
+                                                      'step': '1',
+                                                      'min': '0',
+                                                      'oninput': 'this.value = Math.abs(this.value)'}),
             'amount_food_rem': forms.TextInput(attrs={'id': 'amount-food-rem',
                                                       'name': 'amount_food_rem',
                                                       'placeholder': 'Amount of Food Remaining',
