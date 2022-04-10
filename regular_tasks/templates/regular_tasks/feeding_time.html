@@ -17,7 +17,7 @@
 
 {% block content %}
 
-<!-- Page Set-up Modal when User lands on page for first time or until required data is supplied -->
+<!-- Modal 1: Page Set-up Modal when User lands on page for first time or until required data is supplied -->
 <div class="modal" id="page-setup-modal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -52,14 +52,42 @@
                     {% csrf_token %}
             
                     <div class="form-data">
+                        <!-- Feed Type -->
                         <div class="bottom-margin">
                             {{ form.feed_type }}
                         </div>
-                        <div class="bottom-margin">
-                            {{ form.food_total_setup }}
+                        <!-- Food Amount -->
+                        <div class="row bottom-margin">
+                            <div class="col-9 col-css label-float">
+                                {{ form.food_total_setup }}
+                                <label for="food-total-setup">Total Food Amount</label>
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            <div class="col-2 col-css">
+                                <select name="weights_and_measures_units" id="weights-and-measures-units">
+                                    <option value="g">g</option>
+                                    <option value="kg">kg</option>
+                                    <option value="oz">oz</option>
+                                    <option value="lb">lb</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="bottom-margin">
-                            {{ form.water_total_setup }}
+                        <!-- Water Amount -->
+                        <div class="row bottom-margin">
+                            <div class="col-9 col-css label-float">
+                                {{ form.water_total_setup }}
+                                <label for="water-total-setup">Total Water Amount</label>
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            <div class="col-2 col-css">
+                                <select name="weights_and_measures_units" id="weights-and-measures-units">
+                                    <option value="kg">lt</option>
+                                    <option value="oz">fl oz</option>
+                                    <option value="lb">gallon</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -70,51 +98,6 @@
             <div class="modal-footer">
             <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Save</button>
             <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- "i" icon modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-    
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Feeding Time - Page Instructions</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <p class="text-start modal-body">Each time you feed your birds, complete this page.</p>
-                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> The first time you record a feed,
-                                                                       it is vital that you state the total amount of food and water
-                                                                       in the feeders. For subsequent feeds, please indicate
-                                                                       the amount of food and water remaining in the feeders after the last
-                                                                       feed and the amount added. This allows us to calculate the
-                                                                       average amount of food and water consumed by each bird which can be
-                                                                       viewed in the "Reports" section.</p>
-                <ul class="text-start">
-                    <li><span class="fw-bold">Date:</span> Add the feeding date.</li>
-                    <li><span class="fw-bold">Select Flock:</span> Select which flock was fed (only displays if you have multiple flocks.
-                                                                   If you have several flocks, you can add another feeding after you click save).</li>
-                    <li><span class="fw-bold">Select Food:</span> This is the quantity of full trays.</li>
-                    <li><span class="fw-bold">Amount of Food Remaining:</span> Amount of feed remaining in the feeder prior to adding more.</li>
-                    <li><span class="fw-bold">Amount of Food Added:</span> Amount of food added to the feeder.</li>
-                    <li><span class="fw-bold">Amount of Water Remaining:</span> Amount of water remaining in the feeder prior to adding more.</li>
-                    <li><span class="fw-bold">Amount of Water Added:</span> Amount of water added to the feeder.</li>
-                    <li><span class="fw-bold">Notes:</span> If you have any notes about the collection, add them here.</li>
-                    <li><span class="fw-bold">Photos:</span> If you have any photos from the collection, upload them here.</li>
-                    <li><span class="fw-bold">Save Button:</span> Click this button when finished.</li>
-                    <li><span class="fw-bold">Cancel Button:</span> Click this button to clear all data entered.</li>
-                </ul>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -165,7 +148,7 @@
     <hr class="hr-large">
 </div>
 
-<!-- "i" icon modal -->
+<!-- Modal 2: "i" icon modal -->
 <div class="modal" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -236,27 +219,36 @@
                     {% include 'html_includes/foods.html' %}
                 </div>
                 <div class="container">
-                    <div class="row bottom-margin label-float">
-                        <div class="col-10 col-css">
+                    <div class="row bottom-margin">
+                        <div class="col-9 col-css label-float">
                             {{ form.amount_food_rem }}
-                            
                             <label for="amount-food-rem">Amount of Food Remaining</label>
                         </div>
+                        <div class="col-1">
+                        </div>
                         <div class="col-2 col-css">
-                            <h5 class="text-end">
-                                kg
-                            </h5>
+                            <select name="weights_and_measures_units" id="weights-and-measures-units">
+                                <option value="g">g</option>
+                                <option value="kg">kg</option>
+                                <option value="oz">oz</option>
+                                <option value="lb">lb</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="row bottom-margin label-float">
-                        <div class="col-10 col-css">
+                    <div class="row bottom-margin">
+                        <div class="col-9 col-css label-float">
                             {{ form.amount_food_added }}
                             <label for="amount-food-added">Amount of Food Added</label>
                         </div>
+                        <div class="col-1">
+                        </div>
                         <div class="col-2 col-css">
-                            <h5 class="text-end">
-                                kg
-                            </h5>
+                            <select name="weights_and_measures_units" id="weights-and-measures-units">
+                                <option value="g">g</option>
+                                <option value="kg">kg</option>
+                                <option value="oz">oz</option>
+                                <option value="lb">lb</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -271,38 +263,42 @@
 
             <!-- Water Section -->
             <section name="water">
-                <div class="container">
-                    <div class="row bottom-margin row-name">
-                        <div class="col-2">
-                            <img src="{{ MEDIA_URL }}reg_task_water.png" alt="Water icon" class="non-round-icon">
-                        </div>
-                        <div class="col-10 content-vertical-center">
-                            <h4>Water</h4>
-                        </div>
+                <div class="row bottom-margin row-name">
+                    <div class="col-2">
+                        <img src="{{ MEDIA_URL }}reg_task_water.png" alt="Water icon" class="non-round-icon">
+                    </div>
+                    <div class="col-10 content-vertical-center">
+                        <h4>Water</h4>
                     </div>
                 </div>
-                <div class="container">
-                    <div class="row bottom-margin label-float">
-                        <div class="col-10 col-css">
-                            {{ form.amount_water_rem }}
-                            <label for="amount-water-rem">Amount of Water Remaining</label>
-                        </div>
-                        <div class="col-2 col-css">
-                            <h5 class="text-end">
-                                lt
-                            </h5>
-                        </div>
+                <div class="row bottom-margin label-float">
+                    <div class="col-9 col-css">
+                        {{ form.amount_water_rem }}
+                        <label for="amount-water-rem">Amount of Water Remaining</label>
                     </div>
-                    <div class="row bottom-margin label-float">
-                        <div class="col-10 col-css">
-                            {{ form.amount_water_added }}
-                            <label for="amount-water-added">Amount of Water Added</label>
-                        </div>
-                        <div class="col-2 col-css">
-                            <h5 class="text-end">
-                                lt
-                            </h5>
-                        </div>
+                    <div class="col-1">
+                    </div>
+                    <div class="col-2 col-css">
+                        <select name="weights_and_measures_units" id="weights-and-measures-units">
+                            <option value="g">lt</option>
+                            <option value="kg">fl oz</option>
+                            <option value="oz">gallon</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row bottom-margin label-float">
+                    <div class="col-9 col-css">
+                        {{ form.amount_water_added }}
+                        <label for="amount-water-added">Amount of Water Added</label>
+                    </div>
+                    <div class="col-1">
+                    </div>
+                    <div class="col-2 col-css">
+                        <select name="weights_and_measures_units" id="weights-and-measures-units">
+                            <option value="g">lt</option>
+                            <option value="kg">fl oz</option>
+                            <option value="oz">gallon</option>
+                        </select>
                     </div>
                 </div>
             </section>

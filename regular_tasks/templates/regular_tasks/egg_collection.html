@@ -187,21 +187,20 @@
                         <hr class="hr-small">
                     </div>
                     <!-- Eggs Total Weight -->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-10 col-css">
-                                <div class="bottom-margin label-float">
-                                    {{ form.weight_total_eggs_laid }}
-                                    <label for="weight-total-eggs-laid">Weight of all eggs laid (excl. Broken)</label>
-                                </div>
-                            </div>
-                            <div class="col-2 col-css">
-                                <div class="bottom-margin">
-                                    <h5 class="text-end">
-                                        <span class="unit-of-measurement">g</span>
-                                    </h5>
-                                </div>
-                            </div>
+                    <div class="row bottom-margin">
+                        <div class="col-9 col-css label-float">
+                            {{ form.weight_total_eggs_laid }}
+                            <label for="weight-total-eggs-laid">Laid Eggs Weight (excl. Broken)</label>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col-2 col-css bottom-margin">
+                            <select name="weights_and_measures_units" id="weights-and-measures-units">
+                                <option value="g">g</option>
+                                <option value="kg">kg</option>
+                                <option value="oz">oz</option>
+                                <option value="lb">lb</option>
+                            </select>
                         </div>
                     </div>
                     <!-- Eggs Average Weight -->
@@ -210,7 +209,7 @@
                             <h5 class="row-name">Average Egg Weight:</h5>
                         </div>
                         <div class="col-2 col-css col-css-right label-float">
-                            <h5><span id="avg-egg-weight"></span><span class="unit-of-measurement">g</span></h5>
+                            <h5><span id="avg-egg-weight"></span><span class="unit-of-measurement" id="unit-of-measurement">g</span></h5>
                         </div>
                     </div>
                     <div class="bottom-margin">
