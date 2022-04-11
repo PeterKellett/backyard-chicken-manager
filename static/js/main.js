@@ -22,18 +22,16 @@ $(document).ready(function () {
         document.getElementById('todays-date').value = formattedDate;
     }
     dateToday()
+    // DATE MAX: Ensures Users cannot choose a date that is later than the current date.
+    // Taken from: https://stackoverflow.com/questions/32378590/set-date-input-fields-max-date-to-today
+    document.getElementById('todays-date').max = new Date().toISOString().split("T")[0];
+
 
     // Call hccTotal function on page load
     // hccTotal();
     
     
 })
-
-// $(function() {
-//     console.log("Date fn 2 fires");
-//     $('#todays-date').datepicker();
-//     $('#todays-date').datepicker('setDate', new Date());
-// });
 
 // Makes a modal display on a page when User lands on it. Used for when a User initially
 // lands on a page and we require some data. Once the data has been provided, it must
