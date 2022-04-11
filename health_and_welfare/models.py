@@ -3,19 +3,6 @@ from profiles.models import FarmProfile
 from flock_management.models import Flocks
 
 
-class Recipients(models.Model):
-    """Model used for identifying recipients"""
-    class Meta:
-        """Overwrite the default Django pluralisation"""
-        verbose_name_plural = 'Recipients'
-    recipients = models.CharField(max_length=50,
-                                  null=True,
-                                  blank=True)
-    
-    def __str__(self):
-        return self.recipients
-
-
 class DiseasesName(models.Model):
     """Model used for Disease names"""
     class Meta:
@@ -57,6 +44,7 @@ class SupplementsName(models.Model):
                                               decimal_places=2,
                                               null=True,
                                               blank=True)
+
 
 class Supplements(models.Model):
     """Model used for storing Supplements data"""

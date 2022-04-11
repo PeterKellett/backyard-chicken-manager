@@ -63,13 +63,6 @@ class MedicinesForm(forms.ModelForm):
                                                              'onkeyup': "showSuggestionsDiseases(this.value, 'select-dpa-label')",
                                                              'placeholder':
                                                              "Disease Protected Against"}),
-            # 'disease_protected_against': forms.Select(attrs={'class': 'hide-placeholder',
-            #                                                  'id': 'disease-protected-against',
-            #                                                  'name': 'disease_protected_against',
-            #                                                  'value': '',
-            #                                                  'onchange': "displaySelectLabel('select-dpa-label')",
-            #                                                  'placeholder':
-            #                                                  "Disease Protected Against"}),
             'doseage_amount': forms.TextInput(attrs={'class': '',
                                                      'id': 'doseage-amount',
                                                      'name': 'doseage_amount',
