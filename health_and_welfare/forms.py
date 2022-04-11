@@ -6,6 +6,13 @@ from .models import Supplements, SupplementsName, Medicines, MedicinesName, Vacc
 # Create a Supplement form
 class SupplementsForm(forms.ModelForm):
     """ Create an Egg Collection form """
+
+    def __init__(self, *args, **kwargs):
+        super(MedicinesForm, self).__init__(*args, **kwargs)
+        self.fields['administration_method'].empty_label = 'Select Administration Method'
+        self.fields['administration_method'].initial = "Select Administration Method"
+        self.fields['administration_method'].show_hidden_initial = True
+
     class Meta:
         """ Meta Class Docstring here as required """
         model = Supplements
