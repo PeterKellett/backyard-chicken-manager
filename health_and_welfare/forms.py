@@ -72,7 +72,7 @@ class MedicinesForm(forms.ModelForm):
                                                          'name': 'administration_method',
                                                          'onchange': "displaySelectLabel('select-administration-label')",
                                                          'placeholder':
-                                                         "Administration Method"}),
+                                                         "Administration Method PH"}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                            'id': 'vet-administered',
                                                            'name': 'vet_administered'}),

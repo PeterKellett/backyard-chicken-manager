@@ -79,9 +79,9 @@
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
                         {{ form.medicine_name }}
-                        <label id="select-medicine-label" for="medicine-name">Medicine Name Lab</label>
+                        <label class="hide-label" id="select-medicine-label" for="medicine-name">Medicine Name</label>
                     </div>
-                    <div id="medicine-suggestions-list" style="background-color: #f9e6e2; position: absolute; display: none; top: 35px; z-index: 1000; width: 100%; max-height: 100px; overflow-y: scroll;">
+                    <div class="auto-suggest-dropdown" id="medicine-suggestions-list">
                     </div>
                 </div>
                 <!-- Disease Protected Against -->
@@ -91,7 +91,7 @@
                 </div>
                 <!-- Medicine Recipients -->
                 <div class="bottom-margin label-float">
-                    <select class="clicker" name="recipients" id="recipients" onclick="displaySelectLabel('select-recipient-label')" required>
+                    <select name="recipients" id="recipients" onclick="displaySelectLabel('select-recipient-label')" required>
                         <option value="" disabled selected>Select Recipients</option>
                         <option type="text" name="entire_flock" value="Entire Flock" placeholder="Entire Flock" id="entire-flock">Entire Flock</option>
                         <option type="text" name="individual_birds" value="0" placeholder="Individual Birds" id="individual-birds">Individual Birds</option>
