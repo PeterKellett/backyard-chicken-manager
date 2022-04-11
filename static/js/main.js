@@ -11,10 +11,29 @@ $(document).ready(function () {
         }
     }
 
+    // DATE: Automatically have date fields display the current date based on the User's location
+    // Partially taken from: https://stackoverflow.com/questions/67659091/why-i-am-getting-this-warning-message-does-not-conform-to-the-required-format
+    document.getElementById("todays-date").addEventListener("load", dateToday);
+    function dateToday() {
+        const todayDate = new Date(); 
+        const formatDate = todayDate.getDate() < 10 ? `0${todayDate.getDate()}`:todayDate.getDate();
+        const formatMonth = todayDate.getMonth() < 10 ? `0${todayDate.getMonth()+1}`: todayDate.getMonth()+1;
+        const formattedDate = [todayDate.getFullYear(), formatMonth, formatDate].join('-');
+        document.getElementById('todays-date').value = formattedDate;
+    }
+    dateToday()
+
     // Call hccTotal function on page load
     // hccTotal();
     
+    
 })
+
+// $(function() {
+//     console.log("Date fn 2 fires");
+//     $('#todays-date').datepicker();
+//     $('#todays-date').datepicker('setDate', new Date());
+// });
 
 // Makes a modal display on a page when User lands on it. Used for when a User initially
 // lands on a page and we require some data. Once the data has been provided, it must
@@ -207,10 +226,57 @@ $(document).ready(function() {
 
 
 // Floating Input Labels using ID: Display floating label on Select inputs when a selection is made
-function displaySelectLabel() {
-    console.log("displaySelectLabel Fires");
-    document.getElementById('select-input-label').style.display = "block";
+function displaySelectLabel(id) {
+    console.log("displaySelectLabel Fires", id);
+    document.getElementById(id).style.display = "block";
+    if (id==='select-recipient-label') {
+        checkAndToggleHCCDivVisibility();
+    }
 }
+
+function hideSelectLabel(id) {
+    document.getElementById(id).style.display = "none";
+}
+
+function checkAndToggleHCCDivVisibility() {
+    const dropdown = document.getElementById('recipients')
+    if (dropdown.options[dropdown.selectedIndex].id === "individual-birds") {
+        document.getElementById('hcc-container-div').style.display = "block";
+    } else {
+        document.getElementById('hcc-container-div').style.display = "none";
+    }
+}
+
+function setInputText(inputId, text) {
+    document.getElementById(inputId).value = text;
+    document.getElementById('medicine-suggestions-list').style.display = "none";
+}
+
+function showSuggestions(value, labelId) {
+    if (value.length) {
+        displaySelectLabel(labelId)
+        let suggestions = '';
+        MEDICINES.filter(item => item.medicine_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
+            suggestions += `<div onclick="setInputText('medicine-name', '${item.medicine_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.medicine_name}</div>`;
+        });
+        if (suggestions.length) {
+            document.getElementById('medicine-suggestions-list').innerHTML = suggestions;
+            document.getElementById('medicine-suggestions-list').style.display = "block";
+        } else {
+            document.getElementById('medicine-suggestions-list').style.display = "none";
+        }
+    } else {
+        hideSelectLabel(labelId)
+        document.getElementById('medicine-suggestions-list').style.display = "none";
+    }
+}
+
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39.gitpod.io/health_and_welfare/get_medicines')
+.then(response => response.json())
+.then(data => {
+    console.log({data});
+    MEDICINES = data.medicines;
+});
 // Floating Input Labels using Class: Display floating label on Select inputs when a selection is made
 function displaySelectLabel2() {
     console.log("displaySelectLabel2 Fires");

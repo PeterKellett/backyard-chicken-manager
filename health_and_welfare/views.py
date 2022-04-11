@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from .forms import SupplementsForm, SupplementsNameForm, MedicinesForm, MedicinesNameForm, VaccinesForm, VaccinesNameForm, DiseasesNameForm
 from .models import MedicinesName
+import json
 
 
 # Create your views here.
@@ -15,6 +16,9 @@ def supplements(request):
     context = {}
     return render(request, template, context)
 
+def get_medicines(request):
+    medicines = MedicinesName.objects.values('medicine_name')
+    return JsonResponse({"medicines": list(medicines)}, safe=False)
 
 def medicines(request):
     """view to current flock"""

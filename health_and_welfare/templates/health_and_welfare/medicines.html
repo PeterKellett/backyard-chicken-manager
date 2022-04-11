@@ -76,23 +76,27 @@
             <!-- Medicine Core Details Section -->
             <section name="medicines-core-info">
                 <!-- Medicine Name -->
-                <div class="bottom-margin label-float">
-                    {{ form.medicine_name }}
-                    <label for="medicine-name">Medicine Name</label>
+                <div style="position: relative;">
+                    <div class="bottom-margin label-float">
+                        {{ form.medicine_name }}
+                        <label id="select-medicine-label" for="medicine-name">Medicine Name Lab</label>
+                    </div>
+                    <div id="medicine-suggestions-list" style="background-color: #f9e6e2; position: absolute; display: none; top: 35px; z-index: 1000; width: 100%; max-height: 100px; overflow-y: scroll;">
+                    </div>
                 </div>
                 <!-- Disease Protected Against -->
                 <div class="bottom-margin label-float">
                     {{ form.disease_protected_against }}
-                    <label for="disease-protected-against">Disease Protected Against</label>
+                    <label class="hide-label" id="select-dpa-label" for="disease-protected-against">Disease Protected Against</label>
                 </div>
                 <!-- Medicine Recipients -->
                 <div class="bottom-margin label-float">
-                    <select class="clicker" name="recipients" id="recipients" onclick="displaySelectLabel()" required>
-                        <option value="" disabled selected>Recipients</option>
+                    <select class="clicker" name="recipients" id="recipients" onclick="displaySelectLabel('select-recipient-label')" required>
+                        <option value="" disabled selected>Select Recipients</option>
                         <option type="text" name="entire_flock" value="Entire Flock" placeholder="Entire Flock" id="entire-flock">Entire Flock</option>
                         <option type="text" name="individual_birds" value="0" placeholder="Individual Birds" id="individual-birds">Individual Birds</option>
                     </select>
-                    <label id="select-input-label" for="recipients">Recipients 2</label>
+                    <label class="hide-label" id="select-recipient-label" for="recipients">Recipients</label>
                 </div>
             </section>
             <div class="bottom-margin">
@@ -117,7 +121,7 @@
                 <!-- Administration Method -->
                 <div class="bottom-margin label-float">
                     {{ form.administration_method }}
-                    <label for="administration-method">Administration Method</label>
+                    <label class="hide-label" id="select-administration-label" for="administration-method">Administration Method</label>
                 </div>
                 <!-- VET Administered? -->
                 <div class="row bottom-margin" id="vet-administered-row">

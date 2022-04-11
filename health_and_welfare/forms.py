@@ -27,12 +27,12 @@ class MedicinesForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(MedicinesForm, self).__init__(*args, **kwargs)
-        self.fields['medicine_name'].empty_label = 'Select Medicine'
-        self.fields['medicine_name'].initial = "Select Medicine"
-        self.fields['medicine_name'].show_hidden_initial = True
-        self.fields['disease_protected_against'].empty_label = 'Select Disease'
-        self.fields['disease_protected_against'].initial = "Select Disease"
+        self.fields['disease_protected_against'].empty_label = 'Select Disease Protected Against'
+        self.fields['disease_protected_against'].initial = "Select Disease Protected Against"
         self.fields['disease_protected_against'].show_hidden_initial = True
+        self.fields['administration_method'].empty_label = 'Select Administration Method'
+        self.fields['administration_method'].initial = "Select Administration Method"
+        self.fields['administration_method'].show_hidden_initial = True
 
     class Meta:
         """ Meta Class Docstring here as required """
@@ -49,14 +49,17 @@ class MedicinesForm(forms.ModelForm):
         widgets = {
             'date': forms.DateTimeInput,
             'flock': forms.CheckboxInput,
-            'medicine_name': forms.TextInput(attrs={'class': '',
+            'medicine_name': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                     'id': 'medicine-name',
                                                     'name': 'medicine_name',
+                                                    'value': '',
+                                                    'onkeyup': "showSuggestions(this.value, 'select-medicine-label')",
                                                     'placeholder':
                                                     "Medicine Name"}),
             'disease_protected_against': forms.Select(attrs={'class': '',
                                                              'id': 'disease-protected-against',
                                                              'name': 'disease_protected_against',
+                                                             'onchange': "displaySelectLabel('select-dpa-label')",
                                                              'placeholder':
                                                              "Disease Protected Against"}),
             'doseage_amount': forms.TextInput(attrs={'class': '',
@@ -67,6 +70,7 @@ class MedicinesForm(forms.ModelForm):
             'administration_method': forms.Select(attrs={'class': '',
                                                          'id': 'administration-method',
                                                          'name': 'administration_method',
+                                                         'onchange': "displaySelectLabel('select-administration-label')",
                                                          'placeholder':
                                                          "Administration Method"}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
