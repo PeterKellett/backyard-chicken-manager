@@ -32,6 +32,8 @@ class SupplementsName(models.Model):
                                               decimal_places=2,
                                               null=True,
                                               blank=True)
+    def __str__(self):
+        return self.supplement_name
 
 
 class Supplements(models.Model):
@@ -43,6 +45,12 @@ class Supplements(models.Model):
                                      null=False,
                                      blank=False,
                                      on_delete=models.CASCADE)
+    # date = models.DateTimeField(null=False,
+    #                             blank=False)
+    # flock = models.ForeignKey(Flocks,
+    #                           null=False,
+    #                           blank=False,
+    #                           on_delete=models.CASCADE)
     supplement_name = models.CharField(max_length=50,
                                        null=True,
                                        blank=True)
@@ -50,6 +58,32 @@ class Supplements(models.Model):
                                           decimal_places=2,
                                           null=True,
                                           blank=True)
+    # qty_hens = models.IntegerField(null=True,
+    #                                blank=True)
+    # qty_chicks = models.IntegerField(null=True,
+    #                                  blank=True)
+    # qty_cocks = models.IntegerField(null=True,
+    #                                 blank=True)
+    # qty_total = models.IntegerField(null=True,
+    #                                 blank=True)
+    # doseage_amount = models.DecimalField(max_digits=6,
+    #                                      decimal_places=2,
+    #                                      null=True,
+    #                                      blank=True)
+    # administration_method = models.ForeignKey(AdministrationMethod,
+    #                                           null=True,
+    #                                           blank=True,
+    #                                           on_delete=models.CASCADE)
+    # vet_administered = models.BooleanField(default=False)
+    # vet_name = models.CharField(max_length=50,
+    #                             null=True,
+    #                             blank=True)
+
+    # notes = models.TextField(null=True,
+    #                          blank=True)
+    # images = models.ImageField(null=True,
+    #                            blank=True,
+    #                            upload_to="images/")
 
 
 class DiseasesName(models.Model):
@@ -131,7 +165,6 @@ class VirusesName(models.Model):
     virus_name = models.CharField(max_length=50,
                                   null=True,
                                   blank=True)
-
     def __str__(self):
         return self.virus_name
 
@@ -144,9 +177,8 @@ class VaccinesName(models.Model):
     vaccine_name = models.CharField(max_length=50,
                                     null=True,
                                     blank=True)
-
     def __str__(self):
-            return self.vaccine_name
+        return self.vaccine_name
 
 
 class Vaccines(models.Model):
