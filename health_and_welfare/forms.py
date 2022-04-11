@@ -27,9 +27,9 @@ class MedicinesForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(MedicinesForm, self).__init__(*args, **kwargs)
-        self.fields['disease_protected_against'].empty_label = 'Select Disease Protected Against'
-        self.fields['disease_protected_against'].initial = "Select Disease Protected Against"
-        self.fields['disease_protected_against'].show_hidden_initial = True
+        # self.fields['disease_protected_against'].empty_label = 'Select Disease Protected Against'
+        # self.fields['disease_protected_against'].initial = "Select Disease Protected Against"
+        # self.fields['disease_protected_against'].show_hidden_initial = True
         self.fields['administration_method'].empty_label = 'Select Administration Method'
         self.fields['administration_method'].initial = "Select Administration Method"
         self.fields['administration_method'].show_hidden_initial = True
@@ -53,15 +53,23 @@ class MedicinesForm(forms.ModelForm):
                                                     'id': 'medicine-name',
                                                     'name': 'medicine_name',
                                                     'value': '',
-                                                    'onkeyup': "showSuggestions(this.value, 'select-medicine-label')",
+                                                    'onkeyup': "showSuggestionsMedicines(this.value, 'select-medicine-label')",
                                                     'placeholder':
                                                     "Medicine Name"}),
-            'disease_protected_against': forms.Select(attrs={'class': '',
+            'disease_protected_against': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                              'id': 'disease-protected-against',
                                                              'name': 'disease_protected_against',
-                                                             'onchange': "displaySelectLabel('select-dpa-label')",
+                                                             'value': '',
+                                                             'onkeyup': "showSuggestionsDiseases(this.value, 'select-dpa-label')",
                                                              'placeholder':
                                                              "Disease Protected Against"}),
+            # 'disease_protected_against': forms.Select(attrs={'class': 'hide-placeholder',
+            #                                                  'id': 'disease-protected-against',
+            #                                                  'name': 'disease_protected_against',
+            #                                                  'value': '',
+            #                                                  'onchange': "displaySelectLabel('select-dpa-label')",
+            #                                                  'placeholder':
+            #                                                  "Disease Protected Against"}),
             'doseage_amount': forms.TextInput(attrs={'class': '',
                                                      'id': 'doseage-amount',
                                                      'name': 'doseage_amount',

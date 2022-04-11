@@ -104,10 +104,13 @@ class Medicines(models.Model):
     medicine_name = models.CharField(max_length=50,
                                      null=True,
                                      blank=True)
-    disease_protected_against = models.ForeignKey(DiseasesName,
-                                                  null=True,
-                                                  blank=True,
-                                                  on_delete=models.CASCADE)
+    disease_protected_against = models.CharField(max_length=50,
+                                     null=True,
+                                     blank=True)
+    # disease_protected_against = models.ForeignKey(DiseasesName,
+    #                                               null=True,
+    #                                               blank=True,
+    #                                               on_delete=models.CASCADE)
     qty_hens = models.IntegerField(null=True,
                                    blank=True)
     qty_chicks = models.IntegerField(null=True,

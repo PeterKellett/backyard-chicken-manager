@@ -665,3 +665,11 @@ a {
     max-height: 200px; 
     overflow-y: scroll;
 }
+
+/*-- Formats the contents of the dropdown box that appears beneath a field when the User begins to type into the field --*/
+.auto-suggest-dropdown-content {
+    padding: 1px 15px; 
+    text-align: left; 
+    cursor: pointer; 
+    font-size: medium;
+}

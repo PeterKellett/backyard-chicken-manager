@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from .forms import SupplementsForm, SupplementsNameForm, MedicinesForm, MedicinesNameForm, VaccinesForm, VaccinesNameForm, DiseasesNameForm
-from .models import MedicinesName
+from .models import MedicinesName, DiseasesName
 import json
 
 
@@ -15,6 +15,10 @@ def supplements(request):
     template = 'health_and_welfare/supplements.html'
     context = {}
     return render(request, template, context)
+
+def get_diseases(request):
+    diseases = DiseasesName.objects.values('disease_name')
+    return JsonResponse({"diseases": list(diseases)}, safe=False)
 
 def get_medicines(request):
     medicines = MedicinesName.objects.values('medicine_name')
