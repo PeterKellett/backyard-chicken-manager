@@ -1,4 +1,4 @@
-console.log("Regular tasks")
+console.log("Regular tasks JS is working")
 
 // Egg Collection - Variables
 var total_eggs_laid = 0;
@@ -12,24 +12,20 @@ var total_nonsaleable_eggs;
 let traysQuantity;
 
 // Extracts the Tray Quantity from Farm Profile in the db
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39.gitpod.io/regular_tasks/trays_quantity')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu38.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
-    console.log({data});
     traysQuantity = data.trays_quantity;
-    console.log("Fectch Tray Qty :", data.trays_quantity)
 });
 
 // Egg Collection - Eggs Laid Calculation: Calculation to sum total number of eggs laid
 document.querySelectorAll('.egg-collection-qty-input').forEach(item => {
     item.addEventListener('keyup', event => {
         // send request to latest no of trays
-        console.log("Eggs Laid Calc Fires Now");
         var totalTrays = document.getElementById('qty-egg-trays').value;
         var totalTraysQty = totalTrays * traysQuantity;
         var totalSingles = document.getElementById('qty-egg-singles').value;
         total_eggs_laid = Number(totalTraysQty) + Number(totalSingles);
-        console.log("total_eggs_laid", total_eggs_laid);
         document.getElementById("qty-total-eggs-laid").innerHTML = total_eggs_laid;
     })
 });
@@ -37,14 +33,11 @@ document.querySelectorAll('.egg-collection-qty-input').forEach(item => {
 // Egg Collection - Saleable Eggs Calculation: Calculation to get total saleable eggs
 document.querySelectorAll('.saleable-eggs-input').forEach(item => {
     item.addEventListener('keyup', event => {
-        console.log("Saleable Eggs Calc Fires");
         damaged_eggs = document.getElementById('qty-eggs-damaged').value;
         broken_eggs = document.getElementById('qty-eggs-broken').value;
         eggs_personal_use = document.getElementById('qty-eggs-personal-use').value;
         eggs_given_free = document.getElementById('qty-eggs-given-free').value;
         saleable_eggs = Number(total_eggs_laid) - (Number(damaged_eggs) + Number(broken_eggs) + Number(eggs_personal_use) + Number(eggs_given_free));
-        console.log("qty_total_eggs_laid: " + total_eggs_laid);
-        console.log("saleable_eggs: " + saleable_eggs);
         document.getElementById('qty-saleable-eggs').innerHTML = Number(saleable_eggs);
     })
 });
@@ -52,13 +45,9 @@ document.querySelectorAll('.saleable-eggs-input').forEach(item => {
 // Egg Collection - Weight Calculation: Calculation to average weight of eggs laid
 document.querySelectorAll('.average-weight-input').forEach(item => {
     item.addEventListener('keyup', event => {
-        console.log("Average Egg Weight Calc Fires");
         var weighable_eggs = Number(total_eggs_laid) - Number(broken_eggs);
-        console.log("Weighable Eggs: " + weighable_eggs);
         total_weight = document.getElementById('weight-total-eggs-laid').value;
-        console.log("total_weight: " + total_weight);
         var average_egg_weight = Number(total_weight) / Number(weighable_eggs);
-        console.log("average_egg_weight: " + average_egg_weight);
         document.getElementById("avg-egg-weight").innerHTML = average_egg_weight;
     })
 });
@@ -68,7 +57,6 @@ document.querySelectorAll('.average-weight-input').forEach(item => {
 // if non-saleable eggs qty is greater than total of non-saleable elements
 document.getElementById("save-button").onclick = function() {preventFormSubmission()};
 function preventFormSubmission() {
-        console.log("preventFormSubmission Fires");
         var totalTrays = document.getElementById('qty-egg-trays').value;
         var totalTraysQty = totalTrays * traysQuantity;
         var totalSingles = document.getElementById('qty-egg-singles').value;
@@ -91,13 +79,10 @@ function preventFormSubmission() {
             })
         } else {
             document.getElementById("submit-form").submit();
-            console.log("Right Calc");
         }
     };
 
 
 // Function to automatically populate a unit of measurement
 const measurementUnit = document.getElementById("weights-and-measures-units").value;
-console.log("Measurement Unit :", measurementUnit);
-
 $("#unit-of-measurement").html(measurementUnit);

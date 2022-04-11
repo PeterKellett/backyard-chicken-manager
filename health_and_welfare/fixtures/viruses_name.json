@@ -1,0 +1,11 @@
+[
+    {"pk": 1, "model": "health_and_welfare.virusesname", "fields": {"virus_name": "Avian Encephalomyelitis"}},
+    {"pk": 2, "model": "health_and_welfare.virusesname", "fields": {"virus_name": "Avian Influenza (Bird Flu)"}},
+    {"pk": 3, "model": "health_and_welfare.virusesname", "fields": {"virus_name": "Fowlpox"}},
+    {"pk": 4, "model": "health_and_welfare.virusesname", "fields": {"virus_name": "Marek Disease"}},
+    {"pk": 5, "model": "health_and_welfare.virusesname", "fields": {"virus_name": "Newcastle Disease"}},
+    {"pk": 6, "model": "health_and_welfare.virusesname", "fields": {"virus_name": "Avian Pox (Fowl Pox)"}},
+    {"pk": 7, "model": "health_and_welfare.virusesname", "fields": {"virus_name": "Infectious Laryngotracheitis"}},
+    {"pk": 8, "model": "health_and_welfare.virusesname", "fields": {"virus_name": "Infectious Bronchitis"}},
+    {"pk": 9, "model": "health_and_welfare.virusesname", "fields": {"virus_name": "Fowl Cholera"}}
+]

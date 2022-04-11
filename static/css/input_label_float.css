@@ -14,7 +14,7 @@
 }
 
 .hide-placeholder::placeholder {
-    /* color: transparent; */
+    color: transparent;
 }
 
 /*-- Field label prior to field being clicked on --*/

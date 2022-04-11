@@ -38,7 +38,6 @@ $(document).ready(function () {
 // not display again. Function needs to be updated for the latter.
 // Taken from https://www.tutorialrepublic.com/faq/how-to-launch-bootstrap-modal-on-page-load.php
 $(document).ready(function(){
-    console.log("Function fires for modal")
     $("#page-setup-modal").modal('show');
 });
 
@@ -139,7 +138,6 @@ $(document).ready(function () {
     doCalculations();
 }); 
 function doCalculations() {
-    console.log("doCalculations")
     var form_data = {}
     document.querySelectorAll('input').forEach(item => {
         // item.addEventListener('oninput', doCalculations())
@@ -152,34 +150,18 @@ function doCalculations() {
         // Save the input field names and values of each form field to the dictionary form_data
         form_data[item.name] = Number(item.value)    
     });    
-    // for (k in form_data) {
-    //     console.log("k ", k)
-    //     console.log("v ", form_data[k])
-    // }
     var value_of_single_eggs_sold = (form_data['single_egg_price'] * (form_data['qty_single_eggs_in_stock'] - form_data['qty_single_eggs_remaining']));
-    console.log("value_of_single_eggs_sold = " + value_of_single_eggs_sold)
-
     var value_of_half_dozen_egg_boxes_sold = (form_data['half_dozen_eggs_price'] * (form_data['qty_half_dozen_egg_boxes_in_stock'] - form_data['qty_half_dozen_egg_boxes_remaining']));
-    console.log("value_of_half_dozen_egg_boxes_sold = " + value_of_half_dozen_egg_boxes_sold)
-
     var value_of_ten_eggs_sold = (form_data['ten_eggs_price'] * (form_data['qty_ten_egg_boxes_in_stock'] - form_data['qty_ten_egg_boxes_remaining']));
-    console.log("value_of_ten_eggs_sold = " + value_of_ten_eggs_sold)
-    
     var value_of_dozen_eggs_sold = (form_data['dozen_eggs_price'] * (form_data['qty_dozen_egg_boxes_in_stock'] - form_data['qty_dozen_egg_boxes_remaining']));
-    console.log("value_of_dozen_eggs_sold = " + value_of_dozen_eggs_sold)
-
     var value_of_trays_eggs_sold = (form_data['trays_of_eggs_price'] * (form_data['qty_trays_eggs_in_stock'] - form_data['qty_trays_eggs_remaining']));
-    console.log("value_of_trays_eggs_sold = " + value_of_trays_eggs_sold)
-
     var total_value = value_of_single_eggs_sold + value_of_half_dozen_egg_boxes_sold + value_of_ten_eggs_sold + value_of_dozen_eggs_sold + value_of_trays_eggs_sold;
-    console.log("total_value = " + total_value)
 }
 
 // Sales Methods & Units Function to ensure at least one checkbox
 // is checked in each section before next page can be loaded
 // Taken from (kind of): https://www.javascripttutorial.net/javascript-dom/javascript-form/
 function injectHref() {
-    console.log("Inject Href");
     var salesMethods = null;
     var salesUnits = null;
     if (document.getElementById('roadside-check').checked == true ||
@@ -225,7 +207,6 @@ $(document).ready(function() {
 
 // Floating Input Labels using ID: Display floating label on Select inputs when a selection is made
 function displaySelectLabel(id) {
-    console.log("displaySelectLabel Fires", id);
     document.getElementById(id).style.display = "block";
     if (id==='select-recipient-label') {
         checkAndToggleHCCDivVisibility();
@@ -268,10 +249,9 @@ function showSuggestionsMedicines(value, labelId) {
         document.getElementById('medicine-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39.gitpod.io/health_and_welfare/get_medicines')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu38.gitpod.io/health_and_welfare/get_medicines')
 .then(response => response.json())
 .then(data => {
-    console.log("Medicine Names :", {data});
     MEDICINES = data.medicines;
 });
 
@@ -298,14 +278,71 @@ function showSuggestionsDiseases(value, labelId) {
         document.getElementById('disease-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39.gitpod.io/health_and_welfare/get_diseases')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu38.gitpod.io/health_and_welfare/get_diseases')
 .then(response => response.json())
 .then(data => {
-    console.log("Disease Names :", {data});
     DISEASES = data.diseases;
-    console.log("Diseases :", DISEASES);
 });
 
+
+// Vaccines Auto-Suggest: Set of functions that auto-suggests vaccines in the db once the User begins typing
+function setInputTextVaccine(inputId, text) {
+    document.getElementById(inputId).value = text;
+    document.getElementById('vaccine-suggestions-list').style.display = "none";
+}
+function showSuggestionsVaccines(value, labelId) {
+    if (value.length) {
+        displaySelectLabel(labelId)
+        let suggestions = '';
+        VACCINES.filter(item => item.vaccine_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
+            suggestions += `<div onclick="setInputTextVaccine('vaccine-name', '${item.vaccine_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.vaccine_name}</div>`;
+        });
+        if (suggestions.length) {
+            document.getElementById('vaccine-suggestions-list').innerHTML = suggestions;
+            document.getElementById('vaccine-suggestions-list').style.display = "block";
+        } else {
+            document.getElementById('vaccine-suggestions-list').style.display = "none";
+        }
+    } else {
+        hideSelectLabel(labelId)
+        document.getElementById('vaccine-suggestions-list').style.display = "none";
+    }
+}
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu38.gitpod.io/health_and_welfare/get_vaccines')
+.then(response => response.json())
+.then(data => {
+    VACCINES = data.vaccines;
+});
+
+// Viruses Auto-Suggest: Set of functions that auto-suggests viruses in the db once the User begins typing
+function setInputTextVirus(inputId, text) {
+    document.getElementById(inputId).value = text;
+    document.getElementById('virus-suggestions-list').style.display = "none";
+}
+function showSuggestionsViruses(value, labelId) {
+    if (value.length) {
+        displaySelectLabel(labelId)
+        let suggestions = '';
+        VIRUSES.filter(item => item.virus_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
+            suggestions += `<div onclick="setInputTextVirus('virus-protected-against', '${item.virus_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.virus_name}</div>`;
+        });
+        if (suggestions.length) {
+            document.getElementById('virus-suggestions-list').innerHTML = suggestions;
+            document.getElementById('virus-suggestions-list').style.display = "block";
+        } else {
+            document.getElementById('virus-suggestions-list').style.display = "none";
+        }
+    } else {
+        hideSelectLabel(labelId)
+        document.getElementById('virus-suggestions-list').style.display = "none";
+    }
+}
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu38.gitpod.io/health_and_welfare/get_viruses')
+.then(response => response.json())
+.then(data => {
+    VIRUSES = data.viruses;
+    console.log("Viruses :", VIRUSES)
+});
 
 
 // Floating Input Labels using Class: Display floating label on Select inputs when a selection is made

@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/hcc.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Health & Welfare - Vaccines
+{% endblock %}
+
+{% block sub-nav %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Sub Navigation Section -->
+<div class="element-container container-fluid sub-nav-container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'supplements' %}">
+                <img src="{{ MEDIA_URL }}health_and_welfare_supplements.png" alt="Supplements Icon" class="nav-link-image sub-nav-link-image">
+                Supplements
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'medicines' %}">
+                <img src="{{ MEDIA_URL }}health_and_welfare_medicines.png" alt="Medicines Icon" class="nav-link-image sub-nav-link-image">
+                Medicines
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link active" href="{% url 'vaccines' %}">
+                <img src="{{ MEDIA_URL }}health_and_welfare_vaccines.png" alt="Vaccines Icon" class="nav-link-image sub-nav-link-image">
+                Vaccines
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Icons and Links Section -->
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle icon-orange"></i>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}reports_health_and_welfare.png" alt="Health and Welfare reports icon" class="non-round-icon"></a>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting_settings.png" alt="Profile and Settings icon" class="non-round-icon"></a>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<!-- FORM SECTION  -->
+<div class="element-container">
+    <form method="POST" action="{% url 'vaccines' %}" enctype="multipart/form-data" name="vaccines" id="submit-form" autocomplete="off">
+        {% csrf_token %}
+        
+        <div class="form-data">
+            <!-- Prevents Chrome and Forefox from offering autofill on fields. 
+                 Required because on many fields we provide our own auto-suggest and it looks messy and confusing.
+                 It requires autocomplete="off" in the form above to work. 
+                 Taken from: https://gist.github.com/niksumeiko/360164708c3b326bd1c8 where there are other solutions too -->
+            <input autocomplete="false" name="hidden" type="text" style="display:none;">
+
+            <!-- Sale Date Section -->
+            {% include 'html_includes/date.html' %}
+            {% include 'html_includes/flock.html' %}
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Vaccine Core Details Section -->
+            <section name="vaccines-core-info">
+                <!-- Section Title -->
+                <div class="bottom-margin">
+                    <h5>Vaccine Details</h5>
+                </div>
+                <!-- Vaccine Name -->
+                <div style="position: relative;">
+                    <div class="bottom-margin label-float">
+                        {{ form.vaccine_name }}
+                        <label class="hide-label" id="select-vaccine-label" for="vaccine-name">Vaccine Name</label>
+                    </div>
+                    <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the vaccine names in the db -->
+                    <div class="auto-suggest-dropdown" id="vaccine-suggestions-list">
+                    </div>
+                </div>
+                <!-- Virus Protected Against -->
+                <div style="position: relative;">
+                    <div class="bottom-margin label-float">
+                        {{ form.virus_protected_against }}
+                        <label class="hide-label" id="select-vpa-label" for="virus-protected-against">Virus Protected Against</label>
+                    </div>
+                    <div class="auto-suggest-dropdown" id="virus-suggestions-list">
+                    </div>
+                </div>
+                
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            
+
+            <!-- Vaccine Administration Section -->
+            <section name="vaccine_administration_section">
+                <!-- Section Title -->
+                <div class="bottom-margin">
+                    <h5>Vaccine Administration</h5>
+                </div>
+                <!-- Vaccine Recipients -->
+                <div class="bottom-margin label-float">
+                    <select name="recipients" id="recipients" onclick="displaySelectLabel('select-recipient-label')" required>
+                        <option value="" disabled selected>Select Recipients</option>
+                        <option type="text" name="entire_flock" value="Entire Flock" placeholder="Entire Flock" id="entire-flock">Entire Flock</option>
+                        <option type="text" name="individual_birds" value="0" placeholder="Individual Birds" id="individual-birds">Individual Birds</option>
+                    </select>
+                    <label class="hide-label" id="select-recipient-label" for="recipients">Recipients</label>
+                </div>
+                <!-- HCC Section Section -->
+                <div id="hcc-container-div">
+                    {% include 'html_includes/hens_chicks_cocks.html' %}
+                </div>
+                <!-- Doseage Amount Total -->
+                <div class="row bottom-margin">
+                    <div class="col-9 col-css label-float">
+                        {{ form.doseage_amount }}
+                        <label for="doseage-amount">TOTAL Amount Administered</label>
+                    </div>
+                    <div class="col-1">
+                    </div>
+                    <div class="col-2 col-css bottom-margin">
+                        <select name="weights_and_measures_units" id="weights-and-measures-units">
+                            <option value="g">g</option>
+                            <option value="kg">kg</option>
+                            <option value="g">ml</option>
+                            <option value="kg">lt</option>
+                            <option value="oz">oz</option>
+                            <option value="lb">lb</option>
+                            <option value="oz">fl oz</option>
+                            <option value="lb">gallon</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Doseage Amount per Bird -->
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h5 class="row-name">Dose per Bird:</h5>
+                    </div>
+                    <div class="col-2 col-css col-css-right">
+                        <input type="number" value="0" id="doseage-per-bird" class="text-end h-style-input"></input>
+                    </div>
+                </div>
+                <!-- Administration Method -->
+                <div class="bottom-margin label-float">
+                    {{ form.administration_method }}
+                    <label class="hide-label" id="select-administration-label" for="administration-method">Administration Method</label>
+                </div>
+                <!-- VET Administered? -->
+                <div class="row bottom-margin" id="vet-administered-row">
+                    <div class="col-11 col-css">
+                        <h5 class="col-css-element checkbox-label">VET Administered?</h5>
+                    </div>
+                    <div class="col-1 col-css col-css-right">
+                        {{ form.vet_administered }}
+                    </div>
+                </div>
+                <!-- VET Name -->
+                <div class="bottom-margin label-float show-on-click">
+                    {{ form.vet_name }}
+                    <label for="vet-name">VET Name</label>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Notes & Images Section -->
+            {% include 'html_includes/notes_and_pics.html' %}
+
+            <!-- Used as a warning instead of an Alert -->
+            {% include 'html_includes/validation_warning.html' %}
+
+            <!-- Add Another Button - Not sure this is even required. We can put a note in the "i" modal
+                 to say just keep adding them one after another -->
+            <!-- <div class="bottom-margin">
+                <button class="button add-another-btn">Add Another</button>
+            </div>
+            <div class="bottom-margin">
+                <hr class="hr-small">
+            </div> -->
+
+            <!-- Buttons Section -->
+            <div class="button-container">
+                <input type="hidden" name="redirect_url" value="onboard_produce"/>
+                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
+                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+    <script src="{% static 'js/hcc_quantities.js' %}"></script>
+{% endblock %}
