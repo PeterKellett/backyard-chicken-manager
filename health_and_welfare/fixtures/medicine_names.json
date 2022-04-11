@@ -1,0 +1,17 @@
+[
+    {"pk": 1, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Biolsol (neomycin)"}},
+    {"pk": 2, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Otomax (gentamycin)"}},
+    {"pk": 3, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Flavomycin 4"}},
+    {"pk": 4, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Gainpro"}},
+    {"pk": 5, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Vetrimoxin (amoxicillin)"}},
+    {"pk": 6, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Lincomix"}},
+    {"pk": 7, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Panacur"}},
+    {"pk": 8, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Ivermectin"}},
+    {"pk": 9, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Tylan"}},
+    {"pk": 10, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Baytril 10%"}},
+    {"pk": 11, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Flubenvet 1%"}},
+    {"pk": 12, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Agrivite Respite"}},
+    {"pk": 13, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Corid (amprolium)"}},
+    {"pk": 14, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Ceftiofur"}},
+    {"pk": 15, "model": "health_and_welfare.medicinesname", "fields": {"medicine_name": "Penazeryl"}}
+]

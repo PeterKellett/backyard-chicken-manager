@@ -1,0 +1,12 @@
+[
+    {"pk": 1, "model": "health_and_welfare.vaccinesname", "fields": {"vaccine_name": "Nobilis CAV P4"}},
+    {"pk": 2, "model": "health_and_welfare.vaccinesname", "fields": {"vaccine_name": "Nobilis E Coli inac"}},
+    {"pk": 3, "model": "health_and_welfare.vaccinesname", "fields": {"vaccine_name": "Nobilis IB 4-91"}},
+    {"pk": 4, "model": "health_and_welfare.vaccinesname", "fields": {"vaccine_name": "Nobilis Rismavac+CA126"}},
+    {"pk": 5, "model": "health_and_welfare.vaccinesname", "fields": {"vaccine_name": "Nobilis RT+IBmulti+G+ND"}},
+    {"pk": 6, "model": "health_and_welfare.vaccinesname", "fields": {"vaccine_name": "Clinacox (diclazuril )"}},
+    {"pk": 7, "model": "health_and_welfare.vaccinesname", "fields": {"vaccine_name": "Deccox (decoquinate)"}},
+    {"pk": 8, "model": "health_and_welfare.vaccinesname", "fields": {"vaccine_name": "Newcastle Lasota"}},
+    {"pk": 9, "model": "health_and_welfare.vaccinesname", "fields": {"vaccine_name": "Proflok® NDv"}},
+    {"pk": 10, "model": "health_and_welfare.vaccinesname", "fields": {"vaccine_name": "Monteban (narasin)"}}
+]

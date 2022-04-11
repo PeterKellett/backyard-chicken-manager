@@ -34,7 +34,7 @@
             </a>
         </li>
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link" href="">
+            <a class="nav-link sub-nav-link" href="{% url 'vaccines' %}">
                 <img src="{{ MEDIA_URL }}health_and_welfare_vaccines.png" alt="Vaccines Icon" class="nav-link-image sub-nav-link-image">
                 Vaccines
             </a>
@@ -49,7 +49,7 @@
             <i class="fas fa-info-circle icon-orange"></i>
         </div>
         <div class="col-2 col-css">
-            <a href=""><img src="{{ MEDIA_URL }}reports_income.png" alt="Income reports icon" class="non-round-icon"></a>
+            <a href=""><img src="{{ MEDIA_URL }}reports_health_and_welfare.png" alt="Health and Welfare reports icon" class="non-round-icon"></a>
         </div>
         <div class="col-2 col-css">
             <a href=""><img src="{{ MEDIA_URL }}profile_and_setting_settings.png" alt="Profile and Settings icon" class="non-round-icon"></a>
@@ -62,10 +62,16 @@
 
 <!-- FORM SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'egg_collection_sales' %}" enctype="multipart/form-data" name="egg_collection_sales" id="submit-form">
+    <form method="POST" action="{% url 'medicines' %}" enctype="multipart/form-data" name="medicines" id="submit-form" autocomplete="off">
         {% csrf_token %}
         
         <div class="form-data">
+            <!-- Prevents Chrome and Forefox from offering autofill on fields. 
+                 Required because on many fields we provide our own auto-suggest and it looks messy and confusing.
+                 It requires autocomplete="off" in the form above to work. 
+                 Taken from: https://gist.github.com/niksumeiko/360164708c3b326bd1c8 where there are other solutions too -->
+            <input autocomplete="false" name="hidden" type="text" style="display:none;">
+
             <!-- Sale Date Section -->
             {% include 'html_includes/date.html' %}
             {% include 'html_includes/flock.html' %}
@@ -75,49 +81,90 @@
 
             <!-- Medicine Core Details Section -->
             <section name="medicines-core-info">
+                <!-- Section Title -->
+                <div class="bottom-margin">
+                    <h5>Medicine Details</h5>
+                </div>
                 <!-- Medicine Name -->
-                <div class="bottom-margin label-float">
-                    {{ form.medicine_name }}
-                    <label for="medicine-name">Medicine Name</label>
+                <div style="position: relative;">
+                    <div class="bottom-margin label-float">
+                        {{ form.medicine_name }}
+                        <label class="hide-label" id="select-medicine-label" for="medicine-name">Medicine Name</label>
+                    </div>
+                    <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the medicine names in the db -->
+                    <div class="auto-suggest-dropdown" id="medicine-suggestions-list">
+                    </div>
                 </div>
                 <!-- Disease Protected Against -->
-                <div class="bottom-margin label-float">
-                    {{ form.disease_protected_against }}
-                    <label for="disease-protected-against">Disease Protected Against</label>
+                <div style="position: relative;">
+                    <div class="bottom-margin label-float">
+                        {{ form.disease_protected_against }}
+                        <label class="hide-label" id="select-dpa-label" for="disease-protected-against">Disease Protected Against</label>
+                    </div>
+                    <div class="auto-suggest-dropdown" id="disease-suggestions-list">
+                    </div>
                 </div>
-                <!-- Medicine Recipients -->
-                <div class="bottom-margin label-float">
-                    <select class="clicker" name="recipients" id="recipients" onclick="displaySelectLabel()" required>
-                        <option value="" disabled selected>Recipients</option>
-                        <option type="text" name="entire_flock" value="Entire Flock" placeholder="Entire Flock" id="entire-flock">Entire Flock</option>
-                        <option type="text" name="individual_birds" value="0" placeholder="Individual Birds" id="individual-birds">Individual Birds</option>
-                    </select>
-                    <label id="select-input-label" for="recipients">Recipients 2</label>
-                </div>
+                
             </section>
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
 
-            <!-- HCC Section Section -->
-            <div id="hcc-container-div">
-                {% include 'html_includes/hens_chicks_cocks.html' %}
-            </div>
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
+            
 
-            <!-- Doseage/Administration Section -->
-            <section name="doseage-core-info">
-                <!-- Doseage Amount -->
+            <!-- Medicine Administration Section -->
+            <section name="medicine_administration_section">
+                <!-- Section Title -->
+                <div class="bottom-margin">
+                    <h5>Medicine Administration</h5>
+                </div>
+                <!-- Medicine Recipients -->
                 <div class="bottom-margin label-float">
-                    {{ form.doseage_amount }}
-                    <label for="doseage-amount">Doseage - Total Amount</label>
+                    <select name="recipients" id="recipients" onclick="displaySelectLabel('select-recipient-label')" required>
+                        <option value="" disabled selected>Select Recipients</option>
+                        <option type="text" name="entire_flock" value="Entire Flock" placeholder="Entire Flock" id="entire-flock">Entire Flock</option>
+                        <option type="text" name="individual_birds" value="0" placeholder="Individual Birds" id="individual-birds">Individual Birds</option>
+                    </select>
+                    <label class="hide-label" id="select-recipient-label" for="recipients">Recipients</label>
+                </div>
+                <!-- HCC Section Section -->
+                <div id="hcc-container-div">
+                    {% include 'html_includes/hens_chicks_cocks.html' %}
+                </div>
+                <!-- Doseage Amount Total -->
+                <div class="row bottom-margin">
+                    <div class="col-9 col-css label-float">
+                        {{ form.doseage_amount }}
+                        <label for="doseage-amount">TOTAL Amount Administered</label>
+                    </div>
+                    <div class="col-1">
+                    </div>
+                    <div class="col-2 col-css bottom-margin">
+                        <select name="weights_and_measures_units" id="weights-and-measures-units">
+                            <option value="g">g</option>
+                            <option value="kg">kg</option>
+                            <option value="g">ml</option>
+                            <option value="kg">lt</option>
+                            <option value="oz">oz</option>
+                            <option value="lb">lb</option>
+                            <option value="oz">fl oz</option>
+                            <option value="lb">gallon</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Doseage Amount per Bird -->
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h5 class="row-name">Dose per Bird:</h5>
+                    </div>
+                    <div class="col-2 col-css col-css-right">
+                        <input type="number" value="0" id="doseage-per-bird" class="text-end h-style-input"></input>
+                    </div>
                 </div>
                 <!-- Administration Method -->
                 <div class="bottom-margin label-float">
                     {{ form.administration_method }}
-                    <label for="administration-method">Administration Method</label>
+                    <label class="hide-label" id="select-administration-label" for="administration-method">Administration Method</label>
                 </div>
                 <!-- VET Administered? -->
                 <div class="row bottom-margin" id="vet-administered-row">
@@ -138,15 +185,20 @@
                 <hr class="hr-large">
             </div>
 
-            <div>
-                <button class="btn button button-small-size">Add Another</button>
-            </div>
-
             <!-- Notes & Images Section -->
             {% include 'html_includes/notes_and_pics.html' %}
 
             <!-- Used as a warning instead of an Alert -->
             {% include 'html_includes/validation_warning.html' %}
+
+            <!-- Add Another Button - Not sure this is even required. We can put a note in the "i" modal
+                 to say just keep adding them one after another -->
+            <!-- <div class="bottom-margin">
+                <button class="button add-another-btn">Add Another</button>
+            </div>
+            <div class="bottom-margin">
+                <hr class="hr-small">
+            </div> -->
 
             <!-- Buttons Section -->
             <div class="button-container">

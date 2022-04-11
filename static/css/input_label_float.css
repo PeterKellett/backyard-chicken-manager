@@ -9,6 +9,14 @@
     position: relative;
 }
 
+.hide-label {
+    display: none;
+}
+
+.hide-placeholder::placeholder {
+    color: transparent;
+}
+
 /*-- Field label prior to field being clicked on --*/
 /* .form-data input::placeholder,
 .form-data select::placeholder, 
