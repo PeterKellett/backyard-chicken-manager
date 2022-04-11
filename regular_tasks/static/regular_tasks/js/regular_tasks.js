@@ -94,3 +94,10 @@ function preventFormSubmission() {
             console.log("Right Calc");
         }
     };
+
+
+// Function to automatically populate a unit of measurement
+const measurementUnit = document.getElementById("weights-and-measures-units").value;
+console.log("Measurement Unit :", measurementUnit);
+
+$("#unit-of-measurement").html(measurementUnit);

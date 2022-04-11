@@ -16,6 +16,15 @@ $(document).ready(function () {
     
 })
 
+// Makes a modal display on a page when User lands on it. Used for when a User initially
+// lands on a page and we require some data. Once the data has been provided, it must
+// not display again. Function needs to be updated for the latter.
+// Taken from https://www.tutorialrepublic.com/faq/how-to-launch-bootstrap-modal-on-page-load.php
+$(document).ready(function(){
+    console.log("Function fires for modal")
+    $("#page-setup-modal").modal('show');
+});
+
 
 // Show Hide 1: Function to display additional field(s) or content when a checkbox is checked
 // Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/

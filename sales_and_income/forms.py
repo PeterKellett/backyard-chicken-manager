@@ -97,7 +97,7 @@ class EggRoadsideSalesForm(forms.ModelForm):
                                                                'id': 'qty-single-eggs-in-stock',
                                                                'name': 'qty_single_eggs_in_stock',
                                                                'placeholder':
-                                                               "Qty of Single Eggs In Stock"}),
+                                                               "Qty of Single Eggs In Stock 1"}),
             'qty_half_dozen_egg_boxes_remaining': forms.TextInput(attrs={'class': '',
                                                                          'id': 'qty-half-dozen-egg-boxes-remaining',
                                                                          'name': 'qty_half_dozen_egg_boxes_remaining',

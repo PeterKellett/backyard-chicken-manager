@@ -43,7 +43,7 @@ class EggCollectionAdmin(admin.ModelAdmin):
 
 
 class FeedingTimeAdmin(admin.ModelAdmin):
-    """Admin layout for EggCollection Admin table"""
+    """Admin layout for Feeding Time Admin table"""
     list_display = (
         'id',
         'date',
