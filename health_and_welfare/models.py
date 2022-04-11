@@ -4,19 +4,6 @@ from flock_management.models import Flocks
 from django.utils import timezone
 
 
-class DiseasesName(models.Model):
-    """Model used for Disease names"""
-    class Meta:
-        """Overwrite the default Django pluralisation"""
-        verbose_name_plural = 'Disease Names'
-    disease_name = models.CharField(max_length=50,
-                                    null=True,
-                                    blank=True)
-
-    def __str__(self):
-        return self.disease_name
-
-
 class AdministrationMethod(models.Model):
     """Model used for identifying methods of administering doses"""
     class Meta:
@@ -63,6 +50,19 @@ class Supplements(models.Model):
                                           decimal_places=2,
                                           null=True,
                                           blank=True)
+
+
+class DiseasesName(models.Model):
+    """Model used for Disease names"""
+    class Meta:
+        """Overwrite the default Django pluralisation"""
+        verbose_name_plural = 'Disease Names'
+    disease_name = models.CharField(max_length=50,
+                                    null=True,
+                                    blank=True)
+
+    def __str__(self):
+        return self.disease_name
 
 
 class MedicinesName(models.Model):
