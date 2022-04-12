@@ -13,7 +13,7 @@ class PaymentMethods(models.Model):
                                        null=True,
                                        blank=True)
     def __str__(self):
-        return self.payment_methods
+        return self.payment_method
 
 
 class PurchasesCategory(models.Model):
@@ -61,9 +61,10 @@ class Purchases(models.Model):
     unit_of_measurement = models.CharField(max_length=50,
                                            null=True,
                                            blank=True)
-    payment_method = models.CharField(max_length=50,
-                                      null=True,
-                                      blank=True)
+    payment_method = models.ForeignKey(PaymentMethods,
+                                       null=True,
+                                       blank=True,
+                                       on_delete=models.CASCADE)
     receipt_reference = models.CharField(max_length=50,
                                          null=True,
                                          blank=True)

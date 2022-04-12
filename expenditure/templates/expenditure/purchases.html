@@ -137,12 +137,8 @@
                     </div>
                     <!-- Payment Method -->
                     <div class="bottom-margin label-float">
-                        <select name="payment_method" id="payment-method" onclick="displaySelectLabel('select-payment-method-label')">
-                            <option value="" disabled selected>Payment Method</option>
-                            <option type="text" name="cash" value="cash" placeholder="cash" id="cash">Cash</option>
-                            <option type="text" name="card" value="card" placeholder="card" id="card">Card</option>
-                        </select>
-                        <label class="hide-label" id="select-payment-method-label" for="payment-method">Payment Method</label>
+                        {{ form.payment_method }}
+                        <label class="hide-label" id="payment-method-label" for="pament-method">Payment Method</label>
                     </div>
                     <!-- Receipt Reference -->
                     <div class="bottom-margin label-float">

@@ -21,6 +21,9 @@ class PurchasesForm(forms.ModelForm):
         self.fields['category'].empty_label = 'Category'
         self.fields['category'].initial = "Category"
         self.fields['category'].show_hidden_initial = True
+        self.fields['payment_method'].empty_label = 'Payment Method'
+        self.fields['payment_method'].initial = "Payment Method"
+        self.fields['payment_method'].show_hidden_initial = True
 
     class Meta:
         """ Meta Class Docstring here as required """
