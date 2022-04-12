@@ -16,11 +16,11 @@ class PurchasesCategoryForm(forms.ModelForm):
 class PurchasesForm(forms.ModelForm):
     """ Create a Purchases form """
 
-    # def __init__(self, *args, **kwargs):
-    #     super(MedicinesForm, self).__init__(*args, **kwargs)
-    #     self.fields['administration_method'].empty_label = 'Select Administration Method'
-    #     self.fields['administration_method'].initial = "Select Administration Method"
-    #     self.fields['administration_method'].show_hidden_initial = True
+    def __init__(self, *args, **kwargs):
+        super(PurchasesForm, self).__init__(*args, **kwargs)
+        self.fields['category'].empty_label = 'Category'
+        self.fields['category'].initial = "Category"
+        self.fields['category'].show_hidden_initial = True
 
     class Meta:
         """ Meta Class Docstring here as required """
@@ -40,6 +40,7 @@ class PurchasesForm(forms.ModelForm):
                                             'id': 'category',
                                             'name': 'category',
                                             'value': '',
+                                            'onclick': "displaySelectLabel('purchases-category-label')",
                                             'onkeyup': "showSuggestionsCategories(this.value, 'category')",
                                             'placeholder':
                                             "Category"}),
@@ -78,6 +79,7 @@ class PurchasesForm(forms.ModelForm):
                                                         'id': 'receipt-reference',
                                                         'name': 'receipt_reference',
                                                         'value': '',
+                                                        'onclick': "displaySelectLabel('select-receipt-reference-label')",
                                                         'onkeyup': "showSuggestionsDiseases(this.value, 'product')",
                                                         'placeholder':
                                                         "Receipt/Invoice Reference"}),
@@ -85,6 +87,7 @@ class PurchasesForm(forms.ModelForm):
                                                   'id': 'seller-name',
                                                   'name': 'seller_name',
                                                   'value': '',
+                                                  'onclick': "displaySelectLabel('select-seller-name-label')",
                                                   'onkeyup': "showSuggestionsDiseases(this.value, 'product')",
                                                   'placeholder':
                                                   "Seller Name"}),

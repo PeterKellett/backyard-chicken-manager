@@ -207,11 +207,19 @@ $(document).ready(function() {
 
 // Floating Input Labels using ID: Display floating label on Select inputs when a selection is made
 function displaySelectLabel(id) {
+    console.log("Float Label fn fires");
     document.getElementById(id).style.display = "block";
     if (id==='select-recipient-label') {
         checkAndToggleHCCDivVisibility();
     }
 }
+
+window.onclick = function () {
+    const elem = document.activeElement;
+    const elemId = elem.id;
+    console.log("Active ID:", elemId);
+  }
+
 
 function hideSelectLabel(id) {
     document.getElementById(id).style.display = "none";

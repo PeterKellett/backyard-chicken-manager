@@ -15,13 +15,6 @@ def get_purchase_categories(request):
     return JsonResponse({"categories": list(categories)}, safe=False)
 
 
-# def purchases(request):
-#     """view to current flock"""
-#     template = 'expenditure/purchases.html'
-#     context = {}
-#     return render(request, template, context)
-
-
 def purchases(request):
     """view to current flock"""
     category = PurchasesCategory.objects.all()
@@ -41,7 +34,7 @@ def purchases(request):
             form.save()  # Save the form fully.
             farm = farmprofile[0]  # Refer to the farmprofile object which is obtained above
             farm.save()  # Save the farmprofile to the db.
-            return HttpResponseRedirect('/expenditure/purchases/')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
+            return HttpResponseRedirect('/expenditure/')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
     else:
         form = PurchasesForm
         flock = farmprofile[0].flocks.all()

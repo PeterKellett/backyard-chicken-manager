@@ -75,11 +75,7 @@
                 {% include 'html_includes/flock.html' %}
                 <!-- Purchase Category -->
                 <div class="bottom-margin label-float">
-                    <select name="purchases_category" id="purchases-category" onclick="displaySelectLabel('purchases-category-label')" required>
-                        <option value="" disabled selected>Select Category</option>
-                        <option type="text" name="fencing" value="fencing" placeholder="fencing" id="fencing">Fencing</option>
-                        <option type="text" name="coop" value="coop" placeholder="coop" id="coop">Coop</option>
-                    </select>
+                    {{ form.category }}
                     <label class="hide-label" id="purchases-category-label" for="purchases-category">Purchase Category</label>
                 </div>
                 <!-- Product Name -->
@@ -146,15 +142,17 @@
                             <option type="text" name="cash" value="cash" placeholder="cash" id="cash">Cash</option>
                             <option type="text" name="card" value="card" placeholder="card" id="card">Card</option>
                         </select>
-                        <label class="hide-label" id="payment-method-label" for="payment-method">Payment Method</label>
+                        <label class="hide-label" id="select-payment-method-label" for="payment-method">Payment Method</label>
                     </div>
                     <!-- Receipt Reference -->
                     <div class="bottom-margin label-float">
                         {{ form.receipt_reference }}
+                        <label class="hide-label" id="select-receipt-reference-label" for="receipt-reference">Receipt/Invoice Reference</label>
                     </div>
                     <!-- Seller -->
                     <div class="bottom-margin label-float">
                         {{ form.seller_name }}
+                        <label class="hide-label" id="select-seller-name-label" for="seller-name">Seller Name</label>
                     </div>
                 </div>
             </section>
