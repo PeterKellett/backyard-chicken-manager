@@ -207,11 +207,19 @@ $(document).ready(function() {
 
 // Floating Input Labels using ID: Display floating label on Select inputs when a selection is made
 function displaySelectLabel(id) {
+    console.log("Float Label fn fires");
     document.getElementById(id).style.display = "block";
     if (id==='select-recipient-label') {
         checkAndToggleHCCDivVisibility();
     }
 }
+
+window.onclick = function () {
+    const elem = document.activeElement;
+    const elemId = elem.id;
+    console.log("Active ID:", elemId);
+  }
+
 
 function hideSelectLabel(id) {
     document.getElementById(id).style.display = "none";
@@ -249,7 +257,7 @@ function showSuggestionsMedicines(value, labelId) {
         document.getElementById('medicine-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu38.gitpod.io/health_and_welfare/get_medicines')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39a.gitpod.io/health_and_welfare/get_medicines')
 .then(response => response.json())
 .then(data => {
     MEDICINES = data.medicines;
@@ -278,7 +286,7 @@ function showSuggestionsDiseases(value, labelId) {
         document.getElementById('disease-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu38.gitpod.io/health_and_welfare/get_diseases')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39a.gitpod.io/health_and_welfare/get_diseases')
 .then(response => response.json())
 .then(data => {
     DISEASES = data.diseases;
@@ -308,7 +316,7 @@ function showSuggestionsVaccines(value, labelId) {
         document.getElementById('vaccine-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu38.gitpod.io/health_and_welfare/get_vaccines')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39a.gitpod.io/health_and_welfare/get_vaccines')
 .then(response => response.json())
 .then(data => {
     VACCINES = data.vaccines;
@@ -337,7 +345,7 @@ function showSuggestionsViruses(value, labelId) {
         document.getElementById('virus-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu38.gitpod.io/health_and_welfare/get_viruses')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39a.gitpod.io/health_and_welfare/get_viruses')
 .then(response => response.json())
 .then(data => {
     VIRUSES = data.viruses;

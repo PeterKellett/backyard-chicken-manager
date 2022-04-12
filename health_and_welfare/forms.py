@@ -56,10 +56,11 @@ class MedicinesForm(forms.ModelForm):
         widgets = {
             'date': forms.DateTimeInput,
             'flock': forms.CheckboxInput,
-            'medicine_name': forms.TextInput(attrs={'class': '',
+            'medicine_name': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                     'id': 'medicine-name',
                                                     'name': 'medicine_name',
                                                     'value': '',
+                                                    'onclick': "displaySelectLabel('select-medicine-label')",
                                                     'onkeyup': "showSuggestionsMedicines(this.value, 'select-medicine-label')",
                                                     'placeholder':
                                                     "Medicine Name"}),
@@ -67,6 +68,7 @@ class MedicinesForm(forms.ModelForm):
                                                                 'id': 'disease-protected-against',
                                                                 'name': 'disease_protected_against',
                                                                 'value': '',
+                                                                'onclick': "displaySelectLabel('select-dpa-label')",
                                                                 'onkeyup': "showSuggestionsDiseases(this.value, 'select-dpa-label')",
                                                                 'placeholder':
                                                                 "Disease Protected Against"}),
