@@ -12,7 +12,7 @@ var total_nonsaleable_eggs;
 let traysQuantity;
 
 // Extracts the Tray Quantity from Farm Profile in the db
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu38.gitpod.io/regular_tasks/trays_quantity')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39a.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
     traysQuantity = data.trays_quantity;

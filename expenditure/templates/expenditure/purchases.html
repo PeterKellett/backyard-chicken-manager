@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/hcc.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Expenditure - Purchases
+{% endblock %}
+
+{% block sub-nav %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Sub Navigation Section -->
+<div class="element-container container-fluid sub-nav-container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link active" href="">
+                <img src="{{ MEDIA_URL }}expenditure_purchases.png" alt="Expenditure - Purchases Icon" class="nav-link-image sub-nav-link-image">
+                Purchases
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="">
+                <img src="{{ MEDIA_URL }}expenditure_withdrawals.png" alt="Expenditure - Withdrawals Icon" class="nav-link-image sub-nav-link-image">
+                Withdrawals
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Icons and Links Section -->
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle icon-orange"></i>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}reports_expenditure.png" alt="Expenditure reports icon" class="non-round-icon"></a>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting_settings.png" alt="Profile and Settings icon" class="non-round-icon"></a>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Expenditure - Purchases" %}
+
+<!-- FORM SECTION  -->
+<div class="element-container">
+    <form method="POST" action="{% url 'purchases' %}" enctype="multipart/form-data" name="purchases" id="submit-form" autocomplete="off">
+        {% csrf_token %}
+        
+        <div class="form-data">
+            <!-- Prevents Chrome and Forefox from offering autofill on fields. 
+                 Required because on many fields we provide our own auto-suggest and it looks messy and confusing.
+                 It requires autocomplete="off" in the form above to work. 
+                 Taken from: https://gist.github.com/niksumeiko/360164708c3b326bd1c8 where there are other solutions too -->
+            <input autocomplete="false" name="hidden" type="text" style="display:none;">
+
+            <!-- Purchase Core Details Section -->
+            <section name="purchases-core-info">
+                {% include 'html_includes/date.html' %}
+                {% include 'html_includes/flock.html' %}
+                <!-- Purchase Category -->
+                <div class="bottom-margin label-float">
+                    <select name="purchases_category" id="purchases-category" onclick="displaySelectLabel('purchases-category-label')" required>
+                        <option value="" disabled selected>Select Category</option>
+                        <option type="text" name="fencing" value="fencing" placeholder="fencing" id="fencing">Fencing</option>
+                        <option type="text" name="coop" value="coop" placeholder="coop" id="coop">Coop</option>
+                    </select>
+                    <label class="hide-label" id="purchases-category-label" for="purchases-category">Purchase Category</label>
+                </div>
+                <!-- Product Name -->
+                <div style="position: relative;">
+                    <div class="bottom-margin label-float">
+                        {{ form.product }}
+                        <label id="product-name-label" for="product">Product Name</label>
+                    </div>
+                    <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the medicine names in the db -->
+                    <div class="auto-suggest-dropdown" id="product-suggestions-list">
+                    </div>
+                </div>
+                <!-- Costs -->
+                <div class="row bottom-margin">
+                    <div class="col-9 col-css label-float">
+                        {{ form.total_cost }}
+                        <label id="total-cost" for="total_cost">Total Cost</label>
+                    </div>
+                    <div class="col-1">
+                    </div>
+                    <div class="col-2 col-css bottom-margin">
+                        <select name="currency" id="currency">
+                            <option value="€">€</option>
+                            <option value="$">$</option>
+                            <option value="£">£</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Advanced Section - Bootstrap Collapse https://getbootstrap.com/docs/5.0/components/collapse/-->
+            <section name="advanced-section">
+                <div class="bottom-margin panel-div label-float">
+                    <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <h5>Advanced (Click on me)</h5>
+                    </a>
+                </div>
+                <div class="collapse in" id="collapseExample">
+                    <!-- Eggs Total Weight -->
+                    <div class="row bottom-margin">
+                        <div class="col-9 col-css label-float">
+                            {{ form.amount_purchased }}
+                            <label for="amount-purchased">Amount Purchased</label>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col-2 col-css bottom-margin">
+                            <select name="weights_and_measures_units" id="weights-and-measures-units">
+                                <option value="unit(s)">Unit(s)</option>
+                                <option value="g">g</option>
+                                <option value="kg">kg</option>
+                                <option value="oz">oz</option>
+                                <option value="lb">lb</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Payment Method -->
+                    <div class="bottom-margin label-float">
+                        <select name="payment_method" id="payment-method" onclick="displaySelectLabel('select-payment-method-label')" required>
+                            <option value="" disabled selected>Payment Method</option>
+                            <option type="text" name="cash" value="cash" placeholder="cash" id="cash">Cash</option>
+                            <option type="text" name="card" value="card" placeholder="card" id="card">Card</option>
+                        </select>
+                        <label class="hide-label" id="payment-method-label" for="payment-method">Payment Method</label>
+                    </div>
+                    <!-- Receipt Reference -->
+                    <div class="bottom-margin label-float">
+                        {{ form.receipt_reference }}
+                    </div>
+                    <!-- Seller -->
+                    <div class="bottom-margin label-float">
+                        {{ form.seller_name }}
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Notes & Images Section -->
+            {% include 'html_includes/notes_and_pics.html' %}
+
+            <!-- Used as a warning instead of an Alert -->
+            {% include 'html_includes/validation_warning.html' %}
+
+            <!-- Add Another Button - Not sure this is even required. We can put a note in the "i" modal
+                 to say just keep adding them one after another -->
+            <!-- <div class="bottom-margin">
+                <button class="button add-another-btn">Add Another</button>
+            </div>
+            <div class="bottom-margin">
+                <hr class="hr-small">
+            </div> -->
+
+            <!-- Buttons Section -->
+            <div class="button-container">
+                <input type="hidden" name="redirect_url" value="onboard_produce"/>
+                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
+                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+    <script src="{% static 'js/hcc_quantities.js' %}"></script>
+{% endblock %}

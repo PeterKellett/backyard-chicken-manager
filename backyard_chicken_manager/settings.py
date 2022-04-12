@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'regular_tasks',
     'sales_and_income',
     'health_and_welfare',
+    'expenditure',
     # 3rd Party
     'crispy_forms',
 ]
