@@ -4,6 +4,18 @@ from flock_management.models import Flocks
 from django.utils import timezone
 
 
+class PaymentMethods(models.Model):
+    """Model used for Purchases Categories"""
+    class Meta:
+        """Overwrite the default Django pluralisation"""
+        verbose_name_plural = 'Payment Methods'
+    payment_method = models.CharField(max_length=50,
+                                       null=True,
+                                       blank=True)
+    def __str__(self):
+        return self.payment_methods
+
+
 class PurchasesCategory(models.Model):
     """Model used for Purchases Categories"""
     class Meta:

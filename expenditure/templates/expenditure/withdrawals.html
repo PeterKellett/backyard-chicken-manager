@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/hcc.css' %}" />
+{% endblock %}
+
+{% block nav_page_title %}
+    Expenditure - Withdrawals
+{% endblock %}
+
+{% block sub-nav %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Sub Navigation Section -->
+<div class="element-container container-fluid sub-nav-container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="{% url 'purchases' %}">
+                <img src="{{ MEDIA_URL }}expenditure_purchases.png" alt="Expenditure - Purchases Icon" class="nav-link-image sub-nav-link-image">
+                Purchases
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link active" href="{% url 'withdrawals' %}">
+                <img src="{{ MEDIA_URL }}expenditure_withdrawals.png" alt="Expenditure - Withdrawals Icon" class="nav-link-image sub-nav-link-image">
+                Withdrawals
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Icons and Links Section -->
+<div class="container element-container">
+    <div class="row bottom-margin">
+        <div class="col-2 col-css">
+            <i class="fas fa-info-circle icon-orange"></i>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}reports_expenditure.png" alt="Expenditure reports icon" class="non-round-icon"></a>
+        </div>
+        <div class="col-2 col-css">
+            <a href=""><img src="{{ MEDIA_URL }}profile_and_setting_settings.png" alt="Profile and Settings icon" class="non-round-icon"></a>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Expenditure - Withdrawals" %}
+
+<!-- Available Funds -->
+<div class="element-container">
+    <div class="row bottom-margin">
+        <div class="col-9 col-css">
+            <h5>Available Funds</h5>
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-2 col-css bottom-margin">
+            <h5>€Temp</h5>
+        </div>
+    </div>
+</div>
+<div class="bottom-margin">
+    <hr class="hr-large">
+</div>
+
+<!-- Withdrawals Note -->
+<div class="bottom-margin">
+    <h6>Withdrawals are monies taken for personal use.</h6>
+</div>
+
+<!-- FORM SECTION  -->
+<div class="element-container">
+    <form method="POST" action="{% url 'withdrawals' %}" enctype="multipart/form-data" name="withdrawals" id="submit-form" autocomplete="off">
+        {% csrf_token %}
+        
+        <div class="form-data">
+            <!-- Prevents Chrome and Forefox from offering autofill on fields. 
+                 Required because on many fields we provide our own auto-suggest and it looks messy and confusing.
+                 It requires autocomplete="off" in the form above to work. 
+                 Taken from: https://gist.github.com/niksumeiko/360164708c3b326bd1c8 where there are other solutions too -->
+            <input autocomplete="false" name="hidden" type="text" style="display:none;">
+
+            <!-- Withdrawals Core Details Section -->
+            <section name="withdrawals-core-info">
+                {% include 'html_includes/date.html' %}
+                <!-- Method of Withdrawal -->
+                <div class="bottom-margin label-float">
+                    {{ form.method_of_withdrawal }}
+                    <label class="hide-label" id="method-of-withdrawal-label" for="method-of-withdrawal">Method of Withdrawal</label>
+                </div>
+                <!-- Amount Withdrawn -->
+                <div class="row bottom-margin">
+                    <div class="col-9 col-css label-float">
+                        {{ form.amount_withdrawn }}
+                        <label id="amount-withdrawn-label" for="amount-withdrawn">Amount Withdrawn</label>
+                    </div>
+                    <div class="col-1">
+                    </div>
+                    <div class="col-2 col-css bottom-margin">
+                        <select name="currency" id="currency">
+                            <option value="€">€</option>
+                            <option value="$">$</option>
+                            <option value="£">£</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Notes & Images Section -->
+            {% include 'html_includes/notes_and_pics.html' %}
+
+            <!-- Used as a warning instead of an Alert -->
+            {% include 'html_includes/validation_warning.html' %}
+
+            <!-- Buttons Section -->
+            <div class="button-container">
+                <input type="hidden" name="redirect_url" value="onboard_produce"/>
+                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
+                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+    <script src="{% static 'js/hcc_quantities.js' %}"></script>
+{% endblock %}

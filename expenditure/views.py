@@ -5,8 +5,14 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from .forms import PurchasesCategoryForm, PurchasesForm
-from .models import PurchasesCategory, Purchases
+from .models import PaymentMethods, PurchasesCategory, Purchases
 import json
+
+
+def get_payment_methods(request):
+    """view to current flock"""
+    payment_method = PaymentMethods.objects.values('category')
+    return JsonResponse({"payment_method": list(payment_method)}, safe=False)
 
 
 def get_purchase_categories(request):
@@ -45,3 +51,12 @@ def purchases(request):
                    'flocks': flock}
         print("context :", type(context))
         return render(request, template, context)
+
+
+def withdrawals(request):
+    """view to current flock"""
+    # The three lines below can be deleted once the rest of the code has 
+    # been uncommented and implemented
+    template = 'expenditure/withdrawals.html'
+    context = {}
+    return render(request, template, context)
