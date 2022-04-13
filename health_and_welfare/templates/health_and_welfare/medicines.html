@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block nav_page_title %}
-    Health & Welfare - Medicines
+    Medicines
 {% endblock %}
 
 {% block sub-nav %}
@@ -41,6 +41,9 @@
         </li>
     </ul>
 </div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Medicines" %}
 
 <!-- Icons and Links Section -->
 <div class="container element-container">
@@ -99,7 +102,7 @@
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
                         {{ form.disease_protected_against }}
-                        <label class="hide-label" id="select-dpa-label" for="disease-protected-against">Disease Protected Against</label>
+                        <label id="select-dpa-label" for="disease-protected-against">Disease Protected Against</label>
                     </div>
                     <div class="auto-suggest-dropdown" id="disease-suggestions-list">
                     </div>

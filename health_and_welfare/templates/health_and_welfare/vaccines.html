@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block nav_page_title %}
-    Health & Welfare - Vaccines
+    Vaccines
 {% endblock %}
 
 {% block sub-nav %}
@@ -41,6 +41,9 @@
         </li>
     </ul>
 </div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Vaccines" %}
 
 <!-- Icons and Links Section -->
 <div class="container element-container">
@@ -89,7 +92,7 @@
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
                         {{ form.vaccine_name }}
-                        <label class="hide-label" id="select-vaccine-label" for="vaccine-name">Vaccine Name</label>
+                        <label id="select-vaccine-label" for="vaccine-name">Vaccine Name</label>
                     </div>
                     <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the vaccine names in the db -->
                     <div class="auto-suggest-dropdown" id="vaccine-suggestions-list">
@@ -99,7 +102,7 @@
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
                         {{ form.virus_protected_against }}
-                        <label class="hide-label" id="select-vpa-label" for="virus-protected-against">Virus Protected Against</label>
+                        <label id="select-vpa-label" for="virus-protected-against">Virus Protected Against</label>
                     </div>
                     <div class="auto-suggest-dropdown" id="virus-suggestions-list">
                     </div>

@@ -22,19 +22,22 @@
 <div class="element-container container-fluid sub-nav-container">
     <ul class="nav nav-tabs nav-justified">
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link active" href="">
+            <a class="nav-link sub-nav-link active" href="{% url 'purchases' %}">
                 <img src="{{ MEDIA_URL }}expenditure_purchases.png" alt="Expenditure - Purchases Icon" class="nav-link-image sub-nav-link-image">
                 Purchases
             </a>
         </li>
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link" href="">
+            <a class="nav-link sub-nav-link" href="{% url 'withdrawals' %}">
                 <img src="{{ MEDIA_URL }}expenditure_withdrawals.png" alt="Expenditure - Withdrawals Icon" class="nav-link-image sub-nav-link-image">
                 Withdrawals
             </a>
         </li>
     </ul>
 </div>
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Purchases" %}
 
 <!-- Icons and Links Section -->
 <div class="container element-container">
@@ -53,9 +56,6 @@
 <div class="bottom-margin">
     <hr class="hr-large">
 </div>
-
-<!-- Page Name - Non-Mobile -->
-{% include 'html_includes/page_name_non_mobile.html' with page_name="Expenditure - Purchases" %}
 
 <!-- FORM SECTION  -->
 <div class="element-container">
@@ -90,13 +90,13 @@
                 </div>
                 <!-- Costs -->
                 <div class="row bottom-margin">
-                    <div class="col-9 col-css label-float">
+                    <div class="col-8 col-css label-float">
                         {{ form.total_cost }}
                         <label id="total-cost" for="total_cost">Total Cost</label>
                     </div>
                     <div class="col-1">
                     </div>
-                    <div class="col-2 col-css bottom-margin">
+                    <div class="col-3 col-css bottom-margin">
                         <select name="currency" id="currency">
                             <option value="€">€</option>
                             <option value="$">$</option>
@@ -119,13 +119,13 @@
                 <div class="collapse in" id="collapseExample">
                     <!-- Eggs Total Weight -->
                     <div class="row bottom-margin">
-                        <div class="col-9 col-css label-float">
+                        <div class="col-8 col-css label-float">
                             {{ form.amount_purchased }}
                             <label for="amount-purchased">Amount Purchased</label>
                         </div>
                         <div class="col-1">
                         </div>
-                        <div class="col-2 col-css bottom-margin">
+                        <div class="col-3 col-css bottom-margin">
                             <select name="weights_and_measures_units" id="weights-and-measures-units">
                                 <option value="unit(s)">Unit(s)</option>
                                 <option value="g">g</option>
@@ -137,12 +137,8 @@
                     </div>
                     <!-- Payment Method -->
                     <div class="bottom-margin label-float">
-                        <select name="payment_method" id="payment-method" onclick="displaySelectLabel('select-payment-method-label')">
-                            <option value="" disabled selected>Payment Method</option>
-                            <option type="text" name="cash" value="cash" placeholder="cash" id="cash">Cash</option>
-                            <option type="text" name="card" value="card" placeholder="card" id="card">Card</option>
-                        </select>
-                        <label class="hide-label" id="select-payment-method-label" for="payment-method">Payment Method</label>
+                        {{ form.payment_method }}
+                        <label class="hide-label" id="payment-method-label" for="pament-method">Payment Method</label>
                     </div>
                     <!-- Receipt Reference -->
                     <div class="bottom-margin label-float">

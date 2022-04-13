@@ -30,68 +30,18 @@
 
             <!-- Modal body - Instructions -->
             <div class="modal-body">
-                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> The purpose of this page is to record the amount
-                                                                                         of food and water given to your flock(s) and then
-                                                                                         calculate the average amount consumed by each birds
-                                                                                         (this info can be viewed in Reports which can be
-                                                                                         accessed via the "Reports" link or by clicking the
-                                                                                         icon at the top of the page).</p>
-                <p class="text-start modal-body">To get started we need to know the total amount of food and water in your feeders when
-                                                 you record your first feed. For example, if there is 1kg in the feeder from the previous
-                                                 and you then add 2kg, put 3kg in the field below. The same principal applies to water.</p>
+                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> To get started we need to know the total amount of 
+                                                                                         food and water in your feeders when you record your 
+                                                                                         first feed. For example, if there is 1kg in the feeder 
+                                                                                         from the previous feed and you then add 2kg, put 3kg 
+                                                                                         in the field below. The same principal applies to water.</p>
                 <p class="text-start modal-body">For all subsequent feeds, you will need to enter the amount of food or water remaining
                                                  from the previous feed, plus the amount added.</p>
-                <p class="text-start modal-body"><span class="fw-bold">PLEASE NOTE:</span>If you scatter your food as opposed to using a feeder,
-                                                                                          enter 0 below and in the "Amount of Food Remaining" on
-                                                                                          subsequent feeds, unless you have a means of estimating
-                                                                                          the amount.</p>
+                <p class="text-start modal-body"><span class="fw-bold">PLEASE NOTE:</span> If you scatter your food as opposed to using a feeder,
+                                                                                           enter 0 below and in the "Amount of Food Remaining" on
+                                                                                           subsequent feeds, unless you have a means of estimating
+                                                                                           the amount.</p>
                 <p class="text-start modal-body">In addition to specific feed types, you should also record the amount of food scraps given.</p>
-
-                <!-- Input Fields -->
-                <form method="POST" action="{% url 'feeding_time' %}" enctype="multipart/form-data" name="feeding_time">
-                    {% csrf_token %}
-            
-                    <div class="form-data">
-                        <!-- Feed Type -->
-                        <div class="bottom-margin">
-                            {{ form.feed_type }}
-                        </div>
-                        <!-- Food Amount -->
-                        <div class="row bottom-margin">
-                            <div class="col-9 col-css label-float">
-                                {{ form.food_total_setup }}
-                                <label for="food-total-setup">Total Food Amount</label>
-                            </div>
-                            <div class="col-1">
-                            </div>
-                            <div class="col-2 col-css">
-                                <select name="weights_and_measures_units" id="weights-and-measures-units">
-                                    <option value="g">g</option>
-                                    <option value="kg">kg</option>
-                                    <option value="oz">oz</option>
-                                    <option value="lb">lb</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- Water Amount -->
-                        <div class="row bottom-margin">
-                            <div class="col-9 col-css label-float">
-                                {{ form.water_total_setup }}
-                                <label for="water-total-setup">Total Water Amount</label>
-                            </div>
-                            <div class="col-1">
-                            </div>
-                            <div class="col-2 col-css">
-                                <select name="weights_and_measures_units" id="weights-and-measures-units">
-                                    <option value="kg">lt</option>
-                                    <option value="oz">fl oz</option>
-                                    <option value="lb">gallon</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-             
             </div>
 
             <!-- Modal footer & Buttons -->
@@ -216,7 +166,16 @@
                             <h4>Feed</h4>
                         </div>
                     </div>
-                    {% include 'html_includes/foods.html' %}
+                </div>
+                <!-- Feed Type -->
+                <div style="position: relative;">
+                    <div class="bottom-margin label-float">
+                        {{ form.feed_type }}
+                        <label id="feed-type-label" for="feed-type">Feed Type</label>
+                    </div>
+                    <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the feed types in the db -->
+                    <div class="auto-suggest-dropdown" id="feed-suggestions-list">
+                    </div>
                 </div>
                 <div class="container">
                     <div class="row bottom-margin">
@@ -327,4 +286,9 @@
     </form>
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, modelformset_factory
-from .models import PurchasesCategory, Purchases
+from .models import PurchasesCategory, Purchases, Withdrawals
 
 
 # Create a Medicines Name form
@@ -12,7 +12,7 @@ class PurchasesCategoryForm(forms.ModelForm):
         fields = "__all__"
 
 
-# Create a Medicine form
+# Create a Purchases form
 class PurchasesForm(forms.ModelForm):
     """ Create a Purchases form """
 
@@ -21,6 +21,9 @@ class PurchasesForm(forms.ModelForm):
         self.fields['category'].empty_label = 'Category'
         self.fields['category'].initial = "Category"
         self.fields['category'].show_hidden_initial = True
+        self.fields['payment_method'].empty_label = 'Payment Method'
+        self.fields['payment_method'].initial = "Payment Method"
+        self.fields['payment_method'].show_hidden_initial = True
 
     class Meta:
         """ Meta Class Docstring here as required """
@@ -91,6 +94,49 @@ class PurchasesForm(forms.ModelForm):
                                                   'onkeyup': "showSuggestionsDiseases(this.value, 'product')",
                                                   'placeholder':
                                                   "Seller Name"}),
+            'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
+                                           'id': 'notes-coop-cleaning',
+                                           'name': 'notes_coop_cleaning',
+                                           'placeholder':
+                                           "Notes",
+                                           'value': ''}),
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
+                                                      'id': 'images-coop-cleaning',
+                                                      'name': 'images_coop_cleaning'})
+        }
+
+
+# Create a Withdrawals form
+class WithdrawalsForm(forms.ModelForm):
+    """ Create a Withdrawals form """
+
+    def __init__(self, *args, **kwargs):
+        super(WithdrawalsForm, self).__init__(*args, **kwargs)
+        self.fields['payment_method'].empty_label = 'Method of Withdrawal'
+        self.fields['payment_method'].initial = "Method of Withdrawal"
+        self.fields['payment_method'].show_hidden_initial = True
+
+    class Meta:
+        """ Meta Class Docstring here as required """
+        model = Withdrawals
+        fields = ('date', 'amount_withdrawn',
+                  'payment_method',
+                  'notes', 'images')
+
+        widgets = {
+            'date': forms.DateTimeInput,
+            'amount_withdrawn': forms.TextInput(attrs={'class': '',
+                                                       'id': 'amount-withdrawn',
+                                                       'name': 'amount_withdrawn',
+                                                       'value': '',
+                                                       'placeholder':
+                                                       "Amount Withdrawn"}),
+            'payment_method': forms.Select(attrs={'class': '',
+                                                  'id': 'payment-method',
+                                                  'name': 'payment_method',
+                                                  'onchange': "displaySelectLabel('select-administration-label')",
+                                                  'placeholder':
+                                                  "Method of Withdrawal"}),
             'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
                                            'id': 'notes-coop-cleaning',
                                            'name': 'notes_coop_cleaning',

@@ -353,6 +353,10 @@ input,
     height: 35px;
 }
 
+.form-data-modal {
+    max-width: 350px;
+}
+
 /*-- Makes Checkboxes small than other field sizes --*/
 input[type=checkbox] {
     height: 20px;

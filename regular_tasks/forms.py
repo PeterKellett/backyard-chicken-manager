@@ -25,7 +25,7 @@ class EggCollectionForm(forms.ModelForm):
                                                     'id': 'qty-egg-trays',
                                                     'name': 'qty_egg_trays',
                                                     'placeholder':
-                                                    'Qty Laid Trays',
+                                                    'Qty Laid - Trays',
                                                     'value': ''}),
             'qty_egg_singles': forms.TextInput(attrs={'class':
                                                       'egg-collection-qty-input \
@@ -56,8 +56,7 @@ class EggCollectionForm(forms.ModelForm):
                                                        'name':
                                                        'qty_eggs_damaged',
                                                        'placeholder':
-                                                       'Qty of Eggs Damaged (OK \
-                                                       for personal use)',
+                                                       'Qty of Eggs Damaged (OK for personal use)',
                                                        'value': '',
                                                        'step': '1',
                                                        'min': '0'}),
@@ -69,21 +68,18 @@ class EggCollectionForm(forms.ModelForm):
                                                       'name':
                                                       'qty_eggs_broken',
                                                       'placeholder':
-                                                      'Qty of Eggs Broken \
-                                                      (Unuseable)',
+                                                      'Qty of Eggs Broken (Unuseable)',
                                                       'value': '',
                                                       'step': '1',
                                                       'min': '0'}),
             'qty_eggs_personal_use': forms.TextInput(attrs={'class':
-
                                                             'saleable-eggs-input',
                                                             'id':
                                                             'qty-eggs-personal-use',
                                                             'name':
                                                             'qty_eggs_personal_use',
                                                             'placeholder':
-                                                            'Qty of Eggs Taken \
-                                                            for Personal Use)',
+                                                            'Qty of Eggs Taken for Personal Use)',
                                                             'value': '',
                                                             'min': '0',
                                                             'step': '1'}),
@@ -94,8 +90,7 @@ class EggCollectionForm(forms.ModelForm):
                                                           'name':
                                                           'qty_eggs_given_free',
                                                           'placeholder':
-                                                          'Qty of Eggs Given \
-                                                          Away Free',
+                                                          'Qty of Eggs Given Away Free',
                                                           'value': '',
                                                           'min': '0',
                                                           'step': '1'}),
@@ -106,9 +101,7 @@ class EggCollectionForm(forms.ModelForm):
                                                              'name':
                                                              'weight_total_eggs_laid',
                                                              'placeholder':
-                                                             'Total weight of \
-                                                             eggs laid \
-                                                             (excl. Broken)',
+                                                             'Laid Eggs Weight (excl. Broken)',
                                                              'value': '',
                                                              'min': '0',
                                                              'oninput':
@@ -157,9 +150,19 @@ FeedingTimeFormSet = modelformset_factory(FeedingTime,
                                                   'amount_food_added'))
 
 
+# Create a Medicines Name form
+class FeedsForm(forms.ModelForm):
+    """ Create a Feeds Name form """
+    class Meta:
+        """ Meta Class Docstring here as required """
+        model = Feeds
+        fields = "__all__"
+
+
 # Create a Feeding Time form
 class FeedingTimeForm(forms.ModelForm):
     """ Create a feeding time form """
+
     class Meta:
         """ Meta Class Docstring here as required """
         model = FeedingTime
@@ -173,6 +176,14 @@ class FeedingTimeForm(forms.ModelForm):
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
+            'feed_type': forms.TextInput(attrs={'class': 'hide-placeholder',
+                                                'id': 'feed-type',
+                                                'name': 'feed_type',
+                                                'value': '',
+                                                'onclick': "displaySelectLabel('feed-type-label')",
+                                                'onkeyup': "showSuggestionsFeeds(this.value, 'feed-type-label')",
+                                                'placeholder':
+                                                "Feed Type"}),
             'food_total_setup': forms.TextInput(attrs={'id': 'food-total-setup',
                                                        'name': 'food_total_setup',
                                                        'placeholder': 'Total Feed Amount',
