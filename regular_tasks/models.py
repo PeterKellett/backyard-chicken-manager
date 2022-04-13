@@ -4,40 +4,6 @@ from flock_management.models import Flocks, Coops
 from django.utils.translation import gettext_lazy as _
 
 
-class Feeds(models.Model):
-    """Model used for storing Food data"""
-    class Meta:
-        """Overwrite the default Django pluralisation"""
-        verbose_name_plural = 'Feeds'
-    farm_profile = models.ForeignKey(FarmProfile,
-                                     null=False,
-                                     blank=False,
-                                     on_delete=models.CASCADE)
-    feed_name = models.CharField(max_length=50,
-                                 null=False,
-                                 blank=False)
-    qty_food = models.DecimalField(max_digits=6,
-                                   decimal_places=2,
-                                   null=False,
-                                   blank=False)
-
-    def __str__(self):
-        return self.feed_name
-
-
-class Disinfectants(models.Model):
-    class Meta:
-        """Overwrite the default Django pluralisation"""
-        verbose_name_plural = 'Disinfectants'
-    """Model used for storing different disinfectants"""
-    disinfectant_name = models.CharField(max_length=40,
-                                         null=False,
-                                         blank=False)
-
-    def __str__(self):
-        return self.disinfectant_name
-
-
 class EggCollection(models.Model):
     """Model used for storing egg collection data"""
     farm_profile = models.ForeignKey(FarmProfile,
@@ -81,6 +47,26 @@ class EggCollection(models.Model):
                                upload_to="images/")
 
 
+class Feeds(models.Model):
+    """Model used for storing Food data"""
+    class Meta:
+        """Overwrite the default Django pluralisation"""
+        verbose_name_plural = 'Feeds'
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=False,
+                                     blank=False,
+                                     on_delete=models.CASCADE)
+    feed_type = models.CharField(max_length=50,
+                                 null=False,
+                                 blank=False)
+    qty_food = models.DecimalField(max_digits=6,
+                                   decimal_places=2,
+                                   null=False,
+                                   blank=False)
+    def __str__(self):
+        return self.feed_type
+
+
 class FeedingTime(models.Model):
     """Model used for storing feeding time data"""
     farm_profile = models.ForeignKey(FarmProfile,
@@ -94,10 +80,9 @@ class FeedingTime(models.Model):
                               null=False,
                               blank=False,
                               on_delete=models.CASCADE)
-    feed_type = models.ForeignKey(Feeds,
-                                  null=False,
-                                  blank=False,
-                                  on_delete=models.CASCADE)
+    feed_type = models.CharField(max_length=50,
+                                 null=True,
+                                 blank=True)
     food_total_setup = models.IntegerField(null=True,
                                      blank=True,
                                      verbose_name='Food Total')
@@ -121,6 +106,20 @@ class FeedingTime(models.Model):
     images = models.ImageField(null=True,
                                blank=True,
                                upload_to="images/")
+
+
+class Disinfectants(models.Model):
+    class Meta:
+        """Overwrite the default Django pluralisation"""
+        verbose_name_plural = 'Disinfectants'
+    """Model used for storing different disinfectants"""
+    disinfectant_name = models.CharField(max_length=40,
+                                         null=False,
+                                         blank=False)
+
+    def __str__(self):
+        return self.disinfectant_name
+
 
 
 class CoopCleaning(models.Model):

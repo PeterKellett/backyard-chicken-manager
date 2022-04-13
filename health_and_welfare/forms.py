@@ -5,7 +5,7 @@ from .models import Supplements, SupplementsName, Medicines, MedicinesName, Vacc
 
 # Create a Supplement form
 class SupplementsForm(forms.ModelForm):
-    """ Create an Egg Collection form """
+    """ Create an Supplement Administration form """
 
     def __init__(self, *args, **kwargs):
         super(MedicinesForm, self).__init__(*args, **kwargs)
@@ -17,6 +17,60 @@ class SupplementsForm(forms.ModelForm):
         """ Meta Class Docstring here as required """
         model = Supplements
         fields = "__all__"
+
+    # class Meta:
+    #     """ Meta Class Docstring here as required """
+    #     model = Supplements
+    #     fields = ('date', 'flock',
+    #               'supplement_name',
+    #               'qty_hens', 'qty_chicks',
+    #               'qty_cocks', 'doseage_amount',
+    #               'administration_method',
+    #               'vet_administered', 'vet_name',
+    #               'notes', 'images')
+
+    #     widgets = {
+    #         'date': forms.DateTimeInput,
+    #         'flock': forms.CheckboxInput,
+    #         'supplement_name': forms.TextInput(attrs={'class': 'hide-placeholder',
+    #                                                   'id': 'medicine-name',
+    #                                                   'name': 'medicine_name',
+    #                                                   'value': '',
+    #                                                   'onclick': "displaySelectLabel('select-supplement-label')",
+    #                                                   'onkeyup': "showSuggestionsMedicines(this.value, 'select-supplement-label')",
+    #                                                   'placeholder':
+    #                                                   "Medicine Name"}),
+    #         'doseage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
+    #                                                  'id': 'doseage-amount',
+    #                                                  'name': 'doseage_amount',
+    #                                                  'type': 'number',
+    #                                                  'placeholder':
+    #                                                  "TOTAL Amount Administered"}),
+    #         'administration_method': forms.Select(attrs={'class': '',
+    #                                                      'id': 'administration-method',
+    #                                                      'name': 'administration_method',
+    #                                                      'onchange': "displaySelectLabel('select-administration-label')",
+    #                                                      'placeholder':
+    #                                                      "Administration Method"}),
+    #         'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
+    #                                                        'id': 'vet-administered',
+    #                                                        'name': 'vet_administered'}),
+    #         'vet_name': forms.TextInput(attrs={'class': '',
+    #                                            'id': 'vet-name',
+    #                                            'name': 'vet_name',
+    #                                            'placeholder':
+    #                                            "VET Name",
+    #                                            'value': ''}),
+    #         'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
+    #                                        'id': 'notes-coop-cleaning',
+    #                                        'name': 'notes_coop_cleaning',
+    #                                        'placeholder':
+    #                                        "Notes",
+    #                                        'value': ''}),
+    #         'images': forms.ClearableFileInput(attrs={'class': 'upload',
+    #                                                   'id': 'images-coop-cleaning',
+    #                                                   'name': 'images_coop_cleaning'})
+    #     }
 
 
 # Create a Supplement Name form
@@ -64,7 +118,7 @@ class MedicinesForm(forms.ModelForm):
                                                     'onkeyup': "showSuggestionsMedicines(this.value, 'select-medicine-label')",
                                                     'placeholder':
                                                     "Medicine Name"}),
-            'disease_protected_against': forms.TextInput(attrs={'class': '',
+            'disease_protected_against': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                                 'id': 'disease-protected-against',
                                                                 'name': 'disease_protected_against',
                                                                 'value': '',
@@ -140,17 +194,19 @@ class VaccinesForm(forms.ModelForm):
         widgets = {
             'date': forms.DateTimeInput,
             'flock': forms.CheckboxInput,
-            'vaccine_name': forms.TextInput(attrs={'class': '',
+            'vaccine_name': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                    'id': 'vaccine-name',
                                                    'name': 'vaccine_name',
                                                    'value': '',
+                                                   'onclick': "displaySelectLabel('select-vaccine-label')",
                                                    'onkeyup': "showSuggestionsVaccines(this.value, 'select-vaccine-label')",
                                                    'placeholder':
                                                    "Vaccine Name"}),
-            'virus_protected_against': forms.TextInput(attrs={'class': '',
+            'virus_protected_against': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                               'id': 'virus-protected-against',
                                                               'name': 'virus_protected_against',
                                                               'value': '',
+                                                              'onclick': "displaySelectLabel('select-vpa-label')",
                                                               'onkeyup': "showSuggestionsViruses(this.value, 'select-vpa-label')",
                                                               'placeholder':
                                                               "Virus Protected Against"}),

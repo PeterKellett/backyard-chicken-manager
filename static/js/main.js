@@ -214,16 +214,9 @@ function displaySelectLabel(id) {
     }
 }
 
-window.onclick = function () {
-    const elem = document.activeElement;
-    const elemId = elem.id;
-    console.log("Active ID:", elemId);
-  }
-
-
-function hideSelectLabel(id) {
-    document.getElementById(id).style.display = "none";
-}
+// function hideSelectLabel(id) {
+//     document.getElementById(id).style.display = "none";
+// }
 
 function checkAndToggleHCCDivVisibility() {
     const dropdown = document.getElementById('recipients')
@@ -241,19 +234,20 @@ function setInputTextMedicine(inputId, text) {
 }
 function showSuggestionsMedicines(value, labelId) {
     if (value.length) {
-        displaySelectLabel(labelId)
+        // displaySelectLabel(labelId)
         let suggestions = '';
         MEDICINES.filter(item => item.medicine_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             suggestions += `<div onclick="setInputTextMedicine('medicine-name', '${item.medicine_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.medicine_name}</div>`;
         });
         if (suggestions.length) {
             document.getElementById('medicine-suggestions-list').innerHTML = suggestions;
+            // console.log("Suggestions :", suggestions);
             document.getElementById('medicine-suggestions-list').style.display = "block";
         } else {
             document.getElementById('medicine-suggestions-list').style.display = "none";
         }
     } else {
-        hideSelectLabel(labelId)
+        // hideSelectLabel(labelId)
         document.getElementById('medicine-suggestions-list').style.display = "none";
     }
 }
@@ -270,7 +264,7 @@ function setInputTextDisease(inputId, text) {
 }
 function showSuggestionsDiseases(value, labelId) {
     if (value.length) {
-        displaySelectLabel(labelId)
+        // displaySelectLabel(labelId)
         let suggestions = '';
         DISEASES.filter(item => item.disease_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             suggestions += `<div onclick="setInputTextDisease('disease-protected-against', '${item.disease_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.disease_name}</div>`;
@@ -282,7 +276,7 @@ function showSuggestionsDiseases(value, labelId) {
             document.getElementById('disease-suggestions-list').style.display = "none";
         }
     } else {
-        hideSelectLabel(labelId)
+        // hideSelectLabel(labelId)
         document.getElementById('disease-suggestions-list').style.display = "none";
     }
 }
@@ -300,7 +294,7 @@ function setInputTextVaccine(inputId, text) {
 }
 function showSuggestionsVaccines(value, labelId) {
     if (value.length) {
-        displaySelectLabel(labelId)
+        // displaySelectLabel(labelId)
         let suggestions = '';
         VACCINES.filter(item => item.vaccine_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             suggestions += `<div onclick="setInputTextVaccine('vaccine-name', '${item.vaccine_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.vaccine_name}</div>`;
@@ -312,7 +306,7 @@ function showSuggestionsVaccines(value, labelId) {
             document.getElementById('vaccine-suggestions-list').style.display = "none";
         }
     } else {
-        hideSelectLabel(labelId)
+        // hideSelectLabel(labelId)
         document.getElementById('vaccine-suggestions-list').style.display = "none";
     }
 }
@@ -329,7 +323,7 @@ function setInputTextVirus(inputId, text) {
 }
 function showSuggestionsViruses(value, labelId) {
     if (value.length) {
-        displaySelectLabel(labelId)
+        // displaySelectLabel(labelId)
         let suggestions = '';
         VIRUSES.filter(item => item.virus_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             suggestions += `<div onclick="setInputTextVirus('virus-protected-against', '${item.virus_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.virus_name}</div>`;
@@ -341,7 +335,7 @@ function showSuggestionsViruses(value, labelId) {
             document.getElementById('virus-suggestions-list').style.display = "none";
         }
     } else {
-        hideSelectLabel(labelId)
+        // hideSelectLabel(labelId)
         document.getElementById('virus-suggestions-list').style.display = "none";
     }
 }

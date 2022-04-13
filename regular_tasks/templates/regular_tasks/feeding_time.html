@@ -42,52 +42,6 @@
                                                                                            subsequent feeds, unless you have a means of estimating
                                                                                            the amount.</p>
                 <p class="text-start modal-body">In addition to specific feed types, you should also record the amount of food scraps given.</p>
-
-                <!-- Input Fields -->
-                <form method="POST" action="{% url 'feeding_time' %}" enctype="multipart/form-data" name="feeding_time">
-                    {% csrf_token %}
-
-                    <div class="form-data form-data-modal">
-                        <!-- Feed Type -->
-                        <div class="bottom-margin">
-                            {{ form.feed_type }}
-                        </div>
-                        <!-- Food Amount -->
-                        <div class="row bottom-margin">
-                            <div class="col-9 col-css label-float">
-                                {{ form.food_total_setup }}
-                                <label for="food-total-setup">Total Food Amount</label>
-                            </div>
-                            <div class="col-1">
-                            </div>
-                            <div class="col-2 col-css">
-                                <select name="weights_and_measures_units" id="weights-and-measures-units">
-                                    <option value="g">g</option>
-                                    <option value="kg">kg</option>
-                                    <option value="oz">oz</option>
-                                    <option value="lb">lb</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- Water Amount -->
-                        <div class="row bottom-margin">
-                            <div class="col-9 col-css label-float">
-                                {{ form.water_total_setup }}
-                                <label for="water-total-setup">Total Water Amount</label>
-                            </div>
-                            <div class="col-1">
-                            </div>
-                            <div class="col-2 col-css">
-                                <select name="weights_and_measures_units" id="weights-and-measures-units">
-                                    <option value="kg">lt</option>
-                                    <option value="oz">fl oz</option>
-                                    <option value="lb">gallon</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-             
             </div>
 
             <!-- Modal footer & Buttons -->
@@ -213,8 +167,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="bottom-margin">
-                    {{ form.feed_type }}
+                <!-- Feed Type -->
+                <div style="position: relative;">
+                    <div class="bottom-margin label-float">
+                        {{ form.feed_type }}
+                        <label id="feed-type-label" for="feed-type">Feed Type</label>
+                    </div>
+                    <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the feed types in the db -->
+                    <div class="auto-suggest-dropdown" id="feed-suggestions-list">
+                    </div>
                 </div>
                 <div class="container">
                     <div class="row bottom-margin">
@@ -325,4 +286,9 @@
     </form>
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
 {% endblock %}

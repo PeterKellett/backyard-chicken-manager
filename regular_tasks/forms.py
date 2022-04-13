@@ -150,6 +150,15 @@ FeedingTimeFormSet = modelformset_factory(FeedingTime,
                                                   'amount_food_added'))
 
 
+# Create a Medicines Name form
+class FeedsForm(forms.ModelForm):
+    """ Create a Feeds Name form """
+    class Meta:
+        """ Meta Class Docstring here as required """
+        model = Feeds
+        fields = "__all__"
+
+
 # Create a Feeding Time form
 class FeedingTimeForm(forms.ModelForm):
     """ Create a feeding time form """
@@ -167,6 +176,14 @@ class FeedingTimeForm(forms.ModelForm):
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
+            'feed_type': forms.TextInput(attrs={'class': 'hide-placeholder',
+                                                'id': 'feed-type',
+                                                'name': 'feed_type',
+                                                'value': '',
+                                                'onclick': "displaySelectLabel('feed-type-label')",
+                                                'onkeyup': "showSuggestionsFeeds(this.value, 'feed-type-label')",
+                                                'placeholder':
+                                                "Feed Type"}),
             'food_total_setup': forms.TextInput(attrs={'id': 'food-total-setup',
                                                        'name': 'food_total_setup',
                                                        'placeholder': 'Total Feed Amount',
