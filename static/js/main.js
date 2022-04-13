@@ -257,7 +257,7 @@ function showSuggestionsMedicines(value, labelId) {
         document.getElementById('medicine-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39a.gitpod.io/health_and_welfare/get_medicines')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39b.gitpod.io/health_and_welfare/get_medicines')
 .then(response => response.json())
 .then(data => {
     MEDICINES = data.medicines;
@@ -286,7 +286,7 @@ function showSuggestionsDiseases(value, labelId) {
         document.getElementById('disease-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39a.gitpod.io/health_and_welfare/get_diseases')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39b.gitpod.io/health_and_welfare/get_diseases')
 .then(response => response.json())
 .then(data => {
     DISEASES = data.diseases;
@@ -316,7 +316,7 @@ function showSuggestionsVaccines(value, labelId) {
         document.getElementById('vaccine-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39a.gitpod.io/health_and_welfare/get_vaccines')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39b.gitpod.io/health_and_welfare/get_vaccines')
 .then(response => response.json())
 .then(data => {
     VACCINES = data.vaccines;
@@ -345,16 +345,8 @@ function showSuggestionsViruses(value, labelId) {
         document.getElementById('virus-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39a.gitpod.io/health_and_welfare/get_viruses')
+fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39b.gitpod.io/health_and_welfare/get_viruses')
 .then(response => response.json())
 .then(data => {
     VIRUSES = data.viruses;
-    console.log("Viruses :", VIRUSES)
 });
-
-
-// Floating Input Labels using Class: Display floating label on Select inputs when a selection is made
-function displaySelectLabel2() {
-    console.log("displaySelectLabel2 Fires");
-    document.querySelectorAll('.select-input-label').style.display = "block";
-}

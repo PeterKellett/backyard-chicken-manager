@@ -36,6 +36,9 @@
     </ul>
 </div>
 
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Purchases" %}
+
 <!-- Icons and Links Section -->
 <div class="container element-container">
     <div class="row bottom-margin">
@@ -53,9 +56,6 @@
 <div class="bottom-margin">
     <hr class="hr-large">
 </div>
-
-<!-- Page Name - Non-Mobile -->
-{% include 'html_includes/page_name_non_mobile.html' with page_name="Expenditure - Purchases" %}
 
 <!-- FORM SECTION  -->
 <div class="element-container">
@@ -90,13 +90,13 @@
                 </div>
                 <!-- Costs -->
                 <div class="row bottom-margin">
-                    <div class="col-9 col-css label-float">
+                    <div class="col-8 col-css label-float">
                         {{ form.total_cost }}
                         <label id="total-cost" for="total_cost">Total Cost</label>
                     </div>
                     <div class="col-1">
                     </div>
-                    <div class="col-2 col-css bottom-margin">
+                    <div class="col-3 col-css bottom-margin">
                         <select name="currency" id="currency">
                             <option value="€">€</option>
                             <option value="$">$</option>
@@ -119,13 +119,13 @@
                 <div class="collapse in" id="collapseExample">
                     <!-- Eggs Total Weight -->
                     <div class="row bottom-margin">
-                        <div class="col-9 col-css label-float">
+                        <div class="col-8 col-css label-float">
                             {{ form.amount_purchased }}
                             <label for="amount-purchased">Amount Purchased</label>
                         </div>
                         <div class="col-1">
                         </div>
-                        <div class="col-2 col-css bottom-margin">
+                        <div class="col-3 col-css bottom-margin">
                             <select name="weights_and_measures_units" id="weights-and-measures-units">
                                 <option value="unit(s)">Unit(s)</option>
                                 <option value="g">g</option>

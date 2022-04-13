@@ -30,28 +30,24 @@
 
             <!-- Modal body - Instructions -->
             <div class="modal-body">
-                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> The purpose of this page is to record the amount
-                                                                                         of food and water given to your flock(s) and then
-                                                                                         calculate the average amount consumed by each birds
-                                                                                         (this info can be viewed in Reports which can be
-                                                                                         accessed via the "Reports" link or by clicking the
-                                                                                         icon at the top of the page).</p>
-                <p class="text-start modal-body">To get started we need to know the total amount of food and water in your feeders when
-                                                 you record your first feed. For example, if there is 1kg in the feeder from the previous
-                                                 and you then add 2kg, put 3kg in the field below. The same principal applies to water.</p>
+                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> To get started we need to know the total amount of 
+                                                                                         food and water in your feeders when you record your 
+                                                                                         first feed. For example, if there is 1kg in the feeder 
+                                                                                         from the previous feed and you then add 2kg, put 3kg 
+                                                                                         in the field below. The same principal applies to water.</p>
                 <p class="text-start modal-body">For all subsequent feeds, you will need to enter the amount of food or water remaining
                                                  from the previous feed, plus the amount added.</p>
-                <p class="text-start modal-body"><span class="fw-bold">PLEASE NOTE:</span>If you scatter your food as opposed to using a feeder,
-                                                                                          enter 0 below and in the "Amount of Food Remaining" on
-                                                                                          subsequent feeds, unless you have a means of estimating
-                                                                                          the amount.</p>
+                <p class="text-start modal-body"><span class="fw-bold">PLEASE NOTE:</span> If you scatter your food as opposed to using a feeder,
+                                                                                           enter 0 below and in the "Amount of Food Remaining" on
+                                                                                           subsequent feeds, unless you have a means of estimating
+                                                                                           the amount.</p>
                 <p class="text-start modal-body">In addition to specific feed types, you should also record the amount of food scraps given.</p>
 
                 <!-- Input Fields -->
                 <form method="POST" action="{% url 'feeding_time' %}" enctype="multipart/form-data" name="feeding_time">
                     {% csrf_token %}
-            
-                    <div class="form-data">
+
+                    <div class="form-data form-data-modal">
                         <!-- Feed Type -->
                         <div class="bottom-margin">
                             {{ form.feed_type }}
@@ -216,7 +212,9 @@
                             <h4>Feed</h4>
                         </div>
                     </div>
-                    {% include 'html_includes/foods.html' %}
+                </div>
+                <div class="bottom-margin">
+                    {{ form.feed_type }}
                 </div>
                 <div class="container">
                     <div class="row bottom-margin">

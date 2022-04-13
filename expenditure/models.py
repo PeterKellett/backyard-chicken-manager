@@ -76,3 +76,29 @@ class Purchases(models.Model):
     images = models.ImageField(null=True,
                                blank=True,
                                upload_to="images/")
+
+
+class Withdrawals(models.Model):
+    """Model used for storing Withdrawals data"""
+    class Meta:
+        """Overwrite the default Django pluralisation"""
+        verbose_name_plural = 'Withdrawals'
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=False,
+                                     blank=False,
+                                     on_delete=models.CASCADE)
+    date = models.DateTimeField(null=False,
+                                blank=False)
+    amount_withdrawn = models.DecimalField(max_digits=7,
+                                           decimal_places=2,
+                                           null=True,
+                                           blank=True)
+    payment_method = models.ForeignKey(PaymentMethods,
+                                       null=True,
+                                       blank=True,
+                                       on_delete=models.CASCADE)
+    notes = models.TextField(null=True,
+                             blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")

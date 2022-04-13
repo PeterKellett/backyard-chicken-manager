@@ -36,6 +36,9 @@
     </ul>
 </div>
 
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Withdrawals" %}
+
 <!-- Icons and Links Section -->
 <div class="container element-container">
     <div class="row bottom-margin">
@@ -53,9 +56,6 @@
 <div class="bottom-margin">
     <hr class="hr-large">
 </div>
-
-<!-- Page Name - Non-Mobile -->
-{% include 'html_includes/page_name_non_mobile.html' with page_name="Expenditure - Withdrawals" %}
 
 <!-- Available Funds -->
 <div class="element-container">
@@ -96,7 +96,7 @@
                 {% include 'html_includes/date.html' %}
                 <!-- Method of Withdrawal -->
                 <div class="bottom-margin label-float">
-                    {{ form.method_of_withdrawal }}
+                    {{ form.payment_method }}
                     <label class="hide-label" id="method-of-withdrawal-label" for="method-of-withdrawal">Method of Withdrawal</label>
                 </div>
                 <!-- Amount Withdrawn -->
