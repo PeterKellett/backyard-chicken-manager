@@ -36,6 +36,7 @@ class SupplementsName(models.Model):
         return self.supplement_name
 
 
+
 class Supplements(models.Model):
     """Model used for storing Supplements data"""
     class Meta:
