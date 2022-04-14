@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from flock_management.models import Flocks, Coops
-from .models import EggCollection, Feeds, Disinfectants
-from .forms import EggCollectionForm, FeedingTimeForm, CoopCleaningForm
+from .models import EggCollection, Feeds, Disinfectants, Feeds
+from .forms import EggCollectionForm, FeedsForm, FeedingTimeForm, CoopCleaningForm
 from json import dumps
 from django.core import serializers
 import json
@@ -69,6 +69,14 @@ def egg_collection(request):
                    'trays_quantity': json.dumps(trays_quantity)}
         print("context :", type(context))
         return render(request, template, context)
+
+
+def get_feeds(request):
+    """view to current flock"""
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    feeds = Feeds.objects.values('feed_type')
+    return JsonResponse({"feeds": list(feeds)}, safe=False)
 
 
 @login_required

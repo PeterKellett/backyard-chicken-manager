@@ -48,7 +48,7 @@
 <div class="container element-container">
     <div class="row bottom-margin">
         <div class="col-2 col-css">
-            <i class="fas fa-info-circle icon-orange"></i>
+            <i class="fas fa-info-circle icon-orange" data-bs-toggle="modal" data-bs-target="#myModal"></i>
         </div>
         <div class="col-2 col-css">
             <a href=""><img src="{{ MEDIA_URL }}reports_eggs.png" alt="Egg reports icon" class="non-round-icon"></a>
@@ -61,6 +61,50 @@
 <div class="bottom-margin">
     <hr class="hr-large">
 </div>
+
+<!-- "i" icon modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Egg Collection - Page Instructions</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p class="text-start modal-body">Each time you collect the eggs, complete this page. If you have several flocks,
+                                                 the collection for each flock should be done individually. Each time you click
+                                                 "Save" a fresh page is displayed.
+                </p>
+                <ul class="text-start">
+                    <li><span class="fw-bold">Date:</span> Add the collection date.</li>
+                    <li><span class="fw-bold">Select Flock:</span> Select which flock laid the eggs (only displays if you have multiple flocks).</li>
+                    <li><span class="fw-bold">Qty Laid Trays:</span> Quantity of full trays.</li>
+                    <li><span class="fw-bold">Qty Laid Single:</span> This is the quantity of single eggs after trays have been filled.</li>
+                    <li><span class="fw-bold">Qty of Eggs Damaged:</span> Damaged eggs that are OK for personal use but not for sale.</li>
+                    <li><span class="fw-bold">Qty of Eggs Broken:</span> Quantity of broken and unuseable eggs.</li>
+                    <li><span class="fw-bold">Qty of Eggs Taken for Personal Use:</span> Any undamaged eggs taken for personal use.</li>
+                    <li><span class="fw-bold">Qty of Eggs Given Away Free:</span> Any undamaged eggs given away for free.</li>
+                    <li><span class="fw-bold">Weight of all Eggs Laid:</span> Total weight of all eggs laid, except unuseable broken eggs.</li>
+                    <li><span class="fw-bold">Notes:</span> If you have any notes about the collection, add them here.</li>
+                    <li><span class="fw-bold">Photos:</span> If you have any photos from the collection, upload them here.</li>
+                    <li><span class="fw-bold">Save Button:</span> Click this button when finished.</li>
+                    <li><span class="fw-bold">Cancel Button:</span> Click this button to clear all data entered.</li>
+                </ul>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Is this required? Or was it added during attempt to get the data? -->
 <div class="d-none" id="trays-quantity">
     {{ trays_quantity }}
 </div>
@@ -143,21 +187,20 @@
                         <hr class="hr-small">
                     </div>
                     <!-- Eggs Total Weight -->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-10 col-css">
-                                <div class="bottom-margin label-float">
-                                    {{ form.weight_total_eggs_laid }}
-                                    <label for="weight-total-eggs-laid">Weight of all eggs laid (excl. Broken)</label>
-                                </div>
-                            </div>
-                            <div class="col-2 col-css">
-                                <div class="bottom-margin">
-                                    <h5 class="text-end">
-                                        <span class="unit-of-measurement">g</span>
-                                    </h5>
-                                </div>
-                            </div>
+                    <div class="row bottom-margin">
+                        <div class="col-9 col-css label-float">
+                            {{ form.weight_total_eggs_laid }}
+                            <label for="weight-total-eggs-laid">Laid Eggs Weight (excl. Broken)</label>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col-2 col-css bottom-margin">
+                            <select name="weights_and_measures_units" id="weights-and-measures-units">
+                                <option value="g">g</option>
+                                <option value="kg">kg</option>
+                                <option value="oz">oz</option>
+                                <option value="lb">lb</option>
+                            </select>
                         </div>
                     </div>
                     <!-- Eggs Average Weight -->
@@ -166,7 +209,7 @@
                             <h5 class="row-name">Average Egg Weight:</h5>
                         </div>
                         <div class="col-2 col-css col-css-right label-float">
-                            <h5><span id="avg-egg-weight"></span><span class="unit-of-measurement">g</span></h5>
+                            <h5><span id="avg-egg-weight"></span><span class="unit-of-measurement" id="unit-of-measurement">g</span></h5>
                         </div>
                     </div>
                     <div class="bottom-margin">

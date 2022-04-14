@@ -15,7 +15,7 @@ class FeedsAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'farm_profile_id',
-        'feed_name',
+        'feed_type',
         'qty_food'
     )
 
@@ -43,13 +43,14 @@ class EggCollectionAdmin(admin.ModelAdmin):
 
 
 class FeedingTimeAdmin(admin.ModelAdmin):
-    """Admin layout for EggCollection Admin table"""
+    """Admin layout for Feeding Time Admin table"""
     list_display = (
         'id',
         'date',
         'farm_profile_id',
         'flock_id',
-        'feed_type_id',
+        # 'feed_type_id',
+        'feed_type',
         'amount_food_rem',
         'amount_food_added',
         'amount_water_rem',

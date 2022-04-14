@@ -1,6 +1,5 @@
 // HCC Section - Calculation: Calculation to sum total number of birds
 function hccTotal() {
-    console.log("hccTotal fires")
     var totalHens = document.querySelector('input[name=hens_qty]').value;
     var totalChicks = document.querySelector('input[name=chicks_qty]').value;
     var totalCocks = document.querySelector('input[name=cocks_qty]').value;

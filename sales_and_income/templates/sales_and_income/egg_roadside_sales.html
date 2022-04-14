@@ -18,6 +18,44 @@
 
 {% block content %}
 
+<!-- Page Set-up Modal when User lands on page for first time or until required data is supplied -->
+<div class="modal" id="page-setup-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Roadside Egg Sales - Set-up Instructions</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> The first time you record a feed,
+                                                                       it is vital that you state the total amount of food and water
+                                                                       in the feeders. For subsequent feeds, please indicate
+                                                                       the amount of food and water remaining in the feeders after the last
+                                                                       feed and the amount added. This allows us to calculate the
+                                                                       average amount of food and water consumed by each bird which can be
+                                                                       viewed in the "Reports" section.</p>
+                <input type="text" placeholder="test" id="test">
+                <label for="test">Test Label</label>
+                <ul class="text-start">
+                    <li><span class="fw-bold">Date:</span> Add the date.</li>
+                    <li><span class="fw-bold">Save Button:</span> Click this button when finished.</li>
+                    <li><span class="fw-bold">Cancel Button:</span> Click this button to clear all data entered.</li>
+                </ul>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Save</button>
+            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Sub Navigation Section -->
 <div class="element-container container-fluid sub-nav-container">
     <ul class="nav nav-tabs nav-justified">
@@ -55,7 +93,7 @@
 <div class="container element-container">
     <div class="row bottom-margin">
         <div class="col-2 col-css">
-            <i class="fas fa-info-circle icon-orange"></i>
+            <i class="fas fa-info-circle icon-orange" data-bs-toggle="modal" data-bs-target="#myModal"></i>
         </div>
         <div class="col-2 col-css">
             <a href=""><img src="{{ MEDIA_URL }}reports_income.png" alt="Income reports icon" class="non-round-icon"></a>
@@ -67,6 +105,55 @@
 </div>
 <div class="bottom-margin">
     <hr class="hr-large">
+</div>
+
+<!-- "i" icon modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Roadside Egg Sales - Page Instructions</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p class="text-start modal-body">Each time you add eggs to your collection point complete this page.</p>
+                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> The first time you record a feed,
+                                                                       it is vital that you state the total amount of food and water
+                                                                       in the feeders. For subsequent feeds, please indicate
+                                                                       the amount of food and water remaining in the feeders after the last
+                                                                       feed and the amount added. This allows us to calculate the
+                                                                       average amount of food and water consumed by each bird which can be
+                                                                       viewed in the "Reports" section.</p>
+                <input type="text" placeholder="test" id="test">
+                <label for="test">Test Label</label>
+                <ul class="text-start">
+                    <li><span class="fw-bold">Date:</span> Add the date.</li>
+                    <li><span class="fw-bold">Pricing:</span> Click on the arrow to display the pricing fields.
+                                                              Then add the prices that you sell each quantity at.
+                                                              Only add prices for the quantities you sell.</li>
+                    <li><span class="fw-bold">Qty of Eggs in Stock:</span> This is the quantity of </li>
+                    <li><span class="fw-bold">Qty of Eggs Remaining:</span> Amount of feed remaining in the feeder prior to adding more.</li>
+                    <li><span class="fw-bold">Qty of Eggs Added:</span> Amount of food added to the feeder.</li>
+                    <li><span class="fw-bold">Amount Collected:</span> Amount of water remaining in the feeder prior to adding more.</li>
+                    <li><span class="fw-bold">Breakages & Loses:</span> If you have broken or damaged any eggs, making them unsaleable,
+                                                                        record the quantity here.</li>
+                    <li><span class="fw-bold">Notes:</span> If you have any notes about the top up of your collection point, add them here.</li>
+                    <li><span class="fw-bold">Photos:</span> If you have any photos from the top up of your collection point, upload them here.</li>
+                    <li><span class="fw-bold">Save Button:</span> Click this button when finished.</li>
+                    <li><span class="fw-bold">Cancel Button:</span> Click this button to clear all data entered.</li>
+                </ul>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- FORM SECTION  -->

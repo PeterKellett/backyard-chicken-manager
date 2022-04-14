@@ -1,6 +1,9 @@
 [
     {"pk": 1, "model": "health_and_welfare.administrationmethod", "fields": {"administration_method": "Mixed with food"}},
     {"pk": 2, "model": "health_and_welfare.administrationmethod", "fields": {"administration_method": "Mixed with water"}},
-    {"pk": 3, "model": "health_and_welfare.administrationmethod", "fields": {"administration_method": "Oral"}},
-    {"pk": 4, "model": "health_and_welfare.administrationmethod", "fields": {"administration_method": "Injection"}}
+    {"pk": 3, "model": "health_and_welfare.administrationmethod", "fields": {"administration_method": "Oral Drops"}},
+    {"pk": 4, "model": "health_and_welfare.administrationmethod", "fields": {"administration_method": "Eye Drops"}},
+    {"pk": 5, "model": "health_and_welfare.administrationmethod", "fields": {"administration_method": "Nose Drops"}},
+    {"pk": 6, "model": "health_and_welfare.administrationmethod", "fields": {"administration_method": "Spray / Nebulisation"}},
+    {"pk": 7, "model": "health_and_welfare.administrationmethod", "fields": {"administration_method": "Transfiction / Scarification"}}
 ]

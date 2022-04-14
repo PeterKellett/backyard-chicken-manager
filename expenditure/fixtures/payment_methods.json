@@ -1,0 +1,9 @@
+[
+    {"pk": 1, "model": "expenditure.paymentmethods", "fields": {"payment_method": "Cash"}},
+    {"pk": 2, "model": "expenditure.paymentmethods", "fields": {"payment_method": "Credit Card"}},
+    {"pk": 3, "model": "expenditure.paymentmethods", "fields": {"payment_method": "Debit Card"}},
+    {"pk": 4, "model": "expenditure.paymentmethods", "fields": {"payment_method": "Check/Cheque"}},
+    {"pk": 5, "model": "expenditure.paymentmethods", "fields": {"payment_method": "Bank Transfer"}},
+    {"pk": 6, "model": "expenditure.paymentmethods", "fields": {"payment_method": "Crypto"}},
+    {"pk": 7, "model": "expenditure.paymentmethods", "fields": {"payment_method": "Other"}}
+]

@@ -9,12 +9,20 @@
     position: relative;
 }
 
+.hide-label {
+    display: none;
+}
+
+.hide-placeholder::placeholder {
+    color: transparent;
+}
+
 /*-- Field label prior to field being clicked on --*/
-.form-data input::placeholder,
+/* .form-data input::placeholder,
 .form-data select::placeholder, 
 .form-data textarea::placeholder {
     color: transparent;
-}
+} */
 
 /*-- Field label after field has been clicked on --*/
 .form-data input:not(:placeholder-shown) + label,

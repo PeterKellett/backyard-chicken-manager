@@ -1,0 +1,10 @@
+[
+    {"pk": 1, "model": "expenditure.purchasescategory", "fields": {"category": "Food"}},
+    {"pk": 2, "model": "expenditure.purchasescategory", "fields": {"category": "Health & Welfare"}},
+    {"pk": 3, "model": "expenditure.purchasescategory", "fields": {"category": "Services"}},
+    {"pk": 4, "model": "expenditure.purchasescategory", "fields": {"category": "Packaging"}},
+    {"pk": 5, "model": "expenditure.purchasescategory", "fields": {"category": "Hardware"}},
+    {"pk": 6, "model": "expenditure.purchasescategory", "fields": {"category": "Machinery & Equipment"}},
+    {"pk": 7, "model": "expenditure.purchasescategory", "fields": {"category": "Birds"}},
+    {"pk": 8, "model": "expenditure.purchasescategory", "fields": {"category": "Eggs"}}
+]

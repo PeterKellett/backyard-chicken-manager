@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'flock_management',
     'regular_tasks',
     'sales_and_income',
+    'expenditure',
     'health_and_welfare',
     # 3rd Party
     'crispy_forms',
