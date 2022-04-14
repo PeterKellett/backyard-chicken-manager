@@ -62,58 +62,58 @@ $(document).ready(function () {
     // singles in stock
     if (qty_single_eggs_in_stock[0].value > 0) {
         $('input[name=qty_single_eggs_in_stock]').parent().hide();
-        $('input[name=qty_single_eggs_added]').parent().show()
-        $('input[name=qty_single_eggs_remaining]').parent().show()
+        $('input[name=qty_single_eggs_added]').parent().show();
+        $('input[name=qty_single_eggs_remaining]').parent().show();
     }
     else {
         $('input[name=qty_single_eggs_in_stock]').parent().show();
-        $('input[name=qty_single_eggs_added]').parent().hide()
-        $('input[name=qty_single_eggs_remaining]').parent().hide()
+        $('input[name=qty_single_eggs_added]').parent().hide();
+        $('input[name=qty_single_eggs_remaining]').parent().hide();
     }
     // 1/2 dozen in stock
     if (qty_half_dozen_egg_boxes_in_stock[0].value > 0) {
-        $('input[name=qty_half_dozen_egg_boxes_in_stock]').parent().hide()
-        $('input[name=qty_half_dozen_egg_boxes_added]').parent().show()
-        $('input[name=qty_half_dozen_egg_boxes_remaining]').parent().show()
+        $('input[name=qty_half_dozen_egg_boxes_in_stock]').parent().hide();
+        $('input[name=qty_half_dozen_egg_boxes_added]').parent().show();
+        $('input[name=qty_half_dozen_egg_boxes_remaining]').parent().show();
     } else {
-        $('input[name=qty_half_dozen_egg_boxes_in_stock]').parent().show()
-        $('input[name=qty_half_dozen_egg_boxes_added]').parent().hide()
-        $('input[name=qty_half_dozen_egg_boxes_remaining]').parent().hide()
+        $('input[name=qty_half_dozen_egg_boxes_in_stock]').parent().show();
+        $('input[name=qty_half_dozen_egg_boxes_added]').parent().hide();
+        $('input[name=qty_half_dozen_egg_boxes_remaining]').parent().hide();
     }
     // 10's in stock
     if (qty_ten_egg_boxes_in_stock[0].value > 0) {
-        $('input[name=qty_ten_egg_boxes_in_stock]').parent().hide()
-        $('input[name=qty_ten_egg_boxes_added]').parent().show()
-        $('input[name=qty_ten_egg_boxes_remaining]').parent().show()
+        $('input[name=qty_ten_egg_boxes_in_stock]').parent().hide();
+        $('input[name=qty_ten_egg_boxes_added]').parent().show();
+        $('input[name=qty_ten_egg_boxes_remaining]').parent().show();
     } else {
-        $('input[name=qty_ten_egg_boxes_in_stock]').parent().show()
-        $('input[name=qty_ten_egg_boxes_added]').parent().hide()
-        $('input[name=qty_ten_egg_boxes_remaining]').parent().hide()
+        $('input[name=qty_ten_egg_boxes_in_stock]').parent().show();
+        $('input[name=qty_ten_egg_boxes_added]').parent().hide();
+        $('input[name=qty_ten_egg_boxes_remaining]').parent().hide();
     }
     // Dozen in stock
     if (qty_dozen_egg_boxes_in_stock[0].value > 0) {
-        $('input[name=qty_dozen_egg_boxes_in_stock]').parent().hide()
-        $('input[name=qty_dozen_egg_boxes_added]').parent().show()
-        $('input[name=qty_dozen_egg_boxes_remaining]').parent().show()
-    } else {
-        $('input[name=qty_dozen_egg_boxes_in_stock]').parent().show()
-        $('input[name=qty_dozen_egg_boxes_added]').parent().hide()
-        $('input[name=qty_dozen_egg_boxes_remaining]').parent().hide()
+        $('input[name=qty_dozen_egg_boxes_in_stock]').parent().hide();
+        $('input[name=qty_dozen_egg_boxes_added]').parent().show();
+        $('input[name=qty_dozen_egg_boxes_remaining]').parent().show();
+    } else {;
+        $('input[name=qty_dozen_egg_boxes_in_stock]').parent().show();
+        $('input[name=qty_dozen_egg_boxes_added]').parent().hide();
+        $('input[name=qty_dozen_egg_boxes_remaining]').parent().hide();
     }
     // trays in stock
     if (qty_trays_eggs_in_stock[0].value > 0) {
-        $('input[name=qty_trays_eggs_in_stock]').parent().hide()
-        $('input[name=qty_trays_eggs_added]').parent().show()
-        $('input[name=qty_trays_eggs_remaining]').parent().show()
+        $('input[name=qty_trays_eggs_in_stock]').parent().hide();
+        $('input[name=qty_trays_eggs_added]').parent().show();
+        $('input[name=qty_trays_eggs_remaining]').parent().show();
     } else {
-        $('input[name=qty_trays_eggs_in_stock]').parent().show()
-        $('input[name=qty_trays_eggs_added]').parent().hide()
-        $('input[name=qty_trays_eggs_remaining]').parent().hide()
+        $('input[name=qty_trays_eggs_in_stock]').parent().show();
+        $('input[name=qty_trays_eggs_added]').parent().hide();
+        $('input[name=qty_trays_eggs_remaining]').parent().hide();
     }
     doCalculations();
 }); 
 function doCalculations() {
-    console.log("doCalculations")
+    console.log("doCalculations");
     var form_data = {}
     document.querySelectorAll('input').forEach(item => {
         // item.addEventListener('oninput', doCalculations())
@@ -124,26 +124,26 @@ function doCalculations() {
             $(`div.${item.name}`).hide();
         }    
         // Save the input field names and values of each form field to the dictionary form_data
-        form_data[item.name] = item.value    
+        form_data[item.name] = item.value ;   
     });    
     // for (k in form_data) {
     //     console.log("k ", k)
     //     console.log("v ", form_data[k])
     // }
     if (form_data['qty_single_eggs_remaining'] == '') {
-        form_data['qty_single_eggs_remaining'] = form_data['qty_single_eggs_in_stock']
+        form_data['qty_single_eggs_remaining'] = form_data['qty_single_eggs_in_stock'];
     }
     if (form_data['qty_half_dozen_egg_boxes_remaining'] == '') {
-        form_data['qty_half_dozen_egg_boxes_remaining'] = form_data['qty_half_dozen_egg_boxes_in_stock']
+        form_data['qty_half_dozen_egg_boxes_remaining'] = form_data['qty_half_dozen_egg_boxes_in_stock'];
     }
     if (form_data['qty_ten_egg_boxes_remaining'] == '') {
-        form_data['qty_ten_egg_boxes_remaining'] = form_data['qty_ten_egg_boxes_in_stock']
+        form_data['qty_ten_egg_boxes_remaining'] = form_data['qty_ten_egg_boxes_in_stock'];
     }
     if (form_data['qty_dozen_egg_boxes_remaining'] == '') {
-        form_data['qty_dozen_egg_boxes_remaining'] = form_data['qty_dozen_egg_boxes_in_stock']
+        form_data['qty_dozen_egg_boxes_remaining'] = form_data['qty_dozen_egg_boxes_in_stock'];
     }
     if (form_data['qty_trays_eggs_remaining'] == '') {
-        form_data['qty_trays_eggs_remaining'] = form_data['qty_trays_eggs_in_stock']
+        form_data['qty_trays_eggs_remaining'] = form_data['qty_trays_eggs_in_stock'];
     }
     var value_of_single_eggs_sold = (form_data['single_egg_price'] * (form_data['qty_single_eggs_in_stock'] - form_data['qty_single_eggs_remaining']));
     var value_of_half_dozen_egg_boxes_sold = (form_data['half_dozen_eggs_price'] * (form_data['qty_half_dozen_egg_boxes_in_stock'] - form_data['qty_half_dozen_egg_boxes_remaining']));

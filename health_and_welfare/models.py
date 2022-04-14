@@ -58,6 +58,7 @@ class SupplementsName(models.Model):
                                               null=True,
                                               blank=True)
 
+
 class Supplements(models.Model):
     """Model used for storing Supplements data"""
     class Meta:
