@@ -348,7 +348,7 @@
 
             <!-- Buttons Section -->
             <div class="button-container">
-                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
+                <button type='submit' id="save-button" class="btn button button-full-size save-button" onclick="validate()">Save</button> 
                 <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
             </div>
         </div>
@@ -358,6 +358,6 @@
 {% endblock %}
 
 {% block postloadjs %}
-<!-- {{ block.super }}
-<script src="{% static 'sales_and_income/js/roadside_sales.js' %}"></script> -->
+{{ block.super }}
+<script src="{% static 'sales_and_income/js/roadside_sales.js' %}"></script>
 {% endblock %}

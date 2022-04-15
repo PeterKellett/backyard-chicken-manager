@@ -104,11 +104,6 @@
     </div>
 </div>
 
-<!-- Is this required? Or was it added during attempt to get the data? -->
-<div class="d-none" id="trays-quantity">
-    {{ trays_quantity }}
-</div>
-
 <!-- FORM SECTION  -->
 <div class="element-container">
     <form method="POST" action="{% url 'egg_collection' %}" enctype="multipart/form-data" name="egg_collection" id="submit-form">
@@ -143,7 +138,7 @@
                         <h5 class="row-name">Total Eggs Laid:</h5>
                     </div>
                     <div class="col-2 col-css col-css-right label-float">
-                        <h5 id="qty-total-eggs-laid"></h5>
+                        <h5 id="qty-total-eggs-laid">0</h5>
                         <label for="qty-total-eggs-laid" class="hidden-label">Total Eggs Laid</label>
                     </div>
                 </div>

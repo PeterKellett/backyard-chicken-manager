@@ -121,7 +121,6 @@ class Disinfectants(models.Model):
         return self.disinfectant_name
 
 
-
 class CoopCleaning(models.Model):
     """Model used for storing coop cleaning data"""
     coop = models.ForeignKey(Coops,

@@ -36,10 +36,6 @@ def egg_roadside_sales(request):
     sales_type = SalesType.objects.get(type='roadside')
     prices = Pricing.objects.filter(farm_profile=farmprofile[0]).filter(sales_type=sales_type).last()
     roadside_sale = EggRoadsideSales.objects.filter(farm_profile=farmprofile[0]).last()
-    previous_sale = True
-    if not roadside_sale:
-        previous_sale = False
-        # roadside_sale = CreateRecentRoadsideSale()
     if request.POST:
         pricing_form = PricingForm(request.POST, instance=prices)
         sales_form = EggRoadsideSalesForm(request.POST, request.FILES, instance=roadside_sale)
@@ -203,8 +199,7 @@ def egg_roadside_sales(request):
         sales_form = EggRoadsideSalesForm(instance=roadside_sale)
         template = 'sales_and_income/egg_roadside_sales.html'
         context = {'pricing_form': pricing_form,
-                   'sales_form': sales_form,
-                   'previous_sale': previous_sale}
+                   'sales_form': sales_form}
         return render(request, template, context)
 
 
