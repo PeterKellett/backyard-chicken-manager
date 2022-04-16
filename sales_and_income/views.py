@@ -94,9 +94,7 @@ def egg_roadside_sales(request):
                 else:
                     next_roadside_sale['qty_single_eggs_in_stock'] = None
                 if previous_roadside_sale.qty_single_eggs_in_stock is not None:
-                    next_roadside_sale['qty_single_eggs_in_stock'] = previous_roadside_sale.qty_single_eggs_in_stock \
-                                                                     - sales_form.qty_single_eggs_sold \
-                                                                     + sales_form.qty_single_eggs_added
+                    next_roadside_sale['qty_single_eggs_in_stock'] = previous_roadside_sale.qty_single_eggs_in_stock - sales_form.qty_single_eggs_sold + sales_form.qty_single_eggs_added
                     sales_form.qty_single_eggs_in_stock = previous_roadside_sale.qty_single_eggs_in_stock
                     if next_roadside_sale['qty_single_eggs_in_stock'] == 0:
                         next_roadside_sale['qty_single_eggs_in_stock'] = None
@@ -168,6 +166,8 @@ def egg_roadside_sales(request):
                     prices.trays_of_eggs_price = 0
                 if sales_form.losses_eggs_roadside is None:
                     sales_form.losses_eggs_roadside = 0
+                if sales_form.income is None:
+                    sales_form.income = 0
                 suggested_income = (sales_form.qty_single_eggs_sold * decimal.Decimal(prices.single_egg_price)) \
                     + (sales_form.qty_half_dozen_egg_boxes_sold * decimal.Decimal(prices.half_dozen_eggs_price)) \
                     + (sales_form.qty_ten_egg_boxes_sold * decimal.Decimal(prices.ten_eggs_price)) \

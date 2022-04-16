@@ -29,6 +29,7 @@ $(document).ready(function() {
         $('input[name=qty_single_eggs_added]').parent().show();
         $('input[name=qty_single_eggs_remaining]').parent().show();
         document.querySelector('input[name=qty_single_eggs_remaining]').required = true;
+        document.querySelector('input[name=qty_single_eggs_added]').required = true;
     }
     else {
         $('input[name=qty_single_eggs_in_stock]').parent().show();
@@ -41,6 +42,7 @@ $(document).ready(function() {
         $('input[name=qty_half_dozen_egg_boxes_added]').parent().show();
         $('input[name=qty_half_dozen_egg_boxes_remaining]').parent().show();
         document.querySelector('input[name=qty_half_dozen_egg_boxes_remaining]').required = true;
+        document.querySelector('input[name=qty_half_dozen_egg_boxes_added]').required = true;
     } else {
         $('input[name=qty_half_dozen_egg_boxes_in_stock]').parent().show();
         $('input[name=qty_half_dozen_egg_boxes_added]').parent().hide();
@@ -52,6 +54,7 @@ $(document).ready(function() {
         $('input[name=qty_ten_egg_boxes_added]').parent().show();
         $('input[name=qty_ten_egg_boxes_remaining]').parent().show();
         document.querySelector('input[name=qty_ten_egg_boxes_remaining]').required = true;
+        document.querySelector('input[name=qty_ten_egg_boxes_added]').required = true;
     } else {
         $('input[name=qty_ten_egg_boxes_in_stock]').parent().show();
         $('input[name=qty_ten_egg_boxes_added]').parent().hide();
@@ -63,6 +66,7 @@ $(document).ready(function() {
         $('input[name=qty_dozen_egg_boxes_added]').parent().show();
         $('input[name=qty_dozen_egg_boxes_remaining]').parent().show();
         document.querySelector('input[name=qty_dozen_egg_boxes_remaining]').required = true;
+        document.querySelector('input[name=qty_dozen_egg_boxes_added]').required = true;
     } else {;
         $('input[name=qty_dozen_egg_boxes_in_stock]').parent().show();
         $('input[name=qty_dozen_egg_boxes_added]').parent().hide();
@@ -74,6 +78,7 @@ $(document).ready(function() {
         $('input[name=qty_trays_eggs_added]').parent().show();
         $('input[name=qty_trays_eggs_remaining]').parent().show();
         document.querySelector('input[name=qty_trays_eggs_remaining]').required = true;
+        document.querySelector('input[name=qty_trays_eggs_added]').required = true;
     } else {
         $('input[name=qty_trays_eggs_in_stock]').parent().show();
         $('input[name=qty_trays_eggs_added]').parent().hide();
@@ -117,26 +122,3 @@ function doCalculations() {
     var income_difference = form_data['income'] - total_value;
     document.getElementById("income-deficit").innerHTML = income_difference;
 }
-
-function validate() {
-    console.log("validate")
-    document.getElementById('submit-form').addEventListener('submit', (event) => {
-        // stop form submission
-        event.preventDefault();
-        var validation_data = {}
-        document.querySelectorAll('input').forEach(item => {
-            // Save the input field names and values of each form field to the dictionary form_data
-            validation_data[item.name] = item.value;
-            // Depending on the values in the prices form hide/show respective sales/stock fields            
-        }); 
-        console.log("validation_data.qty_single_eggs_remaining = " + validation_data.qty_single_eggs_remaining)
-        if (validation_data.single_egg_price > 0 && validation_data.qty_single_eggs_in_stock > 0) {
-            if (validation_data.qty_single_eggs_remaining == '') {
-                console.log("Validate YES")
-                document.querySelector('input[name=qty_single_eggs_remaining]').required = true;
-            }
-        }  
-
-    });
-}
-
