@@ -292,13 +292,13 @@
                 <!-- Total Selling Value of Eggs Sold -->
                 <div class="row bottom-margin">
                     <div class="col-10 col-css">
-                        <h6 class="row-name">Value of Eggs Sold: €<span id="eggs-sold-value"></span></h6>
+                        <h6 class="row-name">Value of Eggs Sold: €<span id="eggs-sold-value">0</span></h6>
                     </div>
                 </div>
                 <!-- Difference Between Value of Eggs Sold and Money Received -->
                 <div class="row bottom-margin">
                     <div class="col-10 col-css">
-                        <h6 class="row-name">Difference Between Egg Sales and Amount Collected: €<span id="income-deficit"></span></h6>
+                        <h6 class="row-name">Difference Between Egg Sales and Amount Collected: €<span id="income-deficit">0</span></h6>
                     </div>
                 </div>
             </section>
@@ -358,6 +358,6 @@
 {% endblock %}
 
 {% block postloadjs %}
-<!-- {{ block.super }}
-<script src="{% static 'sales_and_income/js/roadside_sales.js' %}"></script> -->
+{{ block.super }}
+<script src="{% static 'sales_and_income/js/roadside_sales.js' %}"></script>
 {% endblock %}

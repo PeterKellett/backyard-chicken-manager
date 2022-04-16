@@ -69,117 +69,6 @@ $(document).ready(function () {
 });
 
 
-// Show Hide 3: This set of functions allows a field(s) to be displayed when another
-// field has been completed. The first function hides all of the relevenat fields.
-// The second function allows the fields hidden in teh 1st fn to be shown.
-$(document).ready(function () {
-    $('div.single_egg_price').hide();
-    $('div.half_dozen_eggs_price').hide();
-    $('div.ten_eggs_price').hide();
-    $('div.dozen_eggs_price').hide();
-    $('div.trays_of_eggs_price').hide();
-    // singles
-    var qty_single_eggs_in_stock = document.getElementsByName('qty_single_eggs_in_stock');
-    var qty_half_dozen_egg_boxes_in_stock = document.getElementsByName('qty_half_dozen_egg_boxes_in_stock');
-    var qty_ten_egg_boxes_in_stock = document.getElementsByName('qty_ten_egg_boxes_in_stock');
-    var qty_dozen_egg_boxes_in_stock = document.getElementsByName('qty_dozen_egg_boxes_in_stock');
-    var qty_trays_eggs_in_stock = document.getElementsByName('qty_trays_eggs_in_stock');
-    // singles in stock
-    if (qty_single_eggs_in_stock[0].value > 0) {
-        $('input[name=qty_single_eggs_in_stock]').parent().hide();
-        $('input[name=qty_single_eggs_added]').parent().show();
-        $('input[name=qty_single_eggs_remaining]').parent().show();
-    }
-    else {
-        $('input[name=qty_single_eggs_in_stock]').parent().show();
-        $('input[name=qty_single_eggs_added]').parent().hide();
-        $('input[name=qty_single_eggs_remaining]').parent().hide();
-    }
-    // 1/2 dozen in stock
-    if (qty_half_dozen_egg_boxes_in_stock[0].value > 0) {
-        $('input[name=qty_half_dozen_egg_boxes_in_stock]').parent().hide();
-        $('input[name=qty_half_dozen_egg_boxes_added]').parent().show();
-        $('input[name=qty_half_dozen_egg_boxes_remaining]').parent().show();
-    } else {
-        $('input[name=qty_half_dozen_egg_boxes_in_stock]').parent().show();
-        $('input[name=qty_half_dozen_egg_boxes_added]').parent().hide();
-        $('input[name=qty_half_dozen_egg_boxes_remaining]').parent().hide();
-    }
-    // 10's in stock
-    if (qty_ten_egg_boxes_in_stock[0].value > 0) {
-        $('input[name=qty_ten_egg_boxes_in_stock]').parent().hide();
-        $('input[name=qty_ten_egg_boxes_added]').parent().show();
-        $('input[name=qty_ten_egg_boxes_remaining]').parent().show();
-    } else {
-        $('input[name=qty_ten_egg_boxes_in_stock]').parent().show();
-        $('input[name=qty_ten_egg_boxes_added]').parent().hide();
-        $('input[name=qty_ten_egg_boxes_remaining]').parent().hide();
-    }
-    // Dozen in stock
-    if (qty_dozen_egg_boxes_in_stock[0].value > 0) {
-        $('input[name=qty_dozen_egg_boxes_in_stock]').parent().hide();
-        $('input[name=qty_dozen_egg_boxes_added]').parent().show();
-        $('input[name=qty_dozen_egg_boxes_remaining]').parent().show();
-    } else {;
-        $('input[name=qty_dozen_egg_boxes_in_stock]').parent().show();
-        $('input[name=qty_dozen_egg_boxes_added]').parent().hide();
-        $('input[name=qty_dozen_egg_boxes_remaining]').parent().hide();
-    }
-    // trays in stock
-    if (qty_trays_eggs_in_stock[0].value > 0) {
-        $('input[name=qty_trays_eggs_in_stock]').parent().hide();
-        $('input[name=qty_trays_eggs_added]').parent().show();
-        $('input[name=qty_trays_eggs_remaining]').parent().show();
-    } else {
-        $('input[name=qty_trays_eggs_in_stock]').parent().show();
-        $('input[name=qty_trays_eggs_added]').parent().hide();
-        $('input[name=qty_trays_eggs_remaining]').parent().hide();
-    }
-    doCalculations();
-}); 
-function doCalculations() {
-    var form_data = {}
-    document.querySelectorAll('input').forEach(item => {
-        // item.addEventListener('oninput', doCalculations())
-        // Depending on the values in the prices form hide/show respective sales/stock fields
-        if (item.value > 0) {
-            $(`div.${item.name}`).fadeIn();
-        } else {
-            $(`div.${item.name}`).hide();
-        }    
-        // Save the input field names and values of each form field to the dictionary form_data
-        form_data[item.name] = item.value ;   
-    });    
-    // for (k in form_data) {
-    //     console.log("k ", k)
-    //     console.log("v ", form_data[k])
-    // }
-    if (form_data['qty_single_eggs_remaining'] == '') {
-        form_data['qty_single_eggs_remaining'] = form_data['qty_single_eggs_in_stock'];
-    }
-    if (form_data['qty_half_dozen_egg_boxes_remaining'] == '') {
-        form_data['qty_half_dozen_egg_boxes_remaining'] = form_data['qty_half_dozen_egg_boxes_in_stock'];
-    }
-    if (form_data['qty_ten_egg_boxes_remaining'] == '') {
-        form_data['qty_ten_egg_boxes_remaining'] = form_data['qty_ten_egg_boxes_in_stock'];
-    }
-    if (form_data['qty_dozen_egg_boxes_remaining'] == '') {
-        form_data['qty_dozen_egg_boxes_remaining'] = form_data['qty_dozen_egg_boxes_in_stock'];
-    }
-    if (form_data['qty_trays_eggs_remaining'] == '') {
-        form_data['qty_trays_eggs_remaining'] = form_data['qty_trays_eggs_in_stock'];
-    }
-    var value_of_single_eggs_sold = (form_data['single_egg_price'] * (form_data['qty_single_eggs_in_stock'] - form_data['qty_single_eggs_remaining']));
-    var value_of_half_dozen_egg_boxes_sold = (form_data['half_dozen_eggs_price'] * (form_data['qty_half_dozen_egg_boxes_in_stock'] - form_data['qty_half_dozen_egg_boxes_remaining']));
-    var value_of_ten_eggs_sold = (form_data['ten_eggs_price'] * (form_data['qty_ten_egg_boxes_in_stock'] - form_data['qty_ten_egg_boxes_remaining']));
-    var value_of_dozen_eggs_sold = (form_data['dozen_eggs_price'] * (form_data['qty_dozen_egg_boxes_in_stock'] - form_data['qty_dozen_egg_boxes_remaining']));
-    var value_of_trays_eggs_sold = (form_data['trays_of_eggs_price'] * (form_data['qty_trays_eggs_in_stock'] - form_data['qty_trays_eggs_remaining']));
-
-    var total_value = Number(value_of_single_eggs_sold) + Number(value_of_half_dozen_egg_boxes_sold) + Number(value_of_ten_eggs_sold) + Number(value_of_dozen_eggs_sold) + Number(value_of_trays_eggs_sold) - (Number(form_data['losses_eggs_roadside']) * form_data['single_egg_price']);
-    document.getElementById("eggs-sold-value").innerHTML = total_value;
-    var income_difference = form_data['income'] - total_value;
-    document.getElementById("income-deficit").innerHTML = income_difference;
-}
 
 // Sales Methods & Units Function to ensure at least one checkbox
 // is checked in each section before next page can be loaded
@@ -274,7 +163,7 @@ function showSuggestionsMedicines(value, labelId) {
         document.getElementById('medicine-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39b.gitpod.io/health_and_welfare/get_medicines')
+fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu39b.gitpod.io/health_and_welfare/get_medicines')
 .then(response => response.json())
 .then(data => {
     MEDICINES = data.medicines;
@@ -303,7 +192,7 @@ function showSuggestionsDiseases(value, labelId) {
         document.getElementById('disease-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39b.gitpod.io/health_and_welfare/get_diseases')
+fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu39b.gitpod.io/health_and_welfare/get_diseases')
 .then(response => response.json())
 .then(data => {
     DISEASES = data.diseases;
@@ -333,7 +222,7 @@ function showSuggestionsVaccines(value, labelId) {
         document.getElementById('vaccine-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39b.gitpod.io/health_and_welfare/get_vaccines')
+fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu39b.gitpod.io/health_and_welfare/get_vaccines')
 .then(response => response.json())
 .then(data => {
     VACCINES = data.vaccines;
@@ -362,7 +251,7 @@ function showSuggestionsViruses(value, labelId) {
         document.getElementById('virus-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-ajalkdyk1o7.ws-eu39b.gitpod.io/health_and_welfare/get_viruses')
+fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu39b.gitpod.io/health_and_welfare/get_viruses')
 .then(response => response.json())
 .then(data => {
     VIRUSES = data.viruses;

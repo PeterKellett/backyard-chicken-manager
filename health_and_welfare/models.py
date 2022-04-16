@@ -12,6 +12,7 @@ class AdministrationMethod(models.Model):
     administration_method = models.CharField(max_length=50,
                                              null=True,
                                              blank=True)
+
     def __str__(self):
         return self.administration_method
 
@@ -32,9 +33,9 @@ class SupplementsName(models.Model):
                                               decimal_places=2,
                                               null=True,
                                               blank=True)
+
     def __str__(self):
         return self.supplement_name
-
 
 
 class Supplements(models.Model):
@@ -108,12 +109,16 @@ class MedicinesName(models.Model):
     medicine_name = models.CharField(max_length=50,
                                      null=True,
                                      blank=True)
+
     def __str__(self):
         return self.medicine_name
 
 
 class Medicines(models.Model):
     """Model used for storing Medicines data"""
+    class Meta:
+        """Overwrite the default Django pluralisation"""
+        verbose_name_plural = 'Medicines'
     farm_profile = models.ForeignKey(FarmProfile,
                                      null=False,
                                      blank=False,

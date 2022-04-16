@@ -25,7 +25,6 @@ def egg_collection(request):
     """view to current flock"""
     userprofile = UserProfile.objects.get(user=request.user)
     farmprofile = userprofile.farmprofiles.all()
-    trays_quantity = farmprofile[0].trays_quantity
     if request.POST:
         form = EggCollectionForm(request.POST, request.FILES)
         if form.is_valid():
@@ -65,8 +64,7 @@ def egg_collection(request):
         print("flock = ", flock)
         template = 'regular_tasks/egg_collection.html'
         context = {'form': form,
-                   'flocks': flock,
-                   'trays_quantity': json.dumps(trays_quantity)}
+                   'flocks': flock}
         print("context :", type(context))
         return render(request, template, context)
 
@@ -75,7 +73,9 @@ def get_feeds(request):
     """view to current flock"""
     userprofile = UserProfile.objects.get(user=request.user)
     farmprofile = userprofile.farmprofiles.all()
-    feeds = Feeds.objects.values('feed_type')
+    feeds = Feeds.objects.filter(farm_profile__id=farmprofile[0].id).values('feed_type')
+    # feeds = Feeds.objects.values('feed_type')
+    print("feeds = ", feeds)
     return JsonResponse({"feeds": list(feeds)}, safe=False)
 
 
@@ -92,9 +92,20 @@ def feeding_time(request):
             form.farm_profile = farmprofile[0]  # Add the farmprofile ForeignKey
             form.save()  # Save the form fully to the db
             # Now update the qty_food value in the Feed table (will be using django signals for this at a later stage)
-            feed = Feeds.objects.get(pk=form.feed_type.id)  # Get the feed object using the feed_type id submitted with the form.
-            feed.qty_food -= form.amount_food_added  # Update this qty_food value by subtracting it from itself
-            feed.save()  # Save this new value to the db.
+            feed = Feeds.objects.filter(farm_profile__id=farmprofile[0].id).filter(feed_type=form.feed_type)  # Get the feed object using the feed_type id submitted with the form.
+            if feed:
+                print("YES")
+                print("feed =", feed)
+                # feed.qty_food -= form.amount_food_added  # Update this qty_food value by subtracting it from itself
+                # feed.save()  # Save this new value to the db.
+            else:
+                print("NO")
+                feed = Feeds(
+                    farm_profile=farmprofile[0],
+                    feed_type=form.feed_type,
+                    qty_food=0
+                )
+                feed.save()
             return HttpResponseRedirect('/profile')
     else:
         form = FeedingTimeForm
@@ -102,8 +113,7 @@ def feeding_time(request):
         feeds = Feeds.objects.filter(farm_profile__id=farmprofile[0].id)  # This is the syntax used when the FK related_name is not provided with the model.
         template = 'regular_tasks/feeding_time.html'
         context = {'form': form,
-                   'flocks': flock,
-                   'feeds': feeds}
+                   'flocks': flock}
         return render(request, template, context)
 
 
