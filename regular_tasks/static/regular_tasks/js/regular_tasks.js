@@ -1,4 +1,7 @@
-console.log("Regular tasks JS is working")
+$(document).ready(function() {
+    console.log("Regular tasks egg collection Document ready!!")
+});
+console.log("Regular tasks egg collection JS start")
 
 // Egg Collection - Variables
 var total_eggs_laid = 0;
@@ -12,7 +15,7 @@ var total_nonsaleable_eggs;
 let traysQuantity;
 
 // Extracts the Tray Quantity from Farm Profile in the db
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu40.gitpod.io/regular_tasks/trays_quantity')
+fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu34.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
     traysQuantity = data.trays_quantity;
@@ -23,6 +26,7 @@ fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu40.gitpod.io/regul
 document.querySelectorAll('.egg-collection-qty-input').forEach(item => {
     item.addEventListener('keyup', event => {
         // send request to latest no of trays
+        console.log("querySelectorAll('.egg-collection-qty-input')")
         var totalTrays = document.getElementById('qty-egg-trays').value;
         var totalTraysQty = totalTrays * traysQuantity;
         var totalSingles = document.getElementById('qty-egg-singles').value;
@@ -34,6 +38,7 @@ document.querySelectorAll('.egg-collection-qty-input').forEach(item => {
 // Egg Collection - Saleable Eggs Calculation: Calculation to get total saleable eggs
 document.querySelectorAll('.saleable-eggs-input').forEach(item => {
     item.addEventListener('keyup', event => {
+        console.log("querySelectorAll('.saleable-eggs-input')")
         damaged_eggs = document.getElementById('qty-eggs-damaged').value;
         broken_eggs = document.getElementById('qty-eggs-broken').value;
         eggs_personal_use = document.getElementById('qty-eggs-personal-use').value;

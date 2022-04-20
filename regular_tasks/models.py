@@ -56,15 +56,16 @@ class Feeds(models.Model):
                                      null=False,
                                      blank=False,
                                      on_delete=models.CASCADE)
-    feed_type = models.CharField(max_length=50,
+    feed_name = models.CharField(max_length=50,
                                  null=False,
                                  blank=False)
     qty_food = models.DecimalField(max_digits=6,
                                    decimal_places=2,
                                    null=False,
                                    blank=False)
+
     def __str__(self):
-        return self.feed_type
+        return self.feed_name
 
 
 class FeedingTime(models.Model):
@@ -80,7 +81,7 @@ class FeedingTime(models.Model):
                               null=False,
                               blank=False,
                               on_delete=models.CASCADE)
-    feed_type = models.CharField(max_length=50,
+    feed_name = models.CharField(max_length=50,
                                  null=True,
                                  blank=True)
     food_total_setup = models.IntegerField(null=True,

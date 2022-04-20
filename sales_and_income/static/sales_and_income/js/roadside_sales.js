@@ -12,16 +12,15 @@ $(document).ready(function() {
 
     var initial_data = {}
     document.querySelectorAll('input').forEach(item => {
+        // ForEach input on the page, save the input field names and values of each form field to a dictionary called initial_data
+        initial_data[item.name] = item.value ;
         console.log("item.name = " + item.name)
-        console.log("item.value = " + item.value)
-        // item.addEventListener('oninput', doCalculations())
+        console.log("item.value = " + initial_data[item.name])
         // Depending on the values in the prices form hide/show respective sales/stock fields
+        // Each grouping of the relevant inputs for the egg denominations are wrapped in a div corresponding to the relevant pricing_form input names
         if (item.value > 0) {
             $(`div.${item.name}`).fadeIn();
         } 
-        // Save the input field names and values of each form field to the dictionary initial_data
-        initial_data[item.name] = item.value ; 
-        console.log("initial_data = " + initial_data)  
     });    
     // Show/Hide singles fields dependent on in_stock field
     if (initial_data['qty_single_eggs_in_stock'] > 0) {

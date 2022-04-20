@@ -283,10 +283,10 @@
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
-
+            <!-- Buttons Section -->
             <div class="button-container">
-                <button id="save-button" class="btn button button-full-size save-button" onclick="validateQtys()">Save</button> 
-                <button type='submit' id="cancel-button" class="btn button button-full-size cancel-button" onclick="validateQtys()">Cancel</button>
+                <button id="save-button" class="btn button button-full-size save-button" onclick="validate(event)">Save</button> 
+                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
             </div>
         </div>
     </form>
@@ -296,5 +296,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+    <script src="{% static 'regular_tasks/js/regular_tasks_feeding_time.js' %}"></script>
 {% endblock %}

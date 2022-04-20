@@ -61,11 +61,9 @@ def egg_collection(request):
     else:
         form = EggCollectionForm
         flock = farmprofile[0].flocks.all()
-        print("flock = ", flock)
         template = 'regular_tasks/egg_collection.html'
         context = {'form': form,
                    'flocks': flock}
-        print("context :", type(context))
         return render(request, template, context)
 
 
