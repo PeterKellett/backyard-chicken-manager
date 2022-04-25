@@ -106,7 +106,7 @@
 
 <!-- FORM SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'egg_collection' %}" enctype="multipart/form-data" name="egg_collection" id="submit-form">
+    <form method="POST" action="" enctype="multipart/form-data" name="egg_collection" id="submit-form">
         {% csrf_token %}
         
         <div class="form-data">
@@ -138,7 +138,7 @@
                         <h5 class="row-name">Total Eggs Laid:</h5>
                     </div>
                     <div class="col-2 col-css col-css-right label-float">
-                        <h5 id="qty-total-eggs-laid">0</h5>
+                        <h5 id="qty-total-eggs-laid"></h5>
                         <label for="qty-total-eggs-laid" class="hidden-label">Total Eggs Laid</label>
                     </div>
                 </div>
@@ -234,7 +234,7 @@
 
             <!-- Buttons Section -->
             <div class="button-container">
-                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
+                <button type='submit' id="save-button" class="btn button button-full-size save-button" onclick="validate(event)">Save</button> 
                 <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
             </div>
         </div>
@@ -246,5 +246,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+    <script src="{% static 'regular_tasks/js/regular_tasks_egg_collection.js' %}"></script>
 {% endblock %}

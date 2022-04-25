@@ -176,7 +176,7 @@
                 <!-- Feed Type -->
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
-                        {{ form.feed_type }}
+                        {{ form.feed_name }}
                         <label id="feed-type-label" for="feed-type">Feed Type</label>
                     </div>
                     <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the feed types in the db -->
@@ -236,6 +236,7 @@
                         <h4>Water</h4>
                     </div>
                 </div>
+                
                 <div class="row bottom-margin label-float">
                     <div class="col-9 col-css">
                         {{ form.amount_water_rem }}
@@ -283,10 +284,10 @@
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
-
+            <!-- Buttons Section -->
             <div class="button-container">
-                <button id="save-button" class="btn button button-full-size save-button" onclick="validateQtys()">Save</button> 
-                <button type='submit' id="cancel-button" class="btn button button-full-size cancel-button" onclick="validateQtys()">Cancel</button>
+                <button id="save-button" class="btn button button-full-size save-button" onclick="validate(event)">Save</button> 
+                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
             </div>
         </div>
     </form>
@@ -296,5 +297,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
+    <script src="{% static 'regular_tasks/js/regular_tasks_feeding_time.js' %}"></script>
 {% endblock %}

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from flock_management.models import Flocks, Coops
-from .models import EggCollection, Feeds, Disinfectants, Feeds
+from .models import EggCollection, Feeds, Disinfectants, FeedingTime
 from .forms import EggCollectionForm, FeedsForm, FeedingTimeForm, CoopCleaningForm
 from json import dumps
 from django.core import serializers
@@ -61,11 +61,9 @@ def egg_collection(request):
     else:
         form = EggCollectionForm
         flock = farmprofile[0].flocks.all()
-        print("flock = ", flock)
         template = 'regular_tasks/egg_collection.html'
         context = {'form': form,
                    'flocks': flock}
-        print("context :", type(context))
         return render(request, template, context)
 
 
@@ -73,7 +71,7 @@ def get_feeds(request):
     """view to current flock"""
     userprofile = UserProfile.objects.get(user=request.user)
     farmprofile = userprofile.farmprofiles.all()
-    feeds = Feeds.objects.filter(farm_profile__id=farmprofile[0].id).values('feed_type')
+    feeds = Feeds.objects.filter(farm_profile__id=farmprofile[0].id).values('feed_name')
     # feeds = Feeds.objects.values('feed_type')
     print("feeds = ", feeds)
     return JsonResponse({"feeds": list(feeds)}, safe=False)
@@ -90,22 +88,38 @@ def feeding_time(request):
             print(("form.cleaned_data = ", form.cleaned_data))
             form = form.save(commit=False)  # Presave the form
             form.farm_profile = farmprofile[0]  # Add the farmprofile ForeignKey
-            form.save()  # Save the form fully to the db
-            # Now update the qty_food value in the Feed table (will be using django signals for this at a later stage)
-            feed = Feeds.objects.filter(farm_profile__id=farmprofile[0].id).filter(feed_type=form.feed_type)  # Get the feed object using the feed_type id submitted with the form.
+            previous_feeding_time = FeedingTime.objects.filter(farm_profile=farmprofile[0]).filter(flock=form.flock.id).filter(feed_name=form.feed_name).last()
+            if not previous_feeding_time:
+                form.feeder_amount = form.amount_food_added
+                form.water_total = form.amount_water_added
+            else:
+                form.amount_food_consumed = previous_feeding_time.feeder_amount - form.amount_food_rem
+                form.feeder_amount = previous_feeding_time.feeder_amount - form.amount_food_consumed + form.amount_food_added
+            if not previous_feeding_time:
+                form.water_total = form.amount_water_added
+            else:
+                form.amount_water_consumed = previous_feeding_time.water_total - form.amount_water_rem
+                form.water_total = previous_feeding_time.water_total - form.amount_water_consumed + form.amount_water_added
+            print("feeder_amount = ", form.feeder_amount)
+            feed = Feeds.objects.filter(farm_profile__id=farmprofile[0].id).filter(feed_name=form.feed_name) # Get the feed object using the feed_type id submitted with the form.
             if feed:
                 print("YES")
                 print("feed =", feed)
-                # feed.qty_food -= form.amount_food_added  # Update this qty_food value by subtracting it from itself
-                # feed.save()  # Save this new value to the db.
+                print("feed[0].qty_food = ", feed[0].qty_food)
+                feed[0].qty_food -= form.amount_food_added  # Update this qty_food value by subtracting it from itself
+                if feed[0].qty_food < 0:
+                    feed[0].qty_food = 0
+                feed[0].save()  # Save this new value to the db.
             else:
                 print("NO")
                 feed = Feeds(
                     farm_profile=farmprofile[0],
-                    feed_type=form.feed_type,
+                    feed_name=form.feed_name,
                     qty_food=0
                 )
                 feed.save()
+            form.save()  # Save the form fully to the db
+            # Now update the qty_food value in the Feed table (will be using django signals for this at a later stage)   
             return HttpResponseRedirect('/profile')
     else:
         form = FeedingTimeForm
@@ -117,6 +131,16 @@ def feeding_time(request):
         return render(request, template, context)
 
 
+def get_disinfectants(request):
+    """view to current flock"""
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    disinfectants = Disinfectants.objects.filter(farm_profile__id=farmprofile[0].id).values('disinfectant_name')
+    # feeds = Feeds.objects.values('feed_type')
+    print("disinfectants = ", disinfectants)
+    return JsonResponse({"disinfectants": list(disinfectants)}, safe=False)
+
+
 # @login_required
 def coop_cleaning(request):
     """view for Coop Cleaning"""
@@ -125,14 +149,29 @@ def coop_cleaning(request):
     if request.POST:
         form = CoopCleaningForm(request.POST)
         if form.is_valid():
+            print(("form.cleaned_data = ", form.cleaned_data))
+            form.save(commit=False)
+            # print(("form.disinfectant_name = ", form.disinfectant_name))
+            form.farm_profile = farmprofile[0]
+            disinfectant = Disinfectants.objects.filter(farm_profile__id=farmprofile[0].id).filter(disinfectant_name=form.disinfectant_name)  # Get the feed object using the feed_type id submitted with the form.
+            if disinfectant:
+                print("YES")
+                print("disinfectant =", disinfectant)
+                print("disinfectant[0].disinfectant_name = ", disinfectant[0].disinfectant_name)
+            else:
+                print("NO")
+                disinfectant = Disinfectants(
+                    farm_profile=farmprofile[0],
+                    disinfectant_name=form.disinfectant_name
+                )
+                disinfectant.save()
             form.save()
             return HttpResponseRedirect('/profile')
     else:
         form = CoopCleaningForm
         coops = Coops.objects.filter(farm_profile__id=farmprofile[0].id)
-        disinfectants = Disinfectants.objects.all()
+        # disinfectants = Disinfectants.objects.all()
         template = 'regular_tasks/coop_cleaning.html'
         context = {'form': form,
-                   'coops': coops,
-                   'disinfectants': disinfectants}
+                   'coops': coops}
         return render(request, template, context)

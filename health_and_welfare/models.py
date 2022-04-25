@@ -34,8 +34,8 @@ class SupplementsName(models.Model):
                                               null=True,
                                               blank=True)
 
-    def __str__(self):
-        return self.supplement_name
+    # def __str__(self):
+    #     return self.supplement_name
 
 
 class Supplements(models.Model):
@@ -126,9 +126,9 @@ class Medicines(models.Model):
     date = models.DateTimeField(null=False,
                                 blank=False)
     flock = models.ForeignKey(Flocks,
-                              null=False,
-                              blank=False,
-                              on_delete=models.CASCADE)
+                              null=True,
+                              blank=True,
+                              on_delete=models.SET_NULL)
     medicine_name = models.CharField(max_length=50,
                                      null=True,
                                      blank=True)
@@ -171,6 +171,7 @@ class VirusesName(models.Model):
     virus_name = models.CharField(max_length=50,
                                   null=True,
                                   blank=True)
+
     def __str__(self):
         return self.virus_name
 
@@ -183,6 +184,7 @@ class VaccinesName(models.Model):
     vaccine_name = models.CharField(max_length=50,
                                     null=True,
                                     blank=True)
+
     def __str__(self):
         return self.vaccine_name
 
@@ -221,7 +223,7 @@ class Vaccines(models.Model):
     administration_method = models.ForeignKey(AdministrationMethod,
                                               null=True,
                                               blank=True,
-                                              on_delete=models.CASCADE)
+                                              on_delete=models.SET_NULL)
     vet_administered = models.BooleanField(default=False)
     vet_name = models.CharField(max_length=50,
                                 null=True,

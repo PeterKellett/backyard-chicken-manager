@@ -118,12 +118,16 @@
                     {{ form.disinfected }}
                 </div>
             </div>
-
-            <div class="bottom-margin label-float show-on-click">
-                {{ form.disinfectant }}
-                <label id="disinfectant-label" for="disinfectant">Disinfectant Name</label>
+            <!-- Feed Type -->
+            <div style="position: relative;">
+                <div class="bottom-margin label-float show-on-click">
+                    {{ form.disinfectant_name }}
+                    <label id="disinfectant-label" for="disinfectant_name">Disinfectant Name</label>
+                </div>
+                <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the disinfectants types in the db -->
+                <div class="auto-suggest-dropdown" id="disinfectant-suggestions-list">
+                </div>
             </div>
-
             <div class="bottom-margin">
                 <hr class="hr-large">
             </div>
@@ -142,12 +146,15 @@
             </div>
 
             <div class="button-container">
-                <input type="hidden" name="redirect_url" value="onboard_produce"/>
-                <button id="save-button" class="btn button button-full-size save-button" onclick="validateQtys()">Save</button> 
-                <button type='submit' id="cancel-button" class="btn button button-full-size cancel-button" onclick="validateQtys()">Cancel</button>
+                <button id="save-button" class="btn button button-full-size save-button" onclick="">Save</button> 
+                <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
             </div>
         </div>
     </form>
 </div>
+{% endblock %}
 
+{% block postloadjs %}
+{{ block.super }}
+    <script src="{% static 'regular_tasks/js/regular_tasks_coop_cleaning.js' %}"></script>
 {% endblock %}
