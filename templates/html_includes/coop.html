@@ -1,9 +1,9 @@
 <div class="bottom-margin label-float">
-    <select name="coop" id="coop-name" onchange="displaySelectLabel()" required>
+    <select name="coop" id="coop-name" onchange="displaySelectLabel('select-coop-label')" required>
         <option value="" disabled selected>Select Coop</option>
         {% for coop in coops %}
-            <option type="text" name="coop_name" value="{{ coop.id }}" placeholder="coop.coop_name" id="coop-name">{{ coop.coop_name.title }}</option>
+            <option type="text" name="coop_name" value="{{ coop.id }}" placeholder="coop.coop_name" id="coop-name">{{ coop.coop_name.capitalize }}</option>
         {% endfor %}
     </select>
-    <label id="select-input-label" for="coop-name">Coop Name</label>
+    <label class="hide-label" id="select-coop-label" for="coop-name">Coop Name</label>
 </div>

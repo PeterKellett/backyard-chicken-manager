@@ -53,8 +53,12 @@ class FeedingTimeAdmin(admin.ModelAdmin):
         'feed_name',
         'amount_food_rem',
         'amount_food_added',
+        'amount_food_consumed',
+        'feeder_amount',
         'amount_water_rem',
         'amount_water_added',
+        'amount_water_consumed',
+        'water_total',
         'notes'
     )
 
@@ -66,7 +70,7 @@ class CoopCleaningAdmin(admin.ModelAdmin):
         'date',
         'coop_id',
         'disinfected',
-        'disinfectant',
+        'disinfectant_name',
         'notes'
     )
 

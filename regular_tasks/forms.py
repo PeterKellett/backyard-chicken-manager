@@ -137,10 +137,11 @@ class FeedingTimeForm(forms.ModelForm):
         """ Meta Class Docstring here as required """
         model = FeedingTime
         fields = ('date', 'flock', 'feed_name',
-                  'food_total_setup',
                   'amount_food_rem', 'amount_food_added',
-                  'water_total_setup',
+                  'amount_food_consumed',
+                  'water_total',
                   'amount_water_rem', 'amount_water_added',
+                  'amount_water_consumed',
                   'notes', 'images'
                   )
 
@@ -148,19 +149,12 @@ class FeedingTimeForm(forms.ModelForm):
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
             'feed_name': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                 'id': 'feed-type',
-                                                'name': 'feed_type',
+                                                'name': 'feed_name',
                                                 'value': '',
                                                 'onclick': "displaySelectLabel('feed-type-label')",
                                                 'onkeyup': "showSuggestionsFeeds(this.value, 'feed-type-label')",
                                                 'placeholder':
                                                 "Feed Type"}),
-            'food_total_setup': forms.TextInput(attrs={'id': 'food-total-setup',
-                                                       'name': 'food_total_setup',
-                                                       'placeholder': 'Total Feed Amount',
-                                                       'value': '',
-                                                       'step': '1',
-                                                       'min': '0',
-                                                       'oninput': 'this.value = Math.abs(this.value)'}),
             'amount_food_rem': forms.TextInput(attrs={'id': 'amount-food-rem',
                                                       'name': 'amount_food_rem',
                                                       'placeholder': 'Amount of Food Remaining',
@@ -178,13 +172,6 @@ class FeedingTimeForm(forms.ModelForm):
                                                         'step': '1',
                                                         'min': '0',
                                                         'oninput': 'this.value = Math.abs(this.value)'}),
-            'water_total_setup': forms.TextInput(attrs={'id': 'water-total-setup',
-                                                       'name': 'water_total_setup',
-                                                       'placeholder': 'Total Water Amount',
-                                                       'value': '',
-                                                       'step': '1',
-                                                       'min': '0',
-                                                       'oninput': 'this.value = Math.abs(this.value)'}),
             'amount_water_rem': forms.TextInput(attrs={'id':
                                                        'amount-water-rem',
                                                        'name': 'amount_water_rem',
@@ -223,7 +210,7 @@ class CoopCleaningForm(forms.ModelForm):
         """ Meta Class Docstring here as required """
         model = CoopCleaning
         fields = ('date', 'coop', 'disinfected',
-                  'disinfectant',
+                  'disinfectant_name',
                   'notes', 'images'
                   )
 
@@ -232,10 +219,11 @@ class CoopCleaningForm(forms.ModelForm):
             'disinfected': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                       'id': 'disinfected',
                                                       'name': 'disinfected'}),
-            'disinfectant': forms.TextInput(attrs={'class': '',
-                                                   'id': 'disinfectant',
-                                                   'name': 'disinfectant',
-                                                   'placeholder': 'Disinfectant Name'}),
+            'disinfectant_name': forms.TextInput(attrs={'class': '',
+                                                        'id': 'disinfectant-type',
+                                                        'name': 'disinfectant_name',
+                                                        'onkeyup': "showSuggestionsDisinfectants    (this.value, 'disinfectant-type-label')    ",
+                                                        'placeholder': 'Disinfectant Name'}),
             'notes': forms.Textarea(attrs={'class': '',
                                            'id': 'notes-coop-cleaning',
                                            'name': 'notes_coop_cleaning',

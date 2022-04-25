@@ -71,8 +71,8 @@ class Feeds(models.Model):
 class FeedingTime(models.Model):
     """Model used for storing feeding time data"""
     farm_profile = models.ForeignKey(FarmProfile,
-                                     null=True,
-                                     blank=True,
+                                     null=False,
+                                     blank=False,
                                      on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False,
@@ -82,26 +82,32 @@ class FeedingTime(models.Model):
                               blank=False,
                               on_delete=models.CASCADE)
     feed_name = models.CharField(max_length=50,
-                                 null=True,
-                                 blank=True)
-    food_total_setup = models.IntegerField(null=True,
-                                     blank=True,
-                                     verbose_name='Food Total')
-    amount_food_rem = models.IntegerField(null=False,
-                                          blank=False,
+                                 null=False,
+                                 blank=False)
+    amount_food_rem = models.IntegerField(null=True,
+                                          blank=True,
                                           verbose_name='amount of food remaining')
     amount_food_added = models.IntegerField(null=False,
                                             blank=False,
                                             verbose_name='amount of food added')
-    water_total_setup = models.IntegerField(null=True,
+    amount_food_consumed = models.IntegerField(null=True,
+                                               blank=True,
+                                               verbose_name='amount of food consumed')
+    feeder_amount = models.IntegerField(null=True,
+                                        blank=True,
+                                        verbose_name='feeder amount')
+    water_total = models.IntegerField(null=True,
                                       blank=True,
                                       verbose_name='Water Total')
-    amount_water_rem = models.IntegerField(null=False,
-                                           blank=False,
+    amount_water_rem = models.IntegerField(null=True,
+                                           blank=True,
                                            verbose_name='amount of water remaining')
-    amount_water_added = models.IntegerField(null=False,
-                                             blank=False,
+    amount_water_added = models.IntegerField(null=True,
+                                             blank=True,
                                              verbose_name='amount of water added')
+    amount_water_consumed = models.IntegerField(null=True,
+                                                blank=True,
+                                                verbose_name='amount of water consumed')
     notes = models.TextField(null=True,
                              blank=True)
     images = models.ImageField(null=True,
@@ -114,6 +120,10 @@ class Disinfectants(models.Model):
         """Overwrite the default Django pluralisation"""
         verbose_name_plural = 'Disinfectants'
     """Model used for storing different disinfectants"""
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=False,
+                                     blank=False,
+                                     on_delete=models.CASCADE)
     disinfectant_name = models.CharField(max_length=40,
                                          null=False,
                                          blank=False)
@@ -132,10 +142,9 @@ class CoopCleaning(models.Model):
                                 blank=False)
     disinfected = models.BooleanField(null=True,
                                       blank=True)
-    disinfectant = models.ForeignKey(Disinfectants,
-                                     null=True,
-                                     blank=True,
-                                     on_delete=models.CASCADE)
+    disinfectant_name = models.CharField(max_length=50,
+                                         null=False,
+                                         blank=False)
     notes = models.TextField(null=True,
                              blank=True)
     images = models.ImageField(null=True,

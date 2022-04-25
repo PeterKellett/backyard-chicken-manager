@@ -176,7 +176,7 @@
                 <!-- Feed Type -->
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
-                        {{ form.feed_type }}
+                        {{ form.feed_name }}
                         <label id="feed-type-label" for="feed-type">Feed Type</label>
                     </div>
                     <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the feed types in the db -->
@@ -236,6 +236,7 @@
                         <h4>Water</h4>
                     </div>
                 </div>
+                
                 <div class="row bottom-margin label-float">
                     <div class="col-9 col-css">
                         {{ form.amount_water_rem }}
