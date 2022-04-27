@@ -84,6 +84,7 @@ def feeding_time(request):
     farmprofile = userprofile.farmprofiles.all()
     if request.POST:
         form = FeedingTimeForm(request.POST)
+        print(("form = ", form))
         if form.is_valid():
             print(("form.cleaned_data = ", form.cleaned_data))
             form = form.save(commit=False)  # Presave the form
@@ -150,7 +151,7 @@ def coop_cleaning(request):
         form = CoopCleaningForm(request.POST)
         if form.is_valid():
             print(("form.cleaned_data = ", form.cleaned_data))
-            form.save(commit=False)
+            form = form.save(commit=False)
             # print(("form.disinfectant_name = ", form.disinfectant_name))
             form.farm_profile = farmprofile[0]
             disinfectant = Disinfectants.objects.filter(farm_profile__id=farmprofile[0].id).filter(disinfectant_name=form.disinfectant_name)  # Get the feed object using the feed_type id submitted with the form.

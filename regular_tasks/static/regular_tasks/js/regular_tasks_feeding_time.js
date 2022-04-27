@@ -24,7 +24,7 @@ function showSuggestionsFeeds(value, labelId) {
         let suggestions = '';
         FEEDS.filter(item => item.feed_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             console.log("Feed Type :", item.feed_name);
-            suggestions += `<div onclick="setInputTextFeed('feed-type', '${item.feed_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.feed_name}</div>`;
+            suggestions += `<div onclick="setInputTextFeed('feed-name', '${item.feed_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.feed_name}</div>`;
         });
         if (suggestions.length) {
             document.getElementById('feed-suggestions-list').innerHTML = suggestions;
@@ -40,6 +40,6 @@ function showSuggestionsFeeds(value, labelId) {
 
 function validate(event) {
     console.log("validate function");
-    document.getElementById('feed-suggestions-list').style.display = "none";
+    // document.getElementById('feed-suggestions-list').style.display = "none";
     // event.preventDefault();
 }

@@ -65,7 +65,7 @@
 
 <!-- FORM SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'supplements' %}" enctype="multipart/form-data" name="supplements" id="submit-form" autocomplete="off">
+    <form method="POST" action="{% url 'supplements' %}" enctype="multipart/form-data" name="supplements" autocomplete="off">
         {% csrf_token %}
         
         <div class="form-data">
@@ -92,7 +92,7 @@
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
                         {{ form.supplement_name }}
-                        <label id="select-supplement-label" for="supplement-name">Supplement Name</label>
+                        <label id="supplement-type-label" for="supplement-name">Supplement Name</label>
                     </div>
                     <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the supplement names in the db -->
                     <div class="auto-suggest-dropdown" id="supplement-suggestions-list">
@@ -120,13 +120,15 @@
                 </div>
                 <!-- HCC Section Section -->
                 <div id="hcc-container-div">
-                    {% include 'html_includes/hens_chicks_cocks.html' %}
+                    {{ form.qty_hens }}
+                    {{ form.qty_chicks }}
+                    {{ form.qty_cocks }}
                 </div>
                 <!-- Doseage Amount Total -->
                 <div class="row bottom-margin">
                     <div class="col-9 col-css label-float">
-                        {{ form.doseage_amount }}
-                        <label for="doseage-amount">TOTAL Amount Administered</label>
+                        {{ form.dosage_amount }}
+                        <label for="dosage-amount">TOTAL Amount Administered</label>
                     </div>
                     <div class="col-1">
                     </div>
@@ -193,8 +195,7 @@
 
             <!-- Buttons Section -->
             <div class="button-container">
-                <input type="hidden" name="redirect_url" value="onboard_produce"/>
-                <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
+                <button id="save-button" class="btn button button-full-size save-button" onclick="">Save</button> 
                 <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
             </div>
         </div>
@@ -204,6 +205,7 @@
 {% endblock %}
 
 {% block postloadjs %}
-    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
-    <script src="{% static 'js/hcc_quantities.js' %}"></script>
+{{ block.super }}
+    <script src="{% static 'health_and_welfare/js/health_and_welfare_supplements.js' %}"></script>
+    <!-- <script src="{% static 'js/hcc_quantities.js' %}"></script> -->
 {% endblock %}
