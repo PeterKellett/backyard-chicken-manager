@@ -58,6 +58,8 @@ def egg_collection(request):
             farm.eggs_in_stock += form.qty_saleable_eggs  # Update the eggs_in_stock value to itself
             farm.save()  # Save the farmprofile to the db.
             return HttpResponseRedirect('/profile')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
+        else:
+            print("NOT VALID")
     else:
         form = EggCollectionForm
         flock = farmprofile[0].flocks.all()
