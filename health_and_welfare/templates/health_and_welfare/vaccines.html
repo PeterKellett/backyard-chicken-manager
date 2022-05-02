@@ -216,6 +216,7 @@
 {% endblock %}
 
 {% block postloadjs %}
-    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
-    <script src="{% static 'js/hcc_quantities.js' %}"></script>
+{{ block.super }}
+    <script src="{% static 'health_and_welfare/js/health_and_welfare_vaccines.js' %}"></script>
+    <!-- <script src="{% static 'js/hcc_quantities.js' %}"></script> -->
 {% endblock %}

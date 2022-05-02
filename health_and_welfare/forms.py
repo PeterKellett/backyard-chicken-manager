@@ -7,70 +7,62 @@ from .models import Supplements, SupplementsName, Medicines, MedicinesName, Vacc
 class SupplementsForm(forms.ModelForm):
     """ Create an Supplement Administration form """
 
-    def __init__(self, *args, **kwargs):
-        super(MedicinesForm, self).__init__(*args, **kwargs)
-        self.fields['administration_method'].empty_label = 'Select Administration Method'
-        self.fields['administration_method'].initial = "Select Administration Method"
-        self.fields['administration_method'].show_hidden_initial = True
+    # def __init__(self, *args, **kwargs):
+    #     super(MedicinesForm, self).__init__(*args, **kwargs)
+    #     self.fields['administration_method'].empty_label = 'Select Administration Method'
+    #     self.fields['administration_method'].initial = "Select Administration Method"
+    #     self.fields['administration_method'].show_hidden_initial = True
 
     class Meta:
         """ Meta Class Docstring here as required """
         model = Supplements
-        fields = "__all__"
+        fields = ('date',
+                  'flock',
+                  'supplement_name',
+                  'qty_hens',
+                  'qty_chicks',
+                  'qty_cocks',
+                  'dosage_amount',
+                  'vet_administered',
+                  'vet_name',
+                  'notes',
+                  'images')
 
-    # class Meta:
-    #     """ Meta Class Docstring here as required """
-    #     model = Supplements
-    #     fields = ('date', 'flock',
-    #               'supplement_name',
-    #               'qty_hens', 'qty_chicks',
-    #               'qty_cocks', 'doseage_amount',
-    #               'administration_method',
-    #               'vet_administered', 'vet_name',
-    #               'notes', 'images')
-
-    #     widgets = {
-    #         'date': forms.DateTimeInput,
-    #         'flock': forms.CheckboxInput,
-    #         'supplement_name': forms.TextInput(attrs={'class': 'hide-placeholder',
-    #                                                   'id': 'medicine-name',
-    #                                                   'name': 'medicine_name',
-    #                                                   'value': '',
-    #                                                   'onclick': "displaySelectLabel('select-supplement-label')",
-    #                                                   'onkeyup': "showSuggestionsMedicines(this.value, 'select-supplement-label')",
-    #                                                   'placeholder':
-    #                                                   "Medicine Name"}),
-    #         'doseage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
-    #                                                  'id': 'doseage-amount',
-    #                                                  'name': 'doseage_amount',
-    #                                                  'type': 'number',
-    #                                                  'placeholder':
-    #                                                  "TOTAL Amount Administered"}),
-    #         'administration_method': forms.Select(attrs={'class': '',
-    #                                                      'id': 'administration-method',
-    #                                                      'name': 'administration_method',
-    #                                                      'onchange': "displaySelectLabel('select-administration-label')",
-    #                                                      'placeholder':
-    #                                                      "Administration Method"}),
-    #         'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
-    #                                                        'id': 'vet-administered',
-    #                                                        'name': 'vet_administered'}),
-    #         'vet_name': forms.TextInput(attrs={'class': '',
-    #                                            'id': 'vet-name',
-    #                                            'name': 'vet_name',
-    #                                            'placeholder':
-    #                                            "VET Name",
-    #                                            'value': ''}),
-    #         'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
-    #                                        'id': 'notes-coop-cleaning',
-    #                                        'name': 'notes_coop_cleaning',
-    #                                        'placeholder':
-    #                                        "Notes",
-    #                                        'value': ''}),
-    #         'images': forms.ClearableFileInput(attrs={'class': 'upload',
-    #                                                   'id': 'images-coop-cleaning',
-    #                                                   'name': 'images_coop_cleaning'})
-    #     }
+        widgets = {
+            'date': forms.DateTimeInput,
+            'flock': forms.CheckboxInput,
+            'supplement_name': forms.TextInput(attrs={'class': 'hide-placeholder',
+                                                      'id': 'supplement-name',
+                                                      'name': 'supplement_name',
+                                                      'value': '',
+                                                      'onclick': "displaySelectLabel('supplement-type-label')",
+                                                      'onkeyup': "showSuggestionsSupplements(this.value, 'supplement-type-label')",
+                                                      'placeholder':
+                                                      "Supplement Name"}),
+            'dosage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
+                                                    'id': 'dosage-amount',
+                                                    'name': 'dosage_amount',
+                                                    'placeholder':
+                                                    "TOTAL Amount Administered"}),
+            'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
+                                                           'id': 'vet-administered',
+                                                           'name': 'vet_administered'}),
+            'vet_name': forms.TextInput(attrs={'class': '',
+                                               'id': 'vet-name',
+                                               'name': 'vet_name',
+                                               'placeholder':
+                                               "VET Name",
+                                               'value': ''}),
+            'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
+                                           'id': 'notes-coop-cleaning',
+                                           'name': 'notes_coop_cleaning',
+                                           'placeholder':
+                                           "Notes",
+                                           'value': ''}),
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
+                                                      'id': 'images-coop-cleaning',
+                                                      'name': 'images_coop_cleaning'})
+        }
 
 
 # Create a Supplement Name form

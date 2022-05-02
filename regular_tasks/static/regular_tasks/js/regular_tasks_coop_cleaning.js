@@ -1,6 +1,6 @@
 console.log("regular_tasks_coop_cleaning.js");
 
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu42.gitpod.io/regular_tasks/get_disinfectants')
+fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu43.gitpod.io/regular_tasks/get_disinfectants')
 .then(response => response.json())
 .then(data => {
     console.log("Fetch disinfectant type fn fires");
@@ -22,7 +22,7 @@ function showSuggestionsDisinfectants(value, labelId) {
         let suggestions = '';
         DISINFECTANTS.filter(item => item.disinfectant_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             console.log("disinfectant Type :", item.disinfectant_name);
-            suggestions += `<div onclick="setInputTextDisinfectant('disinfectant-type', '${item.disinfectant_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.disinfectant_name}</div>`;
+            suggestions += `<div onclick="setInputTextDisinfectant('disinfectant-name', '${item.disinfectant_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.disinfectant_name}</div>`;
         });
         if (suggestions.length) {
             document.getElementById('disinfectant-suggestions-list').innerHTML = suggestions;

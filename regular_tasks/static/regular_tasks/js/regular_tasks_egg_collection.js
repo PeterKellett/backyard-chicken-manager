@@ -6,7 +6,7 @@ var traysQuantity;
 var total_eggs_laid;
 var average_egg_weight;
 var saleable_eggs;
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu42.gitpod.io/regular_tasks/trays_quantity')
+fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu43.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
     traysQuantity = data.trays_quantity;

@@ -10,20 +10,47 @@ import json
 
 
 # Create your views here.
-# def get_supplements(request):
-#     """view to current flock"""
-#     supplements = SupplementsName.objects.values('supplement_name')
-#     return JsonResponse({"supplements": list(supplements)}, safe=False)
+def get_supplements(request):
+    """view to current supplements"""
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    supplements = SupplementsName.objects.filter(farm_profile__id=farmprofile[0].id).values('supplement_name')
+    print("supplements = ", supplements)
+    return JsonResponse({"supplements": list(supplements)}, safe=False)
 
 
 def supplements(request):
-    """view to current flock"""
+    """view to supplements"""
     # The three lines below can be deleted once the rest of the code has 
     # been uncommented and implemented
-    template = 'health_and_welfare/supplements.html'
-    context = {}
-    return render(request, template, context)
-
+    # template = 'health_and_welfare/supplements.html'
+    # context = {}
+    # return render(request, template, context)
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    if request.POST:
+        print("POST")
+        form = SupplementsForm(request.POST, request.FILES)
+        print(("form = ", form))
+        if form.is_valid():
+            print(("form.cleaned_data = ", form.cleaned_data))
+            form = form.save(commit=False)  # Presave the form
+            form.farm_profile = farmprofile[0]  # Add the farmprofile ForeignKey
+            form.save()
+            return HttpResponseRedirect('/profile')
+        else:
+            print("NOT VALID")
+            print(("form = ", form.cleaned_data))
+            form.is_valid = True
+            form.save()
+    else:
+        form = SupplementsForm
+        flock = farmprofile[0].flocks.all()
+        print("flock = ", flock)
+        template = 'health_and_welfare/supplements.html'
+        context = {'form': form,
+                   'flocks': flock}
+        return render(request, template, context)
     # supplements_name = SupplementsName.objects.all()
     # userprofile = UserProfile.objects.get(user=request.user)
     # farmprofile = userprofile.farmprofiles.all()
