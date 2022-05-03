@@ -6,7 +6,7 @@ var traysQuantity;
 var total_eggs_laid;
 var average_egg_weight;
 var saleable_eggs;
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu43.gitpod.io/regular_tasks/trays_quantity')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu43.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
     traysQuantity = data.trays_quantity;
@@ -28,9 +28,22 @@ function doCalculations() {
     document.getElementById("qty-total-eggs-laid").innerHTML = total_eggs_laid;
     console.log("total_eggs_laid = " + typeof(total_eggs_laid))
     average_egg_weight = (form_data['weight_total_eggs_laid'] / (total_eggs_laid - form_data['qty_eggs_broken']))
+    measurementUnit = document.getElementById("weights-and-measures-units").value;
+    // If there is no value, --- is displayed as the average egg weight
     if (isNaN(average_egg_weight) || (form_data['weight_total_eggs_laid'] == '')) {
         document.getElementById("avg-egg-weight").innerHTML = "--- ";
     }
+    // If the User selects kg, the avg egg weight is displayed in grammes
+    else if (measurementUnit === "kg"){
+        console.log("KGS")
+        document.getElementById("avg-egg-weight").innerHTML = (average_egg_weight*1000);
+    }
+    // If the User selects lb, the avg egg weight is displayed in ounces
+    else if (measurementUnit === "lb"){
+        console.log("LBS")
+        document.getElementById("avg-egg-weight").innerHTML = (average_egg_weight*16);
+    }
+    // If the User selects g or oz, the avg egg weight is displayed in g or oz
     else {
         document.getElementById("avg-egg-weight").innerHTML = average_egg_weight.toFixed(2);
     }
@@ -38,6 +51,33 @@ function doCalculations() {
     console.log("saleable_eggs = " + saleable_eggs);
     document.getElementById("qty-saleable-eggs").innerHTML = saleable_eggs;
 }
+
+
+// EGG WEIGHT UNIT OF MEASUREMENT: Fn to automatically display unit of measurement as per User's default
+// or based on their selection from a dropdown, converting it to either g or oz (because eggs are light)
+var measurementUnit;
+$(document).ready(function(){
+    // Displays the initial or User's default unit of measurement (maybe get rid off?)
+    measurementUnit = document.getElementById("weights-and-measures-units").value;
+    $("#unit-of-measurement").html(measurementUnit);
+
+    // Fn to change the unit displayed if the User selects a different unit to the default from the dropdown
+    // and convert it to the lowest unit of either imperial or metric, i.e. display in g or oz.
+    $("#weights-and-measures-units").on('change', function(){
+        doCalculations();
+        measurementUnit = document.getElementById("weights-and-measures-units").value;
+        if (measurementUnit === "kg"){
+            $("#unit-of-measurement").html("g");
+        }
+        else if (measurementUnit === "lb"){
+            $("#unit-of-measurement").html("oz");
+        }
+        else {
+            $("#unit-of-measurement").html(measurementUnit);
+        }
+    });
+  });
+
 
 function validate(event) {
     console.log("Validate function");
@@ -61,4 +101,4 @@ function validate(event) {
     else {
         document.getElementById("warning-section-text").textContent = "";
     }
-}  
+}

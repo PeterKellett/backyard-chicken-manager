@@ -187,7 +187,7 @@
                             {{ form.weight_total_eggs_laid }}
                             <label for="weight-total-eggs-laid">Laid Eggs Weight (excl. Broken)</label>
                         </div>
-                        <div class="col-1">
+                        <div class="col-1" id="weight-value-total-eggs-laid">
                         </div>
                         <div class="col-2 col-css bottom-margin">
                             <select name="weights_and_measures_units" id="weights-and-measures-units">
@@ -204,7 +204,7 @@
                             <h5 class="row-name">Average Egg Weight:</h5>
                         </div>
                         <div class="col-2 col-css col-css-right label-float">
-                            <h5><span id="avg-egg-weight"></span><span class="unit-of-measurement" id="unit-of-measurement">g</span></h5>
+                            <h5><span id="avg-egg-weight"></span><span class="unit-of-measurement" id="unit-of-measurement"></span></h5>
                         </div>
                     </div>
                     <div class="bottom-margin">
@@ -247,4 +247,5 @@
 {% block postloadjs %}
 {{ block.super }}
     <script src="{% static 'regular_tasks/js/regular_tasks_egg_collection.js' %}"></script>
+    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
 {% endblock %}

@@ -72,8 +72,8 @@ class EggCollectionForm(forms.ModelForm):
                                                             'name':
                                                             'qty_eggs_personal_use',
                                                             'placeholder':
-                                                            'Qty of Eggs Taken for Personal Use)',
-                                                             'oninput': "doCalculations()",
+                                                            'Qty of Eggs Taken for Personal Use',
+                                                            'oninput': "doCalculations()",
                                                             'value': '',
                                                             'min': '0',
                                                             'step': '1'}),
