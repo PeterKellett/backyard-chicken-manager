@@ -14,22 +14,22 @@
             <div class="col-3 col-css">
                 <h5 class="row-name col-css-element">Hens</h5>
             </div>
-                <div class="col-2 col-css">
-                    <p class="checkbox-label hcc-checkbox-label col-css-element">All</p>
-                </div>
-                <div class="col-1 col-css">
-                    <input type="checkbox" name="all_hens_check" id="all-hens-check" class="col-css-element hcc-checkbox">
-                </div>
-                <div class="col-1 col-css">
-                    <p class="checkbox-label hcc-checkbox-label col-css-element">or</p>
-                </div>
+            <div class="col-2 col-css">
+                <p class="checkbox-label hcc-checkbox-label col-css-element">All</p>
+            </div>
+            <div class="col-1 col-css">
+                <input type="checkbox" name="all_hens_check" id="all-hens-check" class="col-css-element hcc-checkbox">
+            </div>
+            <div class="col-1 col-css">
+                <p class="checkbox-label hcc-checkbox-label col-css-element">or</p>
+            </div>
             <div class="col-3 col-css col-css-right">
                 {% if 'hens_qty' in onboard_profile_data %}
                     <input type="number" name="hens_qty" value="{{ onboard_profile_data.hens_qty }}" placeholder="Qty" id="hens-qty" 
-                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onchange="hccTotal()">
                 {% else %}
                     <input type="number" name="hens_qty" placeholder="Qty" id="hens-qty" 
-                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
+                        step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onchange="hccTotal()">
                 {% endif %}
             </div>
         </div>
@@ -57,10 +57,10 @@
             <div class="col-3 col-css col-css-right">
                 {% if 'chicks_qty' in onboard_profile_data %}
                 <input type="number" name="chicks_qty" value="{{ onboard_profile_data.chicks_qty }}" placeholder="Qty" id="chicks-qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
+                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onchange="hccTotal()">
                 {% else %}
                 <input type="number" name="chicks_qty" placeholder="Qty" id="chicks-qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()"> 
+                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onchange="hccTotal()"> 
                 {% endif %}
 
             </div>
@@ -88,10 +88,10 @@
             <div class="col-3 col-css col-css-right">
                 {% if 'cocks_qty' in onboard_profile_data %}
                 <input type="number" name="cocks_qty" value="{{ onboard_profile_data.cocks_qty }}" placeholder="Qty" id="cocks-qty" 
-                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
+                step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onchange="hccTotal()">
                 {% else %}
                 <input type="number" name="cocks_qty" placeholder="Qty" id="cocks-qty" 
-                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onkeyup="hccTotal()" onchange="hccTotal()">
+                    step="1" min="0" oninput="this.value = Math.abs(this.value)" class="hcc-input" onchange="hccTotal()">
                 {% endif %}
             </div>
         </div>

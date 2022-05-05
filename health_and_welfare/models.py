@@ -47,15 +47,15 @@ class Supplements(models.Model):
                                      null=False,
                                      blank=False,
                                      on_delete=models.CASCADE)
-    date = models.DateTimeField(null=True,
-                                blank=True)
+    date = models.DateTimeField(null=False,
+                                blank=False)
     flock = models.ForeignKey(Flocks,
-                              null=True,
-                              blank=True,
+                              null=False,
+                              blank=False,
                               on_delete=models.CASCADE)
     supplement_name = models.CharField(max_length=50,
-                                       null=True,
-                                       blank=True)
+                                       null=False,
+                                       blank=False)
     # qty_supplements = models.DecimalField(max_digits=6,
     #                                       decimal_places=2,
     #                                       null=True,
@@ -66,12 +66,14 @@ class Supplements(models.Model):
                                      blank=True)
     qty_cocks = models.IntegerField(null=True,
                                     blank=True)
-    # qty_total = models.IntegerField(null=True,
-    #                                 blank=True)
-    dosage_amount = models.DecimalField(max_digits=6,
+    dosage_amount = models.DecimalField(max_digits=5,
                                         decimal_places=2,
-                                        null=True,
-                                        blank=True)
+                                        null=False,
+                                        blank=False)
+    dose_per_bird = models.DecimalField(max_digits=5,
+                                        decimal_places=2,
+                                        null=False,
+                                        blank=False)
     # administration_method = models.ForeignKey(AdministrationMethod,
     #                                           null=True,
     #                                           blank=True,

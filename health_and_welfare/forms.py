@@ -30,7 +30,6 @@ class SupplementsForm(forms.ModelForm):
 
         widgets = {
             'date': forms.DateTimeInput,
-            'flock': forms.CheckboxInput,
             'supplement_name': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                       'id': 'supplement-name',
                                                       'name': 'supplement_name',
@@ -39,11 +38,48 @@ class SupplementsForm(forms.ModelForm):
                                                       'onkeyup': "showSuggestionsSupplements(this.value, 'supplement-type-label')",
                                                       'placeholder':
                                                       "Supplement Name"}),
+            'qty_hens': forms.TextInput(attrs={'class':
+                                               'hide-placeholder',
+                                               'id':
+                                               'qty-hens',
+                                               'name':
+                                               'qty_hens',
+                                               'placeholder':
+                                               'Qty',
+                                               'oninput': "doCalculations()",
+                                               'value': '',
+                                               'step': '1',
+                                               'min': '0'}),
+            'qty_chicks': forms.TextInput(attrs={'class':
+                                                 'hide-placeholder',
+                                                 'id':
+                                                 'qty-chicks',
+                                                 'name':
+                                                 'qty_chicks',
+                                                 'placeholder':
+                                                 'Qty',
+                                                 'oninput': "doCalculations()",
+                                                 'value': '',
+                                                 'step': '1',
+                                                 'min': '0'}),
+            'qty_cocks': forms.TextInput(attrs={'class':
+                                                'hide-placeholder',
+                                                'id':
+                                                'qty-cocks',
+                                                'name':
+                                                'qty_cocks',
+                                                'placeholder':
+                                                'Qty',
+                                                'oninput': "doCalculations()",
+                                                'value': '',
+                                                'step': '1',
+                                                'min': '0'}),
             'dosage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                     'id': 'dosage-amount',
                                                     'name': 'dosage_amount',
                                                     'placeholder':
-                                                    "TOTAL Amount Administered"}),
+                                                    "TOTAL Amount Administered",
+                                                    'oninput': "doCalculations()",}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                            'id': 'vet-administered',
                                                            'name': 'vet_administered'}),

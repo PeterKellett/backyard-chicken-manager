@@ -125,23 +125,25 @@ $(document).ready(function() {
 function displaySelectLabel(id) {
     console.log("Float Label fn fires");
     document.getElementById(id).style.display = "block";
-    if (id==='select-recipient-label') {
-        checkAndToggleHCCDivVisibility();
-    }
+    // PK commented out the following
+    // if (id==='select-recipient-label') {
+    //     checkAndToggleHCCDivVisibility();
+    // }
 }
 
 // function hideSelectLabel(id) {
 //     document.getElementById(id).style.display = "none";
 // }
 
-function checkAndToggleHCCDivVisibility() {
-    const dropdown = document.getElementById('recipients')
-    if (dropdown.options[dropdown.selectedIndex].id === "individual-birds") {
-        document.getElementById('hcc-container-div').style.display = "block";
-    } else {
-        document.getElementById('hcc-container-div').style.display = "none";
-    }
-}
+// PK commented out the following
+// function checkAndToggleHCCDivVisibility() {
+//     const dropdown = document.getElementById('recipients')
+//     if (dropdown.options[dropdown.selectedIndex].id === "individual-birds") {
+//         document.getElementById('hcc-container-div').style.display = "block";
+//     } else {
+//         document.getElementById('hcc-container-div').style.display = "none";
+//     }
+// }
 
 
 
