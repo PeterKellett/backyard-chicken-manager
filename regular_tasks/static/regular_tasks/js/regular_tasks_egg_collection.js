@@ -14,6 +14,7 @@ fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu43.gitpod.io/regula
     doCalculations();
 });
 
+
 function doCalculations() {
     console.log("traysQuantity again = " + traysQuantity)
     if (traysQuantity == null) {

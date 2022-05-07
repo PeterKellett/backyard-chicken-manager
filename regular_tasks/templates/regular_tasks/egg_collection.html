@@ -106,10 +106,16 @@
 
 <!-- FORM SECTION  -->
 <div class="element-container">
-    <form method="POST" action="" enctype="multipart/form-data" name="egg_collection" id="submit-form">
+    <form method="POST" action="" enctype="multipart/form-data" name="egg_collection" id="submit-form" autocomplete="off">
         {% csrf_token %}
         
         <div class="form-data">
+            <!-- Prevents Chrome and Firefox from offering autofill on fields. 
+                 Required because on many fields we provide our own auto-suggest and it looks messy and confusing.
+                 It requires autocomplete="off" in the above form in order to work. 
+                 Taken from: https://gist.github.com/niksumeiko/360164708c3b326bd1c8 where there are other solutions too -->
+            <input autocomplete="false" name="hidden" type="text" style="display:none;">
+            
             <!-- Eggs Laid Section -->
             <section name="flock-core-info">
                 {% include 'html_includes/date.html' %}
@@ -148,7 +154,7 @@
             </section>
 
             <!-- Advanced Section - Bootstrap Collapse https://getbootstrap.com/docs/5.0/components/collapse/-->
-            <section name="advanced-section">
+            <section id="egg-collection-advanced-section" name="advanced-section">
                 <div class="bottom-margin panel-div label-float">
                     <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <h5>Advanced (Click on me)</h5>

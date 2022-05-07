@@ -71,10 +71,15 @@
 
 <!-- FORM SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'egg_delivery_sales' %}" enctype="multipart/form-data" name="egg_delivery_sales" id="submit-form">
+    <form method="POST" action="{% url 'egg_delivery_sales' %}" enctype="multipart/form-data" name="egg_delivery_sales" id="submit-form" autocomplete="off">
         {% csrf_token %}
         
         <div class="form-data">
+            <!-- Prevents Chrome and Firefox from offering autofill on fields. 
+                 Required because on many fields we provide our own auto-suggest and it looks messy and confusing.
+                 It requires autocomplete="off" in the above form in order to work. 
+                 Taken from: https://gist.github.com/niksumeiko/360164708c3b326bd1c8 where there are other solutions too -->
+            <input autocomplete="false" name="hidden" type="text" style="display:none;">
             <!-- Sale Date Section -->
             {% include 'html_includes/date.html' %}
             <div class="bottom-margin">
