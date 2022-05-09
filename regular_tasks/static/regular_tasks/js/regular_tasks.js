@@ -16,7 +16,7 @@ var total_nonsaleable_eggs;
 let hensQuantity;
 
 // Extracts the Tray Quantity from Farm Profile in the db
-// fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu43.gitpod.io/regular_tasks/trays_quantity')
+// fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu44.gitpod.io/regular_tasks/trays_quantity')
 // .then(response => response.json())
 // .then(data => {
 //     traysQuantity = data.trays_quantity;
@@ -24,7 +24,7 @@ let hensQuantity;
 // });
 
 // Extracts the Qty of laying hens in a flock from Farm Profile in the db
-fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu43.gitpod.io/flock_management/hens_qty')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu44.gitpod.io/flock_management/hens_qty')
 .then(response => response.json())
 .then(data => {
     hensQuantity = data.hens_qty;

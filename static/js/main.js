@@ -71,7 +71,20 @@ $(document).ready(function () {
         }
     });
 });
+// Show Hide 3: This fn displays a div when an input is changed and the value is greater than 1
+// First used in Egg Collection so that Advanced Section only displays if the user inputs a collected quantity
+// $(document).ready(function () {
+//     $('div.show-on-change').hide();
 
+//     //show it when the input changes
+//     $('input[class="change-to-show"]').on('change', function () {
+//         if ($(this).value > 1) {
+//             $('div.show-on-change').fadeIn();
+//         } else {
+//             $('div.show-on-change').hide();
+//         }
+//     });
+// });
 
 
 // Sales Methods & Units Function to ensure at least one checkbox
