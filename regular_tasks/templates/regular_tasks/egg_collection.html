@@ -120,7 +120,7 @@
             <section name="flock-core-info">
                 {% include 'html_includes/date.html' %}
                 {% include 'html_includes/flock.html' %}
-                <div class="container">
+                <div class="container" id="egg-qty-2col-div" >
                     <div class="row">
                         <!-- Eggs Laid Trays -->
                         <div class="col-6 two-inputs-left">
@@ -137,6 +137,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <!-- Eggs Laid Singles-->
+                <div id="egg-qty-1col-div" class="bottom-margin label-float">
+                    {{ form.qty_egg_singles }}
+                    <label for="qty-egg-singles">Qty Laid - Single</label>
                 </div>
                 <!-- Total Eggs Laid -->
                 <div class="row bottom-margin">

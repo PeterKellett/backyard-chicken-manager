@@ -20,14 +20,6 @@ def get_trays_quantity(request):
     return JsonResponse({"trays_quantity": trays_quantity}, safe=False)
 
 
-def get_hens_quantity(request):
-    """Get Qty of hens in a flock"""
-    userprofile = UserProfile.objects.get(user=request.user)
-    flocks = userprofile.flocks.all()
-    hens_quantity = flocks[0].hens_quantity
-    return JsonResponse({"hens_quantity": hens_quantity}, safe=False)
-
-
 @login_required
 def egg_collection(request):
     """view to current flock"""
