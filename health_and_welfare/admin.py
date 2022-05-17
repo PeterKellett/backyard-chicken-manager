@@ -35,7 +35,6 @@ class SupplementsAdmin(admin.ModelAdmin):
         'date',
         'flock',
         'supplement_name',
-        # 'qty_supplements',
         'qty_hens',
         'qty_chicks',
         'qty_cocks',
@@ -52,6 +51,7 @@ class MedicinesNameAdmin(admin.ModelAdmin):
     """Admin layout for Medicine Names Admin table"""
     list_display = (
         'id',
+        'farm_profile',
         'medicine_name'
     )
 
@@ -60,8 +60,21 @@ class MedicinesAdmin(admin.ModelAdmin):
     """Admin layout for Medicines Admin table"""
     list_display = (
         'id',
-        'farm_profile_id',
-        'medicine_name'
+        'farm_profile',
+        'date',
+        'flock',
+        'medicine_name',
+        'disease_protected_against',
+        'qty_hens',
+        'qty_chicks',
+        'qty_cocks',
+        'dosage_amount',
+        'dose_per_bird',
+        'administration_method',
+        'vet_administered',
+        'vet_name',
+        'notes',
+        'images'
     )
 
 
@@ -86,7 +99,21 @@ class VaccinesAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'farm_profile_id',
-        'vaccine_name'
+        'date',
+        'flock',
+        'vaccine_name',
+        'virus_protected_against',
+        'qty_hens',
+        'qty_chicks',
+        'qty_cocks',
+        'dosage_amount',
+        'dose_per_bird',
+        'administration_method',
+        'vet_administered',
+        'vet_name',
+        'notes',
+        'images'
+
     )
 
 

@@ -15,7 +15,7 @@ var total_nonsaleable_eggs;
 let traysQuantity;
 
 // Extracts the Tray Quantity from Farm Profile in the db
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu34.gitpod.io/regular_tasks/trays_quantity')
+fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
     traysQuantity = data.trays_quantity;
@@ -118,7 +118,7 @@ function showSuggestionsFeeds(value, labelId) {
         document.getElementById('feed-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu40.gitpod.io/regular_tasks/get_feeds')
+fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/regular_tasks/get_feeds')
 .then(response => response.json())
 .then(data => {
     console.log("Fetch feed type fn fires");

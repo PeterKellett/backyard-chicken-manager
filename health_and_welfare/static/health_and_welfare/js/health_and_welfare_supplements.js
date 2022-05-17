@@ -1,6 +1,6 @@
 console.log("health_and_welfare_supplements.js");
 
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu43.gitpod.io/health_and_welfare/get_supplements')
+fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/health_and_welfare/get_supplements')
 .then(response => response.json())
 .then(data => {
     console.log("Fetch supplement type fn fires");
@@ -117,13 +117,6 @@ $("#all-cocks-check").change(function() {
     }
     doCalculations();
 });
-
-// $("#dosage-amount").keyup(function() {
-//     var dosage = this.value;
-//     console.log("dosage = " + dosage)
-//     var total_birds = hens + chicks + cocks;
-//     console.log("total_birds = " + total_birds)
-// })
 
 function doCalculations() {
     console.log("doCalculations")
