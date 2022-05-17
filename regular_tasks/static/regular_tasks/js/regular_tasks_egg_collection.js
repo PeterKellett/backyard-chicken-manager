@@ -6,7 +6,7 @@ var traysQuantity;
 var total_eggs_laid;
 var average_egg_weight;
 var saleable_eggs;
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/regular_tasks/trays_quantity')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
     traysQuantity = data.trays_quantity;
@@ -14,20 +14,21 @@ fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/regul
     doCalculations();
 });
 
-
+var qtys_single_eggs;
 function doCalculations() {
     console.log("traysQuantity again = " + traysQuantity)
-    if (traysQuantity == null) {
-        $('input[name=qty_egg_trays]').parent().hide();
-    }
+    // I don't think this is required any longer
+    // if (traysQuantity == null) {
+    //     $('input[name=qty_egg_trays]').parent().hide();
+    // }
     document.querySelectorAll('input').forEach(item => {
         form_data[item.name] = Number(item.value);
-        console.log("form_data = " + item.name + ": " + typeof(form_data[item.name]))
+        console.log("form_data type = " + item.name + ": " + typeof(form_data[item.name]));
     })
     
     total_eggs_laid = (form_data['qty_egg_trays'] * traysQuantity) + form_data['qty_egg_singles']
     document.getElementById("qty-total-eggs-laid").innerHTML = total_eggs_laid;
-    console.log("total_eggs_laid = " + typeof(total_eggs_laid))
+    console.log("total_eggs_laid = " + total_eggs_laid)
     average_egg_weight = (form_data['weight_total_eggs_laid'] / (total_eggs_laid - form_data['qty_eggs_broken']))
     measurementUnit = document.getElementById("weights-and-measures-units").value;
     // If there is no value, --- is displayed as the average egg weight
@@ -36,12 +37,10 @@ function doCalculations() {
     }
     // If the User selects kg, the avg egg weight is displayed in grammes
     else if (measurementUnit === "kg"){
-        console.log("KGS")
         document.getElementById("avg-egg-weight").innerHTML = (average_egg_weight*1000);
     }
     // If the User selects lb, the avg egg weight is displayed in ounces
     else if (measurementUnit === "lb"){
-        console.log("LBS")
         document.getElementById("avg-egg-weight").innerHTML = (average_egg_weight*16);
     }
     // If the User selects g or oz, the avg egg weight is displayed in g or oz
@@ -107,27 +106,18 @@ function validate(event) {
 
 // Egg Collection - Variables
 let hensQuantity;
-let egg_qty_2col_div = document.getElementById('egg-qty-2col-div');
-let egg_qty_1col_div = document.getElementById('egg-qty-1col-div');
+let trays_input_div = document.getElementById('trays_input_div');
 // Extracts the Qty of laying hens in a flock from Farm Profile in the db. This allows us to decide 
-// whether to display trays and singles, or just singles. The latter is set at less than 12 hens.
+// whether to display trays and singles inputs, or just singles. The latter is set at less than 12 hens.
 fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/flock_management/hens_quantity')
 .then(response => response.json())
 .then(data => {
     hensQuantity = data.hens_quantity;
-    console.log("Hens Quantity = " + hensQuantity)
 
     if (hensQuantity < 12) {
-        egg_qty_2col_div.style.display = 'none';
-        egg_qty_1col_div.style.display = 'block';
-        console.log("Less than 12 " + hensQuantity);
+        trays_input_div.style.display = 'none';
+        console.log("trays_input_div none")
     }
-    else {
-        egg_qty_2col_div.style.display = 'block';
-        egg_qty_1col_div.style.display = 'none';
-        console.log("more than 12 " + hensQuantity);
-    }
-
 });
 
 
