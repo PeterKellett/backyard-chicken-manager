@@ -333,13 +333,15 @@
             </div>
 
             <!-- Notes & Images Section -->
+            <!-- Hardcoded, as opposed to using the Include, because the form on this
+                 page is split in two to accomodate Pricing and Stocks -->
             <section name="notes_and_images">
                 <div class="container element-container">
                     <div class="row">
                         <div class="col-10 form-data textarea-col">
                             <div class="label-float">
                                 {{ sales_form.notes }}
-                                <label for="egg-collection-notes">Notes</label>
+                                <label for="notes">Notes</label>
                             </div>
                         </div>
                         <div class="col-2 col-css-right">

@@ -154,7 +154,7 @@ def vaccines(request):
             if not form.qty_cocks:
                 form.qty_cocks = 0
             form.dose_per_bird = (form.dosage_amount / (form.qty_hens + form.qty_chicks + form.qty_cocks))
-            vaccine = VaccinesName.objects.filter(farm_profile__id=farmprofile[0].id).filter(vaccine_name=form.vaccine_name)
+            # vaccine = VaccinesName.objects.filter(farm_profile__id=farmprofile[0].id).filter(vaccine_name=form.vaccine_name)
             form.save()  # Save the form fully.
             return HttpResponseRedirect('/health_and_welfare/vaccines/')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
         else:
