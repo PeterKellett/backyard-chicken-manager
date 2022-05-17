@@ -255,12 +255,12 @@ def onboard_flock(request):
 
 
 @login_required
-def onboard_produce(request):
+def onboard_sales(request):
     '''Render onboarding step 4'''
     context = {
 
     }
-    template = 'profiles/onboard_produce.html'
+    template = 'profiles/onboard_sales.html'
     return render(request, template, context)
 
 
