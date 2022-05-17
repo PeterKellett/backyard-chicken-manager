@@ -363,17 +363,6 @@ input[type=checkbox] {
     width: 20px;
 }
 
-/*-- Field label prior to field being clicked on --*/
-/*-- This affects input_label_float --*/
-/* input + label,
-.form-data select + label,
-.form-data textarea + label {
-    position: absolute;
-    font-size: 16px;
-    color: var(--black);
-    left: 10px;
-    top: 6px;
-} */
 
 /*-- Highlight field border when clicked on --*/
 input:focus,

@@ -102,8 +102,8 @@ class EggCollectionForm(forms.ModelForm):
                                                              'oninput': "doCalculations()"
                                                              }),
             'notes': forms.Textarea(attrs={'class': '',
-                                           'id': 'notes-egg-collection',
-                                           'name': 'notes_eggs_collection',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -192,8 +192,8 @@ class FeedingTimeForm(forms.ModelForm):
                                                          'min': '0',
                                                          'oninput': 'this.value = Math.abs(this.value)'}),
             'notes': forms.Textarea(attrs={'class': '',
-                                           'id': 'notes-feeding-time',
-                                           'name': 'notes_feeding_time',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -226,8 +226,8 @@ class CoopCleaningForm(forms.ModelForm):
                                                         'onkeyup': "showSuggestionsDisinfectants (this.value, 'disinfectant-type-label')",
                                                         'placeholder': 'Disinfectant Name'}),
             'notes': forms.Textarea(attrs={'class': '',
-                                           'id': 'notes-coop-cleaning',
-                                           'name': 'notes_coop_cleaning',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),

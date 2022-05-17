@@ -54,8 +54,8 @@ class SupplementsForm(forms.ModelForm):
                                                "VET Name",
                                                'value': ''}),
             'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
-                                           'id': 'notes-coop-cleaning',
-                                           'name': 'notes_coop_cleaning',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -140,8 +140,8 @@ class MedicinesForm(forms.ModelForm):
                                                "VET Name",
                                                'value': ''}),
             'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
-                                           'id': 'notes-coop-cleaning',
-                                           'name': 'notes_coop_cleaning',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -224,8 +224,8 @@ class VaccinesForm(forms.ModelForm):
                                                "VET Name",
                                                'value': ''}),
             'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
-                                           'id': 'notes-coop-cleaning',
-                                           'name': 'notes_coop_cleaning',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),

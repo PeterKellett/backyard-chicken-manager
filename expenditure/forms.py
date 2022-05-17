@@ -94,8 +94,8 @@ class PurchasesForm(forms.ModelForm):
                                                   'placeholder':
                                                   "Seller Name"}),
             'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
-                                           'id': 'notes-coop-cleaning',
-                                           'name': 'notes_coop_cleaning',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -137,8 +137,8 @@ class WithdrawalsForm(forms.ModelForm):
                                                   'placeholder':
                                                   "Method of Withdrawal"}),
             'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
-                                           'id': 'notes-coop-cleaning',
-                                           'name': 'notes_coop_cleaning',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
