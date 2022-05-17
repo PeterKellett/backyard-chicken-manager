@@ -143,12 +143,12 @@
                     <!-- Receipt Reference -->
                     <div class="bottom-margin label-float">
                         {{ form.receipt_reference }}
-                        <label class="hide-label" id="select-receipt-reference-label" for="receipt-reference">Receipt/Invoice Reference</label>
+                        <label for="receipt-reference">Receipt/Invoice Reference</label>
                     </div>
                     <!-- Seller -->
                     <div class="bottom-margin label-float">
                         {{ form.seller_name }}
-                        <label class="hide-label" id="select-seller-name-label" for="seller-name">Seller Name</label>
+                        <label for="seller-name">Seller Name</label>
                     </div>
                 </div>
             </section>
@@ -173,7 +173,7 @@
 
             <!-- Buttons Section -->
             <div class="button-container">
-                <input type="hidden" name="redirect_url" value="onboard_produce"/>
+                <input type="hidden" name="redirect_url" value="onboard_sales"/>
                 <button type='submit' id="save-button" class="btn button button-full-size save-button">Save</button> 
                 <button id="cancel-button" class="btn button button-full-size cancel-button">Cancel</button>
             </div>

@@ -103,7 +103,7 @@
 
 <!-- MAIN SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'coop_cleaning' %}" enctype="multipart/form-data" name="coop_cleaning">
+    <form method="POST" action="{% url 'coop_cleaning' %}" enctype="multipart/form-data" name="coop_cleaning" autocomplete="off">
         {% csrf_token %}
         <div class="form-data">
             <!-- Prevents Chrome and Forefox from offering autofill on fields. 

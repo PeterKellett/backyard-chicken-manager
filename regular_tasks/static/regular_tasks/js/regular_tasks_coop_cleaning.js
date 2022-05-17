@@ -14,11 +14,10 @@ function setInputTextDisinfectant(inputId, text) {
     document.getElementById('disinfectant-suggestions-list').style.display = "none";
 }
 
-function showSuggestionsDisinfectants(value, labelId) {
+function showSuggestionsDisinfectants(value) {
     console.log("showSuggestionsDisinfectants")
     console.log("value.length" + value.length)
     if (value.length) {
-        // displaySelectLabel(labelId)
         let suggestions = '';
         DISINFECTANTS.filter(item => item.disinfectant_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             console.log("disinfectant Type :", item.disinfectant_name);
@@ -31,7 +30,6 @@ function showSuggestionsDisinfectants(value, labelId) {
             document.getElementById('disinfectant-suggestions-list').style.display = "none";
         }
     } else {
-        // hideSelectLabel(labelId)
         document.getElementById('disinfectant-suggestions-list').style.display = "none";
     }
 }

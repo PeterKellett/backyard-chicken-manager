@@ -1,6 +1,7 @@
 $(document).ready(function () {
     console.log("Document ready!");
   
+    // Belongs only on pages with Passwords
     // Show Password. Taken from https://www.w3schools.com/howto/howto_js_toggle_password.asp
     function showPasswordFunction() {
         var x = document.getElementById("password");
@@ -31,12 +32,29 @@ $(document).ready(function () {
     }
     
 
-    // Call hccTotal function on page load
-    // hccTotal();
-    
-    
+    // Floating Labels: Selects the "select" input on a page before calling the function
+    // to float the label on a select input.
+    document.querySelectorAll('select').forEach(item => {
+        item.addEventListener('click', displaySelectLabel);
+    })
+
+
+    // Function to make textarea height to expand based on amopunt of text added by the user.
+    // Taken from https://www.techiedelight.com/automatically-resize-textarea-height-javascript/
+    $('textarea').on('keyup keypress', function() {
+        $(this).height(0);
+        $(this).height(this.scrollHeight);
+    });
+
 })
 
+// Needs tyo go wherever the Date function at the start of this page goes
+// Floating Labels: Display floating label on Select/Dropdown inputs when a selection is made
+function displaySelectLabel() {
+    $(this).next('label').css('display', 'block');
+}
+
+// Needs to go into each of the relevant pages js files.
 // Makes a modal display on a page when User lands on it. Used for when a User initially
 // lands on a page and we require some data. Once the data has been provided, it must
 // not display again. Function needs to be updated for the latter.
@@ -59,10 +77,9 @@ $(document).ready(function () {
             $('div.show-on-click').hide();
         }
     });
-});
-// Show Hide 2: This fn allows an existing div to be hidden and replaced by whatever div
-// is displayed Show Hide 1 above. First used on Tray Qty checkbox in onboarding_produce.
-$(document).ready(function () {
+
+    // Show Hide 2: This fn allows an existing div to be hidden and replaced by whatever div
+    // is displayed Show Hide 1 above. First used on Tray Qty checkbox in onboarding_produce.
     $('input[class="click-to-show"]').on('click', function () {
         if ($(this).prop('checked')) {
             $('div.hide-on-click').hide();;
@@ -73,9 +90,10 @@ $(document).ready(function () {
 });
 
 
-
+// Needs to be tidied up and made smaller using a for loop and renamed.
+// Needs to be moved to an onboarding.js file
 // Sales Methods & Units Function to ensure at least one checkbox
-// is checked in each section before next page can be loaded
+// is checked in each section before next page can be loaded during onboarding
 // Taken from (kind of): https://www.javascripttutorial.net/javascript-dom/javascript-form/
 function injectHref() {
     var salesMethods = null;
@@ -104,48 +122,10 @@ function injectHref() {
         document.getElementById('warning-section-text').textContent =
             "Please select at least one option each from Sales Methods and Sales Units";
             document.getElementById("submit-form").addEventListener('submit', (event) => {
+
                 // stop form submission
                 event.preventDefault();
             });
         }
     }
-
-
-// Function to make textarea height to expand based on amopunt of text added by the user.
-// Taken from https://www.techiedelight.com/automatically-resize-textarea-height-javascript/
-$(document).ready(function() {
-    $('textarea').on('keyup keypress', function() {
-        $(this).height(0);
-        $(this).height(this.scrollHeight);
-    });
-});
-
-
-// Floating Input Labels using ID: Display floating label on Select inputs when a selection is made
-function displaySelectLabel(id) {
-    console.log("Float Label fn fires");
-    document.getElementById(id).style.display = "block";
-    // PK commented out the following
-    // if (id==='select-recipient-label') {
-    //     checkAndToggleHCCDivVisibility();
-    // }
-}
-
-// function hideSelectLabel(id) {
-//     document.getElementById(id).style.display = "none";
-// }
-
-// PK commented out the following
-// function checkAndToggleHCCDivVisibility() {
-//     const dropdown = document.getElementById('recipients')
-//     if (dropdown.options[dropdown.selectedIndex].id === "individual-birds") {
-//         document.getElementById('hcc-container-div').style.display = "block";
-//     } else {
-//         document.getElementById('hcc-container-div').style.display = "none";
-//     }
-// }
-
-
-
-
 
