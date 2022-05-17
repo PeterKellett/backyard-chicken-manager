@@ -8,7 +8,7 @@ class SupplementsForm(forms.ModelForm):
     """ Create an Supplement Administration form """
 
     # def __init__(self, *args, **kwargs):
-    #     super(MedicinesForm, self).__init__(*args, **kwargs)
+    #     super(SupplementsForm, self).__init__(*args, **kwargs)
     #     self.fields['administration_method'].empty_label = 'Select Administration Method'
     #     self.fields['administration_method'].initial = "Select Administration Method"
     #     self.fields['administration_method'].show_hidden_initial = True
@@ -30,7 +30,6 @@ class SupplementsForm(forms.ModelForm):
 
         widgets = {
             'date': forms.DateTimeInput,
-            'flock': forms.CheckboxInput,
             'supplement_name': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                       'id': 'supplement-name',
                                                       'name': 'supplement_name',
@@ -38,11 +37,48 @@ class SupplementsForm(forms.ModelForm):
                                                       'onkeyup': "showSuggestionsSupplements(this.value, 'supplement-type-label')",
                                                       'placeholder':
                                                       "Supplement Name"}),
+            'qty_hens': forms.TextInput(attrs={'class':
+                                               'hide-placeholder',
+                                               'id':
+                                               'qty-hens',
+                                               'name':
+                                               'qty_hens',
+                                               'placeholder':
+                                               'Qty',
+                                               'oninput': "doCalculations()",
+                                               'value': '',
+                                               'step': '1',
+                                               'min': '0'}),
+            'qty_chicks': forms.TextInput(attrs={'class':
+                                                 'hide-placeholder',
+                                                 'id':
+                                                 'qty-chicks',
+                                                 'name':
+                                                 'qty_chicks',
+                                                 'placeholder':
+                                                 'Qty',
+                                                 'oninput': "doCalculations()",
+                                                 'value': '',
+                                                 'step': '1',
+                                                 'min': '0'}),
+            'qty_cocks': forms.TextInput(attrs={'class':
+                                                'hide-placeholder',
+                                                'id':
+                                                'qty-cocks',
+                                                'name':
+                                                'qty_cocks',
+                                                'placeholder':
+                                                'Qty',
+                                                'oninput': "doCalculations()",
+                                                'value': '',
+                                                'step': '1',
+                                                'min': '0'}),
             'dosage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                     'id': 'dosage-amount',
                                                     'name': 'dosage_amount',
                                                     'placeholder':
-                                                    "TOTAL Amount Administered"}),
+                                                    "TOTAL Amount Administered",
+                                                    'oninput': "doCalculations()",}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                            'id': 'vet-administered',
                                                            'name': 'vet_administered'}),
@@ -79,9 +115,6 @@ class MedicinesForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(MedicinesForm, self).__init__(*args, **kwargs)
-        # self.fields['disease_protected_against'].empty_label = 'Select Disease Protected Against'
-        # self.fields['disease_protected_against'].initial = "Select Disease Protected Against"
-        # self.fields['disease_protected_against'].show_hidden_initial = True
         self.fields['administration_method'].empty_label = 'Select Administration Method'
         self.fields['administration_method'].initial = "Select Administration Method"
         # self.fields['administration_method'].show_hidden_initial = False
@@ -89,18 +122,22 @@ class MedicinesForm(forms.ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = Medicines
-        fields = ('date', 'flock',
+        fields = ('date',
+                  'flock',
                   'medicine_name',
                   'disease_protected_against',
-                  'qty_hens', 'qty_chicks',
-                  'qty_cocks', 'doseage_amount',
+                  'qty_hens',
+                  'qty_chicks',
+                  'qty_cocks',
+                  'dosage_amount',
                   'administration_method',
-                  'vet_administered', 'vet_name',
-                  'notes', 'images')
+                  'vet_administered',
+                  'vet_name',
+                  'notes',
+                  'images')
 
         widgets = {
             'date': forms.DateTimeInput,
-            'flock': forms.CheckboxInput,
             'medicine_name': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                     'id': 'medicine-name',
                                                     'name': 'medicine_name',
@@ -115,10 +152,47 @@ class MedicinesForm(forms.ModelForm):
                                                                 'onkeyup': "showSuggestionsDiseases(this.value, 'select-dpa-label')",
                                                                 'placeholder':
                                                                 "Disease Protected Against"}),
-            'doseage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'qty_hens': forms.TextInput(attrs={'class':
+                                               'hide-placeholder',
+                                               'id':
+                                               'qty-hens',
+                                               'name':
+                                               'qty_hens',
+                                               'placeholder':
+                                               'Qty',
+                                               'oninput': "doCalculations()",
+                                               'value': '',
+                                               'step': '1',
+                                               'min': '0'}),
+            'qty_chicks': forms.TextInput(attrs={'class':
+                                                 'hide-placeholder',
+                                                 'id':
+                                                 'qty-chicks',
+                                                 'name':
+                                                 'qty_chicks',
+                                                 'placeholder':
+                                                 'Qty',
+                                                 'oninput': "doCalculations()",
+                                                 'value': '',
+                                                 'step': '1',
+                                                 'min': '0'}),
+            'qty_cocks': forms.TextInput(attrs={'class':
+                                                'hide-placeholder',
+                                                'id':
+                                                'qty-cocks',
+                                                'name':
+                                                'qty_cocks',
+                                                'placeholder':
+                                                'Qty',
+                                                'oninput': "doCalculations()",
+                                                'value': '',
+                                                'step': '1',
+                                                'min': '0'}),
+            'dosage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                      'id': 'doseage-amount',
                                                      'name': 'doseage_amount',
                                                      'type': 'number',
+                                                     'oninput': "doCalculations()",
                                                      'placeholder':
                                                      "TOTAL Amount Administered"}),
             'administration_method': forms.Select(attrs={'class': '',
@@ -170,14 +244,19 @@ class VaccinesForm(forms.ModelForm):
     class Meta:
         """ Meta Class Docstring here as required """
         model = Vaccines
-        fields = ('date', 'flock',
+        fields = ('date',
+                  'flock',
                   'vaccine_name',
                   'virus_protected_against',
-                  'qty_hens', 'qty_chicks',
-                  'qty_cocks', 'doseage_amount',
+                  'qty_hens',
+                  'qty_chicks',
+                  'qty_cocks',
+                  'dosage_amount',
                   'administration_method',
-                  'vet_administered', 'vet_name',
-                  'notes', 'images')
+                  'vet_administered',
+                  'vet_name',
+                  'notes',
+                  'images')
 
         widgets = {
             'date': forms.DateTimeInput,
@@ -196,10 +275,47 @@ class VaccinesForm(forms.ModelForm):
                                                               'onkeyup': "showSuggestionsViruses(this.value, 'select-vpa-label')",
                                                               'placeholder':
                                                               "Virus Protected Against"}),
-            'doseage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'qty_hens': forms.TextInput(attrs={'class':
+                                               'hide-placeholder',
+                                               'id':
+                                               'qty-hens',
+                                               'name':
+                                               'qty_hens',
+                                               'placeholder':
+                                               'Qty',
+                                               'oninput': "doCalculations()",
+                                               'value': '',
+                                               'step': '1',
+                                               'min': '0'}),
+            'qty_chicks': forms.TextInput(attrs={'class':
+                                                 'hide-placeholder',
+                                                 'id':
+                                                 'qty-chicks',
+                                                 'name':
+                                                 'qty_chicks',
+                                                 'placeholder':
+                                                 'Qty',
+                                                 'oninput': "doCalculations()",
+                                                 'value': '',
+                                                 'step': '1',
+                                                 'min': '0'}),
+            'qty_cocks': forms.TextInput(attrs={'class':
+                                                'hide-placeholder',
+                                                'id':
+                                                'qty-cocks',
+                                                'name':
+                                                'qty_cocks',
+                                                'placeholder':
+                                                'Qty',
+                                                'oninput': "doCalculations()",
+                                                'value': '',
+                                                'step': '1',
+                                                'min': '0'}),
+            'dosage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
                                                      'id': 'doseage-amount',
                                                      'name': 'doseage_amount',
                                                      'type': 'number',
+                                                     'oninput': "doCalculations()",
                                                      'placeholder':
                                                      "TOTAL Amount Administered"}),
             'administration_method': forms.Select(attrs={'class': '',

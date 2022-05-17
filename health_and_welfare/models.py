@@ -47,35 +47,29 @@ class Supplements(models.Model):
                                      null=False,
                                      blank=False,
                                      on_delete=models.CASCADE)
-    date = models.DateTimeField(null=True,
-                                blank=True)
+    date = models.DateTimeField(null=False,
+                                blank=False)
     flock = models.ForeignKey(Flocks,
-                              null=True,
-                              blank=True,
+                              null=False,
+                              blank=False,
                               on_delete=models.CASCADE)
     supplement_name = models.CharField(max_length=50,
-                                       null=True,
-                                       blank=True)
-    # qty_supplements = models.DecimalField(max_digits=6,
-    #                                       decimal_places=2,
-    #                                       null=True,
-    #                                       blank=True)
+                                       null=False,
+                                       blank=False)
     qty_hens = models.IntegerField(null=True,
                                    blank=True)
     qty_chicks = models.IntegerField(null=True,
                                      blank=True)
     qty_cocks = models.IntegerField(null=True,
                                     blank=True)
-    # qty_total = models.IntegerField(null=True,
-    #                                 blank=True)
-    dosage_amount = models.DecimalField(max_digits=6,
+    dosage_amount = models.DecimalField(max_digits=5,
                                         decimal_places=2,
-                                        null=True,
-                                        blank=True)
-    # administration_method = models.ForeignKey(AdministrationMethod,
-    #                                           null=True,
-    #                                           blank=True,
-    #                                           on_delete=models.CASCADE)
+                                        null=False,
+                                        blank=False)
+    dose_per_bird = models.DecimalField(max_digits=5,
+                                        decimal_places=2,
+                                        null=False,
+                                        blank=False)
     vet_administered = models.BooleanField(default=False)
     vet_name = models.CharField(max_length=50,
                                 null=True,
@@ -106,6 +100,10 @@ class MedicinesName(models.Model):
     class Meta:
         """Overwrite the default Django pluralisation"""
         verbose_name_plural = 'Medicine Names'
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=True,
+                                     blank=True,
+                                     on_delete=models.CASCADE)
     medicine_name = models.CharField(max_length=50,
                                      null=True,
                                      blank=True)
@@ -123,18 +121,19 @@ class Medicines(models.Model):
                                      null=False,
                                      blank=False,
                                      on_delete=models.CASCADE)
-    date = models.DateTimeField(null=False,
+    date = models.DateTimeField(default=timezone.now,
+                                null=False,
                                 blank=False)
     flock = models.ForeignKey(Flocks,
-                              null=True,
-                              blank=True,
-                              on_delete=models.SET_NULL)
+                              null=False,
+                              blank=False,
+                              on_delete=models.CASCADE)
     medicine_name = models.CharField(max_length=50,
-                                     null=True,
-                                     blank=True)
+                                     null=False,
+                                     blank=False)
     disease_protected_against = models.CharField(max_length=50,
-                                                 null=True,
-                                                 blank=True)
+                                                 null=False,
+                                                 blank=False)
     qty_hens = models.IntegerField(null=True,
                                    blank=True)
     qty_chicks = models.IntegerField(null=True,
@@ -143,14 +142,18 @@ class Medicines(models.Model):
                                     blank=True)
     qty_total = models.IntegerField(null=True,
                                     blank=True)
-    doseage_amount = models.DecimalField(max_digits=6,
-                                         decimal_places=2,
-                                         null=True,
-                                         blank=True)
+    dosage_amount = models.DecimalField(max_digits=6,
+                                        decimal_places=2,
+                                        null=False,
+                                        blank=False)
+    dose_per_bird = models.DecimalField(max_digits=5,
+                                        decimal_places=2,
+                                        null=False,
+                                        blank=False)
     administration_method = models.ForeignKey(AdministrationMethod,
                                               null=True,
                                               blank=True,
-                                              on_delete=models.CASCADE)
+                                              on_delete=models.SET_NULL)
     vet_administered = models.BooleanField(default=False)
     vet_name = models.CharField(max_length=50,
                                 null=True,
@@ -191,20 +194,23 @@ class VaccinesName(models.Model):
 
 class Vaccines(models.Model):
     """Model used for storing Vaccines data"""
+    class Meta:
+        """Overwrite the default Django pluralisation"""
+        verbose_name_plural = 'Vaccines'
     farm_profile = models.ForeignKey(FarmProfile,
                                      null=False,
                                      blank=False,
                                      on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now,
-                                null=True,
-                                blank=True)
+                                null=False,
+                                blank=False)
     flock = models.ForeignKey(Flocks,
                               null=False,
                               blank=False,
                               on_delete=models.CASCADE)
     vaccine_name = models.CharField(max_length=50,
-                                    null=True,
-                                    blank=True)
+                                    null=False,
+                                    blank=False)
     virus_protected_against = models.CharField(max_length=50,
                                                null=True,
                                                blank=True)
@@ -216,10 +222,14 @@ class Vaccines(models.Model):
                                     blank=True)
     qty_total = models.IntegerField(null=True,
                                     blank=True)
-    doseage_amount = models.DecimalField(max_digits=6,
-                                         decimal_places=2,
-                                         null=True,
-                                         blank=True)
+    dosage_amount = models.DecimalField(max_digits=6,
+                                        decimal_places=2,
+                                        null=True,
+                                        blank=True)
+    dose_per_bird = models.DecimalField(max_digits=5,
+                                        decimal_places=2,
+                                        null=False,
+                                        blank=False)
     administration_method = models.ForeignKey(AdministrationMethod,
                                               null=True,
                                               blank=True,

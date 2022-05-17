@@ -2,7 +2,7 @@
     <select name="flock" id="flock-name" required>
         <option value="" disabled selected>Select Flock</option>
         {% for flock in flocks %}
-            <option type="text" name="flock_name" value="{{ flock.id }}" placeholder="flock.flock_name" id="flock-name">{{ flock.flock_name.capitalize }}</option>
+            <option type="text" name="flock_name" value="{{ flock.id }}" placeholder="flock.flock_name" id="flock-name" class="flock">{{ flock.flock_name.capitalize }}</option>
         {% endfor %}
     </select>
     <label class="hide-label" id="select-flock-label" for="flock-name">Flock Name</label>
