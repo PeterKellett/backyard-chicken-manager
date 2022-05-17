@@ -1,11 +1,16 @@
-console.log("Regular tasks egg collection start")
-// Extracts the Tray Quantity from Farm Profile in the db
+$(document).ready(function(){
+    
+    avgUnitOfMeasurement()
+    
+});
+
 
 form_data = {};
 var traysQuantity;
 var total_eggs_laid;
 var average_egg_weight;
 var saleable_eggs;
+var qtys_single_eggs;
 fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
@@ -14,7 +19,7 @@ fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regula
     doCalculations();
 });
 
-var qtys_single_eggs;
+
 function doCalculations() {
     console.log("traysQuantity again = " + traysQuantity)
     // I don't think this is required any longer
@@ -31,52 +36,55 @@ function doCalculations() {
     console.log("total_eggs_laid = " + total_eggs_laid)
     average_egg_weight = (form_data['weight_total_eggs_laid'] / (total_eggs_laid - form_data['qty_eggs_broken']))
     measurementUnit = document.getElementById("weights-and-measures-units").value;
-    // If there is no value, --- is displayed as the average egg weight
+    // If there is no value, "--" is displayed as the average egg weight
     if (isNaN(average_egg_weight) || (form_data['weight_total_eggs_laid'] == '')) {
-        document.getElementById("avg-egg-weight").innerHTML = "--- ";
+        document.getElementById("avg-egg-weight").innerHTML = "--";
     }
     // If the User selects kg, the avg egg weight is displayed in grammes
     else if (measurementUnit === "kg"){
-        document.getElementById("avg-egg-weight").innerHTML = (average_egg_weight*1000);
+        document.getElementById("avg-egg-weight").innerHTML = (average_egg_weight*1000).toFixed(0);
     }
     // If the User selects lb, the avg egg weight is displayed in ounces
     else if (measurementUnit === "lb"){
-        document.getElementById("avg-egg-weight").innerHTML = (average_egg_weight*16);
+        document.getElementById("avg-egg-weight").innerHTML = (average_egg_weight*16).toFixed(2);
     }
-    // If the User selects g or oz, the avg egg weight is displayed in g or oz
+    // If the User selects oz, the avg egg weight is displayed in ounces to 2 decimal places
+    else if (measurementUnit === "oz"){
+        document.getElementById("avg-egg-weight").innerHTML = (average_egg_weight).toFixed(2);
+    }
+    // If the User selects g, the avg egg weight is displayed in g to 0 decimal places
     else {
-        document.getElementById("avg-egg-weight").innerHTML = average_egg_weight.toFixed(2);
+        document.getElementById("avg-egg-weight").innerHTML = average_egg_weight.toFixed(0);
     }
     saleable_eggs = (total_eggs_laid - (form_data['qty_eggs_damaged'] + form_data['qty_eggs_broken'] + form_data['qty_eggs_personal_use'] + form_data['qty_eggs_given_free']))  
     console.log("saleable_eggs = " + saleable_eggs);
     document.getElementById("qty-saleable-eggs").innerHTML = saleable_eggs;
-}
+};
 
 
 // EGG WEIGHT UNIT OF MEASUREMENT: Fn to automatically display unit of measurement as per User's default
 // or based on their selection from a dropdown, converting it to either g or oz (because eggs are light)
 var measurementUnit;
-$(document).ready(function(){
-    // Displays the initial or User's default unit of measurement (maybe get rid off?)
+function avgUnitOfMeasurement() {
+    doCalculations();
     measurementUnit = document.getElementById("weights-and-measures-units").value;
-    $("#unit-of-measurement").html(measurementUnit);
-
-    // Fn to change the unit displayed if the User selects a different unit to the default from the dropdown
-    // and convert it to the lowest unit of either imperial or metric, i.e. display in g or oz.
-    $("#weights-and-measures-units").on('change', function(){
-        doCalculations();
-        measurementUnit = document.getElementById("weights-and-measures-units").value;
-        if (measurementUnit === "kg"){
-            $("#unit-of-measurement").html("g");
-        }
-        else if (measurementUnit === "lb"){
-            $("#unit-of-measurement").html("oz");
-        }
-        else {
-            $("#unit-of-measurement").html(measurementUnit);
-        }
-    });
-  });
+    if (measurementUnit === "kg"){
+        console.log("Unit Measure KGS");
+        $("#unit-of-measurement").html("g");
+    }
+    else if (measurementUnit === "lb"){
+        console.log("Unit Measure LBS");
+        $("#unit-of-measurement").html("oz");
+    }
+    else {
+        console.log("Unit Measure G or Oz");
+        $("#unit-of-measurement").html(measurementUnit);
+    }
+}
+// Allows the Unit of Measurement dropdown to call the above function
+$("#weights-and-measures-units").on('change', function(){
+    avgUnitOfMeasurement();
+});
 
 
 function validate(event) {
@@ -104,11 +112,10 @@ function validate(event) {
 }
 
 
-// Egg Collection - Variables
-let hensQuantity;
-let trays_input_div = document.getElementById('trays_input_div');
 // Extracts the Qty of laying hens in a flock from Farm Profile in the db. This allows us to decide 
 // whether to display trays and singles inputs, or just singles. The latter is set at less than 12 hens.
+let hensQuantity;
+let trays_input_div = document.getElementById('trays_input_div');
 fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/flock_management/hens_quantity')
 .then(response => response.json())
 .then(data => {
@@ -119,7 +126,6 @@ fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/flock_
         console.log("trays_input_div none")
     }
 });
-
 
 
 // Show Hide 3: This fn displays a div when an input is changed and the value is greater than 1
