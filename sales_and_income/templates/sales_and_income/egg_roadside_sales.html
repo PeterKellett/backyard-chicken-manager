@@ -31,26 +31,17 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> The first time you record a feed,
-                                                                       it is vital that you state the total amount of food and water
-                                                                       in the feeders. For subsequent feeds, please indicate
-                                                                       the amount of food and water remaining in the feeders after the last
-                                                                       feed and the amount added. This allows us to calculate the
-                                                                       average amount of food and water consumed by each bird which can be
-                                                                       viewed in the "Reports" section.</p>
-                <input type="text" placeholder="test" id="test">
-                <label for="test">Test Label</label>
-                <ul class="text-start">
-                    <li><span class="fw-bold">Date:</span> Add the date.</li>
-                    <li><span class="fw-bold">Save Button:</span> Click this button when finished.</li>
-                    <li><span class="fw-bold">Cancel Button:</span> Click this button to clear all data entered.</li>
-                </ul>
+                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> Before you can begin to record sales, you must indicate
+                                                                                         the quantities in which you sell your eggs by the roadside_sales
+                                                                                         and how much you charge. Do this in the "Pricing" section.</p>
+                <p class="text-start modal-body">Once that's completed, indicate the initial amount of each quantity you will be making available for sale.
+                                                 For example, if you sell eggs by the half dozen and are making three half dozens available in your
+                                                 stall, enter then number 3.</p>
             </div>
 
             <!-- Modal footer -->
             <div class="modal-footer">
-            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Save</button>
-            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn button button-small-size" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -121,15 +112,14 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <p class="text-start modal-body">Each time you add eggs to your collection point complete this page.</p>
-                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> The first time you record a feed,
-                                                                       it is vital that you state the total amount of food and water
-                                                                       in the feeders. For subsequent feeds, please indicate
-                                                                       the amount of food and water remaining in the feeders after the last
-                                                                       feed and the amount added. This allows us to calculate the
-                                                                       average amount of food and water consumed by each bird which can be
-                                                                       viewed in the "Reports" section.</p>
-                <input type="text" placeholder="test" id="test">
-                <label for="test">Test Label</label>
+                <p class="text-start modal-body">Before you can begin to record sales, you must indicate
+                                                 the quantities in which you sell your eggs by the roadside_sales
+                                                 and how much you charge. Do this in the "Pricing" section.</p>
+                <p class="text-start modal-body">Once that's completed, indicate the initial amount of each quantity you will be making available for sale.
+                                                 For example, if you sell eggs by the half dozen and are making three half dozens available in your
+                                                 stall, enter then number 3.</p>
+                <p class="text-start modal-body">To remove a sales quantity, simply delete the price. To add a different sales quantity,
+                                                 add a price and follow the instructions above.</p>
                 <ul class="text-start">
                     <li><span class="fw-bold">Date:</span> Add the date.</li>
                     <li><span class="fw-bold">Pricing:</span> Click on the arrow to display the pricing fields.
@@ -227,53 +217,60 @@
                         {{ sales_form.qty_single_eggs_in_stock }}
                         <label for="qty-single-eggs-in-stock">Qty of Single Eggs In Stock</label>
                     </div>
+                    <hr class="hr-small">
                 </div>
                 
                 <!-- Half dozen -->
                 <div class="half_dozen_eggs_price">
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_half_dozen_egg_boxes_remaining }}
-                            <label for="qty-half-dozen-egg-boxes-remaining">Qty of Half Dozens Remaining</label>
-                        </div>
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_half_dozen_egg_boxes_added }}
-                            <label for="qty-half-dozen-egg-boxes-added">Qty of Half Dozens Added</label>
-                        </div>
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_half_dozen_egg_boxes_in_stock }}
-                            <label for="qty-half-dozen-egg-boxes-in-stock">Qty of Half Dozens In Stock</label>
-                        </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_half_dozen_egg_boxes_remaining }}
+                        <label for="qty-half-dozen-egg-boxes-remaining">Qty of Half Dozens Remaining</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_half_dozen_egg_boxes_added }}
+                        <label for="qty-half-dozen-egg-boxes-added">Qty of Half Dozens Added</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_half_dozen_egg_boxes_in_stock }}
+                        <label for="qty-half-dozen-egg-boxes-in-stock">Qty of Half Dozens In Stock</label>
+                    </div>
+                    <hr class="hr-small">
                 </div>
+
                 <!-- Tens -->
                 <div class="ten_eggs_price">
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_ten_egg_boxes_remaining }}
-                            <label for="qty-ten-egg-boxes-remaining">Qty of 10's Remaining</label>
-                        </div>
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_ten_egg_boxes_added}}
-                            <label for="qty-ten-egg-boxes-added">Qty of 10's Added</label>
-                        </div>
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_ten_egg_boxes_in_stock }}
-                            <label for="qty-ten-egg-boxes-in-stock">Qty of 10's In Stock</label>
-                        </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_ten_egg_boxes_remaining }}
+                        <label for="qty-ten-egg-boxes-remaining">Qty of 10's Remaining</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_ten_egg_boxes_added}}
+                        <label for="qty-ten-egg-boxes-added">Qty of 10's Added</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_ten_egg_boxes_in_stock }}
+                        <label for="qty-ten-egg-boxes-in-stock">Qty of 10's In Stock</label>
+                    </div>
+                    <hr class="hr-small">
                 </div>
+
                 <!-- Dozen -->
                 <div class="dozen_eggs_price">
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_dozen_egg_boxes_remaining }}
-                            <label for="qty-dozen-egg-boxes-remaining">Qty of Dozens Remaining</label>
-                        </div>
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_dozen_egg_boxes_added }}
-                            <label for="qty-dozen-egg-boxes-added">Qty of Dozens Added</label>
-                        </div>
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_dozen_egg_boxes_in_stock }}
-                            <label for="qty-dozen-egg-boxes-in-stock">Qty of Dozens In Stock</label>
-                        </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_dozen_egg_boxes_remaining }}
+                        <label for="qty-dozen-egg-boxes-remaining">Qty of Dozens Remaining</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_dozen_egg_boxes_added }}
+                        <label for="qty-dozen-egg-boxes-added">Qty of Dozens Added</label>
+                    </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_dozen_egg_boxes_in_stock }}
+                        <label for="qty-dozen-egg-boxes-in-stock">Qty of Dozens In Stock</label>
+                    </div>
+                    <hr class="hr-small">
                 </div>
+
                 <!-- Trays -->
                 <div class="trays_of_eggs_price">
                     <div class="bottom-margin label-float">
@@ -284,10 +281,11 @@
                         {{ sales_form.qty_trays_eggs_added }}
                         <label for="qty-trays-of-eggs-added">Qty of Trays Added</label>
                     </div>
-                        <div class="bottom-margin label-float">
-                            {{ sales_form.qty_trays_eggs_in_stock }}
-                            <label for="qty-trays-of-eggs-in-stock">Qty of Trays In Stock</label>
-                        </div>
+                    <div class="bottom-margin label-float">
+                        {{ sales_form.qty_trays_eggs_in_stock }}
+                        <label for="qty-trays-of-eggs-in-stock">Qty of Trays In Stock</label>
+                    </div>
+                    <hr class="hr-small">
                 </div>
                 <!-- Amount Paid -->
                 <div class="bottom-margin label-float">
@@ -297,7 +295,16 @@
                 <!-- Total Selling Value of Eggs Sold -->
                 <div class="row bottom-margin">
                     <div class="col-10 col-css">
-                        <h6 class="row-name">Value of Eggs Sold: €<span id="eggs-sold-value">0</span></h6>
+                        <h6 class="row-name">Value of Eggs Sold:<span id="eggs-sold-value">0</span></h6>
+                    </div>
+                </div>
+                <div class="row bottom-margin">
+                    <div class="col-10 col-css">
+                        <h5 class="row-name">Value of Eggs Sold:</h5>
+                    </div>
+                    <div class="col-2 col-css col-css-right label-float">
+                        <h5 class="changeFn" id="eggs-sold-value"></h5>
+
                     </div>
                 </div>
                 <!-- Difference Between Value of Eggs Sold and Money Received -->

@@ -21,8 +21,9 @@ let egg_qty_2col_div = document.getElementById('egg-qty-2col-div');
 let egg_qty_1col_div = document.getElementById('egg-qty-1col-div');
 
 
-// Extracts the Qty of laying hens in a flock from Farm Profile in the db
-fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu44.gitpod.io/flock_management/hens_quantity')
+// Extracts the Qty of laying hens in a flock from Farm Profile in the db. This allows us to decide 
+// whether to display trays and singles, or just singles. The latter is set at less than 12 hens.
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/flock_management/hens_quantity')
 .then(response => response.json())
 .then(data => {
     hensQuantity = data.hens_quantity;
@@ -140,7 +141,7 @@ function showSuggestionsFeeds(value, labelId) {
         document.getElementById('feed-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu43.gitpod.io/regular_tasks/get_feeds')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regular_tasks/get_feeds')
 .then(response => response.json())
 .then(data => {
     console.log("Fetch feed type fn fires");

@@ -134,11 +134,11 @@ $(document).ready(function() {
 });
 
 
-// Floating Input Labels using ID: Display floating label on Select inputs when a selection is made
+// Floating Input Labels using ID: Display floating label on Select/Dropdown inputs when a selection is made
 function displaySelectLabel(id) {
     console.log("Float Label fn fires");
     document.getElementById(id).style.display = "block";
-    if (id==='select-recipient-label') {
+    if (id === 'select-recipient-label') {
         checkAndToggleHCCDivVisibility();
     }
 }

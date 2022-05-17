@@ -223,7 +223,7 @@ class CoopCleaningForm(forms.ModelForm):
                                                         'id': 'disinfectant-name',
                                                         'name': 'disinfectant_name',
                                                         'value': '',
-                                                        'onkeyup': "showSuggestionsDisinfectants    (this.value, 'disinfectant-type-label')    ",
+                                                        'onkeyup': "showSuggestionsDisinfectants (this.value, 'disinfectant-type-label')",
                                                         'placeholder': 'Disinfectant Name'}),
             'notes': forms.Textarea(attrs={'class': '',
                                            'id': 'notes-coop-cleaning',

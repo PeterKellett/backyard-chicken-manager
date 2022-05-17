@@ -127,7 +127,7 @@ class MedicinesForm(forms.ModelForm):
             'administration_method': forms.Select(attrs={'class': '',
                                                          'id': 'administration-method',
                                                          'name': 'administration_method',
-                                                         'onchange': "displaySelectLabel('select-administration-label')",
+                                                         'onclick': "displaySelectLabel('select-administration-label')",
                                                          'placeholder':
                                                          "Administration Method PH"}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
@@ -211,7 +211,7 @@ class VaccinesForm(forms.ModelForm):
             'administration_method': forms.Select(attrs={'class': '',
                                                          'id': 'administration-method',
                                                          'name': 'administration_method',
-                                                         'onchange': "displaySelectLabel('select-administration-label')",
+                                                         'onclick': "displaySelectLabel('select-administration-label')",
                                                          'placeholder':
                                                          "Administration Method PH"}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
