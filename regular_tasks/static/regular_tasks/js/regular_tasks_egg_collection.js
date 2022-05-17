@@ -6,13 +6,14 @@ var traysQuantity;
 var total_eggs_laid;
 var average_egg_weight;
 var saleable_eggs;
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu43.gitpod.io/regular_tasks/trays_quantity')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
     traysQuantity = data.trays_quantity;
     console.log("traysQuantity = " + traysQuantity);
     doCalculations();
 });
+
 
 function doCalculations() {
     console.log("traysQuantity again = " + traysQuantity)
@@ -28,9 +29,22 @@ function doCalculations() {
     document.getElementById("qty-total-eggs-laid").innerHTML = total_eggs_laid;
     console.log("total_eggs_laid = " + typeof(total_eggs_laid))
     average_egg_weight = (form_data['weight_total_eggs_laid'] / (total_eggs_laid - form_data['qty_eggs_broken']))
+    measurementUnit = document.getElementById("weights-and-measures-units").value;
+    // If there is no value, --- is displayed as the average egg weight
     if (isNaN(average_egg_weight) || (form_data['weight_total_eggs_laid'] == '')) {
         document.getElementById("avg-egg-weight").innerHTML = "--- ";
     }
+    // If the User selects kg, the avg egg weight is displayed in grammes
+    else if (measurementUnit === "kg"){
+        console.log("KGS")
+        document.getElementById("avg-egg-weight").innerHTML = (average_egg_weight*1000);
+    }
+    // If the User selects lb, the avg egg weight is displayed in ounces
+    else if (measurementUnit === "lb"){
+        console.log("LBS")
+        document.getElementById("avg-egg-weight").innerHTML = (average_egg_weight*16);
+    }
+    // If the User selects g or oz, the avg egg weight is displayed in g or oz
     else {
         document.getElementById("avg-egg-weight").innerHTML = average_egg_weight.toFixed(2);
     }
@@ -38,6 +52,33 @@ function doCalculations() {
     console.log("saleable_eggs = " + saleable_eggs);
     document.getElementById("qty-saleable-eggs").innerHTML = saleable_eggs;
 }
+
+
+// EGG WEIGHT UNIT OF MEASUREMENT: Fn to automatically display unit of measurement as per User's default
+// or based on their selection from a dropdown, converting it to either g or oz (because eggs are light)
+var measurementUnit;
+$(document).ready(function(){
+    // Displays the initial or User's default unit of measurement (maybe get rid off?)
+    measurementUnit = document.getElementById("weights-and-measures-units").value;
+    $("#unit-of-measurement").html(measurementUnit);
+
+    // Fn to change the unit displayed if the User selects a different unit to the default from the dropdown
+    // and convert it to the lowest unit of either imperial or metric, i.e. display in g or oz.
+    $("#weights-and-measures-units").on('change', function(){
+        doCalculations();
+        measurementUnit = document.getElementById("weights-and-measures-units").value;
+        if (measurementUnit === "kg"){
+            $("#unit-of-measurement").html("g");
+        }
+        else if (measurementUnit === "lb"){
+            $("#unit-of-measurement").html("oz");
+        }
+        else {
+            $("#unit-of-measurement").html(measurementUnit);
+        }
+    });
+  });
+
 
 function validate(event) {
     console.log("Validate function");
@@ -61,4 +102,47 @@ function validate(event) {
     else {
         document.getElementById("warning-section-text").textContent = "";
     }
-}  
+}
+
+
+// Egg Collection - Variables
+let hensQuantity;
+let egg_qty_2col_div = document.getElementById('egg-qty-2col-div');
+let egg_qty_1col_div = document.getElementById('egg-qty-1col-div');
+// Extracts the Qty of laying hens in a flock from Farm Profile in the db. This allows us to decide 
+// whether to display trays and singles, or just singles. The latter is set at less than 12 hens.
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/flock_management/hens_quantity')
+.then(response => response.json())
+.then(data => {
+    hensQuantity = data.hens_quantity;
+    console.log("Hens Quantity = " + hensQuantity)
+
+    if (hensQuantity < 12) {
+        egg_qty_2col_div.style.display = 'none';
+        egg_qty_1col_div.style.display = 'block';
+        console.log("Less than 12 " + hensQuantity);
+    }
+    else {
+        egg_qty_2col_div.style.display = 'block';
+        egg_qty_1col_div.style.display = 'none';
+        console.log("more than 12 " + hensQuantity);
+    }
+
+});
+
+
+
+// Show Hide 3: This fn displays a div when an input is changed and the value is greater than 1
+// First used in Egg Collection so that Advanced Section only displays if the user inputs a collected quantity
+// $(document).ready(function () {
+//     $('div.show-on-change').hide();
+
+//     //show it when the input changes
+//     $('input[class="change-to-show"]').on('change', function () {
+//         if ($(this).value > 1) {
+//             $('div.show-on-change').fadeIn();
+//         } else {
+//             $('div.show-on-change').hide();
+//         }
+//     });
+// });

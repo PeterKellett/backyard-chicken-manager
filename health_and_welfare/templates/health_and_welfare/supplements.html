@@ -69,9 +69,9 @@
         {% csrf_token %}
         
         <div class="form-data">
-            <!-- Prevents Chrome and Forefox from offering autofill on fields. 
+            <!-- Prevents Chrome and Firefox from offering autofill on fields. 
                  Required because on many fields we provide our own auto-suggest and it looks messy and confusing.
-                 It requires autocomplete="off" in the form above to work. 
+                 It requires autocomplete="off" in the above form in order to work. 
                  Taken from: https://gist.github.com/niksumeiko/360164708c3b326bd1c8 where there are other solutions too -->
             <input autocomplete="false" name="hidden" type="text" style="display:none;">
 
@@ -92,7 +92,7 @@
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
                         {{ form.supplement_name }}
-                        <label id="supplement-type-label" for="supplement-name">Supplement Name</label>
+                        <label for="supplement-name">Supplement Name</label>
                     </div>
                     <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the supplement names in the db -->
                     <div class="auto-suggest-dropdown" id="supplement-suggestions-list">
@@ -111,12 +111,12 @@
                 </div>
                 <!-- Supplement Recipients -->
                 <div class="bottom-margin label-float">
-                    <select name="recipients" id="recipients" onclick="displaySelectLabel('select-recipient-label')" required>
+                    <select name="recipients" id="recipients" required>
                         <option value="" disabled selected>Select Recipients</option>
                         <option type="text" name="entire_flock" value="Entire Flock" placeholder="Entire Flock" id="entire-flock">Entire Flock</option>
                         <option type="text" name="individual_birds" value="0" placeholder="Individual Birds" id="individual-birds">Individual Birds</option>
                     </select>
-                    <label class="hide-label" id="select-recipient-label" for="recipients">Recipients</label>
+                    <label class="hide-label" for="recipients">Select Recipients</label>
                 </div>
                 <!-- HCC Section Section -->
                 <div id="hcc-container-div">
@@ -157,7 +157,7 @@
                 <!-- Administration Method -->
                 <div class="bottom-margin label-float">
                     {{ form.administration_method }}
-                    <label class="hide-label" id="select-administration-label" for="administration-method">Administration Method</label>
+                    <label class="hide-label" for="administration-method">Administration Method</label>
                 </div>
                 <!-- VET Administered? -->
                 <div class="row bottom-margin" id="vet-administered-row">

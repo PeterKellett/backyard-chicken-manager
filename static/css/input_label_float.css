@@ -1,28 +1,37 @@
 /*-- CSS to make the labels float within the input border whenever the User adds to the field --*/
 
-/* SEE ALSO: "Field label prior to field being clicked on" in base.css --*/
+/*-- For dropdowns/select inputs, we need some JS. In Main JS we have: function displaySelectLabel(id) --*/
+
+/*-- Field label prior to field being clicked on --*/
+/*-- This affects input_label_float --*/
+input + label,
+.form-data select + label,
+.form-data textarea + label {
+    position: absolute;
+    font-size: 16px;
+    color: var(--black);
+    left: 14px;
+    top: 6px;
+}
 
 
 /*-- Makes the input relative so that the label can correctly float in the input border when clicked --*/
-/*-- Some related code still held in base.css --*/
 .label-float {
     position: relative;
 }
 
+/*-- Hides label but only used on Select/Dropdown Inputs --*/
 .hide-label {
     display: none;
 }
 
-.hide-placeholder::placeholder {
-    color: transparent;
-}
 
 /*-- Field label prior to field being clicked on --*/
-/* .form-data input::placeholder,
+.form-data input::placeholder,
 .form-data select::placeholder, 
 .form-data textarea::placeholder {
     color: transparent;
-} */
+}
 
 /*-- Field label after field has been clicked on --*/
 .form-data input:not(:placeholder-shown) + label,

@@ -7,7 +7,6 @@ function setInputTextMedicine(inputId, text) {
 }
 function showSuggestionsMedicines(value, labelId) {
     if (value.length) {
-        // displaySelectLabel(labelId)
         let suggestions = '';
         MEDICINES.filter(item => item.medicine_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             suggestions += `<div onclick="setInputTextMedicine('medicine-name', '${item.medicine_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.medicine_name}</div>`;
@@ -24,7 +23,7 @@ function showSuggestionsMedicines(value, labelId) {
         document.getElementById('medicine-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu43.gitpod.io/health_and_welfare/get_medicines')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/health_and_welfare/get_medicines')
 .then(response => response.json())
 .then(data => {
     MEDICINES = data.medicines;
@@ -37,7 +36,6 @@ function setInputTextDisease(inputId, text) {
 }
 function showSuggestionsDiseases(value, labelId) {
     if (value.length) {
-        // displaySelectLabel(labelId)
         let suggestions = '';
         DISEASES.filter(item => item.disease_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             suggestions += `<div onclick="setInputTextDisease('disease-protected-against', '${item.disease_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.disease_name}</div>`;
@@ -53,7 +51,7 @@ function showSuggestionsDiseases(value, labelId) {
         document.getElementById('disease-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu43.gitpod.io/health_and_welfare/get_diseases')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/health_and_welfare/get_diseases')
 .then(response => response.json())
 .then(data => {
     DISEASES = data.diseases;

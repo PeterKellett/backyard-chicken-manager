@@ -210,8 +210,8 @@ class EggRoadsideSalesForm(forms.ModelForm):
                                                            'value': ''}),
 
             'notes': forms.Textarea(attrs={'class': '',
-                                           'id': 'notes-eggs-roadside',
-                                           'name': 'notes_eggs_roadside',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -287,8 +287,8 @@ class EggCollectionSalesForm(forms.ModelForm):
                                                             	          "Qty of Eggs Broken, Stolen or Lost",
                                                             	          'value': ''}),
             'notes': forms.Textarea(attrs={'class': '',
-                                           'id': 'notes-eggs-collection',
-                                           'name': 'collection',
+                                           'id': 'notes',
+                                           'name': 'botes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -317,8 +317,8 @@ class EggCollectionSalesForm(forms.ModelForm):
 #                                                                          'disabled': 'true'
 #                                                                          }),
 #             'notes': forms.Textarea(attrs={'class': '',
-#                                            'id': 'notes-eggs-delivery',
-#                                            'name': 'notes_eggs_delivery',
+#                                            'id': 'notes',
+#                                            'name': 'notes',
 #                                            'placeholder':
 #                                            "Notes",
 #                                            'value': ''}),
@@ -408,8 +408,8 @@ class EggDeliverySalesForm(forms.ModelForm):
                                                                     'value': '# Temp',
                                                                     'disabled': 'true'}),
             'notes': forms.Textarea(attrs={'class': '',
-                                           'id': 'notes-eggs-delivery',
-                                           'name': 'notes_eggs_delivery',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -436,8 +436,8 @@ class EggDeliverySalesDashboardForm(forms.ModelForm):
                                                             	        "Qty of Eggs Broken, Stolen or Lost",
                                                             	        'value': ''}),
             'notes': forms.Textarea(attrs={'class': '',
-                                           'id': 'notes-eggs-delivery-dash',
-                                           'name': 'notes_eggs_delivery_dash',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -554,8 +554,8 @@ class EggMarketSalesForm(forms.ModelForm):
                                                         "Qty of Eggs Broken, Stolen or Lost",
                                                         'value': ''}),
             'notes': forms.Textarea(attrs={'class': '',
-                                           'id': 'notes-eggs-market',
-                                           'name': 'notes_eggs_market',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -669,8 +669,8 @@ class CustomerForm(forms.ModelForm):
                                                            "Tray Price",
                                                            'value': ''}),
                 'notes': forms.Textarea(attrs={'class': '',
-                                               'id': 'notes-customer',
-                                               'name': 'notes_customer',
+                                               'id': 'notes',
+                                               'name': 'notes',
                                                'placeholder':
                                                "Notes",
                                                'value': ''}),

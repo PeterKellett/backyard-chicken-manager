@@ -7,7 +7,6 @@ function setInputTextVaccine(inputId, text) {
 }
 function showSuggestionsVaccines(value, labelId) {
     if (value.length) {
-        // displaySelectLabel(labelId)
         let suggestions = '';
         VACCINES.filter(item => item.vaccine_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             suggestions += `<div onclick="setInputTextVaccine('vaccine-name', '${item.vaccine_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.vaccine_name}</div>`;
@@ -23,7 +22,7 @@ function showSuggestionsVaccines(value, labelId) {
         document.getElementById('vaccine-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu43.gitpod.io/health_and_welfare/get_vaccines')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu43.gitpod.io/health_and_welfare/get_vaccines')
 .then(response => response.json())
 .then(data => {
     VACCINES = data.vaccines;
@@ -36,7 +35,6 @@ function setInputTextVirus(inputId, text) {
 }
 function showSuggestionsViruses(value, labelId) {
     if (value.length) {
-        // displaySelectLabel(labelId)
         let suggestions = '';
         VIRUSES.filter(item => item.virus_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             suggestions += `<div onclick="setInputTextVirus('virus-protected-against', '${item.virus_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.virus_name}</div>`;
@@ -52,7 +50,7 @@ function showSuggestionsViruses(value, labelId) {
         document.getElementById('virus-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu43.gitpod.io/health_and_welfare/get_viruses')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu43.gitpod.io/health_and_welfare/get_viruses')
 .then(response => response.json())
 .then(data => {
     VIRUSES = data.viruses;

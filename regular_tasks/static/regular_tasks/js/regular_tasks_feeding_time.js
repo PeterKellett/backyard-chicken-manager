@@ -1,6 +1,6 @@
 console.log("Regular tasks feeding time js start");
 
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu43.gitpod.io/regular_tasks/get_feeds')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regular_tasks/get_feeds')
 .then(response => response.json())
 .then(data => {
     console.log("Fetch feed type fn fires");
@@ -8,9 +8,11 @@ fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu43.gitpod.io/regul
     console.log("Feed Types :", FEEDS);
 });
 
+
 // Function to automatically populate a unit of measurement
 const measurementUnit = document.getElementById("weights-and-measures-units").value;
 $("#unit-of-measurement").html(measurementUnit);
+
 
 // Feeds Auto-Suggest: Set of functions that auto-suggests feeds from the db once the User begins typing
 function setInputTextFeed(inputId, text) {
@@ -18,9 +20,8 @@ function setInputTextFeed(inputId, text) {
     document.getElementById('feed-suggestions-list').style.display = "none";
 }
 
-function showSuggestionsFeeds(value, labelId) {
+function showSuggestionsFeeds(value) {
     if (value.length) {
-        // displaySelectLabel(labelId)
         let suggestions = '';
         FEEDS.filter(item => item.feed_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             console.log("Feed Type :", item.feed_name);
@@ -33,7 +34,6 @@ function showSuggestionsFeeds(value, labelId) {
             document.getElementById('feed-suggestions-list').style.display = "none";
         }
     } else {
-        // hideSelectLabel(labelId)
         document.getElementById('feed-suggestions-list').style.display = "none";
     }
 }

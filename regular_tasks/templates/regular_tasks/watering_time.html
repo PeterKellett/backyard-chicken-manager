@@ -58,32 +58,32 @@
         <li class="nav-item text-wrap">
             <a class="nav-link sub-nav-link" href="{% url 'egg_collection' %}"> 
                 <img src="{{ MEDIA_URL }}reg_task_egg_collection.png" alt="Regular Tasks, Egg Collection Icon" class="nav-link-image sub-nav-link-image">
-                Collecting
+                Egg Collection
             </a>
         </li>
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link active" href="{% url 'feeding_time' %}">
+            <a class="nav-link sub-nav-link" href="{% url 'feeding_time' %}">
                 <img src="{{ MEDIA_URL }}reg_task_feeding_time.png" alt="Regular Tasks, Feeding Time Icon" class="nav-link-image sub-nav-link-image">
-                Feeding
+                Feeding Time
             </a>
         </li>
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link" href="">
+            <a class="nav-link sub-nav-link active" href="{% url 'watering_time' %}">
                 <img src="{{ MEDIA_URL }}reg_task_water.png" alt="Regular Tasks, Watering Time Icon" class="nav-link-image sub-nav-link-image">
-                Watering
+                Feeding Time
             </a>
         </li>
         <li class="nav-item text-wrap">
             <a class="nav-link sub-nav-link" href="{% url 'coop_cleaning' %}">
                 <img src="{{ MEDIA_URL }}reg_task_coop_cleaning.png" alt="Regular Tasks, Coop Cleaning Icon" class="nav-link-image sub-nav-link-image">
-                Cleaning
+                Coop Cleaning
             </a>
         </li>
     </ul>
 </div>
 
 <!-- Page Name - Non-Mobile -->
-{% include 'html_includes/page_name_non_mobile.html' with page_name="Feeding Time" %}
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Watering Time" %}
 
 <!-- Icons and Links Section -->
 <div class="container element-container">
@@ -168,6 +168,16 @@
 
             <!-- Feed Section -->
             <section name="feeds">
+                <div class="container">
+                    <div class="row bottom-margin row-name">
+                        <div class="col-2">
+                            <img src="{{ MEDIA_URL }}reg_task_feed.png" alt="Feed icon" class="non-round-icon">
+                        </div>
+                        <div class="col-10 content-vertical-center">
+                            <h4>Feed</h4>
+                        </div>
+                    </div>
+                </div>
                 <!-- Feed Type -->
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
@@ -215,6 +225,52 @@
                 <div class="container" name="feeds-container"></div>
                 <div class="add-another-btn-div bottom-margin">
                     <button href="" type="button" class="button add-another-btn" onclick="addAnotherFeed()">Add Another</button>
+                </div>
+            </section>
+            <div class="bottom-margin">
+                <hr class="hr-large">
+            </div>
+
+            <!-- Water Section -->
+            <section name="water">
+                <div class="row bottom-margin row-name">
+                    <div class="col-2">
+                        <img src="{{ MEDIA_URL }}reg_task_water.png" alt="Water icon" class="non-round-icon">
+                    </div>
+                    <div class="col-10 content-vertical-center">
+                        <h4>Water</h4>
+                    </div>
+                </div>
+                
+                <div class="row bottom-margin label-float">
+                    <div class="col-9 col-css">
+                        {{ form.amount_water_rem }}
+                        <label for="amount-water-rem">Amount of Water Remaining</label>
+                    </div>
+                    <div class="col-1">
+                    </div>
+                    <div class="col-2 col-css">
+                        <select name="weights_and_measures_units" id="weights-and-measures-units">
+                            <option value="g">lt</option>
+                            <option value="kg">fl oz</option>
+                            <option value="oz">gallon</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row bottom-margin label-float">
+                    <div class="col-9 col-css">
+                        {{ form.amount_water_added }}
+                        <label for="amount-water-added">Amount of Water Added</label>
+                    </div>
+                    <div class="col-1">
+                    </div>
+                    <div class="col-2 col-css">
+                        <select name="weights_and_measures_units" id="weights-and-measures-units">
+                            <option value="g">lt</option>
+                            <option value="kg">fl oz</option>
+                            <option value="oz">gallon</option>
+                        </select>
+                    </div>
                 </div>
             </section>
             <div class="bottom-margin">

@@ -72,8 +72,8 @@ class EggCollectionForm(forms.ModelForm):
                                                             'name':
                                                             'qty_eggs_personal_use',
                                                             'placeholder':
-                                                            'Qty of Eggs Taken for Personal Use)',
-                                                             'oninput': "doCalculations()",
+                                                            'Qty of Eggs Taken for Personal Use',
+                                                            'oninput': "doCalculations()",
                                                             'value': '',
                                                             'min': '0',
                                                             'step': '1'}),
@@ -102,8 +102,8 @@ class EggCollectionForm(forms.ModelForm):
                                                              'oninput': "doCalculations()"
                                                              }),
             'notes': forms.Textarea(attrs={'class': '',
-                                           'id': 'notes-egg-collection',
-                                           'name': 'notes_eggs_collection',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -151,7 +151,6 @@ class FeedingTimeForm(forms.ModelForm):
                                                 'id': 'feed-name',
                                                 'name': 'feed_name',
                                                 'value': '',
-                                                'onclick': "displaySelectLabel('feed-type-label')",
                                                 'onkeyup': "showSuggestionsFeeds(this.value, 'feed-type-label')",
                                                 'placeholder':
                                                 "Feed Type"}),
@@ -192,8 +191,8 @@ class FeedingTimeForm(forms.ModelForm):
                                                          'min': '0',
                                                          'oninput': 'this.value = Math.abs(this.value)'}),
             'notes': forms.Textarea(attrs={'class': '',
-                                           'id': 'notes-feeding-time',
-                                           'name': 'notes_feeding_time',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
@@ -223,11 +222,11 @@ class CoopCleaningForm(forms.ModelForm):
                                                         'id': 'disinfectant-name',
                                                         'name': 'disinfectant_name',
                                                         'value': '',
-                                                        'onkeyup': "showSuggestionsDisinfectants    (this.value, 'disinfectant-type-label')    ",
+                                                        'onkeyup': "showSuggestionsDisinfectants (this.value, 'disinfectant-type-label')",
                                                         'placeholder': 'Disinfectant Name'}),
             'notes': forms.Textarea(attrs={'class': '',
-                                           'id': 'notes-coop-cleaning',
-                                           'name': 'notes_coop_cleaning',
+                                           'id': 'notes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),

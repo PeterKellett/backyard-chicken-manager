@@ -28,9 +28,15 @@
 </div>
 
 <div class="element-container">
-    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form" id="submit-form">
+    <form method="POST" action="{% url 'get_onboarding_data' %}" name="hcc-form" id="submit-form" autocomplete="off">
         {% csrf_token %}
         <div class="form-data">
+            <!-- Prevents Chrome and Firefox from offering autofill on fields. 
+                 Required because on many fields we provide our own auto-suggest and it looks messy and confusing.
+                 It requires autocomplete="off" in the above form in order to work. 
+                 Taken from: https://gist.github.com/niksumeiko/360164708c3b326bd1c8 where there are other solutions too -->
+            <input autocomplete="false" name="hidden" type="text" style="display:none;">
+
             <!-- Flock Core Info Section -->
             <section name="flock-core-info">
 
@@ -80,7 +86,7 @@
             {% include 'html_includes/validation_warning.html' %}
 
             <div class="button-container">
-                <input type="hidden" name="redirect_url" value="onboard_produce"/>
+                <input type="hidden" name="redirect_url" value="onboard_sales"/>
                 <a href="{% url 'onboard_personal' %}" class="btn button button-full-size">Previous</a> 
                 <button type='submit' id="hcc-button" class="btn button button-full-size" onclick="validateQtys()">Next</button>
             </div>
