@@ -7,7 +7,6 @@ function setInputTextVaccine(inputId, text) {
 }
 function showSuggestionsVaccines(value, labelId) {
     if (value.length) {
-        // displaySelectLabel(labelId)
         let suggestions = '';
         VACCINES.filter(item => item.vaccine_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             suggestions += `<div onclick="setInputTextVaccine('vaccine-name', '${item.vaccine_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.vaccine_name}</div>`;
@@ -36,7 +35,6 @@ function setInputTextVirus(inputId, text) {
 }
 function showSuggestionsViruses(value, labelId) {
     if (value.length) {
-        // displaySelectLabel(labelId)
         let suggestions = '';
         VIRUSES.filter(item => item.virus_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             suggestions += `<div onclick="setInputTextVirus('virus-protected-against', '${item.virus_name}')" style="padding: 1px 15px; text-align: left; cursor: pointer; font-size: medium;">${item.virus_name}</div>`;

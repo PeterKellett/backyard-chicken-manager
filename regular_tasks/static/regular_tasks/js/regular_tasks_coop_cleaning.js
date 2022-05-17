@@ -14,7 +14,7 @@ function setInputTextDisinfectant(inputId, text) {
     document.getElementById('disinfectant-suggestions-list').style.display = "none";
 }
 
-function showSuggestionsDisinfectants(value, labelId) {
+function showSuggestionsDisinfectants(value) {
     console.log("showSuggestionsDisinfectants")
     console.log("value.length" + value.length)
     if (value.length) {

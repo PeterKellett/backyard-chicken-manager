@@ -16,18 +16,15 @@ input + label,
 
 
 /*-- Makes the input relative so that the label can correctly float in the input border when clicked --*/
-/*-- Some related code still held in base.css --*/
 .label-float {
     position: relative;
 }
 
+/*-- Hides label but only used on Select/Dropdown Inputs --*/
 .hide-label {
     display: none;
 }
 
-/* .hide-placeholder::placeholder {
-    color: transparent;
-} */
 
 /*-- Field label prior to field being clicked on --*/
 .form-data input::placeholder,

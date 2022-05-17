@@ -151,7 +151,6 @@ class FeedingTimeForm(forms.ModelForm):
                                                 'id': 'feed-name',
                                                 'name': 'feed_name',
                                                 'value': '',
-                                                'onclick': "displaySelectLabel('feed-type-label')",
                                                 'onkeyup': "showSuggestionsFeeds(this.value, 'feed-type-label')",
                                                 'placeholder':
                                                 "Feed Type"}),

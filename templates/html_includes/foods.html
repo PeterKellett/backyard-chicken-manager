@@ -3,7 +3,7 @@
 
 <div class="bottom-margin label-float">
     <!-- {{ form.feed_type }} -->
-    <select name="feed_type" id="food-name" onchange="displaySelectLabel()" required>
+    <select name="feed_type" id="food-name" required>
         <option value="" disabled selected>Select Food</option>
         {% for feed in feeds %}
             <option type="text" name="feed_name" value="{{ feed.id }}" placeholder="feed.feed_name" id="feed-name">{{ feed.feed_name.title }}</option>

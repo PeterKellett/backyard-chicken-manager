@@ -123,14 +123,14 @@
                 <div class="container" id="egg-qty-2col-div" >
                     <div class="row">
                         <!-- Eggs Laid Trays -->
-                        <div class="col-6 two-inputs-left">
+                        <div class="col two-inputs-left">
                             <div class="bottom-margin label-float">
                                 {{ form.qty_egg_trays }}
                                 <label for="qty-egg-trays">Qty Laid - Trays</label>
                             </div>
                         </div>
                         <!-- Eggs Laid Singles-->
-                        <div class="col-6 two-inputs-right">
+                        <div class="col two-inputs-right">
                             <div class="bottom-margin label-float">
                                 {{ form.qty_egg_singles }}
                                 <label for="qty-egg-singles">Qty Laid - Single</label>
@@ -260,5 +260,4 @@
 {% block postloadjs %}
 {{ block.super }}
     <script src="{% static 'regular_tasks/js/regular_tasks_egg_collection.js' %}"></script>
-    <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
 {% endblock %}

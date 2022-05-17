@@ -92,7 +92,7 @@
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
                         {{ form.vaccine_name }}
-                        <label id="select-vaccine-label" for="vaccine-name">Vaccine Name</label>
+                        <label for="vaccine-name">Vaccine Name</label>
                     </div>
                     <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the vaccine names in the db -->
                     <div class="auto-suggest-dropdown" id="vaccine-suggestions-list">
@@ -102,7 +102,7 @@
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
                         {{ form.virus_protected_against }}
-                        <label id="select-vpa-label" for="virus-protected-against">Virus Protected Against</label>
+                        <label for="virus-protected-against">Virus Protected Against</label>
                     </div>
                     <div class="auto-suggest-dropdown" id="virus-suggestions-list">
                     </div>
@@ -123,12 +123,12 @@
                 </div>
                 <!-- Vaccine Recipients -->
                 <div class="bottom-margin label-float">
-                    <select name="recipients" id="recipients" onclick="displaySelectLabel('select-recipient-label')" required>
+                    <select name="recipients" id="recipients" required>
                         <option value="" disabled selected>Select Recipients</option>
                         <option type="text" name="entire_flock" value="Entire Flock" placeholder="Entire Flock" id="entire-flock">Entire Flock</option>
                         <option type="text" name="individual_birds" value="0" placeholder="Individual Birds" id="individual-birds">Individual Birds</option>
                     </select>
-                    <label class="hide-label" id="select-recipient-label" for="recipients">Select Recipients</label>
+                    <label class="hide-label" for="recipients">Select Recipients</label>
                 </div>
                 <!-- HCC Section Section -->
                 <div id="hcc-container-div">
@@ -167,7 +167,7 @@
                 <!-- Administration Method -->
                 <div class="bottom-margin label-float">
                     {{ form.administration_method }}
-                    <label class="hide-label" id="select-administration-label" for="administration-method">Administration Method</label>
+                    <label class="hide-label" for="administration-method">Administration Method</label>
                 </div>
                 <!-- VET Administered? -->
                 <div class="row bottom-margin" id="vet-administered-row">

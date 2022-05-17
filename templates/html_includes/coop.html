@@ -1,5 +1,5 @@
 <div class="bottom-margin label-float">
-    <select name="coop" id="coop-name" onclick="displaySelectLabel('select-coop-label')" required>
+    <select name="coop" id="coop-name" required>
         <option value="" disabled selected>Select Coop</option>
         {% for coop in coops %}
             <option type="text" name="coop_name" value="{{ coop.id }}" placeholder="coop.coop_name" id="coop-name">{{ coop.coop_name.capitalize }}</option>

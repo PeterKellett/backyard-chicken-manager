@@ -35,7 +35,6 @@ class SupplementsForm(forms.ModelForm):
                                                       'id': 'supplement-name',
                                                       'name': 'supplement_name',
                                                       'value': '',
-                                                      'onclick': "displaySelectLabel('supplement-type-label')",
                                                       'onkeyup': "showSuggestionsSupplements(this.value, 'supplement-type-label')",
                                                       'placeholder':
                                                       "Supplement Name"}),
@@ -85,7 +84,7 @@ class MedicinesForm(forms.ModelForm):
         # self.fields['disease_protected_against'].show_hidden_initial = True
         self.fields['administration_method'].empty_label = 'Select Administration Method'
         self.fields['administration_method'].initial = "Select Administration Method"
-        self.fields['administration_method'].show_hidden_initial = True
+        # self.fields['administration_method'].show_hidden_initial = False
 
     class Meta:
         """ Meta Class Docstring here as required """
@@ -106,7 +105,6 @@ class MedicinesForm(forms.ModelForm):
                                                     'id': 'medicine-name',
                                                     'name': 'medicine_name',
                                                     'value': '',
-                                                    'onclick': "displaySelectLabel('select-medicine-label')",
                                                     'onkeyup': "showSuggestionsMedicines(this.value, 'select-medicine-label')",
                                                     'placeholder':
                                                     "Medicine Name"}),
@@ -114,7 +112,6 @@ class MedicinesForm(forms.ModelForm):
                                                                 'id': 'disease-protected-against',
                                                                 'name': 'disease_protected_against',
                                                                 'value': '',
-                                                                'onclick': "displaySelectLabel('select-dpa-label')",
                                                                 'onkeyup': "showSuggestionsDiseases(this.value, 'select-dpa-label')",
                                                                 'placeholder':
                                                                 "Disease Protected Against"}),
@@ -127,7 +124,6 @@ class MedicinesForm(forms.ModelForm):
             'administration_method': forms.Select(attrs={'class': '',
                                                          'id': 'administration-method',
                                                          'name': 'administration_method',
-                                                         'onclick': "displaySelectLabel('select-administration-label')",
                                                          'placeholder':
                                                          "Administration Method PH"}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
@@ -169,7 +165,7 @@ class VaccinesForm(forms.ModelForm):
         # This removes the default ------ that displays instead of a label because the input is a dropdown
         self.fields['administration_method'].empty_label = 'Select Administration Method'
         self.fields['administration_method'].initial = "Select Administration Method"
-        self.fields['administration_method'].show_hidden_initial = True
+        self.fields['administration_method'].show_hidden_initial = False
 
     class Meta:
         """ Meta Class Docstring here as required """
@@ -190,7 +186,6 @@ class VaccinesForm(forms.ModelForm):
                                                    'id': 'vaccine-name',
                                                    'name': 'vaccine_name',
                                                    'value': '',
-                                                   'onclick': "displaySelectLabel('select-vaccine-label')",
                                                    'onkeyup': "showSuggestionsVaccines(this.value, 'select-vaccine-label')",
                                                    'placeholder':
                                                    "Vaccine Name"}),
@@ -198,7 +193,6 @@ class VaccinesForm(forms.ModelForm):
                                                               'id': 'virus-protected-against',
                                                               'name': 'virus_protected_against',
                                                               'value': '',
-                                                              'onclick': "displaySelectLabel('select-vpa-label')",
                                                               'onkeyup': "showSuggestionsViruses(this.value, 'select-vpa-label')",
                                                               'placeholder':
                                                               "Virus Protected Against"}),
@@ -211,7 +205,6 @@ class VaccinesForm(forms.ModelForm):
             'administration_method': forms.Select(attrs={'class': '',
                                                          'id': 'administration-method',
                                                          'name': 'administration_method',
-                                                         'onclick': "displaySelectLabel('select-administration-label')",
                                                          'placeholder':
                                                          "Administration Method PH"}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',

@@ -103,3 +103,46 @@ function validate(event) {
         document.getElementById("warning-section-text").textContent = "";
     }
 }
+
+
+// Egg Collection - Variables
+let hensQuantity;
+let egg_qty_2col_div = document.getElementById('egg-qty-2col-div');
+let egg_qty_1col_div = document.getElementById('egg-qty-1col-div');
+// Extracts the Qty of laying hens in a flock from Farm Profile in the db. This allows us to decide 
+// whether to display trays and singles, or just singles. The latter is set at less than 12 hens.
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/flock_management/hens_quantity')
+.then(response => response.json())
+.then(data => {
+    hensQuantity = data.hens_quantity;
+    console.log("Hens Quantity = " + hensQuantity)
+
+    if (hensQuantity < 12) {
+        egg_qty_2col_div.style.display = 'none';
+        egg_qty_1col_div.style.display = 'block';
+        console.log("Less than 12 " + hensQuantity);
+    }
+    else {
+        egg_qty_2col_div.style.display = 'block';
+        egg_qty_1col_div.style.display = 'none';
+        console.log("more than 12 " + hensQuantity);
+    }
+
+});
+
+
+
+// Show Hide 3: This fn displays a div when an input is changed and the value is greater than 1
+// First used in Egg Collection so that Advanced Section only displays if the user inputs a collected quantity
+// $(document).ready(function () {
+//     $('div.show-on-change').hide();
+
+//     //show it when the input changes
+//     $('input[class="change-to-show"]').on('change', function () {
+//         if ($(this).value > 1) {
+//             $('div.show-on-change').fadeIn();
+//         } else {
+//             $('div.show-on-change').hide();
+//         }
+//     });
+// });

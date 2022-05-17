@@ -16,7 +16,6 @@ function setInputTextSupplement(inputId, text) {
 
 function showSuggestionsSupplements(value, labelId) {
     if (value.length) {
-        // displaySelectLabel(labelId)
         let suggestions = '';
         SUPPLEMENTS.filter(item => item.supplement_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
             console.log("Supplement Type :", item.supplement_name);
