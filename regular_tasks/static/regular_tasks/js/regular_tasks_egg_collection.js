@@ -6,7 +6,7 @@ var traysQuantity;
 var total_eggs_laid;
 var average_egg_weight;
 var saleable_eggs;
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/regular_tasks/trays_quantity')
+fetch('https://8000-peterkellet-backyardchi-6r0pf5jpjxn.ws-eu45.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
     traysQuantity = data.trays_quantity;
@@ -111,7 +111,7 @@ let egg_qty_2col_div = document.getElementById('egg-qty-2col-div');
 let egg_qty_1col_div = document.getElementById('egg-qty-1col-div');
 // Extracts the Qty of laying hens in a flock from Farm Profile in the db. This allows us to decide 
 // whether to display trays and singles, or just singles. The latter is set at less than 12 hens.
-fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/flock_management/hens_quantity')
+fetch('https://8000-peterkellet-backyardchi-6r0pf5jpjxn.ws-eu45.gitpod.io/flock_management/hens_quantity')
 .then(response => response.json())
 .then(data => {
     hensQuantity = data.hens_quantity;

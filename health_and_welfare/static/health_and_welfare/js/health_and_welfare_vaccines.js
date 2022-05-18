@@ -22,7 +22,7 @@ function showSuggestionsVaccines(value, labelId) {
         document.getElementById('vaccine-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/health_and_welfare/get_vaccines')
+fetch('https://8000-peterkellet-backyardchi-6r0pf5jpjxn.ws-eu45.gitpod.io/health_and_welfare/get_vaccines')
 .then(response => response.json())
 .then(data => {
     VACCINES = data.vaccines;
@@ -50,7 +50,7 @@ function showSuggestionsViruses(value, labelId) {
         document.getElementById('virus-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/health_and_welfare/get_viruses')
+fetch('https://8000-peterkellet-backyardchi-6r0pf5jpjxn.ws-eu45.gitpod.io/health_and_welfare/get_viruses')
 .then(response => response.json())
 .then(data => {
     VIRUSES = data.viruses;
