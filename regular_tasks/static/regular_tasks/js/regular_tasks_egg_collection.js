@@ -1,7 +1,6 @@
 $(document).ready(function(){
     
     avgUnitOfMeasurement()
-    
 });
 
 
@@ -11,6 +10,7 @@ var total_eggs_laid;
 var average_egg_weight;
 var saleable_eggs;
 var qtys_single_eggs;
+
 fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
@@ -18,6 +18,21 @@ fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regula
     // console.log("traysQuantity = " + traysQuantity);
     doCalculations();
 });
+
+
+
+// Function to validate the values in teh Advanced Section so as to prevent them from having a total
+// higher than the total number of eggs laid (as that would be impossible). It fires each time one
+// of the inputs in the Advanced Section has a number added.
+// var adv_section_input_values;
+// $('.advanced_section_input_data').on('keyup', function() {
+//     console.log("Adv Section Validation Function Fires");
+    
+//     document.querySelectorAll('.advanced_section_input_data').forEach(item => {
+//         advanced_section_input_data[item.name] = Number(item.value);
+//         console.log("Item" + item);
+//         });
+// });
 
 
 function doCalculations() {
@@ -61,7 +76,7 @@ function doCalculations() {
     // console.log("saleable_eggs = " + saleable_eggs);
     document.getElementById("qty-saleable-eggs").innerHTML = saleable_eggs;
 
-    showHideAdvance ();
+    showHideAdvancedSection ();
 };
 
 
@@ -127,11 +142,10 @@ fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/flock_
 });
 
 
-// Show/Hide Advanced: This is a type of validation in that it prevents the User from seeing the Advanced section,
-// and therefore from adding data (which results in negative and Nan's).
+// Show/Hide Advanced Section: This is a type of validation in that it prevents the User from seeing,
+// the Advanced section and therefore from adding data (which results in negative and Nan's).
 let advancedSection = document.getElementById('egg-collection-advanced-section');
-function showHideAdvance () {
-    console.log("total_eggs_laid :" + total_eggs_laid);
+function showHideAdvancedSection () {
     if (total_eggs_laid > 0) {
         advancedSection.style.display = 'block';
     }
@@ -140,17 +154,6 @@ function showHideAdvance () {
     }
 }
 
-// Show Hide 3: This fn displays a div when an input is changed and the value is greater than 1
-// First used in Egg Collection so that Advanced Section only displays if the user inputs a collected quantity
-// $(document).ready(function () {
-//     $('div.show-on-change').hide();
 
-//     //show it when the input changes
-//     $('input[class="change-to-show"]').on('change', function () {
-//         if ($(this).value > 1) {
-//             $('div.show-on-change').fadeIn();
-//         } else {
-//             $('div.show-on-change').hide();
-//         }
-//     });
-// });
+// Advanced Section Validation: Function that prevents Users from adding a higher total, between 
+// all of the fields in the Advanced Section than Total Number of Eggs Laid. 

@@ -48,10 +48,11 @@ $(document).ready(function () {
 
 })
 
-// Needs tyo go wherever the Date function at the start of this page goes
+// Needs to go wherever the Date function at the start of this page goes
 // Floating Labels: Display floating label on Select/Dropdown inputs when a selection is made
 function displaySelectLabel() {
     $(this).next('label').css('display', 'block');
+    console.log("LABEL FN FIRES");
 }
 
 // Needs to go into each of the relevant pages js files.
@@ -64,7 +65,7 @@ $(document).ready(function(){
 });
 
 
-// Show Hide 1: Function to display additional field(s) or content when a checkbox is checked
+// Show Hide: Function to display additional field(s) or content when a checkbox is checked
 // Taken from http://jsfiddle.net/TrueBlueAussie/DLQY9/1/
 $(document).ready(function () {
     $('div.show-on-click').hide();
@@ -78,7 +79,7 @@ $(document).ready(function () {
         }
     });
 
-    // Show Hide 2: This fn allows an existing div to be hidden and replaced by whatever div
+    // This fn allows an existing div to be hidden and replaced by whatever div
     // is displayed Show Hide 1 above. First used on Tray Qty checkbox in onboarding_produce.
     $('input[class="click-to-show"]').on('click', function () {
         if ($(this).prop('checked')) {
