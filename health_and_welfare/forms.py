@@ -199,7 +199,7 @@ class MedicinesForm(forms.ModelForm):
                                                          'id': 'administration-method',
                                                          'name': 'administration_method',
                                                          'placeholder':
-                                                         "Administration Method PH"}),
+                                                         "Administration Method"}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                            'id': 'vet-administered',
                                                            'name': 'vet_administered'}),
@@ -322,7 +322,7 @@ class VaccinesForm(forms.ModelForm):
                                                          'id': 'administration-method',
                                                          'name': 'administration_method',
                                                          'placeholder':
-                                                         "Administration Method PH"}),
+                                                         "Administration Method"}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                            'id': 'vet-administered',
                                                            'name': 'vet_administered'}),

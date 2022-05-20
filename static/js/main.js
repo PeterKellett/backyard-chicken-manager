@@ -46,6 +46,10 @@ $(document).ready(function () {
         $(this).height(this.scrollHeight);
     });
 
+
+    // Function to display or not display flock Select depending on how many flocks a User has
+    // task: https://gizagig.eu.teamwork.com/#/tasks/21952377
+
 })
 
 // Needs to go wherever the Date function at the start of this page goes

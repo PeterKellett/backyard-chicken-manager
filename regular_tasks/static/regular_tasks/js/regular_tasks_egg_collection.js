@@ -21,7 +21,7 @@ fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regula
 
 
 
-// Function to validate the values in teh Advanced Section so as to prevent them from having a total
+// Function to validate the values in the Advanced Section so as to prevent them from having a total
 // higher than the total number of eggs laid (as that would be impossible). It fires each time one
 // of the inputs in the Advanced Section has a number added.
 // var adv_section_input_values;

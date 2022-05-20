@@ -21,21 +21,27 @@
 <div class="element-container container-fluid sub-nav-container">
     <ul class="nav nav-tabs nav-justified">
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link active" href="{% url 'egg_collection' %}">
+            <a class="nav-link sub-nav-link active" href="{% url 'egg_collection' %}"> 
                 <img src="{{ MEDIA_URL }}reg_task_egg_collection.png" alt="Regular Tasks, Egg Collection Icon" class="nav-link-image sub-nav-link-image">
-                Egg Collection
+                Collecting
             </a>
         </li>
         <li class="nav-item text-wrap">
             <a class="nav-link sub-nav-link" href="{% url 'feeding_time' %}">
                 <img src="{{ MEDIA_URL }}reg_task_feeding_time.png" alt="Regular Tasks, Feeding Time Icon" class="nav-link-image sub-nav-link-image">
-                Feeding Time
+                Feeding
+            </a>
+        </li>
+        <li class="nav-item text-wrap">
+            <a class="nav-link sub-nav-link" href="">
+                <img src="{{ MEDIA_URL }}reg_task_water.png" alt="Regular Tasks, Watering Time Icon" class="nav-link-image sub-nav-link-image">
+                Watering
             </a>
         </li>
         <li class="nav-item text-wrap">
             <a class="nav-link sub-nav-link" href="{% url 'coop_cleaning' %}">
                 <img src="{{ MEDIA_URL }}reg_task_coop_cleaning.png" alt="Regular Tasks, Coop Cleaning Icon" class="nav-link-image sub-nav-link-image">
-                Coop Cleaning
+                Cleaning
             </a>
         </li>
     </ul>
@@ -207,10 +213,10 @@
                     </div>
                     <!-- Eggs Average Weight -->
                     <div class="row bottom-margin">
-                        <div class="col-10 col-css">
+                        <div class="col-9 col-css">
                             <h5 class="row-name">Average Egg Weight:</h5>
                         </div>
-                        <div class="col-2 col-css col-css-right label-float">
+                        <div class="col-3 col-css col-css-right label-float">
                             <h5><span id="avg-egg-weight"></span><span class="unit-of-measurement" id="unit-of-measurement"></span></h5>
                         </div>
                     </div>

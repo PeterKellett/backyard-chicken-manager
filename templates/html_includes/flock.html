@@ -1,10 +1,23 @@
-<div class="bottom-margin label-float">
-    <select name="flock" id="flock-name" required>
-        <option value="" disabled selected>Select Flock</option>
-        {% for flock in flocks %}
-            <option type="text" name="flock_name" value="{{ flock.id }}" placeholder="flock.flock_name" id="flock-name" class="flock">{{ flock.flock_name.capitalize }}</option>
-        {% endfor %}
-    </select>
-    <label class="hide-label" id="select-flock-label" for="flock-name">Flock Name</label>
-</div>
+<!-- The code is wrapped in a jinja template so that it is shown if the User has 2 or more flocks,
+    otherwise it is hidden, but pre-populates the database with the sole flock name. -->
 
+{% if flocks|length > 1 %}
+    <div class="bottom-margin label-float">
+        <select name="flock" id="flock-name" required>
+            <option value="" disabled selected>Select Flock</option>
+            {% for flock in flocks %}
+                <option type="text" name="flock_name" value="{{ flock.id }}" placeholder="flock.flock_name" id="flock-name" class="flock">{{ flock.flock_name.capitalize }}</option>
+            {% endfor %}
+        </select>
+        <label class="hide-label" id="select-flock-label" for="flock-name">Flock Name</label>
+    </div>
+{% else %}
+    <div class="bottom-margin label-float">
+        <select name="flock" id="flock-name" required>
+            {% for flock in flocks %}
+                <option type="text" name="flock_name" value="{{ flock.id }}" placeholder="flock.flock_name" id="flock-name" class="flock">{{ flock.flock_name.capitalize }}</option>
+            {% endfor %}
+        </select>
+        <label id="select-flock-label" for="flock-name">Flock Name</label>
+    </div>
+{% endif %}
