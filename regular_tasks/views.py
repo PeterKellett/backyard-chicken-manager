@@ -6,6 +6,7 @@ from customAuth.models import CustomUser
 from profiles.models import FarmProfile, UserProfile
 from flock_management.models import Flocks, Coops
 from .models import EggCollection, Feeds, Disinfectants, FeedingTime
+from django.db.models import Count
 from .forms import EggCollectionForm, FeedsForm, FeedingTimeForm, CoopCleaningForm
 from json import dumps
 from django.core import serializers
@@ -78,6 +79,36 @@ def get_feeds(request):
     # feeds = Feeds.objects.values('feed_type')
     print("feeds = ", feeds)
     return JsonResponse({"feeds": list(feeds)}, safe=False)
+
+
+def get_flock_feeds(request, flock_id):
+    print("flock_id = ", flock_id)
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    all_previous_feeds = FeedingTime.objects.filter(flock=flock_id).values()
+    # print("all_previous_feeds = ", all_previous_feeds)
+    previous_feeds = list(FeedingTime.objects.filter(flock=flock_id).order_by('-date').values())
+    # print("previous_feeds = ", (previous_feeds))
+    # print("previous_feeds list = ", list(previous_feeds))
+    feeds_list = []
+    filtered_feeds = []
+    for x in previous_feeds:
+        print("filtered_feeds = ", x['id'], x['feed_name'], x['date'])
+    print("BREAK")
+    for x in previous_feeds:
+        print("x = ", x['id'], x['feed_name'], x['date'])
+        if x['feed_name'] not in feeds_list:
+            feeds_list.append(x['feed_name'])
+            filtered_feeds.append(x)
+        # else:
+        #     previous_feeds.remove(x)
+    print("feeds_list = ", feeds_list)
+        # print("filtered_feeds = ", filtered_feeds)
+    print("BREAK")
+    # print("filtered_feeds = ", previous_feeds)
+    for x in filtered_feeds:
+        print("filtered_feeds = ", x['id'], x['feed_name'], x['date'])
+    return JsonResponse(list(all_previous_feeds), safe=False)
 
 
 @login_required

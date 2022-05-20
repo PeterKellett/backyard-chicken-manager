@@ -8,7 +8,20 @@ fetch('https://8000-peterkellet-backyardchi-6r0pf5jpjxn.ws-eu45.gitpod.io/regula
     console.log("Feed Types :", FEEDS);
 });
 
+// Add an event listener to the flock field
+document.getElementsByName("flock").forEach(item => {
+    item.addEventListener("change", getPreviousFeedingTimes)
+ })
 
+function getPreviousFeedingTimes() {
+    console.log("getPreviousFeedingTimes = ", this.value)
+    fetch(`https://8000-peterkellet-backyardchi-6r0pf5jpjxn.ws-eu45.gitpod.io/regular_tasks/get_flock_feeds/${this.value}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log("Fetch feed type fn fires");
+        console.log("data :", data);
+    });
+}
 // Function to automatically populate a unit of measurement
 const measurementUnit = document.getElementById("weights-and-measures-units").value;
 $("#unit-of-measurement").html(measurementUnit);
