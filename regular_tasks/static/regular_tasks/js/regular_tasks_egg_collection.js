@@ -76,6 +76,9 @@ function doCalculations() {
     // console.log("saleable_eggs = " + saleable_eggs);
     document.getElementById("qty-saleable-eggs").innerHTML = saleable_eggs;
 
+    var adv_vals = document.getElementsByClassName("advanced-section-input").value;
+    console.log("Adv Vals :" + adv_vals)
+
     showHideAdvancedSection ();
 };
 

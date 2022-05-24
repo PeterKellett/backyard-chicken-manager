@@ -1,1 +1,33 @@
-Bird Sales
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sub_nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/signed_in_user_pages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/input_label_float.css' %}" />
+    <link rel="stylesheet" href="{% static '././regular_tasks/css/regular_tasks.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static 'regular_tasks/css/sales_and_income.css' %}" /> -->
+{% endblock %}
+
+{% block nav_page_title %}
+    Bird Sales
+{% endblock %}
+
+{% block sub-nav %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<!-- Page Name - Non-Mobile -->
+{% include 'html_includes/page_name_non_mobile.html' with page_name="Bird Sales" %}
+
+<h2>Coming Soon</h2>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script src="{% static 'sales_and_income/js/roadside_sales.js' %}"></script>
+{% endblock %}
