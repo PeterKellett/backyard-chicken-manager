@@ -53,16 +53,16 @@ class Feeds(models.Model):
         """Overwrite the default Django pluralisation"""
         verbose_name_plural = 'Feeds'
     farm_profile = models.ForeignKey(FarmProfile,
-                                     null=False,
-                                     blank=False,
+                                     null=True,
+                                     blank=True,
                                      on_delete=models.CASCADE)
     feed_name = models.CharField(max_length=50,
                                  null=False,
                                  blank=False)
     qty_food = models.DecimalField(max_digits=6,
                                    decimal_places=2,
-                                   null=False,
-                                   blank=False)
+                                   null=True,
+                                   blank=True)
 
     def __str__(self):
         return self.feed_name
@@ -84,30 +84,66 @@ class FeedingTime(models.Model):
     feed_name = models.CharField(max_length=50,
                                  null=False,
                                  blank=False)
-    amount_food_rem = models.IntegerField(null=True,
+    amount_food_rem = models.DecimalField(max_digits=6,
+                                          decimal_places=2,
+                                          null=True,
                                           blank=True,
                                           verbose_name='amount of food remaining')
-    amount_food_added = models.IntegerField(null=False,
-                                            blank=False,
+    amount_food_added = models.DecimalField(max_digits=6,
+                                            decimal_places=2,
+                                            null=True,
+                                            blank=True,
                                             verbose_name='amount of food added')
-    amount_food_consumed = models.IntegerField(null=True,
+    amount_food_consumed = models.DecimalField(max_digits=6,
+                                               decimal_places=2,
+                                               null=True,
                                                blank=True,
                                                verbose_name='amount of food consumed')
-    feeder_amount = models.IntegerField(null=True,
+    feeder_amount = models.DecimalField(max_digits=6,
+                                        decimal_places=2,
+                                        null=True,
                                         blank=True,
                                         verbose_name='feeder amount')
-    water_total = models.IntegerField(null=True,
-                                      blank=True,
-                                      verbose_name='Water Total')
-    amount_water_rem = models.IntegerField(null=True,
+    notes = models.TextField(null=True,
+                             blank=True)
+    images = models.ImageField(null=True,
+                               blank=True,
+                               upload_to="images/")
+
+
+class WateringTime(models.Model):
+    """Model used for storing daily Watering"""
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=False,
+                                     blank=False,
+                                     on_delete=models.CASCADE)
+    date = models.DateTimeField(null=False,
+                                blank=False,
+                                verbose_name='date')
+    flock = models.ForeignKey(Flocks,
+                              null=False,
+                              blank=False,
+                              on_delete=models.CASCADE)
+    amount_water_rem = models.DecimalField(max_digits=6,
+                                           decimal_places=2,
+                                           null=True,
                                            blank=True,
                                            verbose_name='amount of water remaining')
-    amount_water_added = models.IntegerField(null=True,
+    amount_water_added = models.DecimalField(max_digits=6,
+                                             decimal_places=2,
+                                             null=True,
                                              blank=True,
                                              verbose_name='amount of water added')
-    amount_water_consumed = models.IntegerField(null=True,
+    amount_water_consumed = models.DecimalField(max_digits=6,
+                                                decimal_places=2,
+                                                null=True,
                                                 blank=True,
                                                 verbose_name='amount of water consumed')
+    water_total = models.DecimalField(max_digits=6,
+                                      decimal_places=2,
+                                      null=True,
+                                      blank=True,
+                                      verbose_name='Water Total')
     notes = models.TextField(null=True,
                              blank=True)
     images = models.ImageField(null=True,

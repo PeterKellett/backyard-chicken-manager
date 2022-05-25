@@ -68,7 +68,7 @@
             </a>
         </li>
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link" href="">
+            <a class="nav-link sub-nav-link" href="{% url 'watering_time' %}">
                 <img src="{{ MEDIA_URL }}reg_task_water.png" alt="Regular Tasks, Watering Time Icon" class="nav-link-image sub-nav-link-image">
                 Watering
             </a>
@@ -168,6 +168,16 @@
 
             <!-- Feed Section -->
             <section name="feeds">
+                <div class="container">
+                    <div class="row bottom-margin row-name">
+                        <div class="col-2">
+                            <img src="{{ MEDIA_URL }}reg_task_feed.png" alt="Feed icon" class="non-round-icon">
+                        </div>
+                        <div class="col-10 content-vertical-center">
+                            <h4>Feed</h4>
+                        </div>
+                    </div>
+                </div>
                 <!-- Feed Type -->
                 <div style="position: relative;">
                     <div class="bottom-margin label-float">
@@ -179,7 +189,7 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="row bottom-margin">
+                    <div class="row bottom-margin" id="food-remaining-div">
                         <div class="col-9 col-css label-float">
                             {{ form.amount_food_rem }}
                             <label for="amount-food-rem">Amount of Food Remaining</label>
@@ -195,7 +205,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row bottom-margin">
+                    <div class="row bottom-margin" id="food-added-div">
                         <div class="col-9 col-css label-float">
                             {{ form.amount_food_added }}
                             <label for="amount-food-added">Amount of Food Added</label>
@@ -211,11 +221,27 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row bottom-margin" id="feeder-amount-div">
+                        <div class="col-9 col-css label-float">
+                            {{ form.feeder_amount }}
+                            <label for="feeder-amount">Amount of Food in Feeder</label>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col-2 col-css">
+                            <select name="weights_and_measures_units" id="weights-and-measures-units">
+                                <option value="g">g</option>
+                                <option value="kg">kg</option>
+                                <option value="oz">oz</option>
+                                <option value="lb">lb</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="container" name="feeds-container"></div>
-                <div class="add-another-btn-div bottom-margin">
+                <!-- <div class="add-another-btn-div bottom-margin">
                     <button href="" type="button" class="button add-another-btn" onclick="addAnotherFeed()">Add Another</button>
-                </div>
+                </div> -->
             </section>
             <div class="bottom-margin">
                 <hr class="hr-large">

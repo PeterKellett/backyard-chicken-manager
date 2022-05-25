@@ -58,25 +58,25 @@
         <li class="nav-item text-wrap">
             <a class="nav-link sub-nav-link" href="{% url 'egg_collection' %}"> 
                 <img src="{{ MEDIA_URL }}reg_task_egg_collection.png" alt="Regular Tasks, Egg Collection Icon" class="nav-link-image sub-nav-link-image">
-                Egg Collection
+                Collecting
             </a>
         </li>
         <li class="nav-item text-wrap">
             <a class="nav-link sub-nav-link" href="{% url 'feeding_time' %}">
                 <img src="{{ MEDIA_URL }}reg_task_feeding_time.png" alt="Regular Tasks, Feeding Time Icon" class="nav-link-image sub-nav-link-image">
-                Feeding Time
+                Feeding
             </a>
         </li>
         <li class="nav-item text-wrap">
             <a class="nav-link sub-nav-link active" href="{% url 'watering_time' %}">
                 <img src="{{ MEDIA_URL }}reg_task_water.png" alt="Regular Tasks, Watering Time Icon" class="nav-link-image sub-nav-link-image">
-                Feeding Time
+                Watering
             </a>
         </li>
         <li class="nav-item text-wrap">
             <a class="nav-link sub-nav-link" href="{% url 'coop_cleaning' %}">
                 <img src="{{ MEDIA_URL }}reg_task_coop_cleaning.png" alt="Regular Tasks, Coop Cleaning Icon" class="nav-link-image sub-nav-link-image">
-                Coop Cleaning
+                Cleaning
             </a>
         </li>
     </ul>
@@ -150,7 +150,7 @@
 
 <!-- MAIN SECTION  -->
 <div class="element-container">
-    <form method="POST" action="{% url 'feeding_time' %}" enctype="multipart/form-data" name="feeding_time" autocomplete="off">
+    <form method="POST" action="{% url 'watering_time' %}" enctype="multipart/form-data" name="watering_time" autocomplete="off">
         {% csrf_token %}
 
         <div class="form-data">
@@ -166,70 +166,6 @@
                 <hr class="hr-large">
             </div>
 
-            <!-- Feed Section -->
-            <section name="feeds">
-                <div class="container">
-                    <div class="row bottom-margin row-name">
-                        <div class="col-2">
-                            <img src="{{ MEDIA_URL }}reg_task_feed.png" alt="Feed icon" class="non-round-icon">
-                        </div>
-                        <div class="col-10 content-vertical-center">
-                            <h4>Feed</h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feed Type -->
-                <div style="position: relative;">
-                    <div class="bottom-margin label-float">
-                        {{ form.feed_name }}
-                        <label id="feed-type-label" for="feed-name">Feed Type</label>
-                    </div>
-                    <!-- This div is the dropdown that displays when the User adds a letter, or string of, that have a match in the feed types in the db -->
-                    <div class="auto-suggest-dropdown" id="feed-suggestions-list">
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row bottom-margin">
-                        <div class="col-9 col-css label-float">
-                            {{ form.amount_food_rem }}
-                            <label for="amount-food-rem">Amount of Food Remaining</label>
-                        </div>
-                        <div class="col-1">
-                        </div>
-                        <div class="col-2 col-css">
-                            <select name="weights_and_measures_units" id="weights-and-measures-units">
-                                <option value="g">g</option>
-                                <option value="kg">kg</option>
-                                <option value="oz">oz</option>
-                                <option value="lb">lb</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row bottom-margin">
-                        <div class="col-9 col-css label-float">
-                            {{ form.amount_food_added }}
-                            <label for="amount-food-added">Amount of Food Added</label>
-                        </div>
-                        <div class="col-1">
-                        </div>
-                        <div class="col-2 col-css">
-                            <select name="weights_and_measures_units" id="weights-and-measures-units">
-                                <option value="g">g</option>
-                                <option value="kg">kg</option>
-                                <option value="oz">oz</option>
-                                <option value="lb">lb</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="container" name="feeds-container"></div>
-                <div class="add-another-btn-div bottom-margin">
-                    <button href="" type="button" class="button add-another-btn" onclick="addAnotherFeed()">Add Another</button>
-                </div>
-            </section>
-            <div class="bottom-margin">
-                <hr class="hr-large">
-            </div>
 
             <!-- Water Section -->
             <section name="water">
@@ -242,8 +178,8 @@
                     </div>
                 </div>
                 
-                <div class="row bottom-margin label-float">
-                    <div class="col-9 col-css">
+                <div class="row bottom-margin" id="water-remaining-div">
+                    <div class="col-9 col-css label-float">
                         {{ form.amount_water_rem }}
                         <label for="amount-water-rem">Amount of Water Remaining</label>
                     </div>
@@ -257,10 +193,25 @@
                         </select>
                     </div>
                 </div>
-                <div class="row bottom-margin label-float">
-                    <div class="col-9 col-css">
+                <div class="row bottom-margin" id="water-added-div">
+                    <div class="col-9 col-css label-float">
                         {{ form.amount_water_added }}
                         <label for="amount-water-added">Amount of Water Added</label>
+                    </div>
+                    <div class="col-1">
+                    </div>
+                    <div class="col-2 col-css">
+                        <select name="weights_and_measures_units" id="weights-and-measures-units">
+                            <option value="g">lt</option>
+                            <option value="kg">fl oz</option>
+                            <option value="oz">gallon</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row bottom-margin" id="water-total-div">
+                    <div class="col-9 col-css label-float">
+                        {{ form.water_total }}
+                        <label for="water-total">Amount of Water in Total</label>
                     </div>
                     <div class="col-1">
                     </div>
@@ -302,5 +253,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-    <script src="{% static 'regular_tasks/js/regular_tasks_feeding_time.js' %}"></script>
+    <script src="{% static 'regular_tasks/js/regular_tasks_watering_time.js' %}"></script>
 {% endblock %}

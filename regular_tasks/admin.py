@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import EggCollection, FeedingTime, CoopCleaning, Feeds, Disinfectants
+from .models import EggCollection, FeedingTime, CoopCleaning, Feeds, Disinfectants, WateringTime
 
 
 class DisinfectantsAdmin(admin.ModelAdmin):
@@ -49,12 +49,22 @@ class FeedingTimeAdmin(admin.ModelAdmin):
         'date',
         'farm_profile_id',
         'flock_id',
-        # 'feed_type_id',
         'feed_name',
         'amount_food_rem',
         'amount_food_added',
         'amount_food_consumed',
         'feeder_amount',
+        'notes'
+    )
+
+
+class WateringTimeAdmin(admin.ModelAdmin):
+    """Admin layout for Feeding Time Admin table"""
+    list_display = (
+        'id',
+        'date',
+        'farm_profile_id',
+        'flock_id',
         'amount_water_rem',
         'amount_water_added',
         'amount_water_consumed',
@@ -77,6 +87,7 @@ class CoopCleaningAdmin(admin.ModelAdmin):
 
 admin.site.register(EggCollection, EggCollectionAdmin)
 admin.site.register(FeedingTime, FeedingTimeAdmin)
+admin.site.register(WateringTime, WateringTimeAdmin)
 admin.site.register(CoopCleaning, CoopCleaningAdmin)
 admin.site.register(Feeds, FeedsAdmin)
 admin.site.register(Disinfectants, DisinfectantsAdmin)
