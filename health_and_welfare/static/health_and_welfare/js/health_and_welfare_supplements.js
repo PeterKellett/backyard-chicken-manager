@@ -1,6 +1,6 @@
 console.log("health_and_welfare_supplements.js");
 
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/health_and_welfare/get_supplements')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/health_and_welfare/get_supplements')
 .then(response => response.json())
 .then(data => {
     console.log("Fetch supplement type fn fires");

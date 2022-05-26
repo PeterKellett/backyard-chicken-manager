@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('BCM_SECRET_KEY', '')
 
-BCM_MAP_KEY = os.environ.get('BCM_MAPS_KEY', '')
+BCM_MAPS_KEY = os.environ.get('BCM_MAPS_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

@@ -20,10 +20,10 @@ class PurchasesForm(forms.ModelForm):
         super(PurchasesForm, self).__init__(*args, **kwargs)
         self.fields['category'].empty_label = 'Category'
         self.fields['category'].initial = "Category"
-        self.fields['category'].show_hidden_initial = True
+        # self.fields['category'].show_hidden_initial = True
         self.fields['payment_method'].empty_label = 'Payment Method'
         self.fields['payment_method'].initial = "Payment Method"
-        self.fields['payment_method'].show_hidden_initial = True
+        # self.fields['payment_method'].show_hidden_initial = True
 
     class Meta:
         """ Meta Class Docstring here as required """
@@ -90,7 +90,7 @@ class PurchasesForm(forms.ModelForm):
                                                 #   'onkeyup': "showSuggestionsDiseases(this.value, 'product')",
                                                   'placeholder':
                                                   "Seller Name"}),
-            'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
+            'notes': forms.Textarea(attrs={'class': '',
                                            'id': 'notes',
                                            'name': 'notes',
                                            'placeholder':
@@ -110,7 +110,7 @@ class WithdrawalsForm(forms.ModelForm):
         super(WithdrawalsForm, self).__init__(*args, **kwargs)
         self.fields['payment_method'].empty_label = 'Method of Withdrawal'
         self.fields['payment_method'].initial = "Method of Withdrawal"
-        self.fields['payment_method'].show_hidden_initial = True
+        # self.fields['payment_method'].show_hidden_initial = True
 
     class Meta:
         """ Meta Class Docstring here as required """
@@ -132,7 +132,7 @@ class WithdrawalsForm(forms.ModelForm):
                                                   'name': 'payment_method',
                                                   'placeholder':
                                                   "Method of Withdrawal"}),
-            'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
+            'notes': forms.Textarea(attrs={'class': '',
                                            'id': 'notes',
                                            'name': 'notes',
                                            'placeholder':

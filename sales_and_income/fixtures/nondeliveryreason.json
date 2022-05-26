@@ -3,5 +3,6 @@
     {"pk": 2, "model": "sales_and_income.nondeliveryreason", "fields": {"reason": "Order Cancelled"}},
     {"pk": 3, "model": "sales_and_income.nondeliveryreason", "fields": {"reason": "Insufficient Time"}},
     {"pk": 4, "model": "sales_and_income.nondeliveryreason", "fields": {"reason": "Insufficient Stock"}},
-    {"pk": 5, "model": "sales_and_income.nondeliveryreason", "fields": {"reason": "Other"}}
+    {"pk": 5, "model": "sales_and_income.nondeliveryreason", "fields": {"reason": "No Longer a Customer"}},
+    {"pk": 6, "model": "sales_and_income.nondeliveryreason", "fields": {"reason": "Other"}}
 ]

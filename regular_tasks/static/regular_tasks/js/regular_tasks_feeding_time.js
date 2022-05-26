@@ -1,6 +1,6 @@
 console.log("Regular tasks feeding time js start");
 
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/regular_tasks/get_feeds')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regular_tasks/get_feeds')
 .then(response => response.json())
 .then(data => {
     console.log("Fetch feed type fn fires");

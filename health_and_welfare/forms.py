@@ -30,7 +30,7 @@ class SupplementsForm(forms.ModelForm):
 
         widgets = {
             'date': forms.DateTimeInput,
-            'supplement_name': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'supplement_name': forms.TextInput(attrs={'class': '',
                                                       'id': 'supplement-name',
                                                       'name': 'supplement_name',
                                                       'value': '',
@@ -38,7 +38,7 @@ class SupplementsForm(forms.ModelForm):
                                                       'placeholder':
                                                       "Supplement Name"}),
             'qty_hens': forms.TextInput(attrs={'class':
-                                               'hide-placeholder',
+                                               '',
                                                'id':
                                                'qty-hens',
                                                'name':
@@ -50,7 +50,7 @@ class SupplementsForm(forms.ModelForm):
                                                'step': '1',
                                                'min': '0'}),
             'qty_chicks': forms.TextInput(attrs={'class':
-                                                 'hide-placeholder',
+                                                 '',
                                                  'id':
                                                  'qty-chicks',
                                                  'name':
@@ -62,7 +62,7 @@ class SupplementsForm(forms.ModelForm):
                                                  'step': '1',
                                                  'min': '0'}),
             'qty_cocks': forms.TextInput(attrs={'class':
-                                                'hide-placeholder',
+                                                '',
                                                 'id':
                                                 'qty-cocks',
                                                 'name':
@@ -73,7 +73,7 @@ class SupplementsForm(forms.ModelForm):
                                                 'value': '',
                                                 'step': '1',
                                                 'min': '0'}),
-            'dosage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'dosage_amount': forms.TextInput(attrs={'class': '',
                                                     'id': 'dosage-amount',
                                                     'name': 'dosage_amount',
                                                     'placeholder':
@@ -88,7 +88,7 @@ class SupplementsForm(forms.ModelForm):
                                                'placeholder':
                                                "VET Name",
                                                'value': ''}),
-            'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
+            'notes': forms.Textarea(attrs={'class': '',
                                            'id': 'notes',
                                            'name': 'notes',
                                            'placeholder':
@@ -138,14 +138,14 @@ class MedicinesForm(forms.ModelForm):
 
         widgets = {
             'date': forms.DateTimeInput,
-            'medicine_name': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'medicine_name': forms.TextInput(attrs={'class': '',
                                                     'id': 'medicine-name',
                                                     'name': 'medicine_name',
                                                     'value': '',
                                                     'onkeyup': "showSuggestionsMedicines(this.value, 'select-medicine-label')",
                                                     'placeholder':
                                                     "Medicine Name"}),
-            'disease_protected_against': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'disease_protected_against': forms.TextInput(attrs={'class': '',
                                                                 'id': 'disease-protected-against',
                                                                 'name': 'disease_protected_against',
                                                                 'value': '',
@@ -153,7 +153,7 @@ class MedicinesForm(forms.ModelForm):
                                                                 'placeholder':
                                                                 "Disease Protected Against"}),
             'qty_hens': forms.TextInput(attrs={'class':
-                                               'hide-placeholder',
+                                               '',
                                                'id':
                                                'qty-hens',
                                                'name':
@@ -165,7 +165,7 @@ class MedicinesForm(forms.ModelForm):
                                                'step': '1',
                                                'min': '0'}),
             'qty_chicks': forms.TextInput(attrs={'class':
-                                                 'hide-placeholder',
+                                                 '',
                                                  'id':
                                                  'qty-chicks',
                                                  'name':
@@ -177,7 +177,7 @@ class MedicinesForm(forms.ModelForm):
                                                  'step': '1',
                                                  'min': '0'}),
             'qty_cocks': forms.TextInput(attrs={'class':
-                                                'hide-placeholder',
+                                                '',
                                                 'id':
                                                 'qty-cocks',
                                                 'name':
@@ -188,7 +188,7 @@ class MedicinesForm(forms.ModelForm):
                                                 'value': '',
                                                 'step': '1',
                                                 'min': '0'}),
-            'dosage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'dosage_amount': forms.TextInput(attrs={'class': '',
                                                      'id': 'doseage-amount',
                                                      'name': 'doseage_amount',
                                                      'type': 'number',
@@ -199,7 +199,7 @@ class MedicinesForm(forms.ModelForm):
                                                          'id': 'administration-method',
                                                          'name': 'administration_method',
                                                          'placeholder':
-                                                         "Administration Method PH"}),
+                                                         "Administration Method"}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                            'id': 'vet-administered',
                                                            'name': 'vet_administered'}),
@@ -209,7 +209,7 @@ class MedicinesForm(forms.ModelForm):
                                                'placeholder':
                                                "VET Name",
                                                'value': ''}),
-            'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
+            'notes': forms.Textarea(attrs={'class': '',
                                            'id': 'notes',
                                            'name': 'notes',
                                            'placeholder':
@@ -239,7 +239,7 @@ class VaccinesForm(forms.ModelForm):
         # This removes the default ------ that displays instead of a label because the input is a dropdown
         self.fields['administration_method'].empty_label = 'Select Administration Method'
         self.fields['administration_method'].initial = "Select Administration Method"
-        self.fields['administration_method'].show_hidden_initial = False
+        # self.fields['administration_method'].show_hidden_initial = False
 
     class Meta:
         """ Meta Class Docstring here as required """
@@ -261,14 +261,14 @@ class VaccinesForm(forms.ModelForm):
         widgets = {
             'date': forms.DateTimeInput,
             'flock': forms.CheckboxInput,
-            'vaccine_name': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'vaccine_name': forms.TextInput(attrs={'class': '',
                                                    'id': 'vaccine-name',
                                                    'name': 'vaccine_name',
                                                    'value': '',
                                                    'onkeyup': "showSuggestionsVaccines(this.value, 'select-vaccine-label')",
                                                    'placeholder':
                                                    "Vaccine Name"}),
-            'virus_protected_against': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'virus_protected_against': forms.TextInput(attrs={'class': '',
                                                               'id': 'virus-protected-against',
                                                               'name': 'virus_protected_against',
                                                               'value': '',
@@ -276,7 +276,7 @@ class VaccinesForm(forms.ModelForm):
                                                               'placeholder':
                                                               "Virus Protected Against"}),
             'qty_hens': forms.TextInput(attrs={'class':
-                                               'hide-placeholder',
+                                               '',
                                                'id':
                                                'qty-hens',
                                                'name':
@@ -288,7 +288,7 @@ class VaccinesForm(forms.ModelForm):
                                                'step': '1',
                                                'min': '0'}),
             'qty_chicks': forms.TextInput(attrs={'class':
-                                                 'hide-placeholder',
+                                                 '',
                                                  'id':
                                                  'qty-chicks',
                                                  'name':
@@ -300,7 +300,7 @@ class VaccinesForm(forms.ModelForm):
                                                  'step': '1',
                                                  'min': '0'}),
             'qty_cocks': forms.TextInput(attrs={'class':
-                                                'hide-placeholder',
+                                                '',
                                                 'id':
                                                 'qty-cocks',
                                                 'name':
@@ -311,7 +311,7 @@ class VaccinesForm(forms.ModelForm):
                                                 'value': '',
                                                 'step': '1',
                                                 'min': '0'}),
-            'dosage_amount': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'dosage_amount': forms.TextInput(attrs={'class': '',
                                                      'id': 'doseage-amount',
                                                      'name': 'doseage_amount',
                                                      'type': 'number',
@@ -322,7 +322,7 @@ class VaccinesForm(forms.ModelForm):
                                                          'id': 'administration-method',
                                                          'name': 'administration_method',
                                                          'placeholder':
-                                                         "Administration Method PH"}),
+                                                         "Administration Method"}),
             'vet_administered': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                            'id': 'vet-administered',
                                                            'name': 'vet_administered'}),
@@ -332,7 +332,7 @@ class VaccinesForm(forms.ModelForm):
                                                'placeholder':
                                                "VET Name",
                                                'value': ''}),
-            'notes': forms.Textarea(attrs={'class': 'hide-placeholder',
+            'notes': forms.Textarea(attrs={'class': '',
                                            'id': 'notes',
                                            'name': 'notes',
                                            'placeholder':

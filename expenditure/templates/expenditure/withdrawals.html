@@ -97,13 +97,13 @@
                 <!-- Method of Withdrawal -->
                 <div class="bottom-margin label-float">
                     {{ form.payment_method }}
-                    <label class="hide-label" id="method-of-withdrawal-label" for="method-of-withdrawal">Method of Withdrawal</label>
+                    <label class="hide-label" for="payment-method">Method of Withdrawal</label>
                 </div>
                 <!-- Amount Withdrawn -->
                 <div class="row bottom-margin">
                     <div class="col-9 col-css label-float">
                         {{ form.amount_withdrawn }}
-                        <label id="amount-withdrawn-label" for="amount-withdrawn">Amount Withdrawn</label>
+                        <label for="amount-withdrawn">Amount Withdrawn</label>
                     </div>
                     <div class="col-1">
                     </div>
@@ -140,5 +140,4 @@
 
 {% block postloadjs %}
     <script src="{% static 'regular_tasks/js/regular_tasks.js' %}"></script>
-    <script src="{% static 'js/hcc_quantities.js' %}"></script>
 {% endblock %}

@@ -1,6 +1,5 @@
 [
-    {"pk": 1, "model": "sales_and_income.customerstatus", "fields": {"status": "regular customer"}},
-    {"pk": 2, "model": "sales_and_income.customerstatus", "fields": {"status": "irregular customer"}},
-    {"pk": 3, "model": "sales_and_income.customerstatus", "fields": {"status": "former customer"}},
-    {"pk": 4, "model": "sales_and_income.customerstatus", "fields": {"status": "not a customer"}}
+    {"pk": 1, "model": "sales_and_income.customerstatus", "fields": {"status": "active"}},
+    {"pk": 2, "model": "sales_and_income.customerstatus", "fields": {"status": "inactive"}},
+    {"pk": 3, "model": "sales_and_income.customerstatus", "fields": {"status": "not a customer"}}
 ]

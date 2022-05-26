@@ -5,7 +5,7 @@ function setInputTextVaccine(inputId, text) {
     document.getElementById(inputId).value = text;
     document.getElementById('vaccine-suggestions-list').style.display = "none";
 }
-function showSuggestionsVaccines(value, labelId) {
+function showSuggestionsVaccines(value) {
     if (value.length) {
         let suggestions = '';
         VACCINES.filter(item => item.vaccine_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
@@ -18,11 +18,10 @@ function showSuggestionsVaccines(value, labelId) {
             document.getElementById('vaccine-suggestions-list').style.display = "none";
         }
     } else {
-        // hideSelectLabel(labelId)
         document.getElementById('vaccine-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/health_and_welfare/get_vaccines')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/health_and_welfare/get_vaccines')
 .then(response => response.json())
 .then(data => {
     VACCINES = data.vaccines;
@@ -33,7 +32,7 @@ function setInputTextVirus(inputId, text) {
     document.getElementById(inputId).value = text;
     document.getElementById('virus-suggestions-list').style.display = "none";
 }
-function showSuggestionsViruses(value, labelId) {
+function showSuggestionsViruses(value) {
     if (value.length) {
         let suggestions = '';
         VIRUSES.filter(item => item.virus_name.toLowerCase().includes(value.toLowerCase())).forEach(item => {
@@ -46,11 +45,10 @@ function showSuggestionsViruses(value, labelId) {
             document.getElementById('virus-suggestions-list').style.display = "none";
         }
     } else {
-        // hideSelectLabel(labelId)
         document.getElementById('virus-suggestions-list').style.display = "none";
     }
 }
-fetch('https://8000-peterkellett-backyardchi-trwsv0uk1lf.ws-eu45.gitpod.io/health_and_welfare/get_viruses')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/health_and_welfare/get_viruses')
 .then(response => response.json())
 .then(data => {
     VIRUSES = data.viruses;
