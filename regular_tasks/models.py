@@ -171,16 +171,16 @@ class Disinfectants(models.Model):
 class CoopCleaning(models.Model):
     """Model used for storing coop cleaning data"""
     coop = models.ForeignKey(Coops,
-                             null=True,
-                             blank=True,
+                             null=False,
+                             blank=False,
                              on_delete=models.CASCADE)
     date = models.DateTimeField(null=False,
                                 blank=False)
     disinfected = models.BooleanField(null=True,
                                       blank=True)
     disinfectant_name = models.CharField(max_length=50,
-                                         null=False,
-                                         blank=False)
+                                         null=True,
+                                         blank=True)
     notes = models.TextField(null=True,
                              blank=True)
     images = models.ImageField(null=True,

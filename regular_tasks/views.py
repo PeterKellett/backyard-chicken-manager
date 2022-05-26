@@ -223,18 +223,19 @@ def coop_cleaning(request):
             form = form.save(commit=False)
             # print(("form.disinfectant_name = ", form.disinfectant_name))
             form.farm_profile = farmprofile[0]
-            disinfectant = Disinfectants.objects.filter(farm_profile__id=farmprofile[0].id).filter(disinfectant_name=form.disinfectant_name)  # Get the feed object using the feed_type id submitted with the form.
-            if disinfectant:
-                print("YES")
-                print("disinfectant =", disinfectant)
-                print("disinfectant[0].disinfectant_name = ", disinfectant[0].disinfectant_name)
-            else:
-                print("NO")
-                disinfectant = Disinfectants(
-                    farm_profile=farmprofile[0],
-                    disinfectant_name=form.disinfectant_name
-                )
-                disinfectant.save()
+            if form.disinfectant_name:
+                disinfectant = Disinfectants.objects.filter(farm_profile__id=farmprofile[0].id).filter(disinfectant_name=form.disinfectant_name)  # Get the feed object using the feed_type id submitted with the form.
+                if disinfectant:
+                    print("YES")
+                    print("disinfectant =", disinfectant)
+                    print("disinfectant[0].disinfectant_name = ", disinfectant[0].disinfectant_name)
+                else:
+                    print("NO")
+                    disinfectant = Disinfectants(
+                        farm_profile=farmprofile[0],
+                        disinfectant_name=form.disinfectant_name
+                    )
+                    disinfectant.save()
             form.save()
             return HttpResponseRedirect('/profile')
     else:
