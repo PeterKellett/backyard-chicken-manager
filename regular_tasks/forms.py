@@ -41,7 +41,8 @@ class EggCollectionForm(forms.ModelForm):
                                                       'oninput': "doCalculations()",
                                                       'value': ''}),
             'qty_eggs_damaged': forms.TextInput(attrs={'class':
-                                                       'saleable-eggs-input',
+                                                       'saleable-eggs-input \
+                                                        advanced-section-input',
                                                        'id':
                                                        'qty-eggs-damaged',
                                                        'name':
@@ -54,7 +55,8 @@ class EggCollectionForm(forms.ModelForm):
                                                        'min': '0'}),
             'qty_eggs_broken': forms.TextInput(attrs={'class':
                                                       'saleable-eggs-input \
-                                                      average-weight-input',
+                                                       average-weight-input \
+                                                       advanced-section-input',
                                                       'id':
                                                       'qty-eggs-broken',
                                                       'name':
@@ -66,7 +68,8 @@ class EggCollectionForm(forms.ModelForm):
                                                       'step': '1',
                                                       'min': '0'}),
             'qty_eggs_personal_use': forms.TextInput(attrs={'class':
-                                                            'saleable-eggs-input',
+                                                            'saleable-eggs-input \
+                                                             advanced-section-input',
                                                             'id':
                                                             'qty-eggs-personal-use',
                                                             'name':
@@ -78,7 +81,8 @@ class EggCollectionForm(forms.ModelForm):
                                                             'min': '0',
                                                             'step': '1'}),
             'qty_eggs_given_free': forms.TextInput(attrs={'class':
-                                                          'saleable-eggs-input',
+                                                          'saleable-eggs-input \
+                                                           advanced-section-input',
                                                           'id':
                                                           'qty-eggs-given-free',
                                                           'name':
@@ -147,7 +151,7 @@ class FeedingTimeForm(forms.ModelForm):
 
         widgets = {
             'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
-            'feed_name': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'feed_name': forms.TextInput(attrs={'class': '',
                                                 'id': 'feed-name',
                                                 'name': 'feed_name',
                                                 'value': '',
@@ -256,7 +260,7 @@ class CoopCleaningForm(forms.ModelForm):
             'disinfected': forms.CheckboxInput(attrs={'class': 'click-to-show',
                                                       'id': 'disinfected',
                                                       'name': 'disinfected'}),
-            'disinfectant_name': forms.TextInput(attrs={'class': 'hide-placeholder',
+            'disinfectant_name': forms.TextInput(attrs={'class': '',
                                                         'id': 'disinfectant-name',
                                                         'name': 'disinfectant_name',
                                                         'value': '',

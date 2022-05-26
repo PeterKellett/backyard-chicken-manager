@@ -129,25 +129,20 @@
                 <div class="container" id="egg-qty-2col-div" >
                     <div class="row">
                         <!-- Eggs Laid Trays -->
-                        <div class="col two-inputs-left">
+                        <div class="col two-inputs-left" id="trays_input_div">
                             <div class="bottom-margin label-float">
                                 {{ form.qty_egg_trays }}
                                 <label for="qty-egg-trays">Qty Laid - Trays</label>
                             </div>
                         </div>
                         <!-- Eggs Laid Singles-->
-                        <div class="col two-inputs-right">
+                        <div class="col">
                             <div class="bottom-margin label-float">
                                 {{ form.qty_egg_singles }}
                                 <label for="qty-egg-singles">Qty Laid - Single</label>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Eggs Laid Singles-->
-                <div id="egg-qty-1col-div" class="bottom-margin label-float">
-                    {{ form.qty_egg_singles }}
-                    <label for="qty-egg-singles">Qty Laid - Single</label>
                 </div>
                 <!-- Total Eggs Laid -->
                 <div class="row bottom-margin">
@@ -165,85 +160,83 @@
 
             <!-- Advanced Section - Bootstrap Collapse https://getbootstrap.com/docs/5.0/components/collapse/-->
             <!-- Section contained within a div to allow for show and hide of section and hr -->
-            <div class="show-on-change">
-                <section id="egg-collection-advanced-section" name="advanced-section">
-                        <div class="bottom-margin panel-div label-float">
-                            <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                <h5>Advanced (Click on me)</h5>
-                            </a>
-                        </div>
-                        <div class="collapse in" id="collapseExample">
-                            <!-- Eggs Damaged -->
-                            <div class="bottom-margin label-float col-css-right">
-                                {{ form.qty_eggs_damaged }}
-                                <label for="qty-eggs-damaged">Qty of Eggs Damaged (OK for personal use)</label>
-                            </div>
-                            <!-- Eggs Broken -->
-                            <div class="bottom-margin label-float">
-                                {{ form.qty_eggs_broken }}
-                                <label for="qty-eggs-broken">Qty of Eggs Broken (Unuseable)</label>                
-                            </div>
-                            <div class="bottom-margin">
-                                <hr class="hr-small">
-                            </div>
-                            <!-- Eggs Personal Use -->
-                            <div class="bottom-margin label-float">
-                                {{ form.qty_eggs_personal_use }}
-                                <label for="qty-eggs-personal-use">Qty of Eggs Taken for Personal Use</label> 
-                            </div>
-                            <!-- Eggs Given Free -->
-                            <div class="bottom-margin label-float">
-                                {{ form.qty_eggs_given_free }}
-                                <label for="qty-eggs-given-free">Qty of Eggs Given Away Free</label> 
-                            </div>
-                            <div class="bottom-margin">
-                                <hr class="hr-small">
-                            </div>
-                            <!-- Eggs Total Weight -->
-                            <div class="row bottom-margin">
-                                <div class="col-9 col-css label-float">
-                                    {{ form.weight_total_eggs_laid }}
-                                    <label for="weight-total-eggs-laid">Laid Eggs Weight (excl. Broken)</label>
-                                </div>
-                                <div class="col-1" id="weight-value-total-eggs-laid">
-                                </div>
-                                <div class="col-2 col-css bottom-margin">
-                                    <select name="weights_and_measures_units" id="weights-and-measures-units">
-                                        <option value="g">g</option>
-                                        <option value="kg">kg</option>
-                                        <option value="oz">oz</option>
-                                        <option value="lb">lb</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Eggs Average Weight -->
-                            <div class="row bottom-margin">
-                                <div class="col-10 col-css">
-                                    <h5 class="row-name">Average Egg Weight:</h5>
-                                </div>
-                                <div class="col-2 col-css col-css-right label-float">
-                                    <h5><span id="avg-egg-weight"></span><span class="unit-of-measurement" id="unit-of-measurement"></span></h5>
-                                </div>
-                            </div>
-                            <div class="bottom-margin">
-                                <hr class="hr-large">
-                            </div>
-                            <!-- Eggs Saleable Qty -->
-                            <div class="row bottom-margin">
-                                <div class="col-10 col-css">
-                                    <h5 class="row-name">Saleable Quantity:</h5>
-                                </div>
-                                <div class="col-2 col-css col-css-right label-float">
-                                    <h5 id="qty-saleable-eggs"></h5>
-                                </div>
-                            </div>
-                        </div>
-                </section>
 
+            <section id="egg-collection-advanced-section" name="advanced-section">
+                <div class="bottom-margin panel-div label-float">
+                    <a class="bottom-margin panel-title" id="advanced-div" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <h5>Advanced (Click on me)</h5>
+                    </a>
+                </div>
+                <div class="collapse in" id="collapseExample">
+                    <!-- Eggs Damaged -->
+                    <div class="bottom-margin label-float col-css-right">
+                        {{ form.qty_eggs_damaged }}
+                        <label for="qty-eggs-damaged">Qty of Eggs Damaged (OK for personal use)</label>
+                    </div>
+                    <!-- Eggs Broken -->
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_eggs_broken }}
+                        <label for="qty-eggs-broken">Qty of Eggs Broken (Unuseable)</label>                
+                    </div>
+                    <div class="bottom-margin">
+                        <hr class="hr-small">
+                    </div>
+                    <!-- Eggs Personal Use -->
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_eggs_personal_use }}
+                        <label for="qty-eggs-personal-use">Qty of Eggs Taken for Personal Use</label> 
+                    </div>
+                    <!-- Eggs Given Free -->
+                    <div class="bottom-margin label-float">
+                        {{ form.qty_eggs_given_free }}
+                        <label for="qty-eggs-given-free">Qty of Eggs Given Away Free</label> 
+                    </div>
+                    <div class="bottom-margin">
+                        <hr class="hr-small">
+                    </div>
+                    <!-- Eggs Total Weight -->
+                    <div class="row bottom-margin">
+                        <div class="col-9 col-css label-float">
+                            {{ form.weight_total_eggs_laid }}
+                            <label for="weight-total-eggs-laid">Laid Eggs Weight (excl. Broken)</label>
+                        </div>
+                        <div class="col-1" id="weight-value-total-eggs-laid">
+                        </div>
+                        <div class="col-2 col-css bottom-margin">
+                            <select name="weights_and_measures_units" id="weights-and-measures-units">
+                                <option value="kg">kg</option>
+                                <option value="g">g</option>
+                                <option value="lb">lb</option>
+                                <option value="oz">oz</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Eggs Average Weight -->
+                    <div class="row bottom-margin">
+                        <div class="col-9 col-css">
+                            <h5 class="row-name">Average Egg Weight:</h5>
+                        </div>
+                        <div class="col-3 col-css col-css-right label-float">
+                            <h5><span id="avg-egg-weight"></span><span class="unit-of-measurement" id="unit-of-measurement"></span></h5>
+                        </div>
+                    </div>
+                    <div class="bottom-margin">
+                        <hr class="hr-large">
+                    </div>
+                    <!-- Eggs Saleable Qty -->
+                    <div class="row bottom-margin">
+                        <div class="col-10 col-css">
+                            <h5 class="row-name">Saleable Quantity:</h5>
+                        </div>
+                        <div class="col-2 col-css col-css-right label-float">
+                            <h5 id="qty-saleable-eggs"></h5>
+                        </div>
+                    </div>
+                </div>
                 <div class="bottom-margin">
                     <hr class="hr-large">
                 </div>
-            </div>
+            </section>
 
             <!-- Notes & Images Section -->
             {% include 'html_includes/notes_and_pics.html' %}

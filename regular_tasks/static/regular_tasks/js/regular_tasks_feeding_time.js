@@ -10,7 +10,6 @@ $(document).ready(function(){
     //     setInputFields(feed);
     // })
 });
-
 fetch('https://8000-peterkellet-backyardchi-6r0pf5jpjxn.ws-eu45.gitpod.io/regular_tasks/get_feeds')
 .then(response => response.json())
 .then(data => {

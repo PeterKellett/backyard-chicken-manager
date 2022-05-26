@@ -24,24 +24,17 @@
     
             <!-- Modal Header & Title -->
             <div class="modal-header">
-                <h4 class="modal-title">Feeding Time - Set-up Instructions</h4>
+                <h4 class="modal-title">Watering - Set-up Instructions</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <!-- Modal body - Instructions -->
             <div class="modal-body">
-                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> To get started we need to know the total amount of 
-                                                                                         food and water in your feeders when you record your 
-                                                                                         first feed. For example, if there is 1kg in the feeder 
-                                                                                         from the previous feed and you then add 2kg, put 3kg 
-                                                                                         in the field below. The same principal applies to water.</p>
-                <p class="text-start modal-body">For all subsequent feeds, you will need to enter the amount of food or water remaining
-                                                 from the previous feed, plus the amount added.</p>
-                <p class="text-start modal-body"><span class="fw-bold">PLEASE NOTE:</span> If you scatter your food as opposed to using a feeder,
-                                                                                           enter 0 below and in the "Amount of Food Remaining" on
-                                                                                           subsequent feeds, unless you have a means of estimating
-                                                                                           the amount.</p>
-                <p class="text-start modal-body">In addition to specific feed types, you should also record the amount of food scraps given.</p>
+                <p class="text-start modal-body"><span class="fw-bold">Set-Up:</span> To get started we need to know how much water you have most
+                                                                                      recently given to your birds. This allow us to make
+                                                                                      future consumption calculations.</p>
+                <p class="text-start modal-body"><span class="fw-bold">Subsequent Watering:</span> For all subsequent waterings, you will need to enter 
+                    the amount of water remaining from the previous watering, plus the amount added.</p>
             </div>
 
             <!-- Modal footer & Buttons -->
@@ -51,6 +44,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Sub Navigation Section -->
 <div class="element-container container-fluid sub-nav-container">
@@ -68,7 +62,7 @@
             </a>
         </li>
         <li class="nav-item text-wrap">
-            <a class="nav-link sub-nav-link active" href="{% url 'watering_time' %}">
+            <a class="nav-link sub-nav-link active" href="">
                 <img src="{{ MEDIA_URL }}reg_task_water.png" alt="Regular Tasks, Watering Time Icon" class="nav-link-image sub-nav-link-image">
                 Watering
             </a>
@@ -110,31 +104,22 @@
     
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Feeding Time - Page Instructions</h4>
+                <h4 class="modal-title">Watering - Page Instructions</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                <p class="text-start modal-body">Each time you feed your birds, complete this page.</p>
-                <p class="text-start modal-body"><span class="fw-bold">IMPORTANT!</span> The first time you record a feed,
-                                                                       it is vital that you state the total amount of food and water
-                                                                       in the feeders. For subsequent feeds, please indicate
-                                                                       the amount of food and water remaining in the feeders after the last
-                                                                       feed and the amount added. This allows us to calculate the
-                                                                       average amount of food and water consumed by each bird which can be
-                                                                       viewed in the "Reports" section.</p>
+                <p class="text-start modal-body">Each time you give water to your birds, complete this page. You will need to enter 
+                    the amount of water remaining from the previous watering, plus the amount added now.</p>
                 <ul class="text-start">
-                    <li><span class="fw-bold">Date:</span> Add the feeding date.</li>
-                    <li><span class="fw-bold">Select Flock:</span> Select which flock was fed (only displays if you have multiple flocks.
+                    <li><span class="fw-bold">Date:</span> Add the wateringing date.</li>
+                    <li><span class="fw-bold">Select Flock:</span> Select which flock was given water (only displays if you have multiple flocks.
                                                                    If you have several flocks, you can add another feeding after you click save).</li>
-                    <li><span class="fw-bold">Select Food:</span> This is the quantity of full trays.</li>
-                    <li><span class="fw-bold">Amount of Food Remaining:</span> Amount of feed remaining in the feeder prior to adding more.</li>
-                    <li><span class="fw-bold">Amount of Food Added:</span> Amount of food added to the feeder.</li>
                     <li><span class="fw-bold">Amount of Water Remaining:</span> Amount of water remaining in the feeder prior to adding more.</li>
                     <li><span class="fw-bold">Amount of Water Added:</span> Amount of water added to the feeder.</li>
-                    <li><span class="fw-bold">Notes:</span> If you have any notes about the collection, add them here.</li>
-                    <li><span class="fw-bold">Photos:</span> If you have any photos from the collection, upload them here.</li>
+                    <li><span class="fw-bold">Notes:</span> If you have any notes about the watering, add them here.</li>
+                    <li><span class="fw-bold">Photos:</span> If you have any photos from the watering, upload them here.</li>
                     <li><span class="fw-bold">Save Button:</span> Click this button when finished.</li>
                     <li><span class="fw-bold">Cancel Button:</span> Click this button to clear all data entered.</li>
                 </ul>

@@ -23,6 +23,7 @@ function showSuggestionsMedicines(value, labelId) {
         document.getElementById('medicine-suggestions-list').style.display = "none";
     }
 }
+
 fetch('https://8000-peterkellet-backyardchi-6r0pf5jpjxn.ws-eu45.gitpod.io/health_and_welfare/get_medicines')
 .then(response => response.json())
 .then(data => {
@@ -51,6 +52,7 @@ function showSuggestionsDiseases(value, labelId) {
         document.getElementById('disease-suggestions-list').style.display = "none";
     }
 }
+
 fetch('https://8000-peterkellet-backyardchi-6r0pf5jpjxn.ws-eu45.gitpod.io/health_and_welfare/get_diseases')
 .then(response => response.json())
 .then(data => {

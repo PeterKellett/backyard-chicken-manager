@@ -288,10 +288,11 @@ class EggCollectionSalesForm(forms.ModelForm):
                                                             	          'value': ''}),
             'notes': forms.Textarea(attrs={'class': '',
                                            'id': 'notes',
-                                           'name': 'botes',
+                                           'name': 'notes',
                                            'placeholder':
                                            "Notes",
                                            'value': ''}),
+                             
             'images': forms.ClearableFileInput(attrs={'class': 'upload',
                                                       'id': 'images-eggs-collection',
                                                       'name': 'images_eggs_collection'})                                                                 
