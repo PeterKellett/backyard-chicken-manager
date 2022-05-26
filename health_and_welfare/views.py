@@ -7,6 +7,7 @@ from profiles.models import FarmProfile, UserProfile
 from .forms import SupplementsForm, SupplementsNameForm, MedicinesForm, MedicinesNameForm, VaccinesForm, VaccinesNameForm
 from .models import MedicinesName, DiseasesName, VaccinesName, VirusesName, SupplementsName
 import json
+from django.db.models import Q
 
 
 # Create your views here.
@@ -14,8 +15,7 @@ def get_supplements(request):
     """view to current supplements"""
     userprofile = UserProfile.objects.get(user=request.user)
     farmprofile = userprofile.farmprofiles.all()
-    supplements = SupplementsName.objects.filter(farm_profile__id=farmprofile[0].id).values('supplement_name')
-    print("supplements = ", supplements)
+    supplements = SupplementsName.objects.filter(Q(farm_profile__id=farmprofile[0].id) | Q(farm_profile__id=None)).values('supplement_name')
     return JsonResponse({"supplements": list(supplements)}, safe=False)
 
 
@@ -70,13 +70,17 @@ def supplements(request):
 
 def get_diseases(request):
     """view to current flock"""
-    diseases = DiseasesName.objects.values('disease_name')
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    diseases = DiseasesName.objects.filter(Q(farm_profile__id=farmprofile[0].id) | Q(farm_profile__id=None)).values('disease_name')
     return JsonResponse({"diseases": list(diseases)}, safe=False)
 
 
 def get_medicines(request):
     """view to current flock"""
-    medicines = MedicinesName.objects.values('medicine_name')
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    medicines = MedicinesName.objects.filter(Q(farm_profile__id=farmprofile[0].id) | Q(farm_profile__id=None)).values('medicine_name')
     return JsonResponse({"medicines": list(medicines)}, safe=False)
 
 
@@ -101,7 +105,7 @@ def medicines(request):
             if not form.qty_cocks:
                 form.qty_cocks = 0
             form.dose_per_bird = (form.dosage_amount / (form.qty_hens + form.qty_chicks + form.qty_cocks))
-            medicine = MedicinesName.objects.filter(farm_profile__id=farmprofile[0].id).filter(medicine_name=form.medicine_name)  # Get the feed object using the feed_type id submitted with the form.
+            medicine = MedicinesName.objects.filter(medicine_name=form.medicine_name)  # Get the medicine object using the medicine_name submitted with the form.
             if not medicine:
                 print("YES")
                 medicine_name = MedicinesName(
@@ -109,6 +113,13 @@ def medicines(request):
                     medicine_name=form.medicine_name
                 )
                 medicine_name.save()
+            disease = DiseasesName.objects.filter(disease_name=form.disease_protected_against)
+            if not disease:
+                disease = DiseasesName(
+                    farm_profile=farmprofile[0],
+                    disease_name=form.disease_protected_against
+                )
+                disease.save()
             form.save()  # Save the form fully.
             return HttpResponseRedirect('/health_and_welfare/medicines/')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
     else:
@@ -123,12 +134,16 @@ def medicines(request):
 
 
 def get_viruses(request):
-    viruses = VirusesName.objects.values('virus_name')
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    viruses = VirusesName.objects.filter(Q(farm_profile__id=farmprofile[0].id) | Q(farm_profile__id=None)).values('virus_name')
     return JsonResponse({"viruses": list(viruses)}, safe=False)
 
 
 def get_vaccines(request):
-    vaccines = VaccinesName.objects.values('vaccine_name')
+    userprofile = UserProfile.objects.get(user=request.user)
+    farmprofile = userprofile.farmprofiles.all()
+    vaccines = VaccinesName.objects.filter(Q(farm_profile__id=farmprofile[0].id) | Q(farm_profile__id=None)).values('vaccine_name')
     return JsonResponse({"vaccines": list(vaccines)}, safe=False)
 
 
@@ -137,6 +152,7 @@ def vaccines(request):
     # vaccines_name = VaccinesName.objects.all()
     userprofile = UserProfile.objects.get(user=request.user)
     farmprofile = userprofile.farmprofiles.all()
+    print("farmprofile = ", farmprofile[0].id)
     if request.POST:
         form = VaccinesForm(request.POST, request.FILES)
         print("form = ", form)
@@ -154,7 +170,21 @@ def vaccines(request):
             if not form.qty_cocks:
                 form.qty_cocks = 0
             form.dose_per_bird = (form.dosage_amount / (form.qty_hens + form.qty_chicks + form.qty_cocks))
-            # vaccine = VaccinesName.objects.filter(farm_profile__id=farmprofile[0].id).filter(vaccine_name=form.vaccine_name)
+            vaccine = VaccinesName.objects.filter(vaccine_name=form.vaccine_name)
+            print("vaccine = ", vaccine)
+            if not vaccine:
+                vaccine = VaccinesName(
+                    farm_profile=farmprofile[0],
+                    vaccine_name=form.vaccine_name
+                )
+                vaccine.save()
+            virus = VirusesName.objects.filter(virus_name=form.virus_protected_against)
+            if not virus:
+                virus = VirusesName(
+                    farm_profile=farmprofile[0],
+                    virus_name=form.virus_protected_against
+                )
+                virus.save()
             form.save()  # Save the form fully.
             return HttpResponseRedirect('/health_and_welfare/vaccines/')  # Returning a HttpResponseRedirect is required with Django and then simply redirect to required view in the ()
         else:

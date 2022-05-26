@@ -23,8 +23,9 @@ class SupplementsName(models.Model):
         """Overwrite the default Django pluralisation"""
         verbose_name_plural = 'Supplement Names'
     farm_profile = models.ForeignKey(FarmProfile,
-                                     null=False,
-                                     blank=False,
+                                     null=True,
+                                     blank=True,
+                                     default=None,
                                      on_delete=models.CASCADE)
     supplement_name = models.CharField(max_length=50,
                                        null=False,
@@ -87,6 +88,10 @@ class DiseasesName(models.Model):
     class Meta:
         """Overwrite the default Django pluralisation"""
         verbose_name_plural = 'Disease Names'
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=True,
+                                     blank=True,
+                                     on_delete=models.CASCADE)
     disease_name = models.CharField(max_length=50,
                                     null=True,
                                     blank=True)
@@ -171,6 +176,10 @@ class VirusesName(models.Model):
     class Meta:
         """Overwrite the default Django pluralisation"""
         verbose_name_plural = 'Virus Names'
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=True,
+                                     blank=True,
+                                     on_delete=models.CASCADE)
     virus_name = models.CharField(max_length=50,
                                   null=True,
                                   blank=True)
@@ -184,6 +193,10 @@ class VaccinesName(models.Model):
     class Meta:
         """Overwrite the default Django pluralisation"""
         verbose_name_plural = 'Vaccine Names'
+    farm_profile = models.ForeignKey(FarmProfile,
+                                     null=True,
+                                     blank=True,
+                                     on_delete=models.CASCADE)
     vaccine_name = models.CharField(max_length=50,
                                     null=True,
                                     blank=True)

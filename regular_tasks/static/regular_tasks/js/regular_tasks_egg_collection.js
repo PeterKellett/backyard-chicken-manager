@@ -3,7 +3,6 @@ $(document).ready(function(){
     avgUnitOfMeasurement()
 });
 
-
 form_data = {};
 var traysQuantity;
 var total_eggs_laid;
@@ -11,7 +10,7 @@ var average_egg_weight;
 var saleable_eggs;
 var qtys_single_eggs;
 
-fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regular_tasks/trays_quantity')
+fetch('https://8000-peterkellet-backyardchi-6r0pf5jpjxn.ws-eu45.gitpod.io/regular_tasks/trays_quantity')
 .then(response => response.json())
 .then(data => {
     traysQuantity = data.trays_quantity;
@@ -131,10 +130,11 @@ function validate(event) {
 
 
 // Extracts the Qty of laying hens in a flock from Farm Profile in the db. This allows us to decide 
+// whether to display trays and singles, or just singles. The latter is set at less than 12 hens.
 // whether to display trays and singles inputs, or just singles. The latter is set at less than 12 hens.
 let hensQuantity;
 let trays_input_div = document.getElementById('trays_input_div');
-fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/flock_management/hens_quantity')
+fetch('https://8000-peterkellet-backyardchi-6r0pf5jpjxn.ws-eu45.gitpod.io/flock_management/hens_quantity')
 .then(response => response.json())
 .then(data => {
     hensQuantity = data.hens_quantity;
@@ -143,7 +143,6 @@ fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/flock_
         trays_input_div.style.display = 'none';
     }
 });
-
 
 // Show/Hide Advanced Section: This is a type of validation in that it prevents the User from seeing,
 // the Advanced section and therefore from adding data (which results in negative and Nan's).

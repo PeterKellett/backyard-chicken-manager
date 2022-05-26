@@ -6,6 +6,7 @@ class DiseasesNameAdmin(admin.ModelAdmin):
     """Admin layout for Disease Names Admin table"""
     list_display = (
         'id',
+        'farm_profile',
         'disease_name'
     )
 
@@ -22,6 +23,7 @@ class SupplementsNameAdmin(admin.ModelAdmin):
     """Admin layout for Supplement Names Admin table"""
     list_display = (
         'id',
+        'farm_profile',
         'supplement_name',
         'supplement_in_stock'
     )
@@ -82,6 +84,7 @@ class VirusesNameAdmin(admin.ModelAdmin):
     """Admin layout for Virus Names Admin table"""
     list_display = (
         'id',
+        'farm_profile',
         'virus_name'
     )
 
@@ -90,6 +93,7 @@ class VaccinesNameAdmin(admin.ModelAdmin):
     """Admin layout for Vaccine Names Admin table"""
     list_display = (
         'id',
+        'farm_profile',
         'vaccine_name'
     )
 

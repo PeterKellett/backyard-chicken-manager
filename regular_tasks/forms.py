@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, modelformset_factory
-from .models import EggCollection, FeedingTime, CoopCleaning, Feeds
+from .models import EggCollection, FeedingTime, WateringTime, CoopCleaning, Feeds
 
 
 # Create an Egg Collection form
@@ -136,17 +136,17 @@ class FeedsForm(forms.ModelForm):
 # Create a Feeding Time form
 class FeedingTimeForm(forms.ModelForm):
     """ Create a feeding time form """
-
     class Meta:
         """ Meta Class Docstring here as required """
         model = FeedingTime
-        fields = ('date', 'flock', 'feed_name',
-                  'amount_food_rem', 'amount_food_added',
+        fields = ('date', 'flock',
+                  'feed_name',
+                  'amount_food_rem',
+                  'amount_food_added',
+                  'feeder_amount',
                   'amount_food_consumed',
-                  'water_total',
-                  'amount_water_rem', 'amount_water_added',
-                  'amount_water_consumed',
-                  'notes', 'images'
+                  'notes',
+                  'images'
                   )
 
         widgets = {
@@ -158,42 +158,80 @@ class FeedingTimeForm(forms.ModelForm):
                                                 'onkeyup': "showSuggestionsFeeds(this.value, 'feed-type-label')",
                                                 'placeholder':
                                                 "Feed Type"}),
-            'amount_food_rem': forms.TextInput(attrs={'id': 'amount-food-rem',
-                                                      'name': 'amount_food_rem',
-                                                      'placeholder': 'Amount of Food Remaining',
-                                                      'value': '',
-                                                      'step': '1',
-                                                      'min': '0',
-                                                      'oninput': 'this.value = Math.abs(this.value)'}),
-            'amount_food_added': forms.TextInput(attrs={'id':
-                                                        'amount-food-added',
-                                                        'name':
-                                                        'amount_food_added',
-                                                        'placeholder':
-                                                        'Amount of Food Added',
+            'amount_food_rem': forms.NumberInput(attrs={'id': 'amount-food-rem',
+                                                        'name': 'amount_food_rem',
+                                                        'placeholder': 'Amount of Food Remaining',
                                                         'value': '',
-                                                        'step': '1',
-                                                        'min': '0',
-                                                        'oninput': 'this.value = Math.abs(this.value)'}),
-            'amount_water_rem': forms.TextInput(attrs={'id':
-                                                       'amount-water-rem',
-                                                       'name': 'amount_water_rem',
-                                                       'placeholder':
-                                                       'Amount of Water Remaining',
-                                                       'value': '',
-                                                       'step': '1',
-                                                       'min': '0',
-                                                       'oninput': 'this.value = Math.abs(this.value)'}),
-            'amount_water_added': forms.TextInput(attrs={'id':
-                                                         'amount-water-added',
-                                                         'name':
-                                                         'amount_water_added',
+                                                        'min': '0'}),
+            'amount_food_added': forms.NumberInput(attrs={'id':
+                                                          'amount-food-added',
+                                                          'name':
+                                                          'amount_food_added',
+                                                          'placeholder':
+                                                          'Amount of Food Added',
+                                                          'value': '',
+                                                          'min': '0'}),
+            'feeder_amount': forms.NumberInput(attrs={'id':
+                                                      'feeder-amount',
+                                                      'name':
+                                                      'feeder_amount',
+                                                      'placeholder':
+                                                      'Amount of Food in Feeder',
+                                                      'value': '',
+                                                      'min': '0'}),
+            'notes': forms.Textarea(attrs={'class': '',
+                                           'id': 'notes',
+                                           'name': 'notes',
+                                           'placeholder':
+                                           "Notes",
+                                           'value': ''}),
+            'images': forms.ClearableFileInput(attrs={'class': 'upload',
+                                                      'id': 'images-feeding-time',
+                                                      'name': 'images_feeding_time'})
+        }
+
+
+# Create a Watering Time form
+class WateringTimeForm(forms.ModelForm):
+    """ Create a feeding time form """
+    class Meta:
+        """ Meta Class Docstring here as required """
+        model = WateringTime
+        fields = ('date',
+                  'flock',
+                  'amount_water_rem',
+                  'amount_water_added',
+                  'amount_water_consumed',
+                  'water_total',
+                  'notes',
+                  'images'
+                  )
+
+        widgets = {
+            'date': forms.DateTimeInput(attrs={'class': 'class-name'}),
+            'amount_water_rem': forms.NumberInput(attrs={'id':
+                                                         'amount-water-rem',
+                                                         'name': 'amount_water_rem',
                                                          'placeholder':
-                                                         'Amount of Water Added',
+                                                         'Amount of Water Remaining',
                                                          'value': '',
-                                                         'step': '1',
-                                                         'min': '0',
-                                                         'oninput': 'this.value = Math.abs(this.value)'}),
+                                                         'min': '0'}),
+            'amount_water_added': forms.NumberInput(attrs={'id':
+                                                           'amount-water-added',
+                                                           'name':
+                                                           'amount_water_added',
+                                                           'placeholder':
+                                                           'Amount of Water Added',
+                                                           'value': '',
+                                                           'min': '0'}),
+            'water_total': forms.NumberInput(attrs={'id':
+                                                           'water-total',
+                                                           'name':
+                                                           'water_total',
+                                                           'placeholder':
+                                                           'Amount of Water in Total',
+                                                           'value': '',
+                                                           'min': '0'}),
             'notes': forms.Textarea(attrs={'class': '',
                                            'id': 'notes',
                                            'name': 'notes',
