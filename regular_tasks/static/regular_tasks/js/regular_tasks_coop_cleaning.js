@@ -1,6 +1,6 @@
 console.log("regular_tasks_coop_cleaning.js");
 
-fetch('https:https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regular_tasks/get_disinfectants')
+fetch('https://8000-peterkellet-backyardchi-59h2vqhodh4.ws-eu45.gitpod.io/regular_tasks/get_disinfectants')
 .then(response => response.json())
 .then(data => {
     console.log("Fetch disinfectant type fn fires");

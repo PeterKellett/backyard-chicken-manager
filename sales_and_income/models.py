@@ -15,6 +15,7 @@ class SalesType(models.Model):
 
 
 class Pricing(models.Model):
+    """Model used for storing different customer status'"""
     class Meta:
         """Overwrite the default Django pluralisation"""
         verbose_name_plural = 'Pricing'

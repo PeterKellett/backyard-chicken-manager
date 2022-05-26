@@ -7,6 +7,7 @@ from .models import UserProfile, FarmProfile, FarmType, Breed, FarmPurpose
 from flock_management.models import Flocks, Coops
 from health_and_welfare.models import Supplements, SupplementsName
 from regular_tasks.models import Feeds
+from backyard_chicken_manager.settings import BCM_MAPS_KEY
 
 
 # Create your views here.
@@ -232,7 +233,8 @@ def onboard_personal(request):
     for farm_type in farm_types:
         farm_type = str(farm_type)
     context = {
-        "farm_types": farm_types
+        "farm_types": farm_types,
+        "google_maps_api": f"https://maps.googleapis.com/maps/api/js?key={BCM_MAPS_KEY}&libraries=places&callback=initAutocomplete"
     }
     template = 'profiles/onboard_personal.html'
     return render(request, template, context)
